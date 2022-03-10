@@ -1,0 +1,22 @@
+.heading-primary {
+  font-size: 4.6rem; //46px;
+  text-align: center;
+  font-weight: 700;
+
+  @include respond(small-phone) {
+    font-size: 9vw;
+  }
+}
+
+.heading-secondary {
+  font-size: 4rem; //40px;
+  text-align: center;
+}
+
+.heading-tertiary {
+  font-size: 3.6rem;
+}
+
+.paragraph {
+  font-size: 1.6rem;
+}
