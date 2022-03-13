@@ -1,0 +1,14 @@
+.dashboard {
+  display: flex;
+  width: 100%;
+  font-size: 1.6rem;
+  height: 100vh;
+  overflow-y: auto;
+  font-family: 'SFPro';
+
+  &__main {
+    flex: 1;
+    background-color: $color-primary-dark;
+    padding: 24px 16px;
+  }
+}

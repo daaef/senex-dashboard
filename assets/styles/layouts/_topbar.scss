@@ -1,0 +1,68 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+  margin-bottom: 30px;
+
+  &__page-title {
+    color: $color-white;
+    text-transform: capitalize;
+  }
+
+  &__actions {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
+  &__theme-switch-box {
+    width: 100px;
+    height: 30px;
+    border-radius: 70px;
+    background-color: $color-secondary-dark;
+    margin-right: 30px;
+
+    @include respond(phone) {
+      display: none;
+    }
+  }
+
+  &__btn {
+    background-color: $color-primary;
+    padding: 12px 20px;
+    color: $color-white;
+    border-radius: 8px;
+
+    @include respond(phone) {
+      display: none;
+    }
+  }
+
+  &__line {
+    display: inline-block;
+    width: 1px;
+    height: 48px;
+    background-color: $color-grey-c8c;
+    margin: 0 15px;
+
+    @include respond(phone) {
+      display: none;
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 48px;
+    width: 48px;
+    background-color: $color-secondary-dark;
+    color: $color-grey-c8c;
+    border: 1px solid $color-grey-c8c;
+    text-transform: uppercase;
+  }
+}
