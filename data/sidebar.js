@@ -2,7 +2,7 @@ export default [
   {
     name: 'Dashboard',
     icon: '/img/vp-3screenshot.png',
-    link: '/dashboard',
+    link: '/',
   },
   {
     name: 'Transactions',

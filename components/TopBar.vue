@@ -16,9 +16,9 @@ export default {
     getPath() {
       let path = this.$route.path
       if (path === '/' || path === '/dashboard') {
-        path = 'Dashboard'
+        path = '/dashboard'
       }
-      path = path.split('/')[0]
+      path = path.split('/')[1]
       return path.replace(/^\//, '')
     },
   },
