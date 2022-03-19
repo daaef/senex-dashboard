@@ -1,0 +1,10 @@
+.index-txn-info {
+  display: flex;
+  justify-content: space-between;
+
+  @include respond(phone-mid) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
