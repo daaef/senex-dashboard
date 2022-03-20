@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="">
     <div class="index-txn-info">
       <transaction-card
         text="Total Transaction"
@@ -8,14 +8,19 @@
       <transaction-card text="Total Buy" amount="N1,759,090"></transaction-card>
       <transaction-card text="Total Sell" amount="N800,000"></transaction-card>
     </div>
+    <div class="u-my-big">
+      <transaction-table></transaction-table>
+    </div>
   </div>
 </template>
 
 <script>
 import TransactionCard from '~/components/index/TransactionCard.vue'
+import TransactionTable from '~/components/transaction/TransactionTable.vue'
 export default {
   components: {
     TransactionCard,
+    TransactionTable,
   },
   layout: 'dashboard',
 }

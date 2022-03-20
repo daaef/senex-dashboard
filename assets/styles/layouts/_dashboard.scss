@@ -1,14 +1,48 @@
 .dashboard {
+  position: relative;
   display: flex;
   width: 100%;
   font-size: 1.6rem;
   height: 100vh;
-  overflow-y: auto;
+  // overflow-y: auto;
   font-family: 'SFPro';
 
+  &__side-menu {
+    position: relative;
+    background-color: $color-secondary-dark;
+    max-height: 100vh;
+    overflow-y: auto;
+    z-index: 4;
+    flex: 0 0 25rem;
+
+    @include respond(tab-land-sm) {
+      display: none;
+    }
+  }
+
+  &__topbar {
+    position: fixed;
+    padding-left: 25rem;
+    z-index: 3;
+    left: 0;
+    width: 100%;
+
+    @include respond(tab-land-sm) {
+      padding-left: 0;
+    }
+  }
+
   &__main {
+    position: relative;
     flex: 1;
     background-color: $color-primary-dark;
-    padding: 24px 16px;
+    padding-top: 24px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  &__content {
+    margin-top: 8rem;
+    overflow-y: auto;
   }
 }

@@ -1,9 +1,17 @@
 <template>
   <div class="dashboard">
-    <SideMenu />
-    <div class="dashboard__main">
+    <div class="dashboard__side-menu">
+      <SideMenu />
+    </div>
+    <div class="dashboard__topbar">
       <TopBar />
-      <Nuxt />
+    </div>
+    <div class="dashboard__main">
+      <div class="container">
+        <div class="dashboard__content">
+          <Nuxt />
+        </div>
+      </div>
     </div>
   </div>
 </template>
