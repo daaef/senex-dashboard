@@ -8,22 +8,22 @@
       <table class="txn-table__main">
         <thead class="txn-table__head">
           <tr>
-            <th class="">Date</th>
-            <th class="">Order ID</th>
-            <th class="">Order Type</th>
-            <th class="">Crypto Value</th>
-            <th class="">Fiat Value</th>
-            <th class="">Status</th>
+            <th class="th th--20">Cryptcurrency</th>
+            <th class="th th--20">Nickname</th>
+            <th class="th th--20">Wallet address</th>
+            <th class="th th--20">Fiat Value</th>
+            <th class="th th--20">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="idx in 10" :key="idx">
-            <td class="">Date</td>
-            <td class="">Order ID</td>
-            <td class="">Order Type</td>
-            <td class="">Crypto Value</td>
-            <td class="">Fiat Value</td>
-            <td class="status"><span class="status-dot"></span>Pending</td>
+            <td class="td td--20">Bitcoin</td>
+            <td class="td td--20">Ahmed</td>
+            <td class="td td--20">18QJXrJvfberRz8HSM…</td>
+            <td class="td td--20 status status--blue">
+              <span class="status-dot"></span>Edit
+            </td>
+            <td class="td td--20 status status--red"><span class="status-dot"></span>Delete</td>
           </tr>
         </tbody>
       </table>

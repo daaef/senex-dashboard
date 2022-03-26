@@ -15,13 +15,13 @@
 </template>
 
 <script>
-import TransactionCard from '~/components/index/TransactionCard.vue'
-import TransactionTable from '~/components/transaction/TransactionTable.vue'
+// import TransactionCard from '~/components/index/TransactionCard.vue'
+// import TransactionTable from '~/components/transaction/TransactionTable.vue'
 export default {
-  components: {
-    TransactionCard,
-    TransactionTable,
-  },
+  // components: {
+  //   TransactionCard,
+  //   TransactionTable,
+  // },
   layout: 'dashboard',
 }
 </script>

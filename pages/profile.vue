@@ -1,10 +1,42 @@
 <template>
-  <div></div>
+  <div>
+    <tab-holder :tabs="tabs"></tab-holder>
+  </div>
 </template>
 
 <script>
 export default {
   layout: 'dashboard',
+  data() {
+    return {
+      tabs: [
+        {
+          title: 'Profile',
+          component: 'BenefTab',
+          properties: {
+            showHeader: false,
+            btnText: 'Add Wallet',
+          },
+        },
+        {
+          title: 'Next Of Kin',
+          component: 'BenefTab',
+          properties: {
+            showHeader: false,
+            btnText: 'Add Bank Account',
+          },
+        },
+        {
+          title: 'KYC Verification',
+          component: 'BenefTab',
+          properties: {
+            showHeader: false,
+            btnText: 'Add Bank Account',
+          },
+        },
+      ],
+    }
+  },
 }
 </script>
 

@@ -1,0 +1,21 @@
+.btn {
+  display: inline-block;
+  background-color: $color-primary;
+  color: $color-white;
+  padding: 0.8rem 1.6rem;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}

@@ -1,0 +1,50 @@
+.txn-tab {
+  // padding-top: 10px;
+  color: $color-grey-c8c;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__search-box {
+    display: inline-block;
+    flex: 0 0 30rem;
+    border-radius: 8px;
+    padding: 0;
+    padding-left: 24px;
+    position: relative;
+    background-color: $color-secondary-dark;
+  }
+
+  &__search-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+  }
+
+  &__search-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+    padding: 8px 10px;
+    background-color: transparent;
+  }
+
+  &__page-box {
+    background-color: inherit;
+  }
+
+  &__arrow-box {
+    width: 10rem;
+    display: flex;
+    justify-content: space-between;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
