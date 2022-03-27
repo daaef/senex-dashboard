@@ -12,7 +12,7 @@ export default {
       tabs: [
         {
           title: 'Wallets',
-          component: 'BenefTab',
+          component: 'WalletTab',
           properties: {
             showHeader: false,
             btnText: 'Add Wallet',
@@ -20,7 +20,7 @@ export default {
         },
         {
           title: 'Bank Accounts',
-          component: 'BenefTab',
+          component: 'BankAccTab',
           properties: {
             showHeader: false,
             btnText: 'Add Bank Account',

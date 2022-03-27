@@ -11,7 +11,7 @@
         <div class="txn-tab__arrow-box"></div>
       </div>
     </div>
-    <beneficiary-table :show-header="false"></beneficiary-table>
+    <wallet-table :show-header="false"></wallet-table>
   </div>
 </template>
 

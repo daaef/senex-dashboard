@@ -1,4 +1,9 @@
-.u-mb-sm {
+.u-mb-5 {
+  margin-bottom: 5px !important;
+}
+
+.u-mb-sm,
+.u-mb-10 {
   margin-bottom: 10px !important;
 }
 
@@ -45,4 +50,8 @@
 .u-link {
   color: $color-link;
   cursor: pointer;
+}
+
+.u-white {
+  color: $color-white !important;
 }

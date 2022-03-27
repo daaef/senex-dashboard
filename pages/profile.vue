@@ -12,7 +12,7 @@ export default {
       tabs: [
         {
           title: 'Profile',
-          component: 'BenefTab',
+          component: 'ProfileTab',
           properties: {
             showHeader: false,
             btnText: 'Add Wallet',
@@ -20,7 +20,7 @@ export default {
         },
         {
           title: 'Next Of Kin',
-          component: 'BenefTab',
+          component: 'NextOfKinTab',
           properties: {
             showHeader: false,
             btnText: 'Add Bank Account',
