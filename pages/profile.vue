@@ -28,7 +28,7 @@ export default {
         },
         {
           title: 'KYC Verification',
-          component: 'BenefTab',
+          component: 'NextOfKinTab',
           properties: {
             showHeader: false,
             btnText: 'Add Bank Account',

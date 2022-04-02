@@ -51,7 +51,11 @@
     padding: 1rem;
     border: 1px solid $color-grey-c8c;
     border-radius: 8px;
-    background-color: $color-grey-202;
+    background-color: transparent;
+
+    &--disabled {
+      background-color: $color-grey-202
+    }
 
     input {
       width: 100%;
@@ -60,5 +64,16 @@
       outline: none;
       padding: 0 1rem;
     }
+  }
+
+  &__input-extra {
+    display: inline-block;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    padding: 0 !important;
+    // color: $color-grey-c8c;
   }
 }

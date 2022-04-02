@@ -9,13 +9,7 @@
     <h3 class="heading-primary u-white u-mb-20">Next of Kin Information</h3>
     <div class="profile__form">
       <div class="u-mb-30">
-        <p class="u-mb-5">First name</p>
-        <div class="profile__input-box">
-          <input type="text" />
-        </div>
-      </div>
-      <div class="u-mb-30">
-        <p class="u-mb-5">Last name</p>
+        <p class="u-mb-5">Full name</p>
         <div class="profile__input-box">
           <input type="text" />
         </div>
