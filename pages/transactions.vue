@@ -15,19 +15,36 @@ export default {
           component: 'TxnTab',
           properties: {
             showHeader: false,
+            tag: 'all',
+            status: ''
           },
         },
         {
           title: 'Completed Transactions',
           component: 'TxnTab',
+          properties: {
+            showHeader: false,
+            tag: 'completed',
+            status: 'completed'
+          },
         },
         {
           title: 'Pending Transactions',
           component: 'TxnTab',
+          properties: {
+            showHeader: false,
+            tag: 'pending',
+            status: 'pending'
+          },
         },
         {
           title: 'Expired Transactions',
           component: 'TxnTab',
+          properties: {
+            showHeader: false,
+            tag: 'expired',
+            status: 'expired'
+          },
         },
       ],
     }

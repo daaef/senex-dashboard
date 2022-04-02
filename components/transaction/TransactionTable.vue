@@ -2,7 +2,7 @@
   <div class="txn-table">
     <div v-if="showHeader" class="txn-table__header">
       <h3 class="heading-tertiary">Recent Transactions</h3>
-      <span class="u-link">View all</span>
+      <router-link to="/transactions" class="u-link">View all</router-link>
     </div>
     <div class="txn-table__wrapper">
       <table class="txn-table__main">
@@ -17,13 +17,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="idx in 10" :key="idx">
-            <td class="">Date</td>
-            <td class="">Order ID</td>
-            <td class="">Order Type</td>
-            <td class="">Crypto Value</td>
-            <td class="">Fiat Value</td>
-            <td class="status"><span class="status-dot"></span>Pending</td>
+          <tr v-for="(row, idx) in orders" :key="idx">
+            <td class="">{{ formatDate(row.created) }}</td>
+            <td class="">{{ row.id }}</td>
+            <td class="">{{ row.type }}</td>
+            <td class="">{{ row.cryptoAmount }} {{ row.cryptoCurrency }}</td>
+            <td class="">{{ row.fiatCurrency }} {{ row.fiatAmount }}</td>
+            <td class="status">
+              <span
+                class="status-dot"
+                :class="[
+                  row.status == 'expired'
+                    ? 'status-dot--red'
+                    : row.status === 'completed'
+                    ? 'status-dot--green'
+                    : '',
+                ]"
+              ></span
+              >{{ row.status == 'paid' ? 'Pending' : row.status }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -32,11 +44,21 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   props: {
     showHeader: {
       type: Boolean,
       default: true,
+    },
+    orders: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  methods: {
+    formatDate(thisDate) {
+      return moment(new Date(thisDate)).format('MMM DD, YYYY')
     },
   },
 }

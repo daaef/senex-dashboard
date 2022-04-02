@@ -6,13 +6,13 @@
           v-for="(tab, index) in tabs"
           :key="index"
           class="tab-list__item"
-          @click="onSelect(tab)"
+          @click="onSelect(tab, index)"
         >
           {{ tab.title }}
         </div>
         <span
           class="tab-list__glider"
-          :class="`tab-list__glider--${currentTabIdx() + 1}`"
+          :class="`tab-list__glider--${currentTabIndex + 1}`"
         ></span>
       </div>
     </div>
@@ -20,6 +20,7 @@
       <component
         :is="currentTab.component"
         v-bind="currentTab.properties"
+        :key="currentTabIndex"
       ></component>
     </div>
   </div>
@@ -43,11 +44,14 @@ export default {
     return {
       // :class="[network == selected ? 'tab-list__select-btn--active' : '', `ntw-switch__select-btn--${tabs(items).length}`]"
       currentTab: this.tabs[0],
+      currentTabIndex: 0,
     }
   },
   methods: {
-    onSelect(tab) {
+    onSelect(tab, index) {
+      // const isSameTabName = this.currentTab.component === tab.component
       this.currentTab = tab
+      this.currentTabIndex = index
     },
     currentTabIdx() {
       return this.tabs.findIndex((tab) => tab.title === this.currentTab.title)
