@@ -1,9 +1,5 @@
 <template>
   <div class="txn-table">
-    <div v-if="showHeader" class="txn-table__header">
-      <h3 class="heading-tertiary">Recent Transactions</h3>
-      <span class="u-link">View all</span>
-    </div>
     <div class="txn-table__wrapper">
       <table class="txn-table__main">
         <thead class="txn-table__head">
@@ -16,14 +12,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="idx in 10" :key="idx">
-            <td class="td td--20">Bitcoin</td>
-            <td class="td td--20">Ahmed</td>
-            <td class="td td--20">18QJXrJvfberRz8HSM…</td>
-            <td class="td td--20 status status--blue">
+          <tr v-for="(wallet, idx) in wallets" :key="idx">
+            <td class="td td--20">{{ wallet.currency }}</td>
+            <td class="td td--20">{{ wallet.label }}</td>
+            <td class="td td--40">{{ wallet.walletAddress }}</td>
+            <td class="td td--10 status status--blue">
               <span class="status-dot"></span>Edit
             </td>
-            <td class="td td--20 status status--red"><span class="status-dot"></span>Delete</td>
+            <td class="td td--10 status status--red">
+              <span class="status-dot"></span>Delete
+            </td>
           </tr>
         </tbody>
       </table>
@@ -34,9 +32,9 @@
 <script>
 export default {
   props: {
-    showHeader: {
-      type: Boolean,
-      default: true,
+    wallets: {
+      type: Array,
+      default: () => [],
     },
   },
 }

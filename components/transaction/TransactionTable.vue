@@ -23,17 +23,17 @@
             <td class="">{{ row.type }}</td>
             <td class="">{{ row.cryptoAmount }} {{ row.cryptoCurrency }}</td>
             <td class="">{{ row.fiatCurrency }} {{ row.fiatAmount }}</td>
-            <td class="status">
-              <span
-                class="status-dot"
-                :class="[
-                  row.status == 'expired'
-                    ? 'status-dot--red'
-                    : row.status === 'completed'
-                    ? 'status-dot--green'
-                    : '',
-                ]"
-              ></span
+            <td
+              class="status"
+              :class="[
+                row.status == 'expired'
+                  ? 'status--red'
+                  : row.status === 'completed'
+                  ? 'status--green'
+                  : '',
+              ]"
+            >
+              <span class="status-dot"></span
               >{{ row.status == 'paid' ? 'Pending' : row.status }}
             </td>
           </tr>

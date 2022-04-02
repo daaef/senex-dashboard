@@ -11,16 +11,28 @@
         <div class="txn-tab__arrow-box"></div>
       </div>
     </div>
-    <bank-account-table :show-header="false"></bank-account-table>
+    <bank-account-table :bankAccounts="getBankAccounts()"></bank-account-table>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   props: {
     btnText: {
       type: String,
       default: '',
+    },
+  },
+  computed: {
+    ...mapState('auth', ['user']),
+  },
+  methods: {
+    getBankAccounts() {
+      if (this.user && this.user.profile.bankAccounts) {
+        return this.user.profile.bankAccounts.data
+      }
+      return []
     },
   },
 }

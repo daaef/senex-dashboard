@@ -11,16 +11,28 @@
         <div class="txn-tab__arrow-box"></div>
       </div>
     </div>
-    <wallet-table :show-header="false"></wallet-table>
+    <wallet-table :wallets="getWallets()"></wallet-table>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   props: {
     btnText: {
       type: String,
       default: '',
+    },
+  },
+  computed: {
+    ...mapState('auth', ['user']),
+  },
+  methods: {
+    getWallets() {
+      if (this.user && this.user.profile.walletAddresses) {
+        return this.user.profile.walletAddresses.data
+      }
+      return []
     },
   },
 }
