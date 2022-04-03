@@ -90,6 +90,7 @@ export default {
     { src: '~/plugins/axios', ssr: true },
     { src: '~/plugins/vue-notification', ssr: false },
     { src: '~/plugins/v-select', ssr: false },
+    '~plugins/vue-final-modal.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -259,5 +260,7 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ['vue-final-modal']
+  },
 }
