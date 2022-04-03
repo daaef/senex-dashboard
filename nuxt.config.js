@@ -89,6 +89,7 @@ export default {
     { src: '~/plugins/api', ssr: true },
     { src: '~/plugins/axios', ssr: true },
     { src: '~/plugins/vue-notification', ssr: false },
+    { src: '~/plugins/v-select', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

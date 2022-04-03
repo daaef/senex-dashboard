@@ -7,12 +7,13 @@
 <script>
 export default {
   layout: 'dashboard',
+  middleware: 'authenticated',
   data() {
     return {
       tabs: [
         {
           title: 'Invite A Friend',
-          component: 'ProfileTab',
+          component: 'InviteFriendTab',
           properties: {
             showHeader: false,
             btnText: 'Add Wallet',

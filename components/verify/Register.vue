@@ -1,5 +1,5 @@
 <template>
-  <div class="auth">
+  <div class="auth sign-up">
     <div class="auth__form-logo-box">
       <LogoImage />
       <div class="auth__form-box">
@@ -31,6 +31,19 @@
               ></label
             >
             <div class="select-input">
+              <v-select
+                :options="countries"
+                :reduce="(country) => country.value"
+                v-model="countryCode"
+                :placeholder="countryCode"
+                label="value"
+                :clearable="false"
+                :searchable="false"
+              >
+                <template #option="{ text }">
+                  <span>{{ text }}</span>
+                </template>
+              </v-select>
               <!-- <b-dropdown id="dropdown-menu" :text="countryCode">
                 <b-dropdown-item
                   v-for="country in countries"
@@ -45,7 +58,7 @@
                 <input
                   v-model="mobileSuffix"
                   autocomplete="off"
-                  type="number"
+                  type="text"
                   @keypress="isNumber"
                 />
               </div>
@@ -119,7 +132,7 @@
             <span
               class="validation-span"
               :class="[hideValidation ? 'hide' : 'show']"
-              ><i
+              ><span
                 class="las la-circle dot"
                 :class="[
                   passValid.hasSymbol === 2
@@ -128,7 +141,7 @@
                     ? 'red-dot'
                     : '',
                 ]"
-              ></i
+              ></span
               >Use a symbol (e.g!@#$)</span
             >
           </div>
@@ -163,8 +176,13 @@
 </template>
 <script>
 import getDeviceInfo from '@/data/getDeviceInfo.js'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css'
 export default {
   layout: 'toast',
+  components: {
+    vSelect,
+  },
   props: {
     verifyUser: {
       type: Function,
@@ -268,7 +286,8 @@ export default {
         this.passwordLocked === 'password' ? 'text' : 'password'
     },
     validateEmail(value) {
-      const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+      const reg =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       if (reg.test(value)) {
         this.validEmail = 2
       } else {
@@ -462,96 +481,117 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.select-input {
-  display: flex;
-  width: 100%;
-  height: 50px;
-}
+<style lang="scss">
+.sign-up {
+  .vs--unsearchable .vs__dropdown-toggle {
+    width: 70px;
+    height: 100%;
+    padding: 0;
+    margin-right: 5px;
+    border: 1px solid #707070;
 
-.active-color {
-  opacity: 1;
-  cursor: pointer;
-}
-.disabled-color {
-  opacity: 0.5;
-  cursor: default;
-}
+    .vs__selected {
+      height: 100%;
+      margin: 0;
+    }
 
-.select-input > select {
-  border: 1px solid #707070;
-  margin-right: 8px;
-  border-radius: 6px;
-  color: #000000;
-  text-align: center;
-  padding: 0 10px;
-}
+    input {
+      display: none;
+    }
+  }
+  .select-input {
+    display: flex;
+    width: 100%;
+    height: 50px;
+  }
 
-.select-box {
-  border: 1px solid #707070;
-  margin-right: 8px;
-  border-radius: 6px;
-  color: #000000;
-  text-align: center;
-  background-color: white !important;
-}
+  .active-color {
+    opacity: 1;
+    cursor: pointer;
+  }
+  .disabled-color {
+    opacity: 0.5;
+    cursor: default;
+  }
 
-.validation-span {
-  margin: 10px 0 0 5px;
-  font-style: italic;
-  color: #707070;
-  display: inline-block;
-}
+  .select-input > select {
+    border: 1px solid #707070;
+    margin-right: 8px;
+    border-radius: 6px;
+    color: #000000;
+    text-align: center;
+    padding: 0 10px;
+  }
 
-.dot {
-  margin-right: 2px;
-  border: 1px solid #707070;
-  position: relative;
-  top: -4px;
-  border-radius: 50%;
-  font-size: 6px;
-}
+  .select-box {
+    border: 1px solid #707070;
+    margin-right: 8px;
+    border-radius: 6px;
+    color: #000000;
+    text-align: center;
+    background-color: white !important;
+  }
 
-.red-dot {
-  background-color: red;
-}
-.green-dot {
-  background-color: green;
-}
-.hide {
-  display: none;
-}
+  .validation-span {
+    margin: 10px 0 0 5px;
+    font-style: italic;
+    color: #707070;
+    display: inline-block;
+  }
 
-.show {
-  display: block;
+  .dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 2px;
+    border: 1px solid #707070;
+    position: relative;
+    border-radius: 50%;
+    font-size: 6px;
+  }
+
+  .red-dot {
+    background-color: red;
+  }
+  .green-dot {
+    background-color: green;
+  }
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
+
+  .link-color {
+    color: #076de2;
+  }
+
+  .use-active {
+    color: #076de2;
+    font-size: 14px;
+  }
+
+  // /deep/ #dropdown-menu > button {
+  //   // width: 100%;
+  //   height: 100%;
+  //   background-color: white;
+  //   color: black;
+  //   margin-right: 10px;
+  //   width: 70px;
+  // }
+
+  // /deep/ #dropdown-menu__BV_toggle_ {
+  //   width: 100%;
+  //   border: 1px solid #707070;
+  //   margin-right: 10px;
+  // }
+
+  // /deep/ .dropdown-menu {
+  //   border: 1px solid #707070;
+  //   margin-top: 5px;
+  // }
 }
-
-.link-color {
-  color: #076de2;
-}
-
-.use-active {
-  color: #076de2;
-  font-size: 14px;
-}
-
-// /deep/ #dropdown-menu > button {
-//   // width: 100%;
-//   height: 100%;
-//   background-color: white;
-//   color: black;
-//   margin-right: 10px;
-//   width: 70px;
-// }
-
-// /deep/ #dropdown-menu__BV_toggle_ {
-//   width: 100%;
-//   border: 1px solid #707070;
-//   margin-right: 10px;
-// }
-
-// /deep/ .dropdown-menu {
-//   border: 1px solid #707070;
-//   margin-top: 5px;
-// }
 </style>

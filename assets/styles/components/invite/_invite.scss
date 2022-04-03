@@ -1,0 +1,166 @@
+.invite {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  color: $color-grey-c8c;
+
+  &__top-content {
+    max-width: 60rem;
+    width: 100%;
+  }
+
+  &__header {
+    max-width: 50rem;
+    width: 100%;
+  }
+
+  &__email-form {
+    display: flex;
+    justify-content: space-between;
+
+    @include respond(phone) {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+  }
+
+  &__email-box {
+    flex: 1 1 75%;
+
+    @include respond(phone) {
+      flex: 0;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__email-input-box {
+    width: 100%;
+    position: relative;
+    padding: 1rem;
+    border: 1px solid $color-grey-707;
+    border-radius: 8px;
+    background-color: transparent;
+
+    input {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 0 1rem;
+    }
+  }
+
+  &__separate-email {
+    color: $color-yellow-f8c
+  }
+
+  &__send-invites {
+    flex: 0 0 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include respond(phone) {
+      flex: 0;
+    }
+  }
+
+  &__line {
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+    background-color: $color-grey-707;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__bottom-content {
+    width: 100%;
+  }
+
+  &__link-and-social-box {
+    display: flex;
+    
+    @include respond(phone) {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+  }
+
+  &__link-box {
+    flex: 0 1 65%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 3rem;
+
+    @include respond(phone) {
+      flex: 0;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__link-input-box {
+    width: 100%;
+    position: relative;
+    padding: 1rem;
+    border: 1px solid $color-grey-c8c;
+    border-radius: 8px;
+    background-color: transparent;
+
+    input {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 0 1rem;
+    }
+
+    .extra {
+      display: inline-block;
+      position: absolute;
+      height: 100%;
+      right: 0;
+      top: 0;
+      padding: 1rem 2rem !important;
+      border-left: 1px solid $color-grey-707;
+      cursor: pointer;
+      // color: $color-grey-c8c;
+    }
+  }
+
+  &__social-box {
+    flex: 1 0 25%;
+    display: flex;
+    flex-direction: column;
+
+    @include respond(phone) {
+      flex: 0;
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  &__social-img-box {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+
+    a {
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+    }
+
+    img {
+      width: 25px;
+      height: auto;
+    }
+  }
+}

@@ -19,7 +19,7 @@
     >
       <img src="/img/loading.svg" class="rotate spinner" />
     </div>
-    <input style="display: none" class="d-none" type="submit" />
+    <input style="display: none" type="submit" />
   </div>
 </template>
 
@@ -85,7 +85,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'SFProRegular';
 }
 
 .hide {

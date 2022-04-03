@@ -5,6 +5,15 @@
   @include respond(small-phone) {
     font-size: 6vw;
   }
+
+  &--big {
+    font-size: 3.4rem;
+    font-weight: 700;
+
+    @include respond(small-phone) {
+      font-size: 6.5vw;
+    }
+  }
 }
 
 .heading-secondary {
@@ -20,6 +29,10 @@
 
 .paragraph {
   font-size: 1.6rem;
+}
+
+.fw-400 {
+  font-weight: 400 !important;
 }
 
 .fw-500 {
