@@ -6,6 +6,15 @@
     font-size: 6vw;
   }
 
+  &--md {
+    font-size: 3rem;
+    font-weight: 700;
+
+    @include respond(small-phone) {
+      font-size: 6.2vw;
+    }
+  }
+
   &--big {
     font-size: 3.4rem;
     font-weight: 700;
@@ -18,7 +27,6 @@
 
 .heading-secondary {
   font-size: 2.2rem; //22px;
-  text-align: center;
   font-weight: 700;
 }
 

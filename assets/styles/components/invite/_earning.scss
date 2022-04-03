@@ -1,0 +1,55 @@
+.earning {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 3rem;
+  border-radius: 12px;
+  color: $color-grey-c8c;
+
+  @include respond(phone) {
+    padding: 1.5rem;
+  }
+
+  &__min-amount-text {
+    font-size: 1.4rem;
+    color: $color-green-049;
+  }
+
+  &__withdraw-btn {
+    background-color: $color-green-049 !important;
+    width: 15rem;
+  }
+
+  &__list-box {
+    width: 100%;
+    max-width: 50rem;
+    margin-top: 4rem;
+  }
+
+  &__list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 6px;
+    padding: 1.5rem;
+    background-color: $color-secondary-dark;
+
+    &:not(:last-child) {
+      margin-bottom: 2.5rem;
+    }
+
+    & > span {
+      &:first-child {
+        margin-right: 10px;
+      }
+    }
+
+    // &__text {
+    //   font-size: 1.4rem;
+    // }
+
+    // &__amount {
+    //   font-size: 1.4rem;
+    //   color: $color-green-049;
+    // }
+  }
+}

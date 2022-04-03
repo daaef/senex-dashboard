@@ -21,7 +21,7 @@ export default {
         },
         {
           title: 'Earnings',
-          component: 'NextOfKinTab',
+          component: 'EarningTab',
           properties: {
             showHeader: false,
             btnText: 'Add Bank Account',
