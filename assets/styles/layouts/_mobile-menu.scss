@@ -1,0 +1,59 @@
+.mobile-menu {
+
+  background-color: $color-primary-dark;
+  color: $color-grey-c8c;
+  height: 100vh;
+  padding-top: 4rem;
+  
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+
+  &__logo {
+    width: 50px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $color-grey-c8c;
+    cursor: pointer;
+  }
+
+  &__item-box {
+    display: block;
+  }
+
+  &__item {
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    color: $color-grey-c8c;
+    font-size: 24px;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+
+  &__item-icon {
+    display: inline-block;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+  }
+}

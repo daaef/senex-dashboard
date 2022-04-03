@@ -1,5 +1,10 @@
 <template>
   <div class="container topbar">
+    <div class="topbar__logo">
+      <router-link to="/"
+        ><img src="/img/senexpay-logo-light.svg" alt="logo"
+      /></router-link>
+    </div>
     <h1 class="topbar__page-title heading-primary">{{ getPath() }}</h1>
     <div class="topbar__actions">
       <div class="topbar__theme-switch-box"></div>
@@ -8,6 +13,11 @@
       <div class="topbar__user" @click="showModal = true">
         {{ getUserInitials() }}
       </div>
+    </div>
+    <div class="hamburger" @click="showMobileMenu = true">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </div>
     <vue-final-modal v-model="showModal">
       <div class="topbar-overlay">
@@ -31,15 +41,21 @@
         </div>
       </div>
     </vue-final-modal>
+    <vue-final-modal v-model="showMobileMenu">
+      <mobile-menu @closeMobileMenu="closeMobileMenu"></mobile-menu>
+    </vue-final-modal>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import MobileMenu from './MobileMenu.vue'
 export default {
+  components: { MobileMenu },
   data() {
     return {
       showModal: false,
+      showMobileMenu: false,
     }
   },
   computed: {
@@ -69,6 +85,9 @@ export default {
         return `${this.user.firstName} ${this.user.lastName}`
       }
       return ''
+    },
+    closeMobileMenu() {
+      this.showMobileMenu = false
     },
   },
 }

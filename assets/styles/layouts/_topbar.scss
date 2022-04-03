@@ -4,9 +4,33 @@
   padding: 2rem 1.6rem;
   background-color: $color-primary-dark;
 
+  &__logo {
+    display: none;
+    width: 100%;
+    height: 48px;
+    padding: 10px;
+
+    @include respond(phone) {
+      display: inline-block;
+    }
+
+    a {
+      display: inline-block;
+    }
+
+    img {
+      height: 30px;
+      width: auto;
+    }
+  }
+
   &__page-title {
     color: $color-white;
     text-transform: capitalize;
+
+    @include respond(phone) {
+      display: none;
+    }
   }
 
   &__actions {
@@ -15,6 +39,10 @@
     align-items: center;
     justify-content: flex-end;
     margin-left: auto;
+
+    @include respond(phone) {
+      display: none;
+    }
   }
 
   &__theme-switch-box {
@@ -23,10 +51,6 @@
     border-radius: 70px;
     background-color: $color-secondary-dark;
     margin-right: 30px;
-
-    @include respond(phone) {
-      display: none;
-    }
   }
 
   &__btn {
@@ -34,10 +58,6 @@
     padding: 12px 20px;
     color: $color-white;
     border-radius: 8px;
-
-    @include respond(phone) {
-      display: none;
-    }
   }
 
   &__line {
@@ -46,10 +66,6 @@
     height: 48px;
     background-color: $color-grey-c8c;
     margin: 0 15px;
-
-    @include respond(phone) {
-      display: none;
-    }
   }
 
   &__user {
@@ -64,6 +80,31 @@
     color: $color-grey-c8c;
     border: 1px solid $color-grey-c8c;
     text-transform: uppercase;
+  }
+}
+
+.hamburger {
+  width: 30px;
+  flex: 0 0 30px;
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: 2rem;
+
+  @include respond(tab-land-sm) {
+    display: flex;
+  }
+
+  .bar {
+    display: inline-block;
+    width: 100%;
+    height: 3px;
+    border-radius: 2px;
+    background-color: $color-white;
+    
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
   }
 }
 
