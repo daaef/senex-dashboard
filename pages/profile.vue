@@ -29,7 +29,7 @@ export default {
         },
         {
           title: 'KYC Verification',
-          component: 'NextOfKinTab',
+          component: 'KYCVerificationTab',
           properties: {
             showHeader: false,
             btnText: 'Add Bank Account',

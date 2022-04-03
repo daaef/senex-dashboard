@@ -6,6 +6,10 @@
   border-radius: 12px;
   color: $color-grey-c8c;
 
+  &--min-height-50 {
+    min-height: 50rem;
+  }
+
   &__header {
     display: flex;
     align-items: center;
@@ -32,7 +36,7 @@
 
   &__info {
     width: 100%;
-    max-width: 70rem;
+    max-width: 50rem;
     padding: 1rem 1.5rem;
     background-color: $color-primary-dark;
     border: 1px solid $color-grey-404;
