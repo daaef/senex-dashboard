@@ -10,6 +10,7 @@
       border-bottom: 1px solid #29292b;
       color: $color-grey-c8c;
       margin-bottom: 20px;
+      overflow-x: auto;
     }
 
     &__item {
@@ -21,6 +22,10 @@
       z-index: 2;
       flex: 0 0 20%;
       border-bottom: 1px solid transparent;
+
+      @include respond(phone) {
+        flex: 0 0 50%;
+      }
     }
 
     &__glider {
@@ -32,6 +37,10 @@
       width: 20%;
       top: 2px;
 
+      @include respond(phone) {
+        width: 50%;
+      }
+
       &--w1 {
         width: 100%;
       }
@@ -42,10 +51,18 @@
 
       &--w3 {
         width: 33.33%;
+
+        @include respond(phone) {
+          width: 50%;
+        }
       }
 
       &--w4 {
         width: 25%;
+
+        @include respond(phone) {
+          width: 50%;
+        }
       }
 
       &--1 {
