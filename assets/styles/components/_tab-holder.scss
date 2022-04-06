@@ -10,7 +10,8 @@
       border-bottom: 1px solid #29292b;
       color: $color-grey-c8c;
       margin-bottom: 20px;
-      overflow-x: auto;
+      flex-wrap: wrap;
+      // overflow-x: auto;
     }
 
     &__item {
@@ -75,14 +76,23 @@
 
       &--3 {
         transform: translateX(200%);
+        @include respond(phone) {
+          transform: translateX(100%);
+        }
       }
 
       &--4 {
         transform: translateX(300%);
+        @include respond(phone) {
+          transform: translateX(100%);
+        }
       }
 
       &--5 {
         transform: translateX(400%);
+        @include respond(phone) {
+          transform: translateX(100%);
+        }
       }
     }
   }
