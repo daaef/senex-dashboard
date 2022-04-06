@@ -56,7 +56,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import getDeviceInfo from '@/data/getDeviceInfo.js'
+import getDeviceInfo from '@/data/getDeviceInfo.js' // file rename
 
 export default {
   components: {
@@ -106,7 +106,8 @@ export default {
         this.passwordLocked === 'password' ? 'text' : 'password'
     },
     validateEmail(value) {
-      const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+      const reg =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       if (reg.test(value)) {
         this.validEmail = 2
       } else {
