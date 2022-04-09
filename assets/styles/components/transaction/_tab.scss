@@ -37,16 +37,25 @@
 
   &__page-box {
     background-color: inherit;
+    display: flex;
+    align-items: center;
   }
 
   &__arrow-box {
-    width: 10rem;
+    width: 5rem;
     display: flex;
     justify-content: space-between;
+    margin-left: 10px;
 
     .icon {
-      width: 20px;
-      height: 20px;
+      width: 1.5rem;
+      height: 1.5rem;
+      cursor: pointer;
+      fill: #707070;
+
+      &:hover {
+        fill: $color-link;
+      }
     }
   }
 }

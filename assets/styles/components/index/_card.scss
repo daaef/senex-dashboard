@@ -14,7 +14,7 @@
     }
 
     @include respond(phone-mid) {
-      margin-bottom: 20px !important;
+      margin-right: 2rem;
     }
   }
 
@@ -22,18 +22,19 @@
     width: 28rem;
   }
 
-  // @include respond(tab-land-sm) {
-  //   width: 22rem;
-  // }
-
   @include respond(phone-land) {
     width: 24rem;
   }
 
   @include respond(phone-mid) {
-    width: 100%;
+    width: 60%;
+    flex: 0 0 60%;
     max-width: 60rem;
-    margin: 0;
+  }
+
+  @include respond(phone) {
+    width: 90%;
+    flex: 0 0 90%;
   }
 
   &__text {

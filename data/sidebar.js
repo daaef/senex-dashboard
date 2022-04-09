@@ -1,37 +1,37 @@
 export default [
   {
     name: 'Dashboard',
-    icon: '/img/vp-3screenshot.png',
+    icon: '/img/icons/dashboard_icon.svg',
     link: '/',
   },
   {
     name: 'Transactions',
-    icon: '/img/vp-3screenshot.png',
+    icon: '/img/icons/transactions_icon.svg',
     link: '/transactions',
   },
   {
     name: 'Beneficiaries',
-    icon: '/img/vp-3screenshot.png',
+    icon: '/img/icons/beneficiaries_icon.svg',
     link: '/beneficiaries',
   },
   {
     name: 'Profile',
-    icon: '/img/vp-3screenshot.png',
+    icon: '/img/icons/profile_icon.svg',
     link: '/profile',
   },
   {
     name: 'Invite & Earn',
-    icon: '/img/vp-3screenshot.png',
+    icon: '/img/icons/invite_icon.svg',
     link: '/invite',
   },
   {
     name: 'Settings',
-    icon: '/img/vp-3screenshot.png',
+    icon: '/img/icons/settings_icon.svg',
     link: '/settings',
   },
   {
     name: 'Get Help',
-    icon: '/img/vp-3screenshot.png',
+    icon: '/img/icons/help_icon.svg',
     link: '/help',
   }
 ]

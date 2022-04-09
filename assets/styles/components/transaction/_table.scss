@@ -70,6 +70,12 @@
     &--blue {
       color: $color-link;
     }
+
+    img {
+      display: inline-block;
+      width: 12px;
+      margin-right: 4px;
+    }
   }
 
   .status-dot {

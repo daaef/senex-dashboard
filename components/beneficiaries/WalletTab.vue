@@ -8,7 +8,36 @@
       <div class="txn-tab__page-box">
         <button class="btn u-mr-20">{{ btnText }}</button>
         <span>1-16 of 16</span>
-        <div class="txn-tab__arrow-box"></div>
+        <div class="txn-tab__arrow-box">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="11.115"
+            height="18"
+            viewBox="0 0 11.115 18"
+            class="icon"
+          >
+            <path
+              id="Icon_material-navigate-next"
+              data-name="Icon material-navigate-next"
+              d="M21.885,9,24,11.115,17.13,18,24,24.885,21.885,27l-9-9Z"
+              transform="translate(-12.885 -9)"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="11.115"
+            height="18"
+            viewBox="0 0 11.115 18"
+            class="icon"
+          >
+            <path
+              id="Icon_material-navigate-next"
+              data-name="Icon material-navigate-next"
+              d="M15,9l-2.115,2.115L19.755,18l-6.87,6.885L15,27l9-9Z"
+              transform="translate(-12.885 -9)"
+            />
+          </svg>
+        </div>
       </div>
     </div>
     <wallet-table :wallets="getWallets()"></wallet-table>
