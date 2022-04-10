@@ -6,9 +6,9 @@
           <tr>
             <th class="th th--20">Cryptcurrency</th>
             <th class="th th--20">Nickname</th>
-            <th class="th th--20">Wallet address</th>
-            <th class="th th--20">Fiat Value</th>
-            <th class="th th--20">Status</th>
+            <th class="th th--40">Wallet address</th>
+            <th class="th th--10"></th>
+            <th class="th th--10"></th>
           </tr>
         </thead>
         <tbody>

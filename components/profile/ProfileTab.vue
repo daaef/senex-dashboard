@@ -8,8 +8,11 @@
       </div>
     </div>
     <div class="profile__info u-my-20">
-      Your profile information is locked for security reason. Please contact
-      <span class="u-link">help</span> to make changes.
+      <img src="img/icons/info_yellow_round_icon.svg" alt="info" />
+      <p>
+        Your profile information is locked for security reason. Please contact
+        <span class="u-link">help</span> to make changes.
+      </p>
     </div>
     <div class="profile__form">
       <div class="u-mb-30">

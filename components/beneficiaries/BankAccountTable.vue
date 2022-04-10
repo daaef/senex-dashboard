@@ -6,16 +6,16 @@
           <tr>
             <th class="th th--20">Currency</th>
             <th class="th th--20">Bank Name</th>
-            <th class="th th--20">Account Number</th>
-            <th class="th th--20">Fiat Value</th>
-            <th class="th th--20">Status</th>
+            <th class="th th--40">Account Number</th>
+            <th class="th th--10"></th>
+            <th class="th th--10"></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(bank, idx) in bankAccounts" :key="idx">
             <td class="td td--20">{{ bank.currency }}</td>
             <td class="td td--20">{{ bank.bankName }}</td>
-            <td class="td td--20">{{ bank.accountNumber }}</td>
+            <td class="td td--40">{{ bank.accountNumber }}</td>
             <td class="td td--10 status status--blue">
               <span class="u-pointer"
                 ><img src="img/icons/edit_icon.svg" alt="edit" /> Edit</span

@@ -1,10 +1,12 @@
 <template>
   <div class="profile">
     <div class="profile__info u-mb-30">
-      Your Next of Kin is the closest living relative to you. We will
-      contact/reach this person if we are unable to make contact with you after
-      a long period of time. <span class="u-link">Learn more</span> about our
-      Next of Kin Policy.
+      <p>
+        Your Next of Kin is the closest living relative to you. We will
+        contact/reach this person if we are unable to make contact with you
+        after a long period of time.
+        <span class="u-link">Learn more</span> about our Next of Kin Policy.
+      </p>
     </div>
     <h3 class="heading-primary u-white u-mb-20">Next of Kin Information</h3>
     <div class="profile__form">
