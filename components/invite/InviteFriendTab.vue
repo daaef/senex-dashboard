@@ -26,7 +26,16 @@
     </div>
     <span class="invite__line u-mb-40"></span>
     <div class="invite__bottom-content">
-      <div class="invite__link-and-social-box">
+      <div class="invite__link-and-social-box u-mb-20">
+        <div class="invite__link-box">
+          <h3 class="heading-primary fw-400 u-mb-10">Your invite code</h3>
+          <div class="invite__link-input-box">
+            <input type="text" />
+            <span class="extra">Copy code</span>
+          </div>
+        </div>
+      </div>
+      <div class="invite__link-and-social-box u-mb-40">
         <div class="invite__link-box">
           <h3 class="heading-primary fw-400 u-mb-10">Your invite link</h3>
           <div class="invite__link-input-box">
