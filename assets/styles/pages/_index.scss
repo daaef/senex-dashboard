@@ -3,3 +3,59 @@
   justify-content: space-between;
   overflow-x: auto;
 }
+
+.index-complete-kyc {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+  color: $color-grey-c8c;
+  border: 1px solid $color-grey-404;
+  border-radius: 8px;
+
+  &__info {
+    display: flex;
+
+    img {
+      width: 20px;
+      height: auto;
+      margin-right: 10px;
+    }
+  }
+
+  &__link-box {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      width: 7px;
+    }
+  }
+}
+
+.index-rate-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  color: $color-grey-c8c;
+  border-radius: 8px;
+  background-color: $color-secondary-dark;
+  overflow-x: auto;
+
+  .rate {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+
+    @include respond(phone) {
+      flex: 0 0 max-content;
+    }
+    
+    img {
+      width: 15px;
+      height: auto;
+    }
+  }
+}

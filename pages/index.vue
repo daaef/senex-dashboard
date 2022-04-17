@@ -1,5 +1,51 @@
 <template>
   <div class="">
+    <div class="index-complete-kyc u-mb-20">
+      <div class="index-complete-kyc__info u-mr-10">
+        <img
+          src="img/icons/green_round_checkmark.svg"
+          alt="checkmark"
+          class="u-mr-10"
+        />
+        <p>Complete your KYC to enjoy more features on SenexPay</p>
+      </div>
+      <div
+        class="index-complete-kyc__link-box u-pointer"
+        @click="$router.push('/profile')"
+      >
+        <p class="u-link u-mr-10">Complete your KYC</p>
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 11.115 18"
+        >
+          <path
+            id="Icon_material-navigate-next"
+            data-name="Icon material-navigate-next"
+            d="M15,9l-2.115,2.115L19.755,18l-6.87,6.885L15,27l9-9Z"
+            transform="translate(-12.885 -9)"
+            fill="#ffffff"
+          />
+        </svg>
+      </div>
+    </div>
+    <div class="index-rate-box u-mb-20">
+      <div class="rate">
+        <p class="u-mr-10">1 BTC = 23,079,836</p>
+        <img src="img/icons/delete_icon.svg" alt="arrow" class="u-mr-10" />
+        <p>-2.08%</p>
+      </div>
+      <div class="rate">
+        <p class="u-mr-10">1 BTC = 23,079,836</p>
+        <img src="img/icons/delete_icon.svg" alt="arrow" class="u-mr-10" />
+        <p>-2.08%</p>
+      </div>
+      <div class="rate">
+        <p class="u-mr-10">1 BTC = 23,079,836</p>
+        <img src="img/icons/delete_icon.svg" alt="arrow" class="u-mr-10" />
+        <p>-2.08%</p>
+      </div>
+    </div>
     <div class="index-txn-info">
       <transaction-card
         text="Total Transaction"
