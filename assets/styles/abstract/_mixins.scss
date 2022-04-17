@@ -65,3 +65,10 @@ ORDER: Base + typography > general layout + grid > page layout > components
     } //1800
   }
 }
+
+@mixin flexcon($align, $justify, $direction){
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+}

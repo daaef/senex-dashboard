@@ -16,6 +16,26 @@
         ></span>
       </div>
     </div>
+    <div class="tab-drop">
+      <p class="tab-drop__title-con" @click="toggleOpen">
+        {{ currentTab.title }}
+      </p>
+      <div class="tab-drop__content" :class="[dropOpen ? '' : 'u-none']">
+        <p
+          class="tab-drop__item"
+          v-for="(tab, idx) in tabs"
+          :key="idx"
+          @click="
+            () => {
+              onSelect(tab, idx)
+              dropOpen = false
+            }
+          "
+        >
+          {{ tab.title }}
+        </p>
+      </div>
+    </div>
     <div>
       <component
         :is="currentTab.component"
@@ -45,6 +65,7 @@ export default {
       // :class="[network == selected ? 'tab-list__select-btn--active' : '', `ntw-switch__select-btn--${tabs(items).length}`]"
       currentTab: this.tabs[0],
       currentTabIndex: 0,
+      dropOpen: false,
     }
   },
   methods: {
@@ -55,6 +76,9 @@ export default {
     },
     currentTabIdx() {
       return this.tabs.findIndex((tab) => tab.title === this.currentTab.title)
+    },
+    toggleOpen() {
+      this.dropOpen = !this.dropOpen
     },
   },
 }
