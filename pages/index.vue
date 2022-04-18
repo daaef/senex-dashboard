@@ -60,9 +60,41 @@
         :amount="`${selected} ${ngnSell}`"
       ></transaction-card>
     </div>
-    <div class="u-my-big">
-      <transaction-table :orders="orders"></transaction-table>
+    <div class="index-txn-earn-ex u-my-big">
+      <div class="index-recent-txn">
+        <h3 class="heading-secondary u-mb-30">Recent Transactions</h3>
+        <template v-if="orders.length > 0">
+          <div class="index-recent-txn__rct-box">
+            <div
+              v-for="(order, idx) in orders"
+              :key="idx"
+              class="index-recent-txn__item"
+            >
+              <img src="img/icons/help_icon.svg" alt="coin" />
+              <div class="coin-date">
+                <h4 class="fw-500">{{ order.cryptoCurrency }}</h4>
+                <p class="small-text">{{ formatDate(order.created) }}</p>
+              </div>
+              <h4 class="heading-tertiary">{{ order.fiatCurrency }} {{ order.fiatAmount }}</h4>
+            </div>
+          </div>
+        </template>
+        <template v-else>
+          <EmptyState
+            heading="No Recent Transaction"
+            content="When you make your first transaction, the details will show up here."
+            btnText="Buy/Sell"
+          />
+        </template>
+      </div>
+      <div class="index-earn-ex">
+        <div class="index-earn"></div>
+        <div class="index-ex"></div>
+      </div>
     </div>
+    <!-- <div class="u-my-big">
+      <transaction-table :orders="orders"></transaction-table>
+    </div> -->
   </div>
 </template>
 
@@ -70,6 +102,7 @@
 // import TransactionCard from '~/components/index/TransactionCard.vue'
 // import TransactionTable from '~/components/transaction/TransactionTable.vue'
 import { mapState } from 'vuex'
+import moment from 'moment'
 export default {
   // components: {
   //   TransactionCard,
@@ -106,6 +139,9 @@ export default {
     ...mapState('auth', ['user']),
   },
   methods: {
+    formatDate(thisDate) {
+      return moment(new Date(thisDate)).format('MMM DD, YYYY')
+    },
     async getDashboard() {
       try {
         const { data } = await this.$api.getDashboard()
@@ -131,7 +167,7 @@ export default {
         const { data } = await this.$api.fetchTrades(1, '')
         this.orders = data.results.sort(
           (a, b) => new Date(b.created) - new Date(a.created)
-        )
+        ).splice(0, 5)
         this.totalPages = parseInt((data.count - 1) / this.perPage) + 1
         this.processing = false
       } catch (error) {
