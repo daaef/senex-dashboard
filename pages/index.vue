@@ -112,7 +112,49 @@
             setClass="index-earn__btn"
           />
         </div>
-        <div class="index-ex"></div>
+        <div class="index-ex">
+          <h3 class="heading-secondary index-ex__heading u-mb-20">Exchange</h3>
+          <div class="index-ex__rate-and-btn">
+            <div class="index-ex__rate-box">
+              <div class="index-ex__rate-item">
+                <div class="coin">
+                  <img
+                    src="img/icons/help_icon.svg"
+                    alt="coin"
+                    class="u-mr-5"
+                  />
+                  <span>Bitcoin</span>
+                </div>
+                <div class="rate">
+                  <span>23,079,836</span>
+                  <img src="img/icons/help_icon.svg" alt="coin" />
+                  <span>-2.08%</span>
+                </div>
+              </div>
+              <div class="index-ex__rate-item">
+                <div class="coin">
+                  <img
+                    src="img/icons/help_icon.svg"
+                    alt="coin"
+                    class="u-mr-5"
+                  />
+                  <span>Bitcoin</span>
+                </div>
+                <div class="rate">
+                  <span>23,079,836</span>
+                  <img src="img/icons/help_icon.svg" alt="coin" />
+                  <span>-2.08%</span>
+                </div>
+              </div>
+            </div>
+            <BtnSpinner
+              :is-in-active="false"
+              :is-loading="false"
+              value="Buy/Sell"
+              setClass="index-ex__btn"
+            />
+          </div>
+        </div>
       </div>
     </div>
     <div class="index-guide u-mb-30">
@@ -133,9 +175,6 @@
         setClass="index-guide__btn"
       />
     </div>
-    <!-- <div class="u-my-big">
-      <transaction-table :orders="orders"></transaction-table>
-    </div> -->
   </div>
 </template>
 
