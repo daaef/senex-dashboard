@@ -141,3 +141,48 @@
 .index-earn {
   margin-bottom: 3rem;
 }
+
+.index-guide {
+  display: flex;
+  align-items: center;
+  padding: 3rem;
+  border-radius: 12px;
+  color: $color-white;
+  background: transparent linear-gradient(100deg, #AF29EB 0%, #124EE5 100%) 0% 0% no-repeat padding-box;
+
+  @include respond(phone) {
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 3rem;
+
+    @include respond(phone) {
+      margin-right: 0;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    @include respond(phone) {
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__btn {
+    width: 150px !important;
+    background-color: #A82BEB !important;
+  }
+}

@@ -75,7 +75,9 @@
                 <h4 class="fw-500">{{ order.cryptoCurrency }}</h4>
                 <p class="small-text">{{ formatDate(order.created) }}</p>
               </div>
-              <h4 class="heading-tertiary">{{ order.fiatCurrency }} {{ order.fiatAmount }}</h4>
+              <h4 class="heading-tertiary">
+                {{ order.fiatCurrency }} {{ order.fiatAmount }}
+              </h4>
             </div>
           </div>
         </template>
@@ -91,6 +93,24 @@
         <div class="index-earn"></div>
         <div class="index-ex"></div>
       </div>
+    </div>
+    <div class="index-guide u-mb-30">
+      <img src="img/icons/info_yellow_round_icon.svg" alt="lady" />
+      <div class="index-guide__content">
+        <h3 class="heading-primary--md">
+          <span class="u-block u-line-height-1">New to Crypto?</span>
+          <span class="u-block">Let’s guide you.</span>
+        </h3>
+        <p class="small-text">
+          Join our Crypto Advisor programme and get expert advice.
+        </p>
+      </div>
+      <BtnSpinner
+        :is-in-active="false"
+        :is-loading="false"
+        value="Book a session"
+        setClass="index-guide__btn"
+      />
     </div>
     <!-- <div class="u-my-big">
       <transaction-table :orders="orders"></transaction-table>
@@ -165,9 +185,9 @@ export default {
       try {
         this.processing = true
         const { data } = await this.$api.fetchTrades(1, '')
-        this.orders = data.results.sort(
-          (a, b) => new Date(b.created) - new Date(a.created)
-        ).splice(0, 5)
+        this.orders = data.results
+          .sort((a, b) => new Date(b.created) - new Date(a.created))
+          .splice(0, 5)
         this.totalPages = parseInt((data.count - 1) / this.perPage) + 1
         this.processing = false
       } catch (error) {
