@@ -5,7 +5,7 @@
       <router-link to="/transactions" class="u-link">View all</router-link>
     </div>
     <div class="txn-table__wrapper">
-      <table class="txn-table__main">
+      <table class="txn-table__main txn-table__main--hide-mobile">
         <thead class="txn-table__head">
           <tr>
             <th class="">Date</th>
@@ -39,6 +39,39 @@
           </tr>
         </tbody>
       </table>
+      <div class="txn-table-mobile">
+        <div
+          v-for="(item, idx) in orders"
+          :key="idx"
+          class="txn-table-mobile__item"
+        >
+          <div class="txn-table-mobile__content">
+            <p>{{ formatDate(item.created) }}</p>
+            <p class="small-text">{{ item.id }}</p>
+          </div>
+          <div class="txn-table-mobile__content">
+            <p>{{ item.cryptoAmount }} {{ item.cryptoCurrency }}</p>
+            <p class="small-text">
+              {{ item.fiatCurrency }} {{ item.fiatAmount }}
+            </p>
+          </div>
+          <div class="txn-table-mobile__content txn-table-mobile__content--sm">
+            <p class="u-capitalize">{{ item.type }}</p>
+            <p
+              class="status small-text"
+              :class="[
+                item.status == 'expired'
+                  ? 'status--red'
+                  : item.status === 'completed'
+                  ? 'status--green'
+                  : '',
+              ]"
+            >
+              {{ item.status == 'paid' ? 'Pending' : item.status }}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -58,7 +91,7 @@ export default {
   },
   methods: {
     formatDate(thisDate) {
-      return moment(new Date(thisDate)).format('lll')
+      return moment(new Date(thisDate)).format('MMM DD, YYYY')
     },
   },
 }

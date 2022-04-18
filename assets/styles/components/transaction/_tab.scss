@@ -39,6 +39,11 @@
     background-color: inherit;
     display: flex;
     align-items: center;
+
+    @include respond(phone-400) {
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   &__arrow-box {
@@ -47,9 +52,14 @@
     justify-content: space-between;
     margin-left: 10px;
 
+    @include respond(phone-400) {
+      margin-left: 0;
+      margin-top: 2px;
+    }
+
     .icon {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 15px;
+      height: 15px;
       cursor: pointer;
       fill: #707070;
       transition: fill 0.2s ease-in-out;

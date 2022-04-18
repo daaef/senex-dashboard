@@ -18,6 +18,13 @@
   &__main {
     width: 100%;
     border-collapse: collapse;
+
+    &--hide-mobile {
+
+      @include respond(phone) {
+        display: none;
+      }
+    }
   }
 
   &__head {
@@ -85,5 +92,36 @@
     border-radius: 50%;
     margin-right: 0.8rem;
     background-color: currentColor; //#f8c654
+  }
+}
+
+.txn-table-mobile {
+  display: none;
+
+  @include respond(phone) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  &__content {
+    display: flex;
+    flex: 0 0 35%;
+    flex-direction: column;
+
+    &--sm {
+      flex: 0 0 20%;
+    }
+
+    p {
+      &:first-child {
+        margin-bottom: 1rem;
+      }
+    }
   }
 }

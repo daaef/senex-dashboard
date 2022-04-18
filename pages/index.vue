@@ -220,7 +220,7 @@ export default {
   },
   methods: {
     formatDate(thisDate) {
-      return moment(new Date(thisDate)).format('MMM DD, YYYY')
+      return moment(new Date(thisDate)).format('lll')
     },
     async getDashboard() {
       try {
