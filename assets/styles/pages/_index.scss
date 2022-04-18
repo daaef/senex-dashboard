@@ -72,11 +72,15 @@
 
 .index-recent-txn {
   height: 100%;
-  flex: 1 0 48%;
+  flex: 1 0 58%;
   background-color: $color-secondary-dark;
   padding: 2rem;
   border-radius: 12px;
   margin-right: 3rem;
+
+  @include respond(tab-land-sm) {
+    flex: 1 0 48%;
+  }
 
   @include respond(phone-land) {
     flex: 1 0 100%;
@@ -116,10 +120,14 @@
 
 .index-earn-ex {
   height: 100%;
-  flex: 1 0 48%;
+  flex: 1 0 38%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @include respond(tab-land-sm) {
+    flex: 1 0 48%;
+  }
 
   @include respond(phone-land) {
     flex: 1 0 100%;
@@ -128,7 +136,7 @@
 
 .index-earn, .index-ex {
   background-color: $color-secondary-dark;
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 12px;
   height: 48%;
 
@@ -140,11 +148,49 @@
 
 .index-earn {
   margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    height: 8rem;
+    margin-bottom: 3rem;
+
+    img {
+      width: 40px;
+      height: auto;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+
+    &:not(:last-child) {
+      margin-right: 3rem;
+    }
+
+    &--1 {
+      // flex: 1;
+      align-items: flex-start;
+    }
+  }
+
+  &__btn {
+    width: 100% !important;
+    background-color: $color-green-049;
+  }
 }
 
 .index-guide {
   display: flex;
   align-items: center;
+  // justify-content: space-between;
   padding: 3rem;
   border-radius: 12px;
   color: $color-white;
@@ -174,6 +220,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    // max-width: 40rem;
 
     @include respond(phone) {
       align-items: center;

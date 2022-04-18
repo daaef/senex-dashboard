@@ -90,7 +90,28 @@
         </template>
       </div>
       <div class="index-earn-ex">
-        <div class="index-earn"></div>
+        <div class="index-earn">
+          <div class="index-earn__top">
+            <div class="index-earn__content">
+              <img src="img/icons/help_icon.svg" alt="cup" />
+              <span class="small-text">Comrade</span>
+            </div>
+            <div class="index-earn__content index-earn__content--1">
+              <span class="small-text">You have earned</span>
+              <h3 class="heading-primary">N1,759,090</h3>
+            </div>
+            <div class="index-earn__content">
+              <img src="img/icons/help_icon.svg" alt="cup" />
+              <span class="fw-700">45</span>
+            </div>
+          </div>
+          <BtnSpinner
+            :is-in-active="false"
+            :is-loading="false"
+            value="Invite more friends"
+            setClass="index-earn__btn"
+          />
+        </div>
         <div class="index-ex"></div>
       </div>
     </div>
