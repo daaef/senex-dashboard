@@ -6,10 +6,10 @@
         <input type="text" class="txn-tab__search-input" placeholder="Search" />
       </div>
       <div class="txn-tab__page-box">
-        <button class="btn u-mr-20" @click="showModal = true">
+        <button class="btn u-mr-20" @click="add">
           {{ btnText }}
         </button>
-        <span>1-16 of 16</span>
+        <span>{{ currentPage }} - {{ perPage }} of {{ totalPages }}</span>
         <div class="txn-tab__arrow-box">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -17,6 +17,7 @@
             height="18"
             viewBox="0 0 11.115 18"
             class="icon"
+            @click="changeCurrentPage(currentPage - 1)"
           >
             <path
               id="Icon_material-navigate-next"
@@ -31,6 +32,7 @@
             height="18"
             viewBox="0 0 11.115 18"
             class="icon"
+            @click="changeCurrentPage(currentPage + 1)"
           >
             <path
               id="Icon_material-navigate-next"
@@ -42,39 +44,61 @@
         </div>
       </div>
     </div>
-    <bank-account-table :bankAccounts="getBankAccounts()"></bank-account-table>
+    <bank-account-table
+      :bankAccounts="bankAccountsToShow()"
+      @editOrDelete="editOrDelete"
+    ></bank-account-table>
     <vue-final-modal v-model="showModal">
       <div class="benef-overlay">
         <form class="form">
           <div class="form__header">
             <span class="close" @click="showModal = false"></span>
             <h3 class="heading-primary u-text-center u-mx-auto">
-              Add Bank Account
+              {{ mode == 'add' ? 'Add' : 'Edit' }} Bank Account
             </h3>
           </div>
           <div class="form__body">
             <div class="u-mb-20">
               <v-select
-                :options="['NGN', 'ZAR']"
+                :options="getCurrencies()"
+                v-model="currency"
                 :clearable="false"
                 :searchable="false"
                 placeholder="Select your currency"
+                @option:selected="onSelectCountry"
               ></v-select>
             </div>
             <div class="u-mb-20">
               <v-select
-                :options="['Access Bank', 'GTBank', 'UBA', 'Zenith Bank']"
+                :options="getCountryBanks()"
                 :clearable="false"
                 :searchable="false"
+                v-model="bank"
+                label="label"
                 placeholder="Select your bank"
               ></v-select>
             </div>
             <div class="form__input-box u-mb-20">
-              <input type="text" placeholder="Enter your account number" />
+              <input
+                type="text"
+                v-model="accountNumber"
+                placeholder="Enter your account number"
+              />
             </div>
-            <div class="form__input-box">
-              <input type="text" placeholder="Enter your account name" />
+            <div class="form__input-box u-mb-20">
+              <input
+                type="text"
+                v-model="accountName"
+                placeholder="Enter your account name"
+              />
             </div>
+            <BtnSpinner
+              :is-loading="processing"
+              :is-in-active="isBtnDisabled()"
+              value="Add Bank Account"
+              set-class="btn-full-width btn--px2py1"
+              :on-submit="onSubmit"
+            />
           </div>
         </form>
       </div>
@@ -86,6 +110,7 @@
 import { mapState } from 'vuex'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
+import banks from '@/data/allBanks.js'
 export default {
   components: {
     vSelect,
@@ -98,18 +123,178 @@ export default {
   },
   data() {
     return {
+      banks: banks,
       showModal: false,
+      currentPage: 1,
+      perPage: 5,
+      totalPages: 1,
+      mode: 'add',
+      bank: {
+        value: '',
+        label: 'Select your bank',
+      },
+      currency: '',
+      accountId: '',
+      accountNumber: '',
+      accountName: '',
+      accountVerified: false,
+      processing: false,
+      verifyingAccount: false,
     }
+  },
+  watch: {
+    // currency(val) {
+    //   this.bank.value = ''
+    //   this.bank.label = 'Select your bank'
+    // },
+    user(val) {
+      if (val && val.profile.bankAccounts) {
+        this.totalPages =
+          parseInt((val.profile.bankAccounts.length - 1) / this.perPage) + 1
+      }
+      this.totalPages = 1
+    },
   },
   computed: {
     ...mapState('auth', ['user']),
   },
   methods: {
+    getCurrencies() {
+      return Object.keys(this.banks)
+    },
+    getCountryBanks() {
+      if (this.currency) {
+        return this.banks[this.currency]
+      }
+      return []
+    },
+    changeCurrentPage(page) {
+      if (page < 1 || page > this.totalPages) {
+        return
+      }
+      this.currentPage = page
+    },
+    bankAccountsToShow() {
+      return this.getBankAccounts().slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
+      )
+    },
     getBankAccounts() {
       if (this.user && this.user.profile.bankAccounts) {
         return this.user.profile.bankAccounts.data
+          ? this.user.profile.bankAccounts.data
+          : []
       }
       return []
+    },
+    async accountVerification() {
+      this.verifyingAccount = true
+      try {
+        const { data } = await this.$axios.post(
+          `${process.env.FLW_BASE_URL}/flwv3-pug/getpaidx/api/resolve_account`,
+          {
+            recipientaccount: this.accountNumber,
+            destbankcode: this.bank.value,
+            PBFPubKey: process.env.FLW_PUB_KEY,
+          }
+        )
+        if (data.data.data.accountname) {
+          this.accountName = data.data.data.accountname
+          this.accountVerified = true
+        } else {
+          this.accountName = 'Account not found'
+          this.accountVerified = false
+        }
+      } catch (error) {
+        this.accountVerified = false
+      } finally {
+        this.verifyingAccount = false
+      }
+    },
+    add() {
+      this.mode = 'add'
+      this.showModal = true
+      this.currency = ''
+      this.accountNumber = ''
+      this.accountName = ''
+      this.bank = {
+        value: '',
+        label: 'Select your bank',
+      }
+    },
+    editOrDelete(mode, id) {
+      this.mode = mode
+      this.accountId = id
+      let selectedBank = this.getBankAccounts().find((bank) => bank.id === id)
+      this.currency = selectedBank.currency
+      this.accountNumber = selectedBank.accountNumber
+      this.accountName = selectedBank.accountName
+      this.bank = {
+        value: selectedBank.bank,
+        label: selectedBank.bankName,
+      }
+      if (mode == 'edit') {
+        this.showModal = true
+      } else {
+        this.onSubmit()
+      }
+    },
+    onSelectCountry() {
+      this.bank.value = ''
+      this.bank.label = 'Select your bank'
+    },
+    async onSubmit() {
+      let userAccounts = this.user.profile.bankAccounts.data
+        ? [...this.user.profile.bankAccounts.data]
+        : []
+      if (this.mode !== 'add') {
+        userAccounts = userAccounts.filter((item) => item.id !== this.accountId)
+      }
+      if (this.mode !== 'delete') {
+        userAccounts.push({
+          id: Date.now(),
+          account_number: this.accountNumber,
+          account_name: this.accountName,
+          bank: this.bank.value,
+          bank_name: this.bank.label,
+          currency: this.currency,
+        })
+      }
+      const payload = {
+        bankAccounts: { data: userAccounts },
+      }
+      this.processing = true
+      try {
+        const { data } = await this.$api.updateProfile(payload)
+        await this.$auth.fetchUser()
+        this.$notify({
+          text: 'Bank account added',
+        })
+        this.bank = {
+          value: '',
+          label: 'Select your bank',
+        }
+        this.accountNumber = ''
+        this.currency = ''
+        this.processing = false
+      } catch (error) {
+        this.processing = false
+        this.$notify({
+          text: 'Unable to add account',
+          type: 'error',
+        })
+      } finally {
+        this.showModal = false
+      }
+    },
+    isBtnDisabled() {
+      return (
+        !this.bank.value ||
+        !this.accountNumber ||
+        !this.accountName ||
+        !this.currency
+      )
     },
   },
 }

@@ -9,7 +9,7 @@
         <button class="btn u-mr-20" @click="showModal = true">
           {{ btnText }}
         </button>
-        <span>1-16 of 16</span>
+        <span>{{ currentPage }} - {{ perPage }} of {{ totalPages }}</span>
         <div class="txn-tab__arrow-box">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -17,6 +17,7 @@
             height="18"
             viewBox="0 0 11.115 18"
             class="icon"
+            @click="changeCurrentPage(currentPage - 1)"
           >
             <path
               id="Icon_material-navigate-next"
@@ -31,6 +32,7 @@
             height="18"
             viewBox="0 0 11.115 18"
             class="icon"
+            @click="changeCurrentPage(currentPage + 1)"
           >
             <path
               id="Icon_material-navigate-next"
@@ -42,7 +44,7 @@
         </div>
       </div>
     </div>
-    <wallet-table :wallets="getWallets()"></wallet-table>
+    <wallet-table :wallets="walletsToShow()"></wallet-table>
     <vue-final-modal v-model="showModal">
       <div class="benef-overlay">
         <form class="form">
@@ -97,15 +99,53 @@ export default {
   data() {
     return {
       showModal: false,
+      currentPage: 1,
+      perPage: 5,
+      totalPages: 1,
+      mode: 'add',
+      bank: {
+        value: '',
+        label: '',
+      },
+      currency: '',
+      accountId: '',
+      accountNumber: '',
+      accountName: '',
+      accountVerified: false,
+      processing: false,
+      verifyingAccount: false,
     }
+  },
+  watch: {
+    user(val) {
+      if (val && val.profile.walletAddresses) {
+        this.totalPages =
+          parseInt((val.profile.walletAddresses.length - 1) / this.perPage) + 1
+      }
+      this.totalPages = 1
+    },
   },
   computed: {
     ...mapState('auth', ['user']),
   },
   methods: {
+    changeCurrentPage(page) {
+      if (page < 1 || page > this.totalPages) {
+        return
+      }
+      this.currentPage = page
+    },
+    walletsToShow() {
+      return this.getWallets().slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
+      )
+    },
     getWallets() {
       if (this.user && this.user.profile.walletAddresses) {
         return this.user.profile.walletAddresses.data
+          ? this.user.profile.walletAddresses.data
+          : []
       }
       return []
     },
