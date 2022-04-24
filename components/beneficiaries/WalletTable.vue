@@ -17,12 +17,14 @@
             <td class="td td--20">{{ wallet.label }}</td>
             <td class="td td--40">{{ wallet.walletAddress }}</td>
             <td class="td td--10 status status--blue">
-              <span class="u-pointer"
+              <span
+                class="u-pointer"
+                @click="$emit('editOrDelete', 'edit', wallet.id)"
                 ><img src="img/icons/edit_icon.svg" alt="edit" /> Edit</span
               >
             </td>
             <td class="td td--10 status status--red">
-              <span class="u-pointer"
+              <span class="u-pointer" @click="$emit('editOrDelete', 'delete', wallet.id)"
                 ><img
                   src="img/icons/delete_icon.svg"
                   alt="delete"

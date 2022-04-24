@@ -44,37 +44,46 @@
         </div>
       </div>
     </div>
-    <wallet-table :wallets="walletsToShow()"></wallet-table>
+    <wallet-table
+      :wallets="walletsToShow()"
+      @editOrDelete="editOrDelete"
+    ></wallet-table>
     <vue-final-modal v-model="showModal">
       <div class="benef-overlay">
         <form class="form">
           <div class="form__header">
             <span class="close" @click="showModal = false"></span>
-            <h3 class="heading-primary u-text-center u-mx-auto">Add Wallet</h3>
+            <h3 class="heading-primary u-text-center u-mx-auto">
+              {{ mode == 'add' ? 'Add' : 'Edit' }} Wallet
+            </h3>
           </div>
           <div class="form__body">
             <div class="u-mb-20">
               <v-select
-                :options="['NGN', 'ZAR']"
+                :options="getCurrencies()"
+                v-model="currency"
                 :clearable="false"
                 :searchable="false"
                 placeholder="Select your currency"
               ></v-select>
             </div>
-            <div class="u-mb-20">
-              <v-select
-                :options="['Access Bank', 'GTBank', 'UBA', 'Zenith Bank']"
-                :clearable="false"
-                :searchable="false"
-                placeholder="Select your bank"
-              ></v-select>
+            <div class="form__input-box u-mb-20">
+              <input
+                type="text"
+                v-model="walletAddress"
+                placeholder="Enter wallet address"
+              />
             </div>
             <div class="form__input-box u-mb-20">
-              <input type="text" placeholder="Enter your account number" />
+              <input type="text" v-model="label" placeholder="Enter nickname" />
             </div>
-            <div class="form__input-box">
-              <input type="text" placeholder="Enter your account name" />
-            </div>
+            <BtnSpinner
+              :is-loading="processing"
+              :is-in-active="isBtnDisabled()"
+              value="Add Wallet"
+              set-class="btn-full-width btn--px2py1"
+              :on-submit="onSubmit"
+            />
           </div>
         </form>
       </div>
@@ -108,12 +117,10 @@ export default {
         label: '',
       },
       currency: '',
-      accountId: '',
-      accountNumber: '',
-      accountName: '',
-      accountVerified: false,
+      walletId: '',
+      label: '',
+      walletAddress: '',
       processing: false,
-      verifyingAccount: false,
     }
   },
   watch: {
@@ -129,6 +136,9 @@ export default {
     ...mapState('auth', ['user']),
   },
   methods: {
+    getCurrencies() {
+      return ['BTC', 'USDT']
+    },
     changeCurrentPage(page) {
       if (page < 1 || page > this.totalPages) {
         return
@@ -148,6 +158,74 @@ export default {
           : []
       }
       return []
+    },
+    add() {
+      this.mode = 'add'
+      this.showModal = true
+      this.currency = ''
+      this.walletAddress = ''
+      this.label = ''
+      this.walletId = ''
+    },
+    editOrDelete(mode, id) {
+      this.mode = mode
+      this.walletId = id
+      let selectedWallet = this.getWallets().find((wallet) => wallet.id === id)
+      this.currency = selectedWallet.currency
+      this.walletAddress = selectedWallet.walletAddress
+      this.label = selectedWallet.label
+      if (mode == 'edit') {
+        this.showModal = true
+      } else {
+        this.onSubmit()
+      }
+    },
+    onSelectCurrency() {
+      this.walletAddress = ''
+      this.label = ''
+    },
+    async onSubmit() {
+      let userWallets = this.user.profile.walletAddresses.data
+        ? [...this.user.profile.walletAddresses.data]
+        : []
+      if (this.mode !== 'add') {
+        userWallets = userWallets.filter((item) => item.id !== this.walletId)
+      }
+      if (this.mode !== 'delete') {
+        userWallets.push({
+          id: Date.now(),
+          currency: this.currency,
+          label: this.label,
+          walletAddress: this.walletAddress,
+        })
+      }
+      const payload = {
+        walletAddresses: { data: userWallets },
+      }
+      this.processing = true
+      try {
+        const { data } = await this.$api.updateProfile(payload)
+        await this.$auth.fetchUser()
+        this.$notify({
+          text: 'Wallet added',
+          type: 'success',
+        })
+        this.currency = ''
+        this.label = ''
+        this.walletAddress = ''
+        this.processing = false
+      } catch (error) {
+        this.processing = false
+        this.$notify({
+          text: 'Unable to add wallet',
+          type: 'error',
+        })
+      } finally {
+        this.showModal = false
+      }
+    },
+    isBtnDisabled() {
+      return !this.walletAddress || !this.label || !this.currency
     },
   },
 }

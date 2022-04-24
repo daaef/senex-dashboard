@@ -65,7 +65,7 @@
                 :clearable="false"
                 :searchable="false"
                 placeholder="Select your currency"
-                @option:selected="onSelectCountry"
+                @option:selected="onSelectCurrency"
               ></v-select>
             </div>
             <div class="u-mb-20">
@@ -143,10 +143,6 @@ export default {
     }
   },
   watch: {
-    // currency(val) {
-    //   this.bank.value = ''
-    //   this.bank.label = 'Select your bank'
-    // },
     user(val) {
       if (val && val.profile.bankAccounts) {
         this.totalPages =
@@ -240,7 +236,7 @@ export default {
         this.onSubmit()
       }
     },
-    onSelectCountry() {
+    onSelectCurrency() {
       this.bank.value = ''
       this.bank.label = 'Select your bank'
     },
