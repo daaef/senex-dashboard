@@ -65,7 +65,14 @@
                 :clearable="false"
                 :searchable="false"
                 placeholder="Select your currency"
-              ></v-select>
+              >
+                <template #option="{ label }">
+                  <div style="display: flex; justify-content: space-between">
+                    <span>{{ label }}</span>
+                    <img src="img/icons/edit_icon.svg" alt="currency-icon" />
+                  </div>
+                </template>
+              </v-select>
             </div>
             <div class="form__input-box u-mb-20">
               <input

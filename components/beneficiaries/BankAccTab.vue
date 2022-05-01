@@ -66,7 +66,14 @@
                 :searchable="false"
                 placeholder="Select your currency"
                 @option:selected="onSelectCurrency"
-              ></v-select>
+              >
+                <template #option="{ label }">
+                  <div style="display: flex; justify-content: space-between">
+                    <span>{{ label }}</span>
+                    <img src="img/icons/edit_icon.svg" alt="currency-icon" />
+                  </div>
+                </template>
+              </v-select>
             </div>
             <div class="u-mb-20">
               <v-select
@@ -83,6 +90,7 @@
                 type="text"
                 v-model="accountNumber"
                 placeholder="Enter your account number"
+                @keypress="isNumber"
               />
             </div>
             <div class="form__input-box u-mb-20">
@@ -111,6 +119,7 @@ import { mapState } from 'vuex'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
 import banks from '@/data/allBanks.js'
+const accountNotFound = 'Account not found'
 export default {
   components: {
     vSelect,
@@ -149,6 +158,30 @@ export default {
           parseInt((val.profile.bankAccounts.length - 1) / this.perPage) + 1
       }
       this.totalPages = 1
+    },
+    bank(val) {
+      if (
+        this.currency !== 'NGN' ||
+        !val.value ||
+        this.accountNumber.length < 10
+      ) {
+        this.accountName = ''
+        return
+      }
+      this.accountVerification()
+    },
+    accountNumber(val) {
+      if (this.currency === 'NGN' && val.length != 10) {
+        this.accountName = ''
+        return
+      }
+      if (this.currency !== 'NGN' || !this.bank.value) {
+        this.accountName = ''
+        return
+      }
+      if (this.bank && this.bank.value && this.accountNumber.length === 10) {
+        this.accountVerification()
+      }
     },
   },
   computed: {
@@ -199,7 +232,7 @@ export default {
           this.accountName = data.data.data.accountname
           this.accountVerified = true
         } else {
-          this.accountName = 'Account not found'
+          this.accountName = accountNotFound
           this.accountVerified = false
         }
       } catch (error) {
@@ -237,8 +270,11 @@ export default {
       }
     },
     onSelectCurrency() {
-      this.bank.value = ''
-      this.bank.label = 'Select your bank'
+      this.bank = {
+        value: '',
+        label: 'Select your bank',
+      }
+      this.accountName = ''
     },
     async onSubmit() {
       let userAccounts = this.user.profile.bankAccounts.data
@@ -284,11 +320,21 @@ export default {
         this.showModal = false
       }
     },
+    isNumber(evt) {
+      if (this.currency === 'NGN' && this.accountNumber.length === 10) {
+        evt.preventDefault()
+      }
+      const charCode = evt.which ? evt.which : evt.keyCode
+      if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        evt.preventDefault()
+      }
+    },
     isBtnDisabled() {
       return (
         !this.bank.value ||
         !this.accountNumber ||
         !this.accountName ||
+        this.accountName === accountNotFound ||
         !this.currency
       )
     },
