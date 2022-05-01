@@ -214,6 +214,7 @@ export default {
   beforeMount() {
     this.getDashboard()
     this.fetchOrders()
+    console.log(this.user)
   },
   computed: {
     ...mapState('auth', ['user']),

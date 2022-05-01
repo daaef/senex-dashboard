@@ -106,4 +106,10 @@
       height: auto;
     }
   }
+
+  &__cancel-btn {
+    width: 120px;
+    color: $color-primary !important;
+    background-color: $color-blue-c8d !important;
+  }
 }
