@@ -73,6 +73,31 @@
           </div>
         </div>
       </div>
+      <div class="invite__pending">
+        <h3 class="fw-700 u-mb-20">Pending Invitations (8)</h3>
+        <div class="invite__pending__item">
+          <span>abayomiahmedtosin@gmail.com</span>
+          <div class="invite__pending__action-box">
+            <span class="invite__pending__delete u-mr-10">Delete</span>
+            <span class="invite__pending__resend">Resend</span>
+          </div>
+        </div>
+        <div class="invite__pending__item">
+          <span>abayomiahmedtosin@gmail.com</span>
+          <div class="invite__pending__action-box">
+            <span class="invite__pending__delete u-mr-10">Delete</span>
+            <span class="invite__pending__resend">Resend</span>
+          </div>
+        </div>
+        <div class="invite__pending__item">
+          <span>abayomiahmedtosin@gmail.com</span>
+          <div class="invite__pending__action-box">
+            <span class="invite__pending__delete u-mr-10">Delete</span>
+            <span class="invite__pending__resend">Resend</span>
+          </div>
+        </div>
+        <span class="invite__pending__arrow"></span>
+      </div>
     </div>
   </div>
 </template>
