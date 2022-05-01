@@ -10,7 +10,9 @@
         v-for="(item, idx) in menu"
         :key="idx"
         class="side-menu__item"
+        :class="[idx === activeIdx ? 'side-menu__item--active' : '']"
         :to="item.link"
+        @click.native="activeIdx = idx"
       >
         <img :src="item.icon" :alt="item.name" class="side-menu__item-icon" />
         <span>{{ item.name }}</span>
@@ -26,6 +28,7 @@ export default {
   data() {
     return {
       menu,
+      activeIdx: 0,
     }
   },
 }

@@ -49,7 +49,7 @@
       @editOrDelete="editOrDelete"
     ></wallet-table>
     <vue-final-modal v-model="showModal">
-      <div class="benef-overlay">
+      <div class="benef-overlay container">
         <form class="form">
           <div class="form__header">
             <span class="close" @click="showModal = false"></span>

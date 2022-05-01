@@ -36,6 +36,11 @@
       background-color: $color-primary;
       color: $color-white;
     }
+
+    &--active {
+      background-color: $color-primary;
+      color: $color-white;
+    }
   }
 
   &__item-icon {
