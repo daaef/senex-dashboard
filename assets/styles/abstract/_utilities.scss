@@ -60,10 +60,6 @@
   margin-right: 20px !important;
 }
 
-.u-text-left {
-  text-align: left !important;
-}
-
 .u-link {
   color: $color-link;
   cursor: pointer;
@@ -73,8 +69,16 @@
   color: $color-white !important;
 }
 
+.u-text-left {
+  text-align: left !important;
+}
+
 .u-text-center {
   text-align: center !important;
+}
+
+.u-text-right {
+  text-align: right !important;
 }
 
 .u-pointer {

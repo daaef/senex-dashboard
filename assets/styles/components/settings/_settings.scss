@@ -1,0 +1,12 @@
+.resend-badge {
+  background-color: $color-grey-404;
+  display: inline-block;
+  padding: 0.3rem 1.6rem;
+  border-radius: 8px;
+  font-size: 1.4rem;
+
+  .resend {
+    color: #7EAFF8;
+    cursor: pointer;
+  }
+}

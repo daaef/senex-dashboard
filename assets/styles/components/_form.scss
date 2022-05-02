@@ -1,6 +1,6 @@
 .form {
   width: 100%;
-  max-width: 45rem;
+  max-width: 48rem;
 
   &__input-box {
     width: 100%;
@@ -32,6 +32,38 @@
   }
   
   &__input-extra {
+    display: inline-block;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    padding: 0 !important;
+    // color: $color-grey-c8c;
+  }
+}
+
+.input-box {
+  width: 100%;
+  position: relative;
+  padding: 1rem;
+  border: 1px solid $color-grey-c8c;
+  border-radius: 8px;
+  background-color: transparent;
+
+  &--disabled {
+    background-color: $color-grey-202
+  }
+
+  input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0 1rem;
+  }
+
+  &__extra {
     display: inline-block;
     position: absolute;
     right: 1rem;

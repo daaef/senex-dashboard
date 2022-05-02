@@ -25,11 +25,20 @@
 import menu from '@/data/sidebar.js'
 export default {
   name: 'SideMenu',
+  beforeMount() {
+    this.activeIdx = this.getCurrentMenuIndex()
+  },
   data() {
     return {
       menu,
       activeIdx: 0,
     }
+  },
+  methods: {
+    getCurrentMenuIndex() {
+      let path = this.$route.path
+      return this.menu.findIndex((item) => item.link === path)
+    },
   },
 }
 </script>

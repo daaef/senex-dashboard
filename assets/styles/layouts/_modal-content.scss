@@ -1,0 +1,90 @@
+.modal-box {
+  width: 100%;
+  max-width: 45rem;
+  margin: 0 auto;
+  padding: 2.5rem;
+  border-radius: 12px;
+  background-color: $color-primary-dark;
+
+  &__header {
+    position: relative;
+
+    .close {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: $color-grey-c8c;
+      cursor: pointer;
+    }
+  }
+
+  &__body {
+    padding: 2rem;
+  }
+
+  .vs--unsearchable .vs__dropdown-toggle {
+    padding: 1.2rem 1.5rem;
+    border: 1px solid $color-grey-c8c;
+    border-radius: 8px;
+
+    .vs__selected {
+      height: 100%;
+      margin: 0;
+    }
+  }
+
+  .vs__dropdown-menu {
+    background-color: $color-black-242;
+    border: 1px solid $color-grey-c8c;
+  }
+
+  .vs__selected {
+    color: $color-grey-c8c;
+  }
+
+  .vs__search {
+    font-size: 1.6rem;
+    color: $color-grey-c8c;
+    margin: 0;
+    padding: 0;
+  }
+
+  .vs__open-indicator {
+    fill: $color-grey-c8c;
+  }
+
+  &__input-box {
+    width: 100%;
+    position: relative;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid $color-grey-c8c;
+    border-radius: 8px;
+    background-color: transparent;
+
+    &--disabled {
+      background-color: $color-grey-202
+    }
+
+    input {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
+  }
+
+  &__input-extra {
+    display: inline-block;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    padding: 0 !important;
+    // color: $color-grey-c8c;
+  }
+}
