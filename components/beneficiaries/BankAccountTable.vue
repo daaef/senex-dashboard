@@ -17,7 +17,9 @@
             <td class="td td--20">{{ bank.bankName }}</td>
             <td class="td td--40">{{ bank.accountNumber }}</td>
             <td class="td td--10 status status--blue">
-              <span class="u-pointer" @click="$emit('editOrDelete', 'edit', bank.id)"
+              <span
+                class="u-pointer"
+                @click="$emit('editOrDelete', 'edit', bank.id)"
                 ><img src="img/icons/edit_icon.svg" alt="edit" /> Edit</span
               >
             </td>

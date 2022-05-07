@@ -68,9 +68,21 @@
                 @option:selected="onSelectCurrency"
               >
                 <template #option="{ label }">
-                  <div style="display: flex; justify-content: space-between">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                    "
+                  >
                     <span>{{ label }}</span>
-                    <img src="img/icons/edit_icon.svg" alt="currency-icon" />
+                    <span class="flag-box">
+                      <img
+                        :src="flagByCurrency(label)"
+                        alt="currency-icon"
+                        class="flag"
+                      />
+                    </span>
                   </div>
                 </template>
               </v-select>
@@ -119,6 +131,8 @@ import { mapState } from 'vuex'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
 import banks from '@/data/allBanks.js'
+import flags from '@/data/flags.js'
+import { countries } from 'countries-list'
 const accountNotFound = 'Account not found'
 export default {
   components: {
@@ -149,6 +163,7 @@ export default {
       accountVerified: false,
       processing: false,
       verifyingAccount: false,
+      flags: flags,
     }
   },
   watch: {
@@ -338,8 +353,27 @@ export default {
         !this.currency
       )
     },
+    flagByCurrency(currency) {
+      for (const country in countries) {
+        const currencyList = countries[country].currency.split(',')
+        if (currencyList[0] == currency) {
+          return flags(country.toLowerCase())
+        }
+      }
+    },
   },
 }
 </script>
 
-<style></style>
+<style scoped>
+.flag-box {
+  width: 20px;
+  height: 15px;
+}
+.flag {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50%;
+  object-fit: cover !important;
+}
+</style>

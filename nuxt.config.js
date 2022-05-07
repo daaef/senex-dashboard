@@ -86,6 +86,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/v-tooltip',
     { src: '~/plugins/api', ssr: true },
     { src: '~/plugins/axios', ssr: true },
     { src: '~/plugins/vue-notification', ssr: false },

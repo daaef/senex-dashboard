@@ -48,6 +48,12 @@
     .vs__dropdown-menu {
       background-color: $color-black-242;
       border: 1px solid $color-grey-c8c;
+
+      li {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border: 1px solid $color-grey-c8c;
+      }
     }
 
     .vs__selected {

@@ -54,7 +54,7 @@
     align-items: center;
 
     @include respond(phone-400) {
-      justify-content: center;
+      justify-content: flex-start;
       width: 100%;
     }
   }
