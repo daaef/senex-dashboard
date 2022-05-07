@@ -51,7 +51,7 @@
     @include respond(phone) {
       flex: 0 0 max-content;
     }
-    
+
     img {
       width: 15px;
       height: auto;
@@ -97,7 +97,7 @@
     justify-content: space-between;
     align-items: center;
     padding-left: 1rem;
-    
+
     &:not(:last-child) {
       margin-bottom: 3rem;
     }
@@ -134,7 +134,8 @@
   }
 }
 
-.index-earn, .index-ex {
+.index-earn,
+.index-ex {
   background-color: $color-secondary-dark;
   padding: 3rem;
   border-radius: 12px;
@@ -159,8 +160,12 @@
     margin-bottom: 3rem;
 
     img {
-      width: 40px;
+      width: 60px;
       height: auto;
+    }
+
+    .users {
+      width: 40px;
     }
   }
 
@@ -172,7 +177,7 @@
     height: 100%;
 
     &:not(:last-child) {
-      margin-right: 3rem;
+      margin-right: 1rem;
     }
 
     &--1 {
@@ -257,7 +262,8 @@
   padding: 3rem;
   border-radius: 12px;
   color: $color-white;
-  background: transparent linear-gradient(100deg, #AF29EB 0%, #124EE5 100%) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(100deg, #af29eb 0%, #124ee5 100%) 0%
+    0% no-repeat padding-box;
 
   @include respond(phone) {
     flex-direction: column;
@@ -292,7 +298,8 @@
   }
 
   &__btn {
-    width: 150px !important;
-    background-color: #A82BEB !important;
+    // width: 150px !important;
+    padding: 1.2rem 1.8rem;
+    background-color: #a82beb !important;
   }
 }

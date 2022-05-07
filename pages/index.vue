@@ -32,17 +32,35 @@
     <div class="index-rate-box u-mb-20">
       <div class="rate">
         <p class="u-mr-10">1 BTC = 23,079,836</p>
-        <img src="img/icons/delete_icon.svg" alt="arrow" class="u-mr-10" />
+        <img
+          :src="`img/icons/${
+            true ? 'green_triangle_up' : 'red_triangle_down'
+          }.svg`"
+          alt="arrow"
+          class="u-mr-10"
+        />
         <p>-2.08%</p>
       </div>
       <div class="rate">
         <p class="u-mr-10">1 BTC = 23,079,836</p>
-        <img src="img/icons/delete_icon.svg" alt="arrow" class="u-mr-10" />
+        <img
+          :src="`img/icons/${
+            false ? 'green_triangle_up' : 'red_triangle_down'
+          }.svg`"
+          alt="arrow"
+          class="u-mr-10"
+        />
         <p>-2.08%</p>
       </div>
       <div class="rate">
         <p class="u-mr-10">1 BTC = 23,079,836</p>
-        <img src="img/icons/delete_icon.svg" alt="arrow" class="u-mr-10" />
+        <img
+          :src="`img/icons/${
+            true ? 'green_triangle_up' : 'red_triangle_down'
+          }.svg`"
+          alt="arrow"
+          class="u-mr-10"
+        />
         <p>-2.08%</p>
       </div>
     </div>
@@ -70,7 +88,10 @@
               :key="idx"
               class="index-recent-txn__item"
             >
-              <img src="img/icons/help_icon.svg" alt="coin" />
+              <img
+                :src="`img/crypto/${order.cryptoCurrency.toLowerCase()}.svg`"
+                alt="coin"
+              />
               <div class="coin-date">
                 <h4 class="fw-500">{{ order.cryptoCurrency }}</h4>
                 <p class="small-text">{{ formatDate(order.created) }}</p>
@@ -93,7 +114,7 @@
         <div class="index-earn">
           <div class="index-earn__top">
             <div class="index-earn__content">
-              <img src="img/icons/help_icon.svg" alt="cup" />
+              <img src="img/icons/icon_metro_trophy.svg" alt="cup" />
               <span class="small-text">Comrade</span>
             </div>
             <div class="index-earn__content index-earn__content--1">
@@ -101,7 +122,11 @@
               <h3 class="heading-primary">N1,759,090</h3>
             </div>
             <div class="index-earn__content">
-              <img src="img/icons/help_icon.svg" alt="cup" />
+              <img
+                src="img/icons/icon_awesome_users.svg"
+                class="users"
+                alt="cup"
+              />
               <span class="fw-700">45</span>
             </div>
           </div>
@@ -118,31 +143,33 @@
             <div class="index-ex__rate-box">
               <div class="index-ex__rate-item">
                 <div class="coin">
-                  <img
-                    src="img/icons/help_icon.svg"
-                    alt="coin"
-                    class="u-mr-5"
-                  />
+                  <img src="img/crypto/btc.svg" alt="coin" class="u-mr-5" />
                   <span>Bitcoin</span>
                 </div>
                 <div class="rate">
                   <span>23,079,836</span>
-                  <img src="img/icons/help_icon.svg" alt="coin" />
+                  <img
+                    :src="`img/icons/${
+                      true ? 'green_triangle_up' : 'red_triangle_down'
+                    }.svg`"
+                    alt="coin"
+                  />
                   <span>-2.08%</span>
                 </div>
               </div>
               <div class="index-ex__rate-item">
                 <div class="coin">
-                  <img
-                    src="img/icons/help_icon.svg"
-                    alt="coin"
-                    class="u-mr-5"
-                  />
+                  <img src="img/crypto/usdt.svg" alt="coin" class="u-mr-5" />
                   <span>Bitcoin</span>
                 </div>
                 <div class="rate">
                   <span>23,079,836</span>
-                  <img src="img/icons/help_icon.svg" alt="coin" />
+                  <img
+                    :src="`img/icons/${
+                      true ? 'green_triangle_up' : 'red_triangle_down'
+                    }.svg`"
+                    alt="coin"
+                  />
                   <span>-2.08%</span>
                 </div>
               </div>

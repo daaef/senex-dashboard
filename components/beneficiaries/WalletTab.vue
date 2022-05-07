@@ -99,7 +99,7 @@
                   placement: 'right',
                 }"
               >
-                <img src="img/icons/info_yellow_round_icon.svg" alt="info" />
+                <img src="img/icons/info_white_round_icon.svg" alt="info" />
               </span>
             </div>
             <div class="form__input-box u-mb-20">
