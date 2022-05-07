@@ -23,13 +23,14 @@
   }
 
   &__item {
-    display: block;
-    padding: 10px;
+    display: flex;
+    align-items: center;
     border-radius: 8px;
     color: $color-grey-c8c;
+    padding: 13px 20px;
 
     &:not(:last-child) {
-      margin-bottom: 20px;
+      margin-bottom: 5px;
     }
 
     &:hover {

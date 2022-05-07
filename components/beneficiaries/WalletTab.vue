@@ -52,7 +52,12 @@
       <div class="benef-overlay container">
         <form class="form">
           <div class="form__header">
-            <span class="close" @click="showModal = false"></span>
+            <img
+              class="close"
+              src="/img/icons/close_round_modal_icon.svg"
+              alt="close"
+              @click="showModal = false"
+            />
             <h3 class="heading-primary u-text-center u-mx-auto">
               {{ mode == 'add' ? 'Add' : 'Edit' }} Wallet
             </h3>
@@ -89,7 +94,8 @@
               <span
                 class="form__input-extra u-pointer"
                 v-tooltip="{
-                  content: 'Please ensure you paste the correct wallet address.',
+                  content:
+                    'Please ensure you paste the correct wallet address.',
                   placement: 'right',
                 }"
               >
