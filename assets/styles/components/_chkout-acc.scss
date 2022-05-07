@@ -1,0 +1,114 @@
+.chkout-acc {
+  color: $color-secondary;
+
+  &__select-box {
+    display: flex;
+    width: fit-content;
+    border-radius: 8px;
+    background-color: #ebebed;
+    overflow: hidden;
+    position: relative;
+
+    &--80 {
+      width: 80%;
+      @include respond(phone) {
+        width: 100%;
+      }
+    }
+  }
+
+  &__select-btn {
+    background-color: transparent; //#EBEBED;
+    color: #838384;
+    padding: 5px 15px;
+    display: inline-block;
+    margin: 0 !important;
+    cursor: pointer;
+    position: relative;
+    flex: 0 0 50%;
+    z-index: 2;
+
+    &--active {
+      // background-color: $color-primary;
+      background-color: transparent;
+      color: $color-white;
+      // border-radius: 8px;
+    }
+  }
+
+  &__glider {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    background-color: $color-primary;
+    color: $color-white;
+    border-radius: 8px;
+    transition: all 0.3s;
+
+    &--hide {
+      opacity: 0;
+    }
+
+    &--1 {
+      transform: translateX(0);
+    }
+
+    &--2 {
+      transform: translateX(100%);
+    }
+
+    &--3 {
+      transform: translateX(200%);
+    }
+  }
+}
+
+.o-form {
+  width: 100%;
+
+  &__input-box {
+    width: 100%;
+    display: block;
+    position: relative;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    overflow: hidden;
+
+    &--flex {
+      display: flex !important;
+    }
+    &--overflow-v {
+      overflow: visible;
+    }
+
+    &--bg-dark {
+      background-color: #dfdfe2;
+    }
+  }
+
+  &__input {
+    display: inline-block;
+    width: 100%;
+    border: 1px solid $color-grey-b2;
+    border-radius: 6px;
+    outline: none;
+    padding: 8px;
+    font-size: $default-font-size;
+    background-color: transparent;
+    //line-height: 2rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__input-eye {
+    position: absolute;
+    width: 20px;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}

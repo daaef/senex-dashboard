@@ -9,11 +9,11 @@
     border: 1px solid $color-grey-c8c;
     border-radius: 8px;
     background-color: transparent;
-  
+
     &--disabled {
-      background-color: $color-grey-202
+      background-color: $color-grey-202;
     }
-  
+
     input {
       width: 100%;
       background-color: transparent;
@@ -30,7 +30,7 @@
     outline: none;
     padding: 0 1rem;
   }
-  
+
   &__input-extra {
     display: inline-block;
     position: absolute;
@@ -52,7 +52,7 @@
   background-color: transparent;
 
   &--disabled {
-    background-color: $color-grey-202
+    background-color: $color-grey-202;
   }
 
   input {

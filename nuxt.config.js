@@ -86,12 +86,15 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/v-clipboard',
+    '~/plugins/v-money',
     '~/plugins/v-tooltip',
+    '~plugins/vue-final-modal.js',
     { src: '~/plugins/api', ssr: true },
     { src: '~/plugins/axios', ssr: true },
     { src: '~/plugins/vue-notification', ssr: false },
     { src: '~/plugins/v-select', ssr: false },
-    '~plugins/vue-final-modal.js'
+    { src: '~/plugins/vue-awesome-countdown', ssr: false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

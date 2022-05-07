@@ -136,8 +136,7 @@ import { mapState } from 'vuex'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
 import banks from '@/data/allBanks.js'
-import flags from '@/data/flags.js'
-import { countries } from 'countries-list'
+import { flagByCurrency } from '@/data/flags.js'
 const accountNotFound = 'Account not found'
 export default {
   components: {
@@ -168,7 +167,7 @@ export default {
       accountVerified: false,
       processing: false,
       verifyingAccount: false,
-      flags: flags,
+      flagByCurrency: flagByCurrency,
     }
   },
   watch: {
@@ -357,14 +356,6 @@ export default {
         this.accountName === accountNotFound ||
         !this.currency
       )
-    },
-    flagByCurrency(currency) {
-      for (const country in countries) {
-        const currencyList = countries[country].currency.split(',')
-        if (currencyList[0] == currency) {
-          return flags(country.toLowerCase())
-        }
-      }
     },
   },
 }

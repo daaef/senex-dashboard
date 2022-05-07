@@ -20,6 +20,12 @@
 @import 'components/tab-holder';
 @import 'components/auth';
 @import 'components/form';
+@import 'components/beneficiary';
+@import 'components/checkout';
+@import 'components/chkout-acc';
+@import 'components/invoice';
+@import 'components/secret-key';
+@import 'components/trade-calculator';
 
 @import 'layouts/dashboard';
 @import 'layouts/sidemenu';
@@ -27,8 +33,22 @@
 @import 'layouts/mobile-menu';
 @import 'layouts/empty-state';
 @import 'layouts/modal-content';
+@import 'layouts/nav-bar';
+@import 'layouts/order';
 
 @import 'pages/index';
+@import 'pages/order';
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
 
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);

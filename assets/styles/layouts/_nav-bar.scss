@@ -1,0 +1,73 @@
+.nav-bar {
+
+  padding: 10px 0;
+  background-color: $color-white;
+
+  // &__app-container {
+  //   max-width: 1200px;
+  //   margin: 0 auto;
+  //   padding-left: 2rem;
+  //   padding-right: 2rem;
+  // }
+
+  &__con {
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+
+    @include respond(big-desktop) {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+
+    @include respond(phone) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  &__logo-box {
+    display: inline-block;
+    height: 30px;
+  }
+
+  &__logo {
+    width: auto;
+    height: 100%;
+  }
+
+  &__profile-box {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  // &__profile-name {
+
+  // }
+
+  &__profile-img {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: $color-primary;
+    color: $color-white;
+
+    &--center {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+  }
+
+}
