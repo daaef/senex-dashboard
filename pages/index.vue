@@ -135,6 +135,11 @@
             :is-loading="false"
             value="Invite more friends"
             setClass="index-earn__btn"
+            :on-submit="
+              () => {
+                $router.push('/invite')
+              }
+            "
           />
         </div>
         <div class="index-ex">
@@ -179,6 +184,11 @@
               :is-loading="false"
               value="Buy/Sell"
               setClass="index-ex__btn"
+              :on-submit="
+                () => {
+                  $router.push('/transactions')
+                }
+              "
             />
           </div>
         </div>
