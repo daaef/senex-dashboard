@@ -2,8 +2,8 @@
   <div class="txn-tab">
     <div class="txn-tab__header u-my-30">
       <div class="txn-tab__search-box">
-        <img src="h.png" alt="" class="txn-tab__search-icon" />
-        <input type="text" class="txn-tab__search-input" placeholder="Search" />
+        <img src="img/search-grey.svg" alt="search" class="txn-tab__search-icon" />
+        <input v-model="search" type="text" class="txn-tab__search-input" placeholder="Search" />
       </div>
       <div class="txn-tab__page-box">
         <button class="btn u-mr-20" @click="add">
@@ -151,6 +151,7 @@ export default {
   data() {
     return {
       banks: banks,
+      search: '',
       showModal: false,
       currentPage: 1,
       perPage: 5,

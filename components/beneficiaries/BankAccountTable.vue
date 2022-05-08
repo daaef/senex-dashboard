@@ -28,10 +28,7 @@
                 class="u-pointer"
                 @click="$emit('editOrDelete', 'delete', bank.id)"
               >
-                ><img
-                  src="img/icons/delete_icon.svg"
-                  alt="delete"
-                />Delete</span
+                <img src="img/icons/delete_icon.svg" alt="delete" />Delete</span
               >
             </td>
           </tr>

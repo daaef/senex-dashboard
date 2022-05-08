@@ -21,7 +21,7 @@
     flex: 0 0 30rem;
     border-radius: 8px;
     padding: 0;
-    padding-left: 24px;
+    padding-left: 35px;
     position: relative;
     background-color: $color-secondary-dark;
 
@@ -34,9 +34,12 @@
   }
 
   &__search-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
   }
 
   &__search-input {
