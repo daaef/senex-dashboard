@@ -27,7 +27,23 @@
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+export default {
+  beforeMount() {
+    console.log(this.user)
+    this.getReferrals()
+  },
+  computed: {
+    ...mapState('auth', ['user']),
+  },
+  methods: {
+    async getReferrals() {
+      const {data} = await this.$api.getReferrals()
+      console.log(data)
+      // this.$store.dispatch('getReferrals')
+    }
+  }
+}
 </script>
 
 <style></style>

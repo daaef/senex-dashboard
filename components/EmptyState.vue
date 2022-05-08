@@ -34,7 +34,7 @@ export default {
     },
     height: {
       type: String,
-      default: 'auto',
+      default: '',
     },
   },
 }

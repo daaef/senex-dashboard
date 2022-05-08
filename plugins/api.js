@@ -24,7 +24,8 @@ const URLS = {
   getDepositAccount: '/get_deposit_account/',
   markPaid: '/mark_paid',
   email: '/email',
-  inviteFriends: '/invite_friends' 
+  inviteFriends: '/invite_friends/',
+  referrals: '/referrals/',
 }
 
 // Access any enpoints by using this.$api.[endpoint name](data)
@@ -89,6 +90,9 @@ export default ({ $axios }, inject) => {
 
     // Subscribe/Unsubscribe from mailing list { id }
     inviteFriends: (data) => $axios.post(URLS.inviteFriends, data),
+
+    // Get referrals
+    getReferrals: () => $axios.get(URLS.referrals),
 
     // Fetch trade information { id }
     fetchTrade: (id) => $axios.get(`${URLS.trade}/${id}`),

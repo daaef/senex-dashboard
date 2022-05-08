@@ -93,10 +93,10 @@
                 alt="coin"
               />
               <div class="coin-date">
-                <h4 class="fw-500">{{ order.cryptoCurrency }}</h4>
+                <h4 class="fw-500 heading-tertiary">{{ order.cryptoCurrency }}</h4>
                 <p class="small-text">{{ formatDate(order.created) }}</p>
               </div>
-              <h4 class="heading-tertiary">
+              <h4 class="amount fw-700">
                 {{ order.fiatCurrency }} {{ order.fiatAmount }}
               </h4>
             </div>
@@ -251,7 +251,6 @@ export default {
   beforeMount() {
     this.getDashboard()
     this.fetchOrders()
-    console.log(this.user)
   },
   computed: {
     ...mapState('auth', ['user']),
