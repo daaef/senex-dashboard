@@ -4,27 +4,33 @@
     <div class="checkout__body u-flex-1">
       <h6 class="paragraph">Do you have a senexpay account?</h6>
       <div class="chkout-acc">
-        <div class="chkout-acc__select-box u-mb-medium">
+        <div class="chkout-acc__select-box u-mb-40">
           <div
             class="chkout-acc__select-btn"
-            :class="[isSelected && hasAccount ? 'chkout-acc__select-btn--active' : '']"
+            :class="[
+              isSelected && hasAccount ? 'chkout-acc__select-btn--active' : '',
+            ]"
             @click="selectYes()"
           >
             Yes
           </div>
           <div
             class="chkout-acc__select-btn"
-            :class="[isSelected && !hasAccount ? 'chkout-acc__select-btn--active' : '']"
+            :class="[
+              isSelected && !hasAccount ? 'chkout-acc__select-btn--active' : '',
+            ]"
             @click="selectNo()"
           >
             No
             <!-- <input type="radio" class="radio-2" /><label class="chkout-tab-box__label">No</label> -->
           </div>
-          <span class="chkout-acc__glider"
-            :class="
-              [hasAccount ? 'chkout-acc__glider--1' : 'chkout-acc__glider--2', !isSelected ? 'chkout-acc__glider--hide' : '']
-            "></span
-          >
+          <span
+            class="chkout-acc__glider"
+            :class="[
+              hasAccount ? 'chkout-acc__glider--1' : 'chkout-acc__glider--2',
+              !isSelected ? 'chkout-acc__glider--hide' : '',
+            ]"
+          ></span>
           <!-- <div
             class="chkout-acc__select-btn"
             :class="isSelected && !hasAccount ? 'chkout-acc__select-btn--active' : ''"
@@ -36,7 +42,11 @@
       </div>
 
       <div v-if="isSelected && hasAccount">
-        <MiniLogin :order="order" @change-sign-in-val="changeSignInVal" @setName="setName" />
+        <MiniLogin
+          :order="order"
+          @change-sign-in-val="changeSignInVal"
+          @setName="setName"
+        />
       </div>
       <div v-else-if="isSelected && !hasAccount">
         <div v-if="signUpStep === 1">
@@ -95,7 +105,7 @@ export default {
       password: '',
       isPasswordValid: false,
       isEmailValid: false,
-      isMobileValid: false
+      isMobileValid: false,
     }
   },
   watch: {
@@ -105,15 +115,15 @@ export default {
       } else if (this.countryCode === '+27' && value.length === 9) {
         this.mobile = '+27' + value
       }
-    }
+    },
   },
   mounted() {
     this.$store.commit('order/changeCurrentOrderStep', 2)
   },
   computed: {
     ...mapState({
-      order: state => state.order.orderDetail
-    })
+      order: (state) => state.order.orderDetail,
+    }),
   },
   methods: {
     selectYes() {
@@ -124,7 +134,7 @@ export default {
         eventCategory: 'Checkout authentication',
         eventAction: 'click-has-account-option',
         eventLabel: 'Sign in',
-        eventValue: 1
+        eventValue: 1,
       })
     },
     selectNo() {
@@ -135,7 +145,7 @@ export default {
         eventCategory: 'Checkout authentication',
         eventAction: 'click-has-account-option',
         eventLabel: 'Create account',
-        eventValue: 1
+        eventValue: 1,
       })
     },
     changeSignUpStep(val) {
@@ -154,11 +164,9 @@ export default {
     },
     validatePassword(val) {
       this.isPasswordValid = val
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

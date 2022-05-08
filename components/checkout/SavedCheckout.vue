@@ -2,7 +2,7 @@
   <div class="checkout">
     <Checkout />
     <div class="checkout__body u-flex-1">
-      <div class="u-mb-mini-medium">
+      <div class="u-mb-30">
         <p class="paragraph">
           Your transaction is saved. Click on “Continue” below to continue this
           transaction or click on “Cancel” to start a new one.

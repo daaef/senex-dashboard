@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="u-mb-mini-medium">
+    <div class="u-mb-30">
       <h3 class="heading-primary u-d-flex u-d-flex--h-center">
         Quick SIGN UP
         <span

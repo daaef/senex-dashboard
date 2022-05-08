@@ -37,17 +37,13 @@
         </div>
       </div>
       <div v-else class="b-not-found">
-        <img
-          src="/img/beneficiary-empty.svg"
-          alt="not found"
-          class="u-mb-small"
-        />
+        <img src="/img/beneficiary-empty.svg" alt="not found" class="u-mb-20" />
         <span class="paragraph paragraph--700 u-mb-10">Kinda Quiet Here</span>
-        <span class="paragraph u-mb-small"
+        <span class="paragraph u-mb-20"
           >You have not saved any beneficiary</span
         >
 
-        <button class="b-not-found__btn u-mb-small" @click="addBeneficiary">
+        <button class="b-not-found__btn u-mb-20" @click="addBeneficiary">
           Add a beneficiary
         </button>
         <span class="paragraph b-not-found__cancel" @click="close()"

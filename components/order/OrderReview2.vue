@@ -1,7 +1,7 @@
 <template>
   <div class="checkout checkout--no-min-height">
     <div class="checkout__body">
-      <div class="chkout-card__header u-mb-mini-medium">
+      <div class="chkout-card__header u-mb-30">
         <h3 class="heading-primary m-0">ORDER REVIEW</h3>
         <CheckoutTimer :timeLeft="timeLeft" />
         <!-- <div class="chkout-card__header-time-box">
@@ -13,7 +13,7 @@
           <span class="chkout-card__header-time">{{ minutes }} : {{ seconds }}</span>
         </div> -->
       </div>
-      <div class="u-mb-mini-medium">
+      <div class="u-mb-30">
         <div class="chkout-card__detail-item">
           <span class="chkout-card__detail-key">Assets</span>
           <span
@@ -65,7 +65,7 @@
           >
         </div>
       </div>
-      <div class="u-mb-mini-medium">
+      <div class="u-mb-30">
         <p class="paragraph paragraph--700 u-mb-10">Beneficiary Details</p>
         <template v-if="order.type == 'buy'">
           <!-- <p class="paragraph u-mb-10 u-text-uppercase">{{ beneficiary.walletLabel }}</p> -->
@@ -95,7 +95,7 @@
         </template>
       </div>
       <div class="u-mt-auto">
-        <!-- <p class="paragraph blue-text u-mb-small">
+        <!-- <p class="paragraph blue-text u-mb-20">
           Please confirm that the above details are correct. Payments made cannot be reversed.
         </p> -->
         <ButtonSpinner

@@ -2,14 +2,14 @@
   <div class="checkout checkout--no-min-height">
     <div class="checkout__body">
       <div class="checkout__modal">
-        <h3 class="heading-secondary u-mb-mini-medium u-mt-small">
+        <h3 class="heading-secondary u-mb-30 u-mt-small">
           CONFIRM WALLET ADDRESS
         </h3>
-        <p class="u-mb-mini-medium paragraph">
+        <p class="u-mb-30 paragraph">
           Are you sure you want to proceed with this wallet?
         </p>
         <div
-          class="o-form__input-box o-form__input-box--bg-dark u-text-left u-mb-mini-medium"
+          class="o-form__input-box o-form__input-box--bg-dark u-text-left u-mb-30"
         >
           <span class="o-form__input u-dim">{{ address }}</span>
         </div>

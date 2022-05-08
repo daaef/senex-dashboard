@@ -43,18 +43,23 @@
   font-size: 1.4rem;
 }
 
-.fw-400 {
+.fw-400,
+.u-fw-400 {
   font-weight: 400 !important;
 }
 
-.fw-500 {
+.fw-500,
+.u-fw-500 {
   font-weight: 500 !important;
 }
 
-.fw-600 {
+.fw-600,
+.u-fw-600 {
   font-weight: 600 !important;
 }
 
-.fw-700, .fw-bold {
+.fw-700,
+.fw-bold,
+.u-fw-700 {
   font-weight: 700 !important;
 }

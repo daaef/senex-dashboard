@@ -2,14 +2,14 @@
   <div>
     <div class="checkout checkout--no-min-height u-secondary-text-color">
       <div class="secret-key">
-        <h3 class="img-box u-mb-medium">
+        <h3 class="img-box u-mb-40">
           <img class="img" src="/img/icon-expired.svg" />
         </h3>
-        <h3 class="secret-key__title heading-primary u-mb-medium">
+        <h3 class="secret-key__title heading-primary u-mb-40">
           ORDER LIMIT EXCEEDED
         </h3>
         <div class="secret-key__body">
-          <p class="paragraph content u-mb-medium">
+          <p class="paragraph content u-mb-40">
             Only approved accounts can purchase this amount. To continue this
             trade, click below to complete KYC in a few minutes.
           </p>

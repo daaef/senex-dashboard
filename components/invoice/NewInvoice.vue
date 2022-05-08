@@ -107,7 +107,7 @@
         <div v-if="info.type == 'sell'">
           <div class="invoice__body">
             <!-- <span class="invoice__crypto-value">Crypto Value</span> -->
-            <div class="chkout-card__detail-item u-mb-small">
+            <div class="chkout-card__detail-item u-mb-20">
               <span class="chkout-card__detail-key">Crypto Value</span>
               <span
                 class="chkout-card__detail-coin-value u-ml-small u-pointer"
@@ -115,7 +115,7 @@
                   content: copyCryptoAmount,
                   show: copyCryptoAmount != '' ? true : false,
                   trigger: 'manual',
-                  placement: 'top-center'
+                  placement: 'top-center',
                 }"
                 v-clipboard="addPlatformFeeToSell()"
                 v-clipboard:success="toggleCopyCryptoAmount"
@@ -146,7 +146,7 @@
                 @selectedNetwork="selectedNetwork"
               /> -->
               <div v-else>
-                <!-- <p class="paragraph u-fw-700 u-mb-small">DEPOSIT USDT</p> -->
+                <!-- <p class="paragraph u-fw-700 u-mb-20">DEPOSIT USDT</p> -->
                 <p class="paragraph paragraph--sm u-fw-700 m-0">
                   <span>Network: {{ activeNetwork }}</span>
                   <span
@@ -163,18 +163,17 @@
                     :options="{ width: 240 }"
                   />
                   <!-- v-if="qrFallback" -->
-                  <!-- <img v-else :src="qrCode" class="invoice__qr-img u-mb-small" :alt="networkAddress" /> -->
-                  <span
-                    class="paragraph paragraph--sm paragraph--600 u-mb-small"
+                  <!-- <img v-else :src="qrCode" class="invoice__qr-img u-mb-20" :alt="networkAddress" /> -->
+                  <span class="paragraph paragraph--sm paragraph--600 u-mb-20"
                     >Scan with your Crypto Wallet app to pay</span
                   >
                   <div
-                    class="invoice__copy-address u-mb-small"
+                    class="invoice__copy-address u-mb-20"
                     v-tooltip="{
                       content: copyText,
                       show: copyText != '' ? true : false,
                       trigger: 'manual',
-                      placement: 'top-center'
+                      placement: 'top-center',
                     }"
                     v-clipboard="networkAddress"
                     v-clipboard:success="toggleCopyText"
@@ -188,7 +187,7 @@
                   </div>
                 </div>
                 <div
-                  class="invoice__sell-instruct invoice__sell-instruct--full invoice__sell-instruct--red u-mb-small"
+                  class="invoice__sell-instruct invoice__sell-instruct--full invoice__sell-instruct--red u-mb-20"
                 >
                   <span class="paragraph paragraph--sm"
                     >Click the button below after making your USDT deposit and
@@ -206,7 +205,7 @@
                     setClass="u-mb-none"
                   />
                 </div>
-                <!-- <div v-else class="invoice__sell-instruct u-mb-small">
+                <!-- <div v-else class="invoice__sell-instruct u-mb-20">
                   <span class="paragraph paragraph--sm paragraph--600">Please do not refresh this page. We would automatically detect when you make your Crypto deposit.</span>
                 </div> -->
               </div>
@@ -218,17 +217,17 @@
                   tag="img"
                   :options="{ width: 240 }"
                 />
-                <!-- <img v-else :src="qrCode" class="invoice__qr-img u-mb-small" :alt="networkAddress" /> -->
-                <span class="paragraph paragraph--sm paragraph--600 u-mb-small"
+                <!-- <img v-else :src="qrCode" class="invoice__qr-img u-mb-20" :alt="networkAddress" /> -->
+                <span class="paragraph paragraph--sm paragraph--600 u-mb-20"
                   >Scan with your Crypto Wallet app to pay</span
                 >
                 <div
-                  class="invoice__copy-address u-mb-small"
+                  class="invoice__copy-address u-mb-20"
                   v-tooltip="{
                     content: copyText,
                     show: copyText != '' ? true : false,
                     trigger: 'manual',
-                    placement: 'top-center'
+                    placement: 'top-center',
                   }"
                   v-clipboard="networkAddress"
                   v-clipboard:success="toggleCopyText"
@@ -256,7 +255,7 @@
                   :on-submit="markOrderAsPaid"
                 />
               </div>
-              <div v-else class="invoice__sell-instruct u-mb-small">
+              <div v-else class="invoice__sell-instruct u-mb-20">
                 <span class="paragraph paragraph--sm paragraph--600"
                   >Please do not refresh this page. We would automatically
                   detect when you make your Crypto deposit.</span
@@ -280,56 +279,56 @@ import NetworkSwitch from './NetworkSwitch.vue'
 export default {
   components: {
     VueQrcode,
-    NetworkSwitch
+    NetworkSwitch,
   },
   filters: { formatMoney },
   props: {
     invoiceId: {
       type: String,
-      default: ''
+      default: '',
     },
     propProcessing: {
-      default: false
+      default: false,
     },
     checked: {
       type: Boolean,
-      default: false
+      default: false,
     },
     deposit: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     timeLeft: {
       type: Number,
-      default: 0
+      default: 0,
     },
     qrFallback: {
-      default: null
+      default: null,
     },
     qrCode: {
-      default: null
+      default: null,
     },
     qrLoading: {
-      default: false
+      default: false,
     },
     networkAddress: {
-      default: null
+      default: null,
     },
     usdtNetworks: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     activeNetwork: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data() {
     return {
       processing: false,
       copyText: '',
       copyCryptoAmount: '',
-      showUSDTBarCode: false
+      showUSDTBarCode: false,
     }
   },
   computed: {
@@ -339,7 +338,7 @@ export default {
       info: (state) => state.invoice.info,
       paid: (state) => state.invoice.paid,
       step: (state) => state.invoice.step,
-      instructionChecked: (state) => state.invoice.instructionChecked
+      instructionChecked: (state) => state.invoice.instructionChecked,
     }),
     minutes: function () {
       const minutes = Math.floor(this.timeLeft / 60)
@@ -348,7 +347,7 @@ export default {
     seconds: function () {
       const seconds = Math.floor(this.timeLeft - this.minutes * 60)
       return this.padTime(seconds)
-    }
+    },
   },
   methods: {
     markOrderAsPaid() {
@@ -421,8 +420,8 @@ export default {
       return this.coinsInfo.find(
         (coin) => coin.cur === this.info.cryptoCurrency
       ).flag
-    }
-  }
+    },
+  },
 }
 </script>
 

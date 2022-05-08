@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="u-mb-mini-medium">
+    <div class="u-mb-30">
       <h3 class="heading-primary">ACCOUNT AUTHENTICATION</h3>
       <p class="paragraph">
         Enter your details quickly and continue your trade
@@ -39,7 +39,7 @@
         to="/forgot-password"
         target="_blank"
         style="margin-top: -20px"
-        class="u-link-color paragraph u-block u-mb-mini-md"
+        class="u-link-color paragraph u-block u-mb-30"
         >Forgot password?</router-link
       >
     </form>

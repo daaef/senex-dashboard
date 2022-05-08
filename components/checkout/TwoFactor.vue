@@ -2,7 +2,7 @@
   <div class="checkout checkout--no-min-height">
     <div class="checkout__body">
       <div class="checkout__modal">
-        <h3 class="heading-secondary u-mb-mini-medium u-mt-small">
+        <h3 class="heading-secondary u-mb-30 u-mt-small">
           VERIFY SECURITY CODES
         </h3>
         <p class="paragraph paragraph--600 u-text-left u-mb-10">
@@ -57,10 +57,7 @@
             /> -->
           </div>
         </div>
-        <p
-          v-if="secretError"
-          class="paragraph error-text u-text-left u-mb-medium"
-        >
+        <p v-if="secretError" class="paragraph error-text u-text-left u-mb-40">
           This is not your security key. Please try again.
         </p>
         <p class="paragraph paragraph--600 u-text-left u-mb-10">
@@ -89,11 +86,11 @@
         </div>
         <p
           v-if="phoneVerifyError"
-          class="paragraph error-text u-text-left u-mb-mini-medium"
+          class="paragraph error-text u-text-left u-mb-30"
         >
           This key is incorrect. Please check and try again.
         </p>
-        <div class="checkout__btn-box wallet-btn-box u-mb-mini-medium">
+        <div class="checkout__btn-box wallet-btn-box u-mb-30">
           <div class="checkout__btn checkout__btn--sm">
             <ButtonSpinner
               value="Cancel"

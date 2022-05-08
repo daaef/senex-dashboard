@@ -2,18 +2,18 @@
   <div>
     <div class="checkout">
       <div class="secret-key">
-        <h3 class="secret-key__title heading-primary u-mb-medium">SECRET KEY</h3>
+        <h3 class="secret-key__title heading-primary u-mb-40">SECRET KEY</h3>
         <div class="secret-key__body">
-          <label class="paragraph secret-key__label" for="password">Please enter your 3-digit secret key.</label>
+          <label class="paragraph secret-key__label" for="password"
+            >Please enter your 3-digit secret key.</label
+          >
           <div class="o-form__input-box u-mb-none">
             <input name="password" type="password" class="o-form__input" />
-            <img
-              src="/img/eye-on.svg"
-              alt="eye"
-              class="o-form__input-eye"
-            />
+            <img src="/img/eye-on.svg" alt="eye" class="o-form__input-eye" />
           </div>
-          <span class="secret-key__error-text">This key is incorrect. Please check and try again</span>
+          <span class="secret-key__error-text"
+            >This key is incorrect. Please check and try again</span
+          >
           <div class="secret-key__btn-box">
             <div class="secret-key__btn-small">
               <ButtonSpinner
@@ -41,11 +41,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
-<style lang="scss">
-  
-</style>
+<style lang="scss"></style>

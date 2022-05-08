@@ -26,7 +26,7 @@
           <h6 class="paragraph">Choose your beneficiary type</h6>
           <div class="chkout-acc">
             <div
-              class="chkout-acc__select-box chkout-acc__select-box--80 u-mb-medium"
+              class="chkout-acc__select-box chkout-acc__select-box--80 u-mb-40"
             >
               <div
                 class="chkout-acc__select-btn"

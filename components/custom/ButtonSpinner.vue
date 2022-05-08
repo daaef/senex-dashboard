@@ -13,7 +13,7 @@
       {{ value }}
     </div>
     <div
-      class="btn-style u-mb-small"
+      class="btn-style u-mb-20"
       :class="[isLoading ? 'show' : 'hide']"
       :style="{ backgroundColor: background }"
     >

@@ -77,3 +77,10 @@ ORDER: Base + typography > general layout + grid > page layout > components
   justify-content: $justify;
   flex-direction: $direction;
 }
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

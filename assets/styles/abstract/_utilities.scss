@@ -2,6 +2,10 @@
   margin-bottom: 5px !important;
 }
 
+.u-mb-8 {
+  margin-bottom: 8px !important;
+}
+
 .u-mb-sm,
 .u-mb-10 {
   margin-bottom: 10px !important;
@@ -22,6 +26,11 @@
 .u-mb-big,
 .u-mb-40 {
   margin-bottom: 40px !important;
+}
+
+.u-mb-0,
+.u-mb-none {
+  margin-bottom: 0 !important;
 }
 
 .u-my-big,
@@ -67,6 +76,14 @@
   cursor: pointer;
 }
 
+.u-link-color {
+  color: #3382FA;
+}
+
+.u-link-color-2 {
+  color: #0F58FB;
+}
+
 .u-white {
   color: $color-white !important;
 }
@@ -99,8 +116,27 @@
   display: block !important;
 }
 
-.u-flex {
+.u-flex,
+.u-d-flex {
   display: flex !important;
+
+  &--col {
+    flex-direction: column;
+  }
+
+  &--h-center,
+  &--align-center {
+    align-items: center;
+  }
+
+  &--w-center,
+  &--justify-center {
+    justify-content: center;
+  }
+}
+
+.u-flex-1 {
+  flex: 1 !important;
 }
 
 .u-capitalize {
@@ -114,3 +150,45 @@
 .u-line-height-1-2 {
   line-height: 1.2 !important;
 }
+
+.u-abs-center-vertical {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.u-color-grey707 {
+  color: #707070;
+}
+
+.u-color-primary {
+  color: $color-primary;
+}
+
+.u-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  max-width: 400px;
+  height: 100%;
+}
+
+.u-info-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid currentColor;
+  text-transform: lowercase;
+  vertical-align: middle;
+  cursor: pointer;
+  margin: 0 5px;
+}
+

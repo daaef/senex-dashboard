@@ -7,11 +7,14 @@
             <span class="heading-primary">INVOICE</span>
             <span class="invoice__status paragraph--sm">UNPAID</span>
           </div>
-          <p class="paragraph paragraph--sm m-0 u-mb-5">Invoice No.:
+          <p class="paragraph paragraph--sm m-0 u-mb-5">
+            Invoice No.:
             <span class="paragraph--700">{{ invoiceId }}</span>
           </p>
-          <p class="paragraph paragraph--sm invoice__see-order p-0 m-0"
-            @click="$emit('setShowReview', true)">
+          <p
+            class="paragraph paragraph--sm invoice__see-order p-0 m-0"
+            @click="$emit('setShowReview', true)"
+          >
             See my order details
           </p>
         </div>
@@ -27,11 +30,13 @@
             </span>
           </div>
           <img
-            src="/img/eye-off.svg" alt="eye off"
-            class="invoice__body__eye u-mb-mini-md u-mt-medium"
+            src="/img/eye-off.svg"
+            alt="eye off"
+            class="invoice__body__eye u-mb-30 u-mt-medium"
           />
-          <p class="paragraph u-mb-medium u-text-center">
-            Click the button below to display instructions on how to show your payment details here.
+          <p class="paragraph u-mb-40 u-text-center">
+            Click the button below to display instructions on how to show your
+            payment details here.
           </p>
           <div class="invoice__body__show-guide-btn-con">
             <ButtonSpinner
@@ -63,24 +68,24 @@ export default {
   props: {
     invoiceId: {
       type: String,
-      default: 0
+      default: 0,
     },
     timeLeft: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   methods: {
     showInstruction() {
       this.$store.commit('invoice/setGuideImage', 'payment1')
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped>
 .show-instruction-btn {
-  background-color: #FFB91A;
+  background-color: #ffb91a;
   color: black !important;
 }
 </style>

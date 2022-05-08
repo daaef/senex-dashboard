@@ -2,9 +2,7 @@
   <div class="checkout checkout--no-min-height">
     <div class="checkout__body">
       <div class="checkout__modal">
-        <h3 class="heading-secondary u-mb-mini-medium u-mt-small">
-          Secret Key
-        </h3>
+        <h3 class="heading-secondary u-mb-30 u-mt-small">Secret Key</h3>
         <p class="paragraph u-text-left u-mb-10">
           Please enter your secret key
         </p>
@@ -26,10 +24,10 @@
             @click="togglePassword"
           />
         </div>
-        <p class="paragraph error-text u-text-left u-mb-mini-medium">
+        <p class="paragraph error-text u-text-left u-mb-30">
           This key is incorrect. Please check and try again.
         </p>
-        <div class="checkout__btn-box wallet-btn-box u-mb-mini-medium">
+        <div class="checkout__btn-box wallet-btn-box u-mb-30">
           <div class="checkout__btn checkout__btn--sm">
             <ButtonSpinner
               value="Cancel"

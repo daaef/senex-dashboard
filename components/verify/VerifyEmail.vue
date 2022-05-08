@@ -3,9 +3,7 @@
     <div class="auth__form-logo-box">
       <LogoImage />
       <div class="auth__form-box">
-        <h3 class="fw-bold u-text-center u-mb-mini-medium">
-          EMAIL VERIFICATION
-        </h3>
+        <h3 class="fw-bold u-text-center u-mb-30">EMAIL VERIFICATION</h3>
         <div class="auth__success-img-box u-mb-10">
           <img
             class="auth__success-img"

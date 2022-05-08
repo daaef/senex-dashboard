@@ -9,7 +9,7 @@
           <CheckoutTimer :timeLeft="totalTime" />
         </div>
         <h3 class="heading-primary u-my-small">Rate Change!</h3>
-        <p class="paragragh u-text-left u-mb-mini-medium">
+        <p class="paragragh u-text-left u-mb-30">
           BTC rate just changed from
           <strong>{{ oldCryptoFiatRate | formatMoney('USD') }}</strong> to
           <strong>{{ newCryptoFiatRate | formatMoney('USD') }}</strong
@@ -46,7 +46,7 @@
           }}</span>
         </div>
 
-        <div class="u-mb-medium">
+        <div class="u-mb-40">
           <div class="calc__dollar-val-box">
             <input
               class="calc__dollar-val calc__dollar-val--input u-px-0"

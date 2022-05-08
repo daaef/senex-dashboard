@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="u-mb-mini-medium">
+    <div class="u-mb-30">
       <h3 class="heading-primary">OK, THIS IS THE FINAL STEP</h3>
       <p class="paragraph">This is where you set a strong password.</p>
     </div>

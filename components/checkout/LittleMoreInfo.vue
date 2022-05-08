@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="u-mb-mini-medium">
+    <div class="u-mb-30">
       <h3 class="heading-primary">JUST A little MORE info</h3>
       <p class="paragraph">Keeping your transaction tight for you…</p>
     </div>
