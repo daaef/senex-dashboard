@@ -26,6 +26,7 @@ const URLS = {
   email: '/email',
   inviteFriends: '/invite_friends/',
   referrals: '/referrals/',
+  withdrawReward: 'withdraw-reward/',
 }
 
 // Access any enpoints by using this.$api.[endpoint name](data)
@@ -93,6 +94,8 @@ export default ({ $axios }, inject) => {
 
     // Get referrals
     getReferrals: () => $axios.get(URLS.referrals),
+
+    withdrawReward: (data) => $axios.post(URLS.withdrawReward, data),
 
     // Fetch trade information { id }
     fetchTrade: (id) => $axios.get(`${URLS.trade}/${id}`),
