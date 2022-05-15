@@ -157,13 +157,6 @@ export default {
       //   : process.env.API_URL_PROD
   },
 
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    manifest: {
-      lang: 'en',
-    },
-  },
-
   i18n: {
     locales: ['en'],
     defaultLocale: 'en',
