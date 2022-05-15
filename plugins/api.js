@@ -95,6 +95,7 @@ export default ({ $axios }, inject) => {
     // Get referrals
     getReferrals: () => $axios.get(URLS.referrals),
 
+    // withdraw reward { wallet_address }
     withdrawReward: (data) => $axios.post(URLS.withdrawReward, data),
 
     // Fetch trade information { id }
