@@ -37,6 +37,12 @@
             value="Sign in to your account"
             :on-submit="login"
           />
+          <!-- <BtnSpinner
+            :is-loading="processing"
+            :is-in-active="buttonDisabled"
+            value="Sign in to your account"
+            :on-submit="login"
+          /> -->
         </form>
         <div class="auth__form-footer">
           <span class="u-text-center"
@@ -56,11 +62,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import getDeviceInfo from '@/data/getDeviceInfo.js' // file rename
+import getDeviceInfo from '@/data/getDeviceInfo.js'
+import BtnSpinner from '~/components/custom/BtnSpinner.vue' // file rename
 
 export default {
   components: {
-    // CardTitle
+    BtnSpinner,
   },
   layout: 'toast',
   middleware: 'authenticated',
