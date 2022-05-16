@@ -1,6 +1,6 @@
 export default ({ app, store, route, redirect }) => {
   // const guestRoute = ['/signin', '/create-account', '/forgot-password']
-  const guestRoute = ['/signin', '/forgot-password', '/create-account']
+  const guestRoute = ['/signin', '/forgot-password', '/create-account', '/order', '/order/start']
   // run only on server
   if (process.server) {
     if (!store.state.auth.loggedIn && !guestRoute.includes(route.path)) {

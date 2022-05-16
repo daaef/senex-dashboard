@@ -72,7 +72,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .show {
   display: block;
 }
