@@ -509,6 +509,7 @@ export default {
     opacity: 1;
     cursor: pointer;
   }
+  
   .disabled-color {
     opacity: 0.5;
     cursor: default;
