@@ -113,10 +113,6 @@ export default {
   opacity: 1;
   cursor: pointer;
 }
-.disabled-color {
-  opacity: 0.5;
-  cursor: default;
-}
 
 .select-input > select {
   border: 1px solid #b2b2b2;

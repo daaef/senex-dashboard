@@ -509,11 +509,6 @@ export default {
     opacity: 1;
     cursor: pointer;
   }
-  
-  .disabled-color {
-    opacity: 0.5;
-    cursor: default;
-  }
 
   .select-input > select {
     border: 1px solid #707070;

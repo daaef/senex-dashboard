@@ -4,7 +4,7 @@
       :style="{ backgroundColor: background, color: color }"
       class="submit-btn"
       :class="[
-        isInActive ? 'reduce-opacity' : '',
+        isInActive ? 'reduce-opacity pointer-off' : '',
         isLoading ? 'hide' : 'show-flex',
         setClass != '' ? setClass : '',
       ]"
@@ -79,9 +79,7 @@ export default {
 
 .btn-style {
   height: 50px;
-  /* padding: 15px; */
   border-radius: 6px;
-  /* opacity: 0.6; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,11 +92,6 @@ export default {
 .spinner {
   width: 25px;
   height: 25px;
-}
-
-.reduce-opacity {
-  opacity: 0.5 !important;
-  cursor: default !important;
 }
 
 .pointer-on {

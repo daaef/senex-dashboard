@@ -256,11 +256,6 @@ export default {
   cursor: pointer;
 }
 
-.disabled-color {
-  opacity: 0.5;
-  cursor: default;
-}
-
 .input-sub-holder {
   width: 100%;
   padding: 0 5px;
