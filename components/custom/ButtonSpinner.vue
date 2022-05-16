@@ -1,13 +1,13 @@
 <template>
   <div>
     <div
+      :style="{ backgroundColor: background, color: color }"
       class="submit-btn"
       :class="[
         isInActive ? 'reduce-opacity' : '',
         isLoading ? 'hide' : 'show-flex',
         setClass != '' ? setClass : '',
       ]"
-      :style="{ backgroundColor: background, color: color }"
       @click="submit"
     >
       {{ value }}
