@@ -37,12 +37,12 @@
             value="Sign in to your account"
             :on-submit="login"
           />
-          <!-- <BtnSpinner
+          <BtnSpinner
             :is-loading="processing"
             :is-in-active="buttonDisabled"
             value="Sign in to your account"
             :on-submit="login"
-          /> -->
+          />
         </form>
         <div class="auth__form-footer">
           <span class="u-text-center"
