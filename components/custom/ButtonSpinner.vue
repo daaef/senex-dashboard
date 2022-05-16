@@ -98,7 +98,7 @@ export default {
   height: 25px;
 }
 
-/* .submit-btn {
+.submit-btn {
   width: 100%;
   height: 50px !important;
   padding: 15px;
@@ -108,7 +108,7 @@ export default {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-} */
+}
 
 .rotate {
   animation: rotate 2.5s linear infinite;
