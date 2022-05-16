@@ -3,7 +3,7 @@
     <div
       class="submit-btn"
       :class="[
-        isInActive ? 'disabled-color pointer-off' : 'active-color',
+        isInActive ? 'disabled-color' : '',
         isLoading ? 'hide' : 'show-flex',
         setClass != '' ? setClass : '',
       ]"
@@ -96,13 +96,8 @@ export default {
   height: 25px;
 }
 
-.active-color {
-  opacity: 1;
-  cursor: pointer;
-}
-
 .disabled-color {
-  /* opacity: 0.5; */
+  opacity: 0.7;
   cursor: default;
 }
 
