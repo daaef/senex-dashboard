@@ -7,7 +7,7 @@
       }"
       class="submit-btn"
       :class="[
-        isInActive ? 'pointer-off' : 'u-pointer',
+        isInActive ? 'pointer-off u-opaque-5' : 'u-pointer',
         isLoading ? 'hide' : 'show-flex',
         setClass != '' ? setClass : '',
       ]"
