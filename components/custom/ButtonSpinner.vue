@@ -1,10 +1,14 @@
 <template>
   <div>
     <div
-      :style="{ backgroundColor: background, color: color }"
+      :style="{
+        backgroundColor: background,
+        color: color,
+        opacity: isInActive ? '0.5' : '1',
+      }"
       class="submit-btn"
       :class="[
-        isInActive ? 'reduce-opacity pointer-off' : '',
+        isInActive ? 'pointer-off' : '',
         isLoading ? 'hide' : 'show-flex',
         setClass != '' ? setClass : '',
       ]"
