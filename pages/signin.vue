@@ -31,14 +31,12 @@
               @click="togglePassword"
             />
           </div>
-          <div>
-            <ButtonSpinner
-              :is-loading="processing"
-              :is-in-active="buttonDisabled"
-              value="Sign in to your account"
-              :on-submit="login"
-            />
-          </div>
+          <ButtonSpinner
+            :is-loading="processing"
+            :is-in-active="buttonDisabled"
+            value="Sign in to your account"
+            :on-submit="login"
+          />
         </form>
         <div class="auth__form-footer">
           <span class="u-text-center"

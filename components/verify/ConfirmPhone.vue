@@ -3,9 +3,7 @@
     <div class="auth__form-logo-box">
       <LogoImage />
       <div class="auth__form-box">
-        <h3 class="fw-bold u-text-center u-mb-30">
-          PHONE NUMBER VERIFICATION
-        </h3>
+        <h3 class="fw-bold u-text-center u-mb-30">PHONE NUMBER VERIFICATION</h3>
         <div class="auth__success-img-box u-mb-10">
           <img class="auth__success-img" src="/img/mobile.svg" alt="mobile" />
         </div>
@@ -35,17 +33,17 @@ export default {
   layout: 'toast',
   data() {
     return {
-      processing: false
+      processing: false,
     }
   },
   computed: {
-    ...mapState('auth', ['user'])
+    ...mapState('auth', ['user']),
   },
   methods: {
     async onSubmit() {
       const payload = {
         type: 'Generic',
-        newMobile: this.user.mobile
+        newMobile: this.user.mobile,
       }
       this.processing = true
       try {
@@ -57,7 +55,7 @@ export default {
         this.processing = false
         this.$notify({
           type: 'error',
-          text: error.response.data.message
+          text: error.response.data.message,
         })
         // this.$toast.open({
         //   message: error.response.data.message,
@@ -65,37 +63,9 @@ export default {
         //   position: 'top-right'
         // })
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss" scoped>
-.pointer {
-  cursor: pointer;
-}
-
-.submit-btn-holder {
-  width: 100%;
-  margin: auto;
-  height: 40px;
-  margin-bottom: 20px;
-}
-
-.submit-btn {
-  background-color: #0b913a;
-  color: #ffffff;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  border: 1px solid;
-  cursor: pointer;
-}
-
-.disabled-btn-color {
-  background-color: #707070;
-  color: #222122;
-  font-weight: 700;
-  text-align: center;
-}
-</style>
+<style lang="scss" scoped></style>

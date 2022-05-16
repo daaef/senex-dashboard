@@ -81,13 +81,13 @@ export default {
   display: flex;
 }
 
-.btn-style {
+/* .btn-style {
   height: 50px;
   border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .hide {
   display: none;
@@ -98,16 +98,7 @@ export default {
   height: 25px;
 }
 
-.pointer-on {
-  cursor: pointer;
-}
-
-.pointer-off {
-  cursor: default;
-}
-
-.submit-btn {
-  /* color: #ffffff; */
+/* .submit-btn {
   width: 100%;
   height: 50px !important;
   padding: 15px;
@@ -117,7 +108,7 @@ export default {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-}
+} */
 
 .rotate {
   animation: rotate 2.5s linear infinite;
