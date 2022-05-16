@@ -4,11 +4,10 @@
       :style="{
         backgroundColor: background,
         color: color,
-        opacity: isInActive ? '0.5' : '1',
       }"
       class="submit-btn"
       :class="[
-        isInActive ? 'pointer-off' : '',
+        isInActive ? 'pointer-off' : 'u-pointer',
         isLoading ? 'hide' : 'show-flex',
         setClass != '' ? setClass : '',
       ]"
@@ -81,13 +80,13 @@ export default {
   display: flex;
 }
 
-/* .btn-style {
+.btn-style {
   height: 50px;
   border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+}
 
 .hide {
   display: none;
