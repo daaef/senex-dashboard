@@ -6,7 +6,6 @@
         color: color,
         height: '50px',
       }"
-      class="submit-btn"
       :class="[
         isInActive ? 'pointer-off u-opaque-5' : 'u-pointer',
         isLoading ? 'u-none' : 'u-flex',
@@ -18,7 +17,7 @@
     </div>
     <div
       class="btn-style u-mb-20"
-      :class="[isLoading ? 'show' : 'hide']"
+      :class="[isLoading ? 'u-block' : 'u-none']"
       :style="{ backgroundColor: background }"
     >
       <img src="/img/loading.svg" class="rotate spinner" />
@@ -84,18 +83,6 @@ export default {
 .spinner {
   width: 25px;
   height: 25px;
-}
-
-.submit-btn {
-  width: 100%;
-  height: 50px !important;
-  padding: 15px;
-  border-radius: 6px;
-  font-size: 16px;
-  border: 1px solid transparent;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
 }
 
 .rotate {
