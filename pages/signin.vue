@@ -42,7 +42,9 @@
               height: 50px;
               background-color: green;
               opacity: 0.5;
-              border: 1px solid transparent;
+              border-width: 1px;
+              border-style: solid;
+              border-color: transparent;
             "
           >
             Test btn
