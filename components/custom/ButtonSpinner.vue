@@ -6,6 +6,7 @@
         color: color,
         height: '50px',
       }"
+      class="btn-spinner-submit"
       :class="[
         isInActive ? 'pointer-off u-opaque-5' : 'u-pointer',
         isLoading ? 'u-none' : 'u-flex',
