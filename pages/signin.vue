@@ -37,18 +37,6 @@
             value="Sign in to your account"
             :on-submit="login"
           />
-          <div
-            style="
-              height: 50px;
-              background-color: green;
-              opacity: 0.5;
-              border-width: 1px;
-              border-style: solid;
-              border-color: red;
-            "
-          >
-            Test btn
-          </div>
         </form>
         <div class="auth__form-footer">
           <span class="u-text-center"
