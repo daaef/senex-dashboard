@@ -63,10 +63,10 @@ import getDeviceInfo from '@/data/getDeviceInfo.js'
 import ButtonSpinner from '~/components/custom/ButtonSpinner.vue' // file rename
 
 export default {
-  layout: 'toast',
   components: {
     ButtonSpinner,
   },
+  // layout: 'toast',
   middleware: 'authenticated',
   data() {
     return {
