@@ -44,7 +44,7 @@
               opacity: 0.5;
               border-width: 1px;
               border-style: solid;
-              border-color: transparent;
+              border-color: red;
             "
           >
             Test btn
