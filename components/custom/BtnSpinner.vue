@@ -3,15 +3,15 @@
     <div
       class="btn u-relative"
       :class="[
-        isInActive ? 'disabled-color pointer-off' : '',
+        isInActive ? 'disabled-color u-pointer-default' : '',
         setClass != '' ? setClass : '',
       ]"
       @click="submit"
     >
       {{ value }}
       <div
-        class="btn__overlay pointer-off"
-        :class="[isLoading ? '' : 'hide', setClass != '' ? setClass : '']"
+        class="btn__overlay u-pointer-default"
+        :class="[isLoading ? '' : 'u-none', setClass != '' ? setClass : '']"
       >
         <img src="/img/loading.svg" class="rotate spinner" />
       </div>
@@ -58,31 +58,8 @@ export default {
 </script>
 
 <style scoped>
-.hide {
-  display: none;
-}
-
-.spinner {
-  width: 25px;
-  height: 25px;
-}
-
 .disabled-color {
   opacity: 0.5;
   cursor: default;
-}
-
-.pointer-off {
-  cursor: default;
-}
-
-.rotate {
-  animation: rotate 2.5s linear infinite;
-}
-
-@keyframes rotate {
-  to {
-    transform: rotate(360deg);
-  }
 }
 </style>

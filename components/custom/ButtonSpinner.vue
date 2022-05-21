@@ -8,7 +8,7 @@
       }"
       class="btn-spinner-submit"
       :class="[
-        isInActive ? 'pointer-off u-opaque-5' : 'u-pointer',
+        isInActive ? 'u-pointer-default u-opaque-5' : 'u-pointer',
         isLoading ? 'u-none' : 'u-flex',
         setClass != '' ? setClass : '',
       ]"
@@ -79,19 +79,5 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.spinner {
-  width: 25px;
-  height: 25px;
-}
-
-.rotate {
-  animation: rotate 2.5s linear infinite;
-}
-@keyframes rotate {
-  to {
-    transform: rotate(360deg);
-  }
 }
 </style>

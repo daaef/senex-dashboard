@@ -1,5 +1,6 @@
 @use 'sass:math';
 @import 'abstract/color';
+@import 'abstract/animation';
 @import 'abstract/font';
 @import 'abstract/mixins';
 @import 'abstract/variables';
@@ -16,6 +17,7 @@
 @import 'components/invite/earning';
 @import 'components/profile/profile';
 @import 'components/settings/settings';
+@import 'components/button';
 @import 'components/tab-holder';
 @import 'components/auth';
 @import 'components/form';
@@ -37,7 +39,6 @@
 
 @import 'pages/index';
 @import 'pages/order';
-@import 'components/button';
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
