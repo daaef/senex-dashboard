@@ -6,6 +6,7 @@
         color: color,
         height: '50px',
       }"
+      class="submit-btn"
       :class="[
         isInActive ? 'pointer-off u-opaque-5' : 'u-pointer',
         isLoading ? 'u-none' : 'u-flex',
@@ -20,7 +21,7 @@
       :class="[isLoading ? 'show' : 'hide']"
       :style="{ backgroundColor: background }"
     >
-      <!-- <img src="/img/loading.svg" class="rotate spinner" /> -->
+      <img src="/img/loading.svg" class="rotate spinner" />
     </div>
     <input style="display: none" type="submit" />
   </div>
@@ -72,24 +73,12 @@ export default {
 </script>
 
 <style>
-.show {
-  display: block;
-}
-
-.show-flex {
-  display: flex;
-}
-
 .btn-style {
   height: 50px;
   border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.hide {
-  display: none;
 }
 
 .spinner {
