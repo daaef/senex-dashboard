@@ -60,13 +60,13 @@
 <script>
 import { mapState } from 'vuex'
 import getDeviceInfo from '@/data/getDeviceInfo.js'
-import BtnSpinner from '~/components/custom/BtnSpinner.vue' // file rename
+import ButtonSpinner from '~/components/custom/ButtonSpinner.vue' // file rename
 
 export default {
+  layout: 'toast',
   components: {
-    BtnSpinner,
+    ButtonSpinner,
   },
-  // layout: 'toast',
   middleware: 'authenticated',
   data() {
     return {

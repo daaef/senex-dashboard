@@ -4,11 +4,11 @@
       :style="{
         backgroundColor: background,
         color: color,
+        height: '50px',
       }"
-      class="submit-btn"
       :class="[
         isInActive ? 'pointer-off u-opaque-5' : 'u-pointer',
-        isLoading ? 'hide' : 'show-flex',
+        isLoading ? 'u-none' : 'u-flex',
         setClass != '' ? setClass : '',
       ]"
       @click="submit"
@@ -20,7 +20,7 @@
       :class="[isLoading ? 'show' : 'hide']"
       :style="{ backgroundColor: background }"
     >
-      <img src="/img/loading.svg" class="rotate spinner" />
+      <!-- <img src="/img/loading.svg" class="rotate spinner" /> -->
     </div>
     <input style="display: none" type="submit" />
   </div>
