@@ -37,13 +37,14 @@
             value="Sign in to your account"
             :on-submit="login"
           />
-          <BtnSpinner
-            :is-loading="processing"
-            :is-in-active="buttonDisabled"
-            value="Sign in to your account"
-            :on-submit="login"
-          />
-          <div style="height: 50px; background-color: green; opacity: 0.5">
+          <div
+            style="
+              height: 50px;
+              background-color: green;
+              opacity: 0.5;
+              border: 1px solid transparent;
+            "
+          >
             Test btn
           </div>
         </form>
