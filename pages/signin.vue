@@ -37,6 +37,9 @@
             value="Sign in to your account"
             :on-submit="login"
           />
+          <div style="height: 50px; background-color: green; opacity: 0.5">
+            Test btn
+          </div>
         </form>
         <div class="auth__form-footer">
           <span class="u-text-center"
@@ -63,7 +66,7 @@ export default {
   components: {
     BtnSpinner,
   },
-  layout: 'toast',
+  // layout: 'toast',
   middleware: 'authenticated',
   data() {
     return {
