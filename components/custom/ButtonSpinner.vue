@@ -4,7 +4,6 @@
       :style="{
         backgroundColor: background,
         color: color,
-        height: '50px',
       }"
       class="btn-spinner-submit"
       :class="[
@@ -18,7 +17,9 @@
     </div>
     <div
       class="btn-style u-mb-20"
-      :class="[isLoading ? 'u-block' : 'u-none']"
+      :class="[
+        isLoading ? 'u-flex u-flex--w-center u-flex--w-center' : 'u-none',
+      ]"
       :style="{ backgroundColor: background }"
     >
       <img src="/img/loading.svg" class="rotate spinner" />

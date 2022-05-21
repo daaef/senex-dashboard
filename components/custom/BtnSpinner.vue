@@ -3,7 +3,7 @@
     <div
       class="btn u-relative"
       :class="[
-        isInActive ? 'disabled-color u-pointer-default' : '',
+        isInActive ? 'u-opaque-5 u-pointer-default' : '',
         setClass != '' ? setClass : '',
       ]"
       @click="submit"
@@ -57,9 +57,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.disabled-color {
-  opacity: 0.5;
-  cursor: default;
-}
-</style>
+<style scoped></style>
