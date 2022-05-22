@@ -16,7 +16,7 @@
       <input
         v-model="email"
         @keypress="isComma"
-        type="email"
+        type="text"
         placeholder="Enter email addresses"
       />
     </div>
