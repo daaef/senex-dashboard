@@ -13,14 +13,12 @@
       </p>
       <div class="invite__email-form">
         <div class="invite__email-box">
-          <div class="invite__email-input-box u-mb-10">
-            <input type="email" placeholder="Enter email addresses" />
-          </div>
+          <EmailInputList />
           <p class="invite__separate-email">Separate email with commas</p>
         </div>
         <div class="invite__send-invites">
           <button class="btn btn--px2py1 u-mb-10">Send Invites</button>
-          <p class="u-link">Preview email</p>
+          <!-- <p class="u-link">Preview email</p> -->
         </div>
       </div>
     </div>
@@ -103,7 +101,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      list: ['cat', 'dog', 'bird'],
+    }
+  },
+}
 </script>
 
 <style></style>

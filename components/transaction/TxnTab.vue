@@ -2,11 +2,25 @@
   <div class="txn-tab">
     <div class="txn-tab__header u-my-30">
       <div class="txn-tab__search-box">
-        <img src="img/search-grey.svg" alt="search" class="txn-tab__search-icon" />
-        <input v-model="search" type="text" class="txn-tab__search-input" placeholder="Search" />
+        <img
+          src="img/search-grey.svg"
+          alt="search"
+          class="txn-tab__search-icon"
+        />
+        <input
+          v-model="search"
+          type="text"
+          class="txn-tab__search-input"
+          placeholder="Search"
+        />
       </div>
       <div class="txn-tab__page-box">
-        <span>{{ currentPage }}-{{ perPage }} of {{ totalPages }}</span>
+        <span
+          >{{ currentPage * perPage - perPage + 1 }}-{{
+            perPage * currentPage
+          }}
+          of {{ totalPages * perPage }}</span
+        >
         <div class="txn-tab__arrow-box">
           <svg
             xmlns="http://www.w3.org/2000/svg"
