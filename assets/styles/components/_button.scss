@@ -18,6 +18,11 @@
   background-image: none;
   // border: 1px solid transparent;
   border-radius: 8px;
+  transition: all 0.3s ease-in;
+
+  &:hover {
+    filter: brightness(0.85);
+  }
 
   &--px2py1 {
     padding: 1rem 2rem !important;

@@ -29,39 +29,41 @@
         </svg>
       </div>
     </div>
-    <div class="index-rate-box u-mb-20">
-      <div class="rate">
-        <p class="u-mr-10">1 BTC = 23,079,836</p>
-        <img
-          :src="`img/icons/${
-            true ? 'green_triangle_up' : 'red_triangle_down'
-          }.svg`"
-          alt="arrow"
-          class="u-mr-10"
-        />
-        <p>-2.08%</p>
-      </div>
-      <div class="rate">
-        <p class="u-mr-10">1 BTC = 23,079,836</p>
-        <img
-          :src="`img/icons/${
-            false ? 'green_triangle_up' : 'red_triangle_down'
-          }.svg`"
-          alt="arrow"
-          class="u-mr-10"
-        />
-        <p>-2.08%</p>
-      </div>
-      <div class="rate">
-        <p class="u-mr-10">1 BTC = 23,079,836</p>
-        <img
-          :src="`img/icons/${
-            true ? 'green_triangle_up' : 'red_triangle_down'
-          }.svg`"
-          alt="arrow"
-          class="u-mr-10"
-        />
-        <p>-2.08%</p>
+    <div class="index-marquee u-mb-20">
+      <div class="index-rate-box">
+        <div class="rate">
+          <p class="u-mr-10">1 BTC = 23,079,836</p>
+          <img
+            :src="`img/icons/${
+              true ? 'green_triangle_up' : 'red_triangle_down'
+            }.svg`"
+            alt="arrow"
+            class="u-mr-10"
+          />
+          <p>-2.08%</p>
+        </div>
+        <div class="rate">
+          <p class="u-mr-10">1 BTC = 23,079,836</p>
+          <img
+            :src="`img/icons/${
+              false ? 'green_triangle_up' : 'red_triangle_down'
+            }.svg`"
+            alt="arrow"
+            class="u-mr-10"
+          />
+          <p>-2.08%</p>
+        </div>
+        <div class="rate">
+          <p class="u-mr-10">1 BTC = 23,079,836</p>
+          <img
+            :src="`img/icons/${
+              true ? 'green_triangle_up' : 'red_triangle_down'
+            }.svg`"
+            alt="arrow"
+            class="u-mr-10"
+          />
+          <p>-2.08%</p>
+        </div>
       </div>
     </div>
     <div class="index-txn-info">
@@ -93,7 +95,9 @@
                 alt="coin"
               />
               <div class="coin-date">
-                <h4 class="fw-500 heading-tertiary">{{ order.cryptoCurrency }}</h4>
+                <h4 class="fw-500 heading-tertiary">
+                  {{ order.cryptoCurrency }}
+                </h4>
                 <p class="small-text">{{ formatDate(order.created) }}</p>
               </div>
               <h4 class="amount fw-700">

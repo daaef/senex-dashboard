@@ -3,3 +3,11 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes marquee {
+  to {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
