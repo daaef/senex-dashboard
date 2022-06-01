@@ -153,6 +153,9 @@ export default {
       try {
         const { data } = await this.$api.uploadFile(payload)
         this.uploadUrl = data.data
+        await this.$api.updateProfile({
+          photo: this.uploadUrl,
+        })
         this.processing = false
         await this.$auth.fetchUser()
       } catch (error) {
