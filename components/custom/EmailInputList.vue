@@ -6,10 +6,14 @@
           <div
             v-for="(item, idx) in list"
             :key="idx"
-            class="email-input-list__item u-pointer"
-            @click="removeEmail(idx)"
+            class="email-input-list__item"
           >
-            {{ item }} <span>x</span>
+            <span style="cursor: default">{{ item }}</span>
+            <img
+              src="/img/close.svg"
+              class="close u-pointer"
+              @click="removeEmail(idx)"
+            />
           </div>
         </div>
       </div>
@@ -76,12 +80,23 @@ export default {
   border-radius: 8px;
   background-color: transparent;
 
+  .close {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    color: white;
+    margin-left: 5px;
+    // padding: 3px;
+  }
+
   &__box {
     display: flex;
   }
 
   &__item {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     padding: 0 10px;
     background-color: gray;
     color: black;
