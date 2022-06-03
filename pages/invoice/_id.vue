@@ -290,7 +290,9 @@ export default {
         email: this.info.email,
         cryptoAmount: this.info.cryptoAmount,
         type: this.info.type,
-        rate: this.info.cryptoFiatRate
+        rate: this.info.cryptoFiatRate,
+        cryptoCurrency: this.info.cryptoCurrency,
+        fiatCurrency: this.info.fiatCurrency,
       }
       this.processing = true
       this.$axios

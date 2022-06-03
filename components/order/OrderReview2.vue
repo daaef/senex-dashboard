@@ -66,7 +66,7 @@
         </div>
       </div>
       <div class="u-mb-30">
-        <p class="paragraph paragraph--700 u-mb-10">Beneficiary Details</p>
+        <p class="fw-700 u-mb-10">Beneficiary Details</p>
         <template v-if="order.type == 'buy'">
           <!-- <p class="paragraph u-mb-10 u-text-uppercase">{{ beneficiary.walletLabel }}</p> -->
           <!-- <p class="paragraph u-mb-10">( {{ order.walletAddress }} )</p> -->

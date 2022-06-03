@@ -38,8 +38,8 @@
       </div>
       <div v-else class="b-not-found">
         <img src="/img/beneficiary-empty.svg" alt="not found" class="u-mb-20" />
-        <span class="paragraph paragraph--700 u-mb-10">Kinda Quiet Here</span>
-        <span class="paragraph u-mb-20"
+        <span class="fw-700 u-mb-10">Kinda Quiet Here</span>
+        <span class="u-mb-20"
           >You have not saved any beneficiary</span
         >
 

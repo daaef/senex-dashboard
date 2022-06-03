@@ -96,7 +96,7 @@
 import { mapState } from 'vuex'
 
 import banks from '@/data/allBanks.js'
-import getDeviceInfo from '@/data/getDeviceInfo.js'
+import getDeviceInfo from '@/data/getDeviceinfo.js'
 
 export default {
   data() {
@@ -189,6 +189,8 @@ export default {
         cryptoAmount: this.order.cryptoAmount,
         type: this.order.orderType,
         rate: this.order.cryptoFiatRate,
+        cryptoCurrency: this.order.cryptoCurrency,
+        fiatCurrency: this.order.fiatCurrency,
       }
 
       this.$axios

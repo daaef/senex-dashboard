@@ -8,11 +8,14 @@
               <span class="heading-primary">INVOICE</span>
               <span class="invoice__status">PAID</span>
             </div>
-            <p class="paragraph paragraph--sm m-0 u-mb-5">Invoice No.:
-              <span class="paragraph--700">{{ orderID }}</span>
+            <p class="paragraph paragraph--sm m-0 u-mb-5">
+              Invoice No.:
+              <span class="fw-700">{{ orderID }}</span>
             </p>
-            <p class="paragraph paragraph--sm invoice__see-order p-0 m-0"
-              @click="$emit('setShowReview', true)">
+            <p
+              class="paragraph paragraph--sm invoice__see-order p-0 m-0"
+              @click="$emit('setShowReview', true)"
+            >
               See my order details
             </p>
           </div>
@@ -20,10 +23,23 @@
         </div>
         <div class="invoice__body">
           <div class="invoice__success-box">
-            <span class="invoice__success-text">Thank you for making payment!</span>
-            <img src="/img/celebration.svg" alt="Success" class="invoice__success-img">
-            <h3 v-if="info.type == 'buy'" class="invoice__amount">{{ (info.fiatAmount + info.platformFee) | formatMoney(info.fiatCurrency) }}</h3>
-            <h3 v-if="info.type == 'sell'" class="invoice__amount">{{ info.cryptoAmount }} {{ info.cryptoCurrency }}</h3>
+            <span class="invoice__success-text"
+              >Thank you for making payment!</span
+            >
+            <img
+              src="/img/celebration.svg"
+              alt="Success"
+              class="invoice__success-img"
+            />
+            <h3 v-if="info.type == 'buy'" class="invoice__amount">
+              {{
+                (info.fiatAmount + info.platformFee)
+                  | formatMoney(info.fiatCurrency)
+              }}
+            </h3>
+            <h3 v-if="info.type == 'sell'" class="invoice__amount">
+              {{ info.cryptoAmount }} {{ info.cryptoCurrency }}
+            </h3>
           </div>
 
           <ButtonSpinner
@@ -48,23 +64,21 @@ export default {
   props: {
     timeLeft: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   data() {
     return {}
   },
   computed: {
     ...mapState({
-      orderID: state => state.invoice.orderID,
-      info: state => state.invoice.info,
-      paid: state => state.invoice.paid,
-      step: state => state.invoice.step
-    })
-  }
+      orderID: (state) => state.invoice.orderID,
+      info: (state) => state.invoice.info,
+      paid: (state) => state.invoice.paid,
+      step: (state) => state.invoice.step,
+    }),
+  },
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

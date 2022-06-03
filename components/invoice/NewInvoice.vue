@@ -22,7 +22,7 @@
             </div>
             <p class="paragraph paragraph--sm m-0 u-mb-5">
               Invoice No.:
-              <span class="paragraph--700">{{ orderID }}</span>
+              <span class="fw-700">{{ orderID }}</span>
             </p>
             <p
               class="paragraph paragraph--sm invoice__see-order p-0 m-0"
