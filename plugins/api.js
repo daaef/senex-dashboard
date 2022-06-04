@@ -17,7 +17,8 @@ const URLS = {
   setSecret: '/profile/secret',
   dashboard: '/dashboard',
   tradeList: '/trade/',
-  rates: '/rates/v2',
+  rates: '/rates',
+  ratesV2: '/rates/v2',
   paymentInfo: '/payment/info',
   invoice: '/invoice',
   getAddress: '/get_address/',
@@ -108,6 +109,8 @@ export default ({ $axios }, inject) => {
     getRecipients: (payload) => $axios.get(URLS.paymentInfo, {params: payload}),
 
     getRates: () => $axios.get(URLS.rates),
+
+    getRatesV2: () => $axios.get(URLS.ratesV2),
 
     getInvoice: (id) => $axios.get(`${URLS.invoice}/${id}`),
 

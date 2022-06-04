@@ -96,7 +96,7 @@
 import { mapState } from 'vuex'
 
 import banks from '@/data/allBanks.js'
-import getDeviceInfo from '@/data/getDeviceinfo.js'
+import getDeviceInfo from '@/data/getDeviceInfo.js'
 
 export default {
   data() {
@@ -376,32 +376,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-// /deep/ #verify-secret___BV_modal_content_ {
-//   background-color: transparent;
-//   border: transparent;
-//   padding: 0 !important;
-//   width: 450px !important;
-//   overflow: hidden;
-//   margin: auto;
-// }
-
-// /deep/ #verify-secret___BV_modal_body_ {
-//   padding: 0 !important;
-//   width: 100% !important;
-// }
-
-// /deep/ #order-limit___BV_modal_content_ {
-//   background-color: transparent;
-//   border: transparent;
-//   padding: 0 !important;
-//   width: 450px !important;
-//   overflow: hidden;
-//   margin: auto;
-// }
-
-// /deep/ #order-limit___BV_modal_body_ {
-//   padding: 0 !important;
-//   width: 100% !important;
-// }
-</style>
+<style lang="scss" scoped></style>
