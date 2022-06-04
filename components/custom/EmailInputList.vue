@@ -95,8 +95,10 @@ export default {
   }
 
   &__item {
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
+    // flex: 0;
+    display: inline-block;
     padding: 0 10px;
     background-color: gray;
     color: black;
