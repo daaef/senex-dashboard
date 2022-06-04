@@ -81,6 +81,11 @@ export default {
     ]
   },
 
+
+  router: {
+    middleware: 'query'
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/styles/global.scss'],
 

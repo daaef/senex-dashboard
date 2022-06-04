@@ -28,7 +28,7 @@
         <div class="invite__link-box">
           <h3 class="heading-primary fw-400 u-mb-10">Your invite code</h3>
           <div class="invite__link-input-box">
-            <input type="text" v-model="user.referralId" disabled />
+            <span>{{ user.referralId }}</span>
             <span class="extra" v-clipboard="user.referralId">Copy code</span>
           </div>
         </div>
@@ -37,8 +37,10 @@
         <div class="invite__link-box">
           <h3 class="heading-primary fw-400 u-mb-10">Your invite link</h3>
           <div class="invite__link-input-box">
-            <input type="text" />
-            <span class="extra">Copy link</span>
+            <span>{{ getReferralLink() }}</span>
+            <span class="extra" v-clipboard="() => getReferralLink()"
+              >Copy link</span
+            >
           </div>
         </div>
         <div class="invite__social-box">
@@ -104,10 +106,20 @@
 import { mapState } from 'vuex'
 export default {
   data() {
-    return {}
+    return {
+      landingURL: '',
+    }
+  },
+  mounted() {
+    this.landingURL = process.env.SENEX_LANDING_SITE_URL
   },
   computed: {
     ...mapState('auth', ['user']),
+  },
+  methods: {
+    getReferralLink() {
+      return `${this.landingURL}?referralId=${this.user.referralId}`
+    },
   },
 }
 </script>

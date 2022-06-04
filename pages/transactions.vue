@@ -17,7 +17,7 @@ export default {
           properties: {
             showHeader: false,
             tag: 'all',
-            status: ''
+            status: '',
           },
         },
         {
@@ -26,7 +26,7 @@ export default {
           properties: {
             showHeader: false,
             tag: 'completed',
-            status: 'completed'
+            status: 'completed',
           },
         },
         {
@@ -35,7 +35,7 @@ export default {
           properties: {
             showHeader: false,
             tag: 'pending',
-            status: 'pending'
+            status: 'pending',
           },
         },
         {
@@ -44,7 +44,7 @@ export default {
           properties: {
             showHeader: false,
             tag: 'expired',
-            status: 'expired'
+            status: 'expired',
           },
         },
       ],
