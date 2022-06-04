@@ -28,8 +28,8 @@
         <div class="invite__link-box">
           <h3 class="heading-primary fw-400 u-mb-10">Your invite code</h3>
           <div class="invite__link-input-box">
-            <input type="text" />
-            <span class="extra">Copy code</span>
+            <input type="text" v-model="user.referralId" disabled />
+            <span class="extra" v-clipboard="user.referralId">Copy code</span>
           </div>
         </div>
       </div>
@@ -101,11 +101,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
-    return {
-      list: ['cat', 'dog', 'bird'],
-    }
+    return {}
+  },
+  computed: {
+    ...mapState('auth', ['user']),
   },
 }
 </script>
