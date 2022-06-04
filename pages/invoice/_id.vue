@@ -51,6 +51,7 @@
                   :activeNetwork="activeNetwork"
                   :timeLeft="getTimeLeft()"
                   @selectedNetwork="selectedNetwork"
+                  :processingPaymentDetails="processingPaymentDetails"
                 />
               </div>
               <div v-else-if="step == 'paid' || paid">
@@ -135,9 +136,9 @@ export default {
         {
           hid: 'SenexPay Invoice',
           name: 'Invoice - SenexPay',
-          content: 'View your invoice'
-        }
-      ]
+          content: 'View your invoice',
+        },
+      ],
     }
   },
   data() {
@@ -153,7 +154,7 @@ export default {
       qrCode: null,
       qrFallback: false,
       qrLoading: false,
-      activeNetwork: 'BEP20',
+      activeNetwork: '',
       usdtNetworks: {},
       deposit: null,
       interval34: 0,
@@ -164,7 +165,9 @@ export default {
       timeLeft: 0,
       timerID: 0,
       pageLoading: true,
-      markedAsPaid: false
+      markedAsPaid: false,
+      networkAddress: '',
+      processingPaymentDetails: false,
     }
   },
   computed: {
@@ -175,26 +178,14 @@ export default {
       step: (state) => state.invoice.step,
       invoiceTimeLeft: (state) => state.invoice.timeLeft,
       guideImage: (state) => state.invoice.guideImage,
-      instructionChecked: (state) => state.invoice.instructionChecked
+      instructionChecked: (state) => state.invoice.instructionChecked,
     }),
-    networkAddress() {
-      if (this.deposit) {
-        return this.info.cryptoCurrency === 'USDT'
-          ? this.deposit.address && this.deposit.address[this.activeNetwork]
-          : this.deposit.address
-      }
-    }
   },
   watch: {
     async activeNetwork(newVal, oldVal) {
       // this.qrLoading = true
-      if (
-        ['BEP20', 'ERC20'].includes(newVal) &&
-        ['BEP20', 'ERC20'].includes(oldVal)
-      ) {
-        setTimeout(() => {
-          // this.qrLoading = false
-        }, 1000)
+      if (newVal !== oldVal && newVal !== '') {
+        this.fetchDepositDetails()
       } else {
         this.qrCode = ''
         this.$clipboard(this.networkAddress)
@@ -208,15 +199,13 @@ export default {
       if (val <= 0 && this.step == 'pay') {
         this.$router.push('/order/start')
       }
-    }
+    },
   },
   beforeMount() {
     this.terminateSession()
     this.emailCheck()
   },
   mounted() {
-    // this.getData()
-    // console.log(this.info)
     const timeNow = new Date()
     const expiryTime = Date.parse(this.info.expires)
     this.timeLeft = expiryTime - timeNow.getTime()
@@ -227,16 +216,6 @@ export default {
 
     this.$store.dispatch('invoice/setTimeLeft', this.timeLeft)
     this.$store.commit('order/changeLoading', { show: false, text: '' })
-    // console.log('timeLeft', this.timeLeft)
-    // if (this.timeLeft <= 0) {
-    //   this.timeLeft = 0
-    // } else {
-    //   this.timerID = setInterval(() => {
-    //     this.timeLeft -= 1
-    //   }, 1000)
-    // }
-
-    // this.fetchDepositDetails()
 
     this.$store.commit('order/setPlaceOrder', {})
     this.$store.commit('order/setHasTriedPlacingOrder', false)
@@ -309,7 +288,7 @@ export default {
         })
         .catch((err) => {
           const {
-            response: { data, status }
+            response: { data, status },
           } = err
 
           if (status === 400) {
@@ -343,7 +322,7 @@ export default {
     async emailCheck() {
       this.processing = true
       const payload = {
-        email: this.info.email
+        email: this.info.email,
       }
       try {
         await this.$axios.post('/email/check', payload)
@@ -357,65 +336,28 @@ export default {
         this.pageLoading = false
         this.processing = false
       }
-      // this.$axios
-      //   .post('/email/check', payload)
-      // .then((res) => {
-      //   this.isEmailVerified = true
-      //   this.kycCheck()
-      // })
-      // .catch(e => {
-      //   setTimeout(() => {
-      //     this.emailCheck()
-      //   }, 15000)
-      // })
     },
     async fetchDepositDetails(callback) {
-      this.processing = true
+      this.processingPaymentDetails = true
       this.$store.commit('order/changeLoading', {
         show: true,
-        text: 'Loading payment info...'
+        text: 'Loading payment info...',
       })
 
-      // check if trade is buy or sell
       let resp, defaultAddress
-      // console.log('info:', this.info, this.paid, this.step)
+
       try {
         if (this.info.type === 'buy') {
           resp = await this.$axios.get('/get_deposit_account/', {
-            params: { trade_id: this.orderID }
+            params: { trade_id: this.orderID },
           })
         } else {
           resp = await this.$axios.get('/get_address/', {
-            params: { trade_id: this.orderID }
+            params: { trade_id: this.orderID, network: this.activeNetwork },
           })
-          // if (this.info.cryptoCurrency === 'USDT') {
-          //   resp = {
-          //     data: {
-          //       address: {
-          //         BEP20: 'yetrgdhjjkjltkjhfgfdew',
-          //         ERC20: 'hdghfgkhfwhhfhhhvvg',
-          //         TRC20: 'hgdftftwrfhdffbhj'
-          //       }
-          //     }
-          //   }
-          // } else {
-          //   resp = {
-          //     data: {
-          //       address: 'yetrgdhjjkjltkjhfgfdew'
-          //     }
-          //   }
-          // }
 
-          if (this.info.cryptoCurrency === 'USDT')
-            this.usdtNetworks = resp.data.address
-
-          defaultAddress =
-            this.info.cryptoCurrency === 'USDT'
-              ? resp.data.address[this.activeNetwork]
-              : resp.data.address
-
-          // this.qrLoading = true
-          // await this.generateQr(defaultAddress)
+          defaultAddress = resp.data.address
+          this.networkAddress = defaultAddress
         }
 
         this.deposit = resp.data
@@ -459,7 +401,7 @@ export default {
         // }
       } finally {
         this.$store.commit('order/changeLoading', { show: false, text: '' })
-        this.processing = false
+        this.processingPaymentDetails = false
       }
     },
     async detectPayment() {
@@ -586,11 +528,11 @@ export default {
           gradientColor2: '#000000', //'#203C69',
           gradientType: 'linear',
           gradientOnEyes: false,
-          logo: 'https://mvp.senexhomes.com/logo-11.png'
+          logo: 'https://mvp.senexhomes.com/logo-11.png',
         },
         size: 200,
         download: true,
-        file: 'png'
+        file: 'png',
       }
 
       this.$axios
@@ -599,8 +541,8 @@ export default {
             'content-type': 'application/json',
             'x-rapidapi-key':
               'a677be5f82msh182f147513202dfp1ca50cjsnef573ef2c12a',
-            'x-rapidapi-host': 'qrcode-monkey.p.rapidapi.com'
-          }
+            'x-rapidapi-host': 'qrcode-monkey.p.rapidapi.com',
+          },
         })
         .then((res) => {
           this.qrCode = res.data.imageUrl
@@ -617,12 +559,12 @@ export default {
           this.qrFallback = true
           this.qrLoading = false
         })
-    }
+    },
   },
   beforeDestroy() {
     clearInterval(this.timerID)
     clearInterval(this.interval34)
-  }
+  },
 }
 </script>
 

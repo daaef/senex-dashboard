@@ -83,6 +83,10 @@ export default {
       type: String,
       default: '',
     },
+    networks: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     return {
@@ -93,6 +97,10 @@ export default {
   },
   methods: {
     onSubmit() {
+      if (this.networks.length > 0) {
+        this.$store.commit('invoice/setInstructionChecked', true)
+        return
+      }
       this.processing = true
       this.$emit('emitFetchDepositDetails', () => {
         this.processing = false

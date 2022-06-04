@@ -315,7 +315,7 @@ export default {
       this.$store.commit('order/setPlaceOrder', payloadA)
       this.$store.commit('order/setHasTriedPlacingOrder', true)
       try {
-        const { data } = await this.$api.postTrade(payloadA)
+        const { data } = await this.$api.postTradeV2(payloadA)
         setTimeout(() => {
           this.openModal = false
           this.$router.push(`/invoice/${data.id}`)

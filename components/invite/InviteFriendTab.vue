@@ -118,7 +118,7 @@ export default {
   },
   methods: {
     getReferralLink() {
-      return `${this.landingURL}?referralId=${this.user.referralId}`
+      return `${this.landingURL}?ref=${this.user.referralId}`
     },
   },
 }

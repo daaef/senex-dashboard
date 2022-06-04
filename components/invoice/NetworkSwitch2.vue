@@ -10,8 +10,8 @@
     </p>
     <div class="ntw-list">
       <div
-        v-for="(value, network) in items"
-        :key="network"
+        v-for="(network, idx) in items"
+        :key="idx"
         class="ntw-list__item paragraph--sm u-fw-700"
         @click="onSelect(network)"
       >
@@ -30,8 +30,8 @@
 export default {
   props: {
     items: {
-      type: Object,
-      default: () => ({}),
+      type: Array,
+      default: () => ([]),
     },
     activeNetwork: {
       type: String,

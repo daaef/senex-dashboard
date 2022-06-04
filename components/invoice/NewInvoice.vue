@@ -9,6 +9,7 @@
       :cryptoCurrency="info.cryptoCurrency"
       :orderType="info.type"
       :invoiceId="orderID"
+      :networks="networks"
     />
     <div v-else class="checkout checkout--no-min-height">
       <div class="invoice">
@@ -133,35 +134,37 @@
                 <span class="invoice__loader-dot invoice__loader-dot--3"></span>
               </span>
             </div>
-            <div v-if="info.cryptoCurrency == 'USDT'">
+            <div v-if="networks && networks.length > 0">
               <NetworkSwitch2
                 v-if="!showUSDTBarCode || qrLoading == true"
                 :activeNetwork="activeNetwork"
-                :items="usdtNetworks"
+                :items="networks"
                 @selectedNetwork="selectedNetwork"
               />
-              <!-- <NetworkSwitch
-                :activeNetwork="activeNetwork"
-                :items="usdtNetworks"
-                @selectedNetwork="selectedNetwork"
-              /> -->
               <div v-else>
                 <!-- <p class="paragraph u-fw-700 u-mb-20">DEPOSIT USDT</p> -->
                 <p class="paragraph paragraph--sm u-fw-700 m-0">
                   <span>Network: {{ activeNetwork }}</span>
                   <span
-                    class="change-network"
+                    class="change-network u-inline-block"
                     @click="setShowUSDTBarCode(false)"
                     >Change Network
-                    <img src="/img/network-change.svg" alt="network change" />
+                    <img
+                      src="/img/network-change.svg"
+                      alt="network change"
+                      class="u-inline-block"
+                    />
                   </span>
                 </p>
                 <div class="invoice__qr-code-box">
-                  <vue-qrcode
-                    :value="networkAddress"
-                    tag="img"
-                    :options="{ width: 240 }"
-                  />
+                  <template v-if="!processingPaymentDetails">
+                    <vue-qrcode
+                      :value="networkAddress"
+                      tag="img"
+                      :options="{ width: 240 }"
+                    />
+                  </template>
+
                   <!-- v-if="qrFallback" -->
                   <!-- <img v-else :src="qrCode" class="invoice__qr-img u-mb-20" :alt="networkAddress" /> -->
                   <span class="paragraph paragraph--sm paragraph--600 u-mb-20"
@@ -175,7 +178,7 @@
                       trigger: 'manual',
                       placement: 'top-center',
                     }"
-                    v-clipboard="networkAddress"
+                    v-clipboard="() => networkAddress"
                     v-clipboard:success="toggleCopyText"
                   >
                     <img src="/img/copy-icon.svg" alt="copy" />
@@ -212,11 +215,13 @@
             </div>
             <div v-else>
               <div class="invoice__qr-code-box">
-                <vue-qrcode
-                  :value="networkAddress"
-                  tag="img"
-                  :options="{ width: 240 }"
-                />
+                <template v-if="!processingPaymentDetails">
+                  <vue-qrcode
+                    :value="networkAddress"
+                    tag="img"
+                    :options="{ width: 240 }"
+                  />
+                </template>
                 <!-- <img v-else :src="qrCode" class="invoice__qr-img u-mb-20" :alt="networkAddress" /> -->
                 <span class="paragraph paragraph--sm paragraph--600 u-mb-20"
                   >Scan with your Crypto Wallet app to pay</span
@@ -229,21 +234,13 @@
                     trigger: 'manual',
                     placement: 'top-center',
                   }"
-                  v-clipboard="networkAddress"
+                  v-clipboard="() => networkAddress"
                   v-clipboard:success="toggleCopyText"
                 >
                   <img src="/img/copy-icon.svg" alt="copy" />
                   <span id="tp-1" class="paragraph paragraph--sm paragraph--600"
                     >Copy wallet address</span
                   >
-                  <!-- <b-tooltip
-                    target="tp-1"
-                    :title="copyText"
-                    placement="top"
-                    triggers="click"
-                  >
-                  </b-tooltip> -->
-                  <!-- &nbsp; {{ copyText }} -->
                 </div>
               </div>
               <div v-if="info.isOtc">
@@ -282,6 +279,16 @@ export default {
     NetworkSwitch,
   },
   filters: { formatMoney },
+  watch: {
+    activeNetwork(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.getNetworks()
+      }
+    },
+  },
+  beforeMount() {
+    this.getNetworks()
+  },
   props: {
     invoiceId: {
       type: String,
@@ -312,7 +319,7 @@ export default {
       default: false,
     },
     networkAddress: {
-      default: null,
+      default: '',
     },
     usdtNetworks: {
       type: Object,
@@ -322,6 +329,10 @@ export default {
       type: String,
       default: '',
     },
+    processingPaymentDetails: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -329,6 +340,7 @@ export default {
       copyText: '',
       copyCryptoAmount: '',
       showUSDTBarCode: false,
+      networks: [],
     }
   },
   computed: {
@@ -373,9 +385,24 @@ export default {
     },
     emitFetchDepositDetails(callback) {
       this.$emit('emitFetchDepositDetails', () => {
-        callback()
-        this.$store.commit('invoice/setInstructionChecked', true)
+        if (this.networks.length == 0) {
+          callback()
+        }
       })
+      this.$store.commit('invoice/setInstructionChecked', true)
+    },
+    async getNetworks() {
+      let resp = await this.$axios.get('/networks', {
+        params: {
+          crypto_currency: this.info.cryptoCurrency,
+          fiat_currency: this.info.fiatCurrency,
+        },
+      })
+      try {
+        this.networks = resp.data.data
+      } catch (e) {
+        console.log(e)
+      }
     },
     addOneNaira(amount) {
       const strip = Math.trunc(amount)

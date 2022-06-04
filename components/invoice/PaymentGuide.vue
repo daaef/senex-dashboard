@@ -5,11 +5,15 @@
       <p class="heading-secondary">PAYMENT GUIDE</p>
     </div>
     <ul>
-      <li>Please make transfers to the bank account using the first 3 characters of your invoice ID
-        as “description/ memo note” to avoid issues with our system detecting your payments.
+      <li>
+        Please make transfers to the bank account using the first 3 characters
+        of your invoice ID as “description/ memo note” to avoid issues with our
+        system detecting your payments.
       </li>
-      <li>The account is only valid for a 1 time usage. It is advisable to send exact or a little
-        more than the expected amount to prevent transaction stalls.
+      <li>
+        The account is only valid for a 1 time usage. It is advisable to send
+        exact or a little more than the expected amount to prevent transaction
+        stalls.
       </li>
     </ul>
   </div>
@@ -21,7 +25,7 @@ export default {}
 
 <style lang="scss">
 .guide {
-  background-color: #FAE9C4;
+  background-color: #fae9c4;
   border-radius: 10px;
   border-top: 10px solid #ff6e14;
   padding: 20px;

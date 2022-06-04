@@ -57,12 +57,12 @@ export const state = () => ({
     {
       name: 'Bitcoin',
       cur: 'BTC',
-      flag: '/img/btc.svg'
+      flag: '/img/crypto/btc.svg'
     },
     {
       name: 'USDT',
       cur: 'USDT',
-      flag: '/img/usdt.svg'
+      flag: '/img/crypto/usdt.svg'
     }
   ]
 })
