@@ -29,6 +29,7 @@ const URLS = {
   inviteFriends: '/invite_friends/',
   referrals: '/referrals/',
   withdrawReward: 'withdraw-reward/',
+  providers: '/providers',
 }
 
 // Access any enpoints by using this.$api.[endpoint name](data)
@@ -120,6 +121,8 @@ export default ({ $axios }, inject) => {
     getAddress: (payload) => $axios.get(URLS.getAddress, {params: payload}),
 
     getDepositAccount: (payload) => $axios.get(URLS.getDepositAccount, {params: payload}),
+
+    getCurrencyProviders: (currency) => $axios.get(`${URLS.providers}/${currency}`),
 
     markPaid: (data) => $axios.post(URLS.markPaid, data),
 
