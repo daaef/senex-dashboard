@@ -83,7 +83,7 @@ export default {
 
 
   router: {
-    middleware: 'query'
+    middleware: ['query', 'sidemenu']
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

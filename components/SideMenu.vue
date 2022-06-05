@@ -23,10 +23,17 @@
 
 <script>
 import menu from '@/data/sidebar.js'
+import { mapState } from 'vuex'
 export default {
   name: 'SideMenu',
   beforeMount() {
-    this.activeIdx = this.getCurrentMenuIndex()
+    let path = this.$route.path
+    this.activeIdx = this.getCurrentMenuIndex(path)
+  },
+  watch: {
+    routePath(newVal, oldVal) {
+      this.activeIdx = this.getCurrentMenuIndex(newVal)
+    },
   },
   data() {
     return {
@@ -34,9 +41,15 @@ export default {
       activeIdx: 0,
     }
   },
+  computed: {
+    ...mapState({
+      routePath: (state) => state.routePath,
+    }),
+  },
   methods: {
-    getCurrentMenuIndex() {
-      let path = this.$route.path
+    getCurrentMenuIndex(path) {
+      // console.log('this.routePath', this.routePath)
+      // let path = this.routePath
       return this.menu.findIndex((item) => item.link === path)
     },
   },

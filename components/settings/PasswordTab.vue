@@ -6,7 +6,10 @@
       <div class="u-mb-30">
         <p class="u-mb-5">Current Password</p>
         <div class="profile__input-box">
-          <input :type="showCurrentPassword ? 'text' : 'password'" />
+          <input
+            v-model="currentPassword"
+            :type="showCurrentPassword ? 'text' : 'password'"
+          />
           <span class="profile__input-extra profile__input-img-box">
             <img
               :src="
@@ -23,7 +26,10 @@
       <div class="u-mb-30">
         <p class="u-mb-5">New Password</p>
         <div class="profile__input-box">
-          <input :type="showNewPassword ? 'text' : 'password'" />
+          <input
+            v-model="newPassword"
+            :type="showNewPassword ? 'text' : 'password'"
+          />
           <span class="profile__input-extra profile__input-img-box">
             <img
               :src="
@@ -38,9 +44,10 @@
         </div>
       </div>
       <BtnSpinner
-        :is-loading="isLoading"
-        :is-in-active="isInActive"
+        :is-loading="processing"
+        :is-in-active="isBtnDisabled()"
         value="Change Password"
+        :on-submit="changePassword"
       />
     </div>
   </div>
@@ -50,11 +57,48 @@
 export default {
   data() {
     return {
-      isLoading: false,
-      isInActive: false,
+      processing: false,
       showCurrentPassword: false,
       showNewPassword: false,
+      currentPassword: '',
+      newPassword: '',
     }
+  },
+  methods: {
+    isBtnDisabled() {
+      return (
+        !this.currentPassword ||
+        !this.newPassword ||
+        this.newPassword.length < 8
+      )
+    },
+    async changePassword() {
+      this.processing = true
+      const payload = {
+        currentPassword: this.currentPassword,
+        newPassword: this.newPassword,
+      }
+      try {
+        const { data } = await this.$api.setPassword(payload)
+        this.$notify({
+          text: 'Password reset successful',
+        })
+        this.currentPassword = ''
+        this.newPassword = ''
+        this.processing = false
+      } catch (e) {
+        this.processing = false
+        const errors = e.response.data
+        let error = ''
+        for (const i in errors) {
+          error += errors[i][0] + '. '
+        }
+        this.$notify({
+          text: error,
+          type: 'error',
+        })
+      }
+    },
   },
 }
 </script>

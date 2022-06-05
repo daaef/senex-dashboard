@@ -141,6 +141,10 @@
     align-items: center;
   }
 
+  &--space-between {
+    justify-content: space-between;
+  }
+
   &--w-center,
   &--justify-center {
     justify-content: center;

@@ -82,7 +82,10 @@
     </div>
     <div class="index-txn-earn-ex u-my-big">
       <div class="index-recent-txn">
-        <h3 class="heading-secondary u-mb-30">Recent Transactions</h3>
+        <div class="u-flex u-flex--space-between u-flex--align-center u-mb-30">
+          <h3 class="heading-secondary">Recent Transactions</h3>
+          <router-link to="/transactions" class="u-link">See all</router-link>
+        </div>
         <template v-if="orders.length > 0">
           <div class="index-recent-txn__rct-box">
             <div
