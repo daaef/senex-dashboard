@@ -14,11 +14,33 @@
         {{ getUserInitials() }}
       </div>
     </div>
-    <div class="hamburger" @click="showMobileMenu = true">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+    <div class="hamburger" @click="showMobileMenu = !showMobileMenu">
+      <span
+        class="bar bar--top"
+        :class="[showMobileMenu ? 'bar--t-o' : '']"
+      ></span>
+      <span
+        class="bar bar--middle"
+        :class="[showMobileMenu ? 'bar--m-o' : '']"
+      ></span>
+      <span
+        class="bar bar--bottom"
+        :class="[showMobileMenu ? 'bar--b-o' : '']"
+      ></span>
     </div>
+    <transition name="fade">
+      <div v-if="showMobileMenu" class="topbar__mobile-menu">
+        <MobileMenu :isOpen="showMobileMenu" />
+      </div>
+    </transition>
+    <!-- <transition>
+      <div
+        class="topbar__mobile-menu"
+        :class="[showMobileMenu ? 'topbar__mobile-menu--open' : '']"
+      >
+        <MobileMenu :isOpen="showMobileMenu" />
+      </div>
+    </transition> -->
     <vue-final-modal v-model="showModal">
       <div class="topbar-overlay">
         <div @click="showModal = false" class="container topbar-overlay__main">
@@ -41,9 +63,9 @@
         </div>
       </div>
     </vue-final-modal>
-    <vue-final-modal v-model="showMobileMenu">
-      <mobile-menu @closeMobileMenu="closeMobileMenu"></mobile-menu>
-    </vue-final-modal>
+    <!-- <vue-final-modal v-model="showMobileMenu"> -->
+    <!-- <mobile-menu @closeMobileMenu="closeMobileMenu"></mobile-menu> -->
+    <!-- </vue-final-modal> -->
   </div>
 </template>
 
