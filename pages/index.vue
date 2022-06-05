@@ -101,7 +101,7 @@
                 <p class="small-text">{{ formatDate(order.created) }}</p>
               </div>
               <h4 class="amount fw-700">
-                {{ order.fiatCurrency }} {{ order.fiatAmount }}
+                {{ order.fiatAmount | formatMoney(order.fiatCurrency) }}
               </h4>
             </div>
           </div>
@@ -223,6 +223,7 @@
 // import TransactionCard from '~/components/index/TransactionCard.vue'
 // import TransactionTable from '~/components/transaction/TransactionTable.vue'
 import { mapState } from 'vuex'
+import formatMoney from '~/filters/format-money'
 import moment from 'moment'
 export default {
   // components: {
@@ -231,6 +232,9 @@ export default {
   // },
   layout: 'dashboard',
   middleware: 'authenticated',
+  filters: {
+    formatMoney,
+  },
   data() {
     return {
       selected: '₦',
