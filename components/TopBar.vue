@@ -52,14 +52,14 @@
               <span v-else>{{ getUserInitials() }}</span>
             </div>
             <p class="fw-700">{{ getUserFullName() }}</p>
-            <p>{{ user.email }}</p>
+            <p class="text-14">{{ user.email }}</p>
             <div class="topbar-overlay__list-box">
               <router-link to="/settings" class="topbar-overlay__list-item"
                 >Settings</router-link
               ><router-link to="/invite" class="topbar-overlay__list-item"
                 >Referrals & Rewards</router-link
-              ><router-link to="/settings" class="topbar-overlay__list-item"
-                >Settings</router-link
+              ><span class="topbar-overlay__list-item u-pointer" @click="logout"
+                >Logout</span
               >
             </div>
           </div>
@@ -118,6 +118,11 @@ export default {
         return this.previewImage
       }
       return ''
+    },
+    logout() {
+      delete this.$axios.defaults.headers.common.authorization
+      this.$auth.logout()
+      this.$router.push('/signin')
     },
   },
 }

@@ -126,7 +126,9 @@
             </div>
             <div class="index-earn__content index-earn__content--1">
               <span class="small-text">You have earned</span>
-              <h3 class="heading-primary">N1,759,090</h3>
+              <h3 class="heading-primary">
+                {{ totalEarned | formatMoney('USD') }}
+              </h3>
             </div>
             <div class="index-earn__content">
               <img
@@ -134,7 +136,7 @@
                 class="users"
                 alt="cup"
               />
-              <span class="fw-700">45</span>
+              <span class="fw-700">{{ activeReferralUsers }}</span>
             </div>
           </div>
           <BtnSpinner
@@ -223,16 +225,10 @@
 </template>
 
 <script>
-// import TransactionCard from '~/components/index/TransactionCard.vue'
-// import TransactionTable from '~/components/transaction/TransactionTable.vue'
 import { mapState } from 'vuex'
 import formatMoney from '~/filters/format-money'
 import moment from 'moment'
 export default {
-  // components: {
-  //   TransactionCard,
-  //   TransactionTable,
-  // },
   layout: 'dashboard',
   middleware: 'authenticated',
   filters: {
@@ -257,11 +253,14 @@ export default {
         },
       ],
       orders: [],
+      totalEarned: 0,
+      activeReferralUsers: 0,
     }
   },
   beforeMount() {
     this.getDashboard()
     this.fetchOrders()
+    this.getReferrals()
   },
   computed: {
     ...mapState('auth', ['user']),
@@ -302,6 +301,18 @@ export default {
         this.processing = false
         this.$notify({
           text: 'An error occured when fetching orders',
+          type: 'error',
+        })
+      }
+    },
+    async getReferrals() {
+      const { data } = await this.$api.getReferrals()
+      try {
+        this.activeReferralUsers = data.referralCount
+        this.totalEarned = data.totalEarned
+      } catch (error) {
+        this.$notify({
+          text: 'An error occured when fetching referrals',
           type: 'error',
         })
       }

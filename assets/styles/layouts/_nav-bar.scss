@@ -1,5 +1,4 @@
 .nav-bar {
-
   padding: 10px 0;
   background-color: $color-white;
 
@@ -66,8 +65,7 @@
       height: 100%;
       width: 100%;
       object-fit: cover;
+      border-radius: 50%;
     }
-
   }
-
 }
