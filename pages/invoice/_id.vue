@@ -348,9 +348,9 @@ export default {
 
       try {
         if (this.info.type === 'buy') {
-          resp = await this.$axios.get('/get_deposit_account/', {
-            params: { trade_id: this.orderID },
-          })
+          // resp = await this.$axios.get('/get_deposit_account/', {
+          //   params: { trade_id: this.orderID },
+          // })
         } else {
           resp = await this.$axios.get('/get_address/', {
             params: { trade_id: this.orderID, network: this.activeNetwork },

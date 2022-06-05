@@ -5,7 +5,7 @@
         <h3 class="heading-secondary u-mb-30 u-mt-small">
           VERIFY SECURITY CODES
         </h3>
-        <p class="paragraph paragraph--600 u-text-left u-mb-10">
+        <p class="u-fw-600 u-text-left u-mb-10">
           Enter your 3-alphabet security key
         </p>
         <div class="o-form__input-box">
@@ -60,8 +60,8 @@
         <p v-if="secretError" class="paragraph error-text u-text-left u-mb-40">
           This is not your security key. Please try again.
         </p>
-        <p class="paragraph paragraph--600 u-text-left u-mb-10">
-          Enter the 6-digit code sent to {{ maskMobile() }}
+        <p class="u-fw-600 u-text-left u-mb-10">
+          Enter the 6-digit code sent to {{ maskEmail() }} or {{ maskMobile() }}
         </p>
         <div class="o-form__input-box">
           <input
@@ -90,6 +90,16 @@
         >
           This key is incorrect. Please check and try again.
         </p>
+        <div class="u-text-right u-mb-30">
+          <span
+            class="resend-badge resend-badge--e5e"
+            @click="resendTwoFactorCode"
+            ><span>Resend code </span
+            ><span :class="[showTimer ? 'show' : 'hide']"
+              >in 00:{{ counter >= 10 ? counter : '0' + counter }}</span
+            ></span
+          >
+        </div>
         <div class="checkout__btn-box wallet-btn-box u-mb-30">
           <div class="checkout__btn checkout__btn--sm">
             <ButtonSpinner
@@ -143,6 +153,10 @@ export default {
     //   default: false
     // },
     mobile: {
+      type: String,
+      default: '',
+    },
+    email: {
       type: String,
       default: '',
     },
@@ -220,6 +234,12 @@ export default {
       const last4 = this.mobile.slice(this.mobile.length - 4)
 
       return first4 + 'xxxx' + last4
+    },
+    maskEmail() {
+      const split = this.email.split('@')
+      const first4 = split[0].slice(0, 4)
+
+      return first4 + '...@' + split[1]
     },
     onContinue() {
       this.twoFactor()

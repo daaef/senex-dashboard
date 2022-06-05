@@ -45,40 +45,48 @@
                 <span class="invoice__loader-dot invoice__loader-dot--3"></span>
               </span>
             </div>
-            <template v-if="deposit">
+            <template
+              v-if="providers && providers.length > 0 && !fetchedAccount"
+            >
+              <ProviderSwitch
+                :providers="providers"
+                @setSelectedProvider="setSelectedProvider"
+              />
+            </template>
+            <template v-else-if="fetchedAccount">
               <div class="invoice__detail-item">
                 <span class="invoice__detail-key">Bank Name</span>
                 <span class="invoice__detail-value">{{
-                  deposit.account.bankName
+                  accountDetails.bankName
                 }}</span>
               </div>
               <div class="invoice__detail-item">
                 <span class="invoice__detail-key">Account Number</span>
                 <span class="invoice__detail-value">{{
-                  deposit.account.accountNumber
+                  accountDetails.accountNumber
                 }}</span>
               </div>
-              <div
+              <!-- <div
                 v-if="info.fiatCurrency == 'ZAR'"
                 class="invoice__detail-item"
               >
                 <span class="invoice__detail-key">Branch Code</span>
                 <span class="invoice__detail-value">250655</span>
-              </div>
+              </div> -->
               <div class="invoice__detail-item">
                 <span class="invoice__detail-key">Account Name</span>
-                <span v-if="info.isOtc" class="invoice__detail-value">{{
-                  deposit.account.accountName
-                }}</span>
-                <span v-else class="invoice__detail-value">{{
-                  deposit.account.accountName
+                <!-- <span v-if="info.isOtc" class="invoice__detail-value">{{
+                  accountDetails.accountName
+                }}</span> -->
+                <span class="invoice__detail-value">{{
+                  accountDetails.accountName
                 }}</span>
               </div>
               <div class="invoice__detail-item">
                 <span class="invoice__detail-key">Amount</span>
                 <!-- <span v-if="info.isOtc" class="invoice__detail-value invoice__detail-value--em">{{ addOneNaira(info.fiatAmount) | formatMoney(info.fiatCurrency) }}</span> -->
                 <span class="invoice__detail-value invoice__detail-value--em">{{
-                  addOneNaira(deposit.account.amount)
+                  addOneNaira(accountDetails.amount)
                     | formatMoney(info.fiatCurrency)
                 }}</span>
               </div>
@@ -282,12 +290,17 @@ export default {
   watch: {
     activeNetwork(newVal, oldVal) {
       if (newVal !== oldVal) {
-        this.getNetworks()
+        this.getNetworksOrProviders()
+      }
+    },
+    selectedProvider(newVal, oldVal) {
+      if (newVal !== oldVal && newVal) {
+        this.getProviderDetails()
       }
     },
   },
   beforeMount() {
-    this.getNetworks()
+    this.getNetworksOrProviders()
   },
   props: {
     invoiceId: {
@@ -341,6 +354,10 @@ export default {
       copyCryptoAmount: '',
       showUSDTBarCode: false,
       networks: [],
+      providers: [],
+      selectedProvider: {},
+      accountDetails: {},
+      fetchedAccount: false,
     }
   },
   computed: {
@@ -391,15 +408,40 @@ export default {
       })
       this.$store.commit('invoice/setInstructionChecked', true)
     },
-    async getNetworks() {
-      let resp = await this.$axios.get('/networks', {
-        params: {
-          crypto_currency: this.info.cryptoCurrency,
-          fiat_currency: this.info.fiatCurrency,
-        },
+    async getNetworksOrProviders() {
+      if (this.info.type == 'sell') {
+        let resp = await this.$axios.get('/networks', {
+          params: {
+            crypto_currency: this.info.cryptoCurrency,
+            fiat_currency: this.info.fiatCurrency,
+          },
+        })
+        try {
+          this.networks = resp.data.data
+        } catch (e) {
+          console.log(e)
+        }
+      } else {
+        const { data } = await this.$api.getCurrencyProviders(
+          this.info.fiatCurrency
+        )
+        try {
+          this.providers = data.data
+        } catch (e) {
+          console.log(e)
+        }
+      }
+    },
+    async getProviderDetails() {
+      this.fetchedAccount = false
+      const { data } = await this.$api.getProvider({
+        trade_id: this.orderID,
+        code: this.selectedProvider.code,
       })
       try {
-        this.networks = resp.data.data
+        this.accountDetails = data.account
+        console.log(this.accountDetails)
+        this.fetchedAccount = true
       } catch (e) {
         console.log(e)
       }
@@ -442,6 +484,9 @@ export default {
     selectedNetwork(network) {
       this.$emit('selectedNetwork', network)
       this.showUSDTBarCode = true
+    },
+    setSelectedProvider(provider) {
+      this.selectedProvider = provider
     },
     getCryptoImage() {
       return this.coinsInfo.find(

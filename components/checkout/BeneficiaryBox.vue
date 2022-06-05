@@ -83,6 +83,7 @@
               @controlShowReview="controlShowReview"
               @placeOrder="placeOrder"
               :mobile="user.profile.user.mobile"
+              :email="user.profile.user.email"
               :processing.sync="processing"
             />
           </div>

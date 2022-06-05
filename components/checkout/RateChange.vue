@@ -114,13 +114,9 @@ export default {
       type: Number,
       default: 0,
     },
-    limits: {
+    savedCryptoFiat: {
       type: Object,
-      default: () => ({
-        disableBuy: false,
-        minimumBuyUsd: 30,
-        minimumSellUsd: 30,
-      }),
+      default: () => ({}),
     },
   },
   filters: { formatMoney },
@@ -318,14 +314,16 @@ export default {
       }
     },
     isBtnDisabled() {
+      const minimumBuyUsd = Number(this.savedCryptoFiat.minumumOrder.buy)
+      const minimumSellUsd = Number(this.savedCryptoFiat.minumumOrder.sell)
       if (
         this.order.orderType == 'buy' &&
-        this.getDollarAmount() >= this.limits.minimumBuyUsd
+        this.getDollarAmount() >= minimumBuyUsd
       ) {
         return false
       } else if (
         this.order.orderType == 'sell' &&
-        this.getDollarAmount() >= this.limits.minimumSellUsd
+        this.getDollarAmount() >= minimumSellUsd
       ) {
         return false
       }

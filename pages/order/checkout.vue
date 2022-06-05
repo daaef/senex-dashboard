@@ -15,7 +15,7 @@
                     <RateChange
                       :newCryptoAmount="newCryptoAmount"
                       :newCryptoFiatRate="newCryptoFiatRate"
-                      :limits="limits"
+                      :savedCryptoFiat="savedCryptoFiat"
                       @setNewRate="setNewRate"
                       @setIsRateChanged="setIsRateChanged"
                     />
@@ -23,16 +23,12 @@
                   <template v-else>
                     <!-- <Checkout /> -->
                     <template v-if="hasSaved">
-                      <SavedCheckout
-                        @change-saved-to="changeSaved"
-                      />
+                      <SavedCheckout @change-saved-to="changeSaved" />
                     </template>
                     <template v-else>
                       <!-- <Checkout /> -->
                       <template v-if="signedIn > 0">
-                        <BeneficiaryBox
-                          @setNewRate="setNewRate"
-                        />
+                        <BeneficiaryBox @setNewRate="setNewRate" />
                       </template>
                       <template v-else>
                         <CheckoutHaveAccount
@@ -73,9 +69,9 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'Continue your order.'
-        }
-      ]
+          content: 'Continue your order.',
+        },
+      ],
     }
   },
   data() {
@@ -86,25 +82,34 @@ export default {
       newCryptoAmount: 0,
       newCryptoFiatRate: 0,
       rates: {
-        BTC_USD: { buy: 0, sell: 0},
-        BTC_NGN: { buy: 0, sell: 0},
-        BTC_ZAR: { buy: 0, sell: 0},
-        USD_NGN: { buy: 0, sell: 0},
-        USD_ZAR: { buy: 0, sell: 0}
+        BTC_NGN: {
+          buy: 0,
+          sell: 0,
+          USD_NGN: {
+            buy: 0,
+            sell: 0,
+          },
+          minimumOrder: {
+            buy: 0,
+            sell: 0,
+          },
+          disable: {
+            buy: false,
+            sell: false,
+          },
+        },
       },
-      limits: {
-        disableBuy: false,
-        minimumBuyUsd: 30,
-        minimumSellUsd: 30,
-        platformFee: 0,
-        platformFeeCap: 0
+      config: {
+        platformFee: 0.7,
+        platformFeeCap: 2,
       },
-      timerID: 0
+      savedCryptoFiat: {},
+      timerID: 0,
     }
   },
   watch: {
     totalTime(oldVal, newVal) {
-      if (Math.round(newVal/1000) == 5) {
+      if (Math.round(newVal / 1000) == 5) {
         this.timerID = setInterval(() => {
           this.getRates()
         }, 1000)
@@ -121,17 +126,18 @@ export default {
         //   cryptoFiatRate: this.newCryptoFiatRate,
         //   ...this.order
         // }
-
         // this.$cookiz.set('a2snXbe', newOrder)
       }
-    }
+    },
   },
-  beforeMount(){
+  beforeMount() {
     if (this.$store.state.auth.loggedIn) {
       this.$store.commit('order/setSignedIn', 2)
       // this.signedIn = true
     }
-    this.limits = this.$cookiz.get('limpsqer')
+    const crypto_fiat = this.$cookiz.get('eJ6Ydkmr035')
+    this.savedCryptoFiat = crypto_fiat
+    // this.limits = this.$cookiz.get('limpsqer')
     const order = this.$cookiz.get('a2snXbe')
     let timeNow = new Date()
     if (!order) {
@@ -159,26 +165,26 @@ export default {
         expires: order.expires,
         cryptoFiatRate: order.cryptoFiatRate,
         platformFee: order.platformFee,
-        platformFeeCap: order.platformFeeCap
+        platformFeeCap: order.platformFeeCap,
       })
 
-      const timeLeft = (order.expires - timeNow.getTime())
+      const timeLeft = order.expires - timeNow.getTime()
 
       // console.log(timeLeft)
 
       this.$store.dispatch('order/setTotalTime', timeLeft)
       this.isLoading = false
     }
-    
+
     //
   },
   computed: {
     ...mapState({
-      order: state => state.order.orderDetail,
-      totalTime: state => state.order.totalTime,
-      signedIn: state => state.order.signedIn,
-      showReview: state => state.order.showReview
-    })
+      order: (state) => state.order.orderDetail,
+      totalTime: (state) => state.order.totalTime,
+      signedIn: (state) => state.order.signedIn,
+      showReview: (state) => state.order.showReview,
+    }),
   },
   methods: {
     changeSaved(val) {
@@ -203,18 +209,24 @@ export default {
       try {
         const { data } = await this.$api.getRates()
         this.rates = data
-        // console.log(data)
-        this.limits = data.config
-        // this.isLoading = false
+        this.config = data.config
 
-        const thisCoin = this.order.cryptoCurrency === 'USDT' ? 'USD' : this.order.cryptoCurrency
-        const thisRateObj = this.rates[`${thisCoin}_${this.order.fiatCurrency}`]
-        const cryptoValue = this.order.fiatAmount / thisRateObj[this.order.orderType]
+        const thisCoin = this.order.cryptoCurrency
+        const crypto_fiat = this.rates[`${thisCoin}_${this.order.fiatCurrency}`]
+        const usd_fiat = crypto_fiat[`USD_${this.order.fiatCurrency}`]
+        const cryptoValue =
+          this.order.fiatAmount / crypto_fiat[this.order.orderType]
         this.newCryptoAmount = cryptoValue
 
-        const cryptoFiatRate = this.order.cryptoCurrency === 'USDT' ? 1 : this.rates['BTC_USD'][this.order.orderType]
+        const cryptoFiatRate =
+          crypto_fiat[this.order.orderType] / usd_fiat[this.order.orderType]
+
         this.newCryptoFiatRate = cryptoFiatRate
-        if (this.totalTime <= 0 && this.newCryptoFiatRate != 0 && this.newCryptoFiatRate != this.order.cryptoFiatRate) {
+        if (
+          this.totalTime <= 0 &&
+          this.newCryptoFiatRate != 0 &&
+          this.newCryptoFiatRate != this.order.cryptoFiatRate
+        ) {
           this.rateChanged = true
         }
 
@@ -228,11 +240,11 @@ export default {
       } catch (err) {
         // this.getRates()
       }
-    }
+    },
   },
   beforeDestroy() {
     clearInterval(this.timerID)
-  }
+  },
 }
 </script>
 
