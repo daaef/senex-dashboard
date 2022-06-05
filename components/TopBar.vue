@@ -30,7 +30,10 @@
     </div>
     <transition name="fade">
       <div v-if="showMobileMenu" class="topbar__mobile-menu">
-        <MobileMenu :isOpen="showMobileMenu" />
+        <MobileMenu
+          :isOpen="showMobileMenu"
+          @closeMobileMenu="() => (showMobileMenu = false)"
+        />
       </div>
     </transition>
     <!-- <transition>
