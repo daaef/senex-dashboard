@@ -8,10 +8,13 @@
     <h1 class="topbar__page-title heading-primary">{{ getPath() }}</h1>
     <div class="topbar__actions">
       <div class="topbar__theme-switch-box"></div>
-      <button class="topbar__btn">Buy/Sell</button>
+      <button class="topbar__btn" @click="$router.push('/order')">
+        Buy/Sell
+      </button>
       <span class="topbar__line"></span>
       <div class="topbar__user" @click="showModal = true">
-        {{ getUserInitials() }}
+        <img v-if="computeSrc()" :src="computeSrc()" alt="profile-image" />
+        <span v-else>{{ getUserInitials() }}</span>
       </div>
     </div>
     <div class="hamburger" @click="showMobileMenu = !showMobileMenu">
@@ -36,20 +39,17 @@
         />
       </div>
     </transition>
-    <!-- <transition>
-      <div
-        class="topbar__mobile-menu"
-        :class="[showMobileMenu ? 'topbar__mobile-menu--open' : '']"
-      >
-        <MobileMenu :isOpen="showMobileMenu" />
-      </div>
-    </transition> -->
     <vue-final-modal v-model="showModal">
       <div class="topbar-overlay">
         <div @click="showModal = false" class="container topbar-overlay__main">
           <div class="topbar-overlay__content">
-            <div class="topbar-overlay__avatar u-mb-30">
-              {{ getUserInitials() }}
+            <div class="topbar-overlay__avatar u-mb-10">
+              <img
+                v-if="computeSrc()"
+                :src="computeSrc()"
+                alt="profile-image"
+              />
+              <span v-else>{{ getUserInitials() }}</span>
             </div>
             <p class="fw-700">{{ getUserFullName() }}</p>
             <p>{{ user.email }}</p>
@@ -66,9 +66,6 @@
         </div>
       </div>
     </vue-final-modal>
-    <!-- <vue-final-modal v-model="showMobileMenu"> -->
-    <!-- <mobile-menu @closeMobileMenu="closeMobileMenu"></mobile-menu> -->
-    <!-- </vue-final-modal> -->
   </div>
 </template>
 
@@ -113,6 +110,14 @@ export default {
     },
     closeMobileMenu() {
       this.showMobileMenu = false
+    },
+    computeSrc() {
+      if (this.user && this.user.profile && this.user.profile.photo) {
+        return this.user.profile.photo
+      } else if (this.previewImage) {
+        return this.previewImage
+      }
+      return ''
     },
   },
 }
