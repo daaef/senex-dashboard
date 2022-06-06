@@ -10,6 +10,7 @@
       :orderType="info.type"
       :invoiceId="orderID"
       :networks="networks"
+      :providers="providers"
     />
     <div v-else class="checkout checkout--no-min-height">
       <div class="invoice">
@@ -45,25 +46,23 @@
                 <span class="invoice__loader-dot invoice__loader-dot--3"></span>
               </span>
             </div>
-            <template
-              v-if="providers && providers.length > 0 && !fetchedAccount"
-            >
+            <template v-if="providers && providers.length > 0 && !deposit">
               <ProviderSwitch
                 :providers="providers"
                 @setSelectedProvider="setSelectedProvider"
               />
             </template>
-            <template v-else-if="fetchedAccount">
+            <template v-else-if="deposit">
               <div class="invoice__detail-item">
                 <span class="invoice__detail-key">Bank Name</span>
                 <span class="invoice__detail-value">{{
-                  accountDetails.bankName
+                  deposit.bankName
                 }}</span>
               </div>
               <div class="invoice__detail-item">
                 <span class="invoice__detail-key">Account Number</span>
                 <span class="invoice__detail-value">{{
-                  accountDetails.accountNumber
+                  deposit.accountNumber
                 }}</span>
               </div>
               <!-- <div
@@ -79,15 +78,14 @@
                   accountDetails.accountName
                 }}</span> -->
                 <span class="invoice__detail-value">{{
-                  accountDetails.accountName
+                  deposit.accountName
                 }}</span>
               </div>
               <div class="invoice__detail-item">
                 <span class="invoice__detail-key">Amount</span>
                 <!-- <span v-if="info.isOtc" class="invoice__detail-value invoice__detail-value--em">{{ addOneNaira(info.fiatAmount) | formatMoney(info.fiatCurrency) }}</span> -->
                 <span class="invoice__detail-value invoice__detail-value--em">{{
-                  addOneNaira(accountDetails.amount)
-                    | formatMoney(info.fiatCurrency)
+                  addOneNaira(deposit.amount) | formatMoney(info.fiatCurrency)
                 }}</span>
               </div>
             </template>
@@ -293,11 +291,6 @@ export default {
         this.getNetworksOrProviders()
       }
     },
-    selectedProvider(newVal, oldVal) {
-      if (newVal !== oldVal && newVal) {
-        this.getProviderDetails()
-      }
-    },
   },
   beforeMount() {
     this.getNetworksOrProviders()
@@ -346,6 +339,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    selectedProvider: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data() {
     return {
@@ -355,9 +352,6 @@ export default {
       showUSDTBarCode: false,
       networks: [],
       providers: [],
-      selectedProvider: {},
-      accountDetails: {},
-      fetchedAccount: false,
     }
   },
   computed: {
@@ -432,26 +426,6 @@ export default {
         }
       }
     },
-    async getProviderDetails() {
-      this.$store.commit('order/changeLoading', {
-        show: true,
-        text: 'Fetching payment details...',
-      })
-      this.fetchedAccount = false
-      const { data } = await this.$api.getProvider({
-        trade_id: this.orderID,
-        code: this.selectedProvider.code,
-      })
-      try {
-        this.accountDetails = data.data
-        console.log(this.accountDetails)
-        this.fetchedAccount = true
-      } catch (e) {
-        console.log(e)
-      } finally {
-        this.$store.commit('order/changeLoading', { show: false, text: '' })
-      }
-    },
     addOneNaira(amount) {
       const strip = Math.trunc(amount)
       return strip + 1
@@ -492,7 +466,7 @@ export default {
       this.showUSDTBarCode = true
     },
     setSelectedProvider(provider) {
-      this.selectedProvider = provider
+      this.$emit('setSelectedProvider', provider)
     },
     getCryptoImage() {
       return this.coinsInfo.find(

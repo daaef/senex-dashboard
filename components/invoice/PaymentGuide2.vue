@@ -87,6 +87,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    providers: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     return {
@@ -97,7 +101,10 @@ export default {
   },
   methods: {
     onSubmit() {
-      if (this.networks.length > 0) {
+      if (
+        (this.orderType == 'sell' && this.networks.length > 0) ||
+        (this.orderType == 'buy' && this.providers.length > 0)
+      ) {
         this.$store.commit('invoice/setInstructionChecked', true)
         return
       }

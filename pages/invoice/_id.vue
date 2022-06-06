@@ -52,6 +52,8 @@
                   :timeLeft="getTimeLeft()"
                   @selectedNetwork="selectedNetwork"
                   :processingPaymentDetails="processingPaymentDetails"
+                  @setSelectedProvider="setSelectedProvider"
+                  :selectedProvider="selectedProvider"
                 />
               </div>
               <div v-else-if="step == 'paid' || paid">
@@ -95,8 +97,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import TradeCalculatorVue from '~/components/order/TradeCalculator.vue'
-//import RegisterFinalStepVue from '~/components/checkout/RegisterFinalStep.vue'
 
 export default {
   layout: 'order',
@@ -168,6 +168,7 @@ export default {
       markedAsPaid: false,
       networkAddress: '',
       processingPaymentDetails: false,
+      selectedProvider: {},
     }
   },
   computed: {
@@ -183,16 +184,17 @@ export default {
   },
   watch: {
     async activeNetwork(newVal, oldVal) {
-      // this.qrLoading = true
       if (newVal !== oldVal && newVal !== '') {
         this.fetchDepositDetails()
       } else {
         this.qrCode = ''
         this.$clipboard(this.networkAddress)
-        // await this.generateQr(this.usdtNetworks[newVal])
       }
-      // this.qrLoading = false
-      // step == 'pay'
+    },
+    selectedProvider(newVal, oldVal) {
+      if (newVal !== oldVal && newVal) {
+        this.fetchDepositDetails()
+      }
     },
     invoiceTimeLeft(val) {
       // console.log('invoiceTimeLeft', val)
@@ -351,6 +353,11 @@ export default {
           // resp = await this.$axios.get('/get_deposit_account/', {
           //   params: { trade_id: this.orderID },
           // })
+          const { data } = await this.$api.getProvider({
+            trade_id: this.orderID,
+            code: this.selectedProvider.code,
+          })
+          resp = data
         } else {
           resp = await this.$axios.get('/get_address/', {
             params: { trade_id: this.orderID, network: this.activeNetwork },
@@ -413,23 +420,9 @@ export default {
 
         if (data && data.transactions.length > 0) {
           clearInterval(this.interval34)
-          // this.$refs.ctimer.stopCountdown()
-          // this.step = 'paid'
-          // this.paid = true
 
           this.$store.commit('invoice/setPaid', true)
           this.$store.commit('invoice/setStep', 'paid')
-
-          // shower confetti
-          // this.$confetti.start({ defaultSize: 4, defaultDropRate: 25 })
-          // setTimeout(() => {
-          //   this.$confetti.stop()
-          // }, 3000)
-
-          // close invoice in 10 seconds
-          // setTimeout(() => {
-          //   this.$router.replace('/')
-          // }, 10000)
         }
       } catch (e) {
         if (e.response.status === 400) {
@@ -492,6 +485,9 @@ export default {
     },
     selectedNetwork(network) {
       this.activeNetwork = network
+    },
+    setSelectedProvider(provider) {
+      this.selectedProvider = provider
     },
     toggleCopyText() {
       this.copyText = 'Copied'
