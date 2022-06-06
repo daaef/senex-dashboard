@@ -124,14 +124,14 @@
             />
           </div>
         </div>
-        <p class="paragraph">
+        <!-- <p class="paragraph">
           <span class="resend-color" @click="resendTwoFactorCode"
             >Resend code</span
           >
           <span :class="[showTimer ? 'show' : 'hide']"
             >in 00:{{ counter >= 10 ? counter : '0' + counter }}</span
           >
-        </p>
+        </p> -->
       </div>
     </div>
   </div>

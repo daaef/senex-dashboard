@@ -433,17 +433,23 @@ export default {
       }
     },
     async getProviderDetails() {
+      this.$store.commit('order/changeLoading', {
+        show: true,
+        text: 'Fetching payment details...',
+      })
       this.fetchedAccount = false
       const { data } = await this.$api.getProvider({
         trade_id: this.orderID,
         code: this.selectedProvider.code,
       })
       try {
-        this.accountDetails = data.account
+        this.accountDetails = data.data
         console.log(this.accountDetails)
         this.fetchedAccount = true
       } catch (e) {
         console.log(e)
+      } finally {
+        this.$store.commit('order/changeLoading', { show: false, text: '' })
       }
     },
     addOneNaira(amount) {
