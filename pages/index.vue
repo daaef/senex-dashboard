@@ -214,12 +214,12 @@
           Join our Crypto Advisor programme and get expert advice.
         </p>
       </div>
-      <BtnSpinner
-        :is-in-active="false"
-        :is-loading="false"
-        value="Book a session"
-        setClass="index-guide__btn"
-      />
+      <a
+        href="https://www.eventbrite.co.uk/e/talk-to-a-crypto-advisor-tickets-319295329927"
+        target="_blank"
+        class="index-guide__btn"
+        >Book a session</a
+      >
     </div>
   </div>
 </template>

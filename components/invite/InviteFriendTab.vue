@@ -104,7 +104,11 @@
           <span>{{ item }}</span>
           <div class="invite__pending__action-box">
             <span class="invite__pending__delete u-mr-10">Delete</span>
-            <span class="invite__pending__resend">Resend</span>
+            <span
+              class="invite__pending__resend"
+              @click="() => resendInvitation(item)"
+              >Resend</span
+            >
           </div>
         </div>
         <span class="invite__pending__arrow"></span>
@@ -177,6 +181,19 @@ export default {
         console.log(e)
       } finally {
         this.processing = false
+      }
+    },
+    async resendInvitation(email) {
+      const { data } = this.$api.inviteFriends({
+        emailList: email,
+      })
+      try {
+        this.$notify({
+          type: 'success',
+          text: data.message,
+        })
+      } catch (e) {
+        console.log(e)
       }
     },
   },
