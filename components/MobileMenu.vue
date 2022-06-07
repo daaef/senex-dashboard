@@ -25,6 +25,7 @@
             class="mobile-menu__item-icon"
           />
           <span>{{ item.name }}</span>
+          <span v-if="item.isNew" class="side-menu__item-new"></span>
         </router-link>
         <span class="mobile-menu__item u-pointer" @click="logout">
           <img

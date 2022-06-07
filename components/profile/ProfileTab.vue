@@ -16,7 +16,7 @@
           accept="image/*"
           @input="fileAdded"
         />
-        <p>Maximum size allowed is 600kb of PNG, JPEG ,JPG.</p>
+        <p>Maximum size allowed is 600kb of PNG, JPEG, JPG.</p>
       </div>
     </div>
     <div class="profile__info u-my-20">
