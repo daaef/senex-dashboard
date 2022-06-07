@@ -3,7 +3,7 @@
     <div
       class="btn u-relative"
       :class="[
-        isInActive ? 'u-opaque-5 u-pointer-default' : '',
+        isInActive ? 'u-opaque-5 u-pointer-default' : 'btn--active',
         setClass != '' ? setClass : '',
       ]"
       @click="submit"

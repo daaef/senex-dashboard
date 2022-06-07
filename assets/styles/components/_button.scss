@@ -20,8 +20,10 @@
   border-radius: 8px;
   transition: all 0.3s ease-in;
 
-  &:hover {
-    filter: brightness(0.85);
+  &--active {
+    &:hover {
+      filter: brightness(0.85);
+    }
   }
 
   &--px2py1 {

@@ -8,6 +8,9 @@
 export default {
   layout: 'dashboard',
   middleware: 'authenticated',
+  beforeMount() {
+    this.getReferrals()
+  },
   data() {
     return {
       tabs: [
@@ -15,20 +18,41 @@ export default {
           title: 'Invite A Friend',
           component: 'InviteFriendTab',
           properties: {
-            showHeader: false,
-            btnText: 'Add Wallet',
+            referralData: this.referralData,
           },
         },
         {
           title: 'Earnings',
           component: 'EarningTab',
           properties: {
-            showHeader: false,
-            btnText: 'Add Bank Account',
+            referralData: this.referralData,
           },
         },
       ],
+      referralData: {
+        inviteeCount: 0,
+        inviteeList: [],
+        referralCount: 0,
+        referred: [],
+        minWithdrawal: 0,
+        rewardBalance: 12,
+        totalEarned: 12,
+        payoutDay: 28,
+      },
     }
+  },
+  methods: {
+    async getReferrals() {
+      const { data } = await this.$api.getReferrals()
+      try {
+        this.referralData = data
+        this.tabs.forEach((tab) => {
+          tab.properties.referralData = this.referralData
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    },
   },
 }
 </script>
