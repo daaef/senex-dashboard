@@ -40,7 +40,12 @@
           <h3 class="heading-primary fw-400 u-mb-10">Your invite code</h3>
           <div class="invite__link-input-box">
             <span>{{ user.referralId }}</span>
-            <span class="extra" v-clipboard="user.referralId">Copy code</span>
+            <span
+              class="extra"
+              @click="toggleCopyCode"
+              v-clipboard="user.referralId"
+              >{{ copyCode }}</span
+            >
           </div>
         </div>
       </div>
@@ -49,8 +54,11 @@
           <h3 class="heading-primary fw-400 u-mb-10">Your invite link</h3>
           <div class="invite__link-input-box">
             <span>{{ getReferralLink() }}</span>
-            <span class="extra" v-clipboard="() => getReferralLink()"
-              >Copy link</span
+            <span
+              class="extra"
+              @click="toggleCopyLink"
+              v-clipboard="() => getReferralLink()"
+              >{{ copyLink }}</span
             >
           </div>
         </div>
@@ -111,7 +119,9 @@ export default {
   props: {
     referralData: {
       type: Object,
-      default: () => ({}),
+      default: () => ({
+        inviteeList: [],
+      }),
     },
   },
   data() {
@@ -119,6 +129,8 @@ export default {
       landingURL: '',
       list: [],
       processing: false,
+      copyCode: 'Copy code',
+      copyLink: 'Copy link',
     }
   },
   mounted() {
@@ -128,6 +140,20 @@ export default {
     ...mapState('auth', ['user']),
   },
   methods: {
+    toggleCopyCode() {
+      this.copyCode = 'Copied'
+      const vm = this
+      setTimeout(() => {
+        vm.copyCode = 'Copy code'
+      }, 500)
+    },
+    toggleCopyLink() {
+      this.copyLink = 'Copied'
+      const vm = this
+      setTimeout(() => {
+        vm.copyLink = 'Copy link'
+      }, 500)
+    },
     getReferralLink() {
       return `${this.landingURL}?ref=${this.user.referralId}`
     },
