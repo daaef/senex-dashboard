@@ -29,9 +29,14 @@
 
 <script>
 export default {
+  props: {
+    list: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
-      list: [],
       email: '',
       isEmailValid: false,
     }
@@ -52,14 +57,19 @@ export default {
       }
     },
     removeEmail(index) {
-      this.list.splice(index, 1)
+      this.$emit('removeEmail', index)
+      // this.list.splice(index, 1)
+    },
+    addEmail(email) {
+      this.$emit('addEmail', email)
     },
     isComma(evt) {
       const charCode = evt.which ? evt.which : evt.keyCode
       if (charCode == 44) {
         evt.preventDefault()
         if (this.isEmailValid && !this.list.includes(this.email)) {
-          this.list.push(this.email)
+          this.addEmail(this.email)
+          // this.list.push(this.email)
           this.email = ''
         }
       }

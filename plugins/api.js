@@ -26,7 +26,7 @@ const URLS = {
   getDepositAccount: '/get_deposit_account/',
   markPaid: '/mark_paid',
   email: '/email',
-  inviteFriends: '/invite_friends/',
+  inviteFriends: '/invite-friends/',
   referrals: '/referrals/',
   withdrawReward: 'withdraw-reward/',
   providers: '/providers',

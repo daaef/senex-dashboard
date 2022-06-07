@@ -13,11 +13,22 @@
       </p>
       <div class="invite__email-form">
         <div class="invite__email-box">
-          <EmailInputList />
+          <EmailInputList
+            :list="list"
+            @removeEmail="removeEmail"
+            @addEmail="addEmail"
+          />
           <p class="invite__separate-email">Separate email with commas</p>
         </div>
         <div class="invite__send-invites">
-          <button class="btn btn--px2py1 u-mb-10">Send Invites</button>
+          <BtnSpinner
+            value="Send Invites"
+            :is-loading="processing"
+            :is-in-active="list.length === 0"
+            :on-submit="inviteFriends"
+            set-class="btn btn--px2py1 u-mb-10"
+          />
+          <!-- <button class="btn btn--px2py1 u-mb-10">Send Invites</button> -->
           <!-- <p class="u-link">Preview email</p> -->
         </div>
       </div>
@@ -106,6 +117,8 @@ export default {
   data() {
     return {
       landingURL: '',
+      list: [],
+      processing: false,
     }
   },
   mounted() {
@@ -117,6 +130,28 @@ export default {
   methods: {
     getReferralLink() {
       return `${this.landingURL}?ref=${this.user.referralId}`
+    },
+    removeEmail(index) {
+      this.list.splice(index, 1)
+    },
+    addEmail(email) {
+      this.list.push(email)
+    },
+    async inviteFriends() {
+      this.processing = true
+      const { data } = this.$api.inviteFriends({
+        emailList: this.list.join(','),
+      })
+      try {
+        this.$notify({
+          type: 'success',
+          text: data.message,
+        })
+      } catch (e) {
+        console.log(e)
+      } finally {
+        this.processing = false
+      }
     },
   },
 }
