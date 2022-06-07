@@ -140,7 +140,6 @@ export default {
         password: this.password,
         deviceInfo: await getDeviceInfo(this.email),
       }
-      console.log(payload)
       this.processing = true
       try {
         await this.$auth.loginWith('local', {

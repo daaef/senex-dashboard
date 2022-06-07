@@ -63,8 +63,6 @@ export default {
   },
   methods: {
     getCurrentMenuIndex(path) {
-      // console.log('this.routePath', this.routePath)
-      // let path = this.routePath
       return this.menu.findIndex((item) => item.link === path)
     },
     logout() {
