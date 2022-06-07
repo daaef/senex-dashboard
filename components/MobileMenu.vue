@@ -13,7 +13,7 @@
       </div>
       <div class="mobile-menu__item-box">
         <router-link
-          v-for="(item, idx) in menu"
+          v-for="(item, idx) in menu.slice(0, menu.length - 1)"
           :key="idx"
           class="mobile-menu__item"
           :to="item.link"
@@ -26,9 +26,14 @@
           />
           <span>{{ item.name }}</span>
         </router-link>
-      </div>
-      <div>
-        <span class="u-pointer mobile-menu__item" @click="logout">Logout</span>
+        <span class="mobile-menu__item u-pointer" @click="logout">
+          <img
+            :src="menu[menu.length - 1].icon"
+            :alt="menu[menu.length - 1].name"
+            class="mobile-menu__item-icon"
+          />
+          <span>{{ menu[menu.length - 1].name }}</span>
+        </span>
       </div>
     </div>
   </div>
