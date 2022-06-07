@@ -84,7 +84,7 @@
           </div>
         </div>
       </div>
-      <div v-if="referralData.inviteeList > 0" class="invite__pending">
+      <div v-if="referralData.inviteeList.length > 0" class="invite__pending">
         <h3 class="fw-700 u-mb-20">
           Pending Invitations ({{ referralData.inviteeList.length }})
         </h3>
@@ -93,7 +93,7 @@
           class="invite__pending__item"
           :key="idx"
         >
-          <span>{{ item.email }}</span>
+          <span>{{ item }}</span>
           <div class="invite__pending__action-box">
             <span class="invite__pending__delete u-mr-10">Delete</span>
             <span class="invite__pending__resend">Resend</span>
