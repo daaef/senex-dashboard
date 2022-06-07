@@ -23,6 +23,7 @@ export default [
     name: 'Invite & Earn',
     icon: '/img/icons/invite_icon.svg',
     link: '/invite',
+    isNew: true,
   },
   {
     name: 'Settings',
