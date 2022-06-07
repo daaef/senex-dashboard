@@ -7,7 +7,7 @@
       }"
       class="btn-spinner-submit"
       :class="[
-        isInActive ? 'u-pointer-default u-opaque-5' : 'u-pointer',
+        isInActive ? 'u-pointer-default u-opaque-5' : 'u-pointer btn--active',
         isLoading ? 'u-none' : 'u-flex',
         setClass != '' ? setClass : '',
       ]"

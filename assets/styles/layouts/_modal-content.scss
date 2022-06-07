@@ -6,6 +6,10 @@
   border-radius: 12px;
   background-color: $color-primary-dark;
 
+  &--border-grey {
+    border: 1px solid $color-grey-707;
+  }
+
   &__header {
     position: relative;
 
@@ -66,7 +70,7 @@
     background-color: transparent;
 
     &--disabled {
-      background-color: $color-grey-202
+      background-color: $color-grey-202;
     }
 
     input {

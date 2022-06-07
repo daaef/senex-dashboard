@@ -55,8 +55,13 @@
     </div>
     <wallet-table
       :wallets="walletsToShow()"
-      @editOrDelete="editOrDelete"
+      @editOrDelete="setModeAndId"
     ></wallet-table>
+    <vue-final-modal v-model="secretKeyModal">
+      <div class="benef-overlay container">
+        <EnterSecret @action="secretAction" />
+      </div>
+    </vue-final-modal>
     <vue-final-modal v-model="showModal">
       <div class="benef-overlay container">
         <form class="form">
@@ -159,6 +164,7 @@ export default {
       label: '',
       walletAddress: '',
       processing: false,
+      secretKeyModal: false,
     }
   },
   watch: {
@@ -205,18 +211,24 @@ export default {
       this.label = ''
       this.walletId = ''
     },
-    editOrDelete(mode, id) {
+    setModeAndId(mode, id) {
       this.mode = mode
       this.walletId = id
-      let selectedWallet = this.getWallets().find((wallet) => wallet.id === id)
+      this.secretKeyModal = true
+    },
+    secretAction() {
+      let selectedWallet = this.getWallets().find(
+        (wallet) => wallet.id === this.walletId
+      )
       this.currency = selectedWallet.currency
       this.walletAddress = selectedWallet.walletAddress
       this.label = selectedWallet.label
-      if (mode == 'edit') {
+      if (this.mode == 'edit') {
         this.showModal = true
       } else {
         this.onSubmit()
       }
+      this.secretKeyModal = false
     },
     onSelectCurrency() {
       this.walletAddress = ''
@@ -244,8 +256,14 @@ export default {
       try {
         const { data } = await this.$api.updateProfile(payload)
         await this.$auth.fetchUser()
+        const displayText =
+          this.mode == 'add'
+            ? 'added'
+            : this.mode == 'edit'
+            ? 'edited'
+            : 'deleted'
         this.$notify({
-          text: 'Wallet added',
+          text: `Beneficiary ${displayText} successfully`,
           type: 'success',
         })
         this.currency = ''

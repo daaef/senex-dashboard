@@ -54,6 +54,7 @@ export default {}
   background: #06a84b;
   border-radius: 6px;
   border: 0;
+  position: relative;
 
   // style for title line
   .notification-title {
@@ -76,6 +77,9 @@ export default {}
     width: 10px;
     height: 10px;
     display: inline-block;
+    position: absolute;
+    top: 15px;
+    right: 15px;
   }
 
   .close-icon {

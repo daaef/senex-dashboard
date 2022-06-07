@@ -30,6 +30,8 @@ const URLS = {
   referrals: '/referrals/',
   withdrawReward: 'withdraw-reward/',
   providers: '/providers',
+  metaData: '/meta-data/',
+  secretVerify:'/secret/verify'
 }
 
 // Access any enpoints by using this.$api.[endpoint name](data)
@@ -79,6 +81,8 @@ export default ({ $axios }, inject) => {
 
     emailCheck: (data) => $axios.post(`${URLS.email}/check`, data),
 
+    secretVerify: (data) => $axios.post(URLS.secretVerify, data),
+
     /* ------------------------------ AUTH ------------------------------ */
 
     /* ------------------------------ PROFILE/TRADES ------------------------------ */
@@ -127,6 +131,10 @@ export default ({ $axios }, inject) => {
     getProvider: (payload) => $axios.get(`${URLS.providers}`, {params: payload}),
 
     markPaid: (data) => $axios.post(URLS.markPaid, data),
+
+    getCurrencies: () => $axios.get(URLS.metaData, {params: {list: 'currencies'}}),
+
+    getBanks: () => $axios.get(URLS.metaData, {params: {list: 'banks'}}),
 
     // Fetch user trades
     fetchTrades: (page, status) =>

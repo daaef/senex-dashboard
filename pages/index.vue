@@ -283,7 +283,8 @@ export default {
         }
       } catch (error) {
         this.$notify({
-          text: 'An error occured when order summary.',
+          title: 'Error',
+          text: 'An error occured fetching order summary.',
           type: 'error',
         })
       }

@@ -1,22 +1,26 @@
 <template>
-  <div class="modal-box">
+  <div class="modal-box modal-box--border-grey">
     <div class="modal-box__header">
       <span class="close" @click="$emit('closeModal')"></span>
-      <h3 class="heading-primary u-text-center u-mx-auto">Extra Security</h3>
+      <h3 class="heading-primary u-text-center u-mx-auto">
+        Security verification
+      </h3>
     </div>
     <div class="modal-box__body u-mb-40">
       <p class="u-text-center u-mb-40">
-        Please enter your secret key to save the beneficiary.
+        Please enter your security key so we are sure it’s you.
       </p>
       <div class="input-box">
-        <input v-model="secret" type="text" placeholder="Enter secret key" />
+        <input v-model="secret" type="text" placeholder="Enter security key" />
       </div>
     </div>
     <div class="u-text-center">
       <BtnSpinner
-        :is-in-active="false"
-        :is-loading="false"
-        value="Verify code"
+        :is-in-active="secret.length < 3"
+        :is-loading="processing"
+        set-class="btn-full-width"
+        value="Verify me"
+        :on-submit="verifyAndTakeAction"
       />
     </div>
   </div>
@@ -33,7 +37,26 @@ export default {
   data() {
     return {
       secret: '',
+      processing: false,
     }
+  },
+  methods: {
+    async verifyAndTakeAction() {
+      this.processing = true
+      try {
+        const { data } = await this.$api.secretVerify({
+          key: this.secret,
+        })
+        await this.$emit('action')
+      } catch (error) {
+        this.$notify({
+          type: 'error',
+          message: 'Invalid security key',
+        })
+      } finally {
+        this.processing = false
+      }
+    },
   },
 }
 </script>

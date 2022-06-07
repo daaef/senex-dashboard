@@ -30,8 +30,13 @@ export default [
     link: '/settings',
   },
   {
-    name: 'Get Help',
+    name: 'Chat',
     icon: '/img/icons/help_icon.svg',
     link: '/help',
+  },
+  {
+    name: 'Logout',
+    icon: '/img/icons/help_icon.svg',
+    link: '/logout',
   }
 ]

@@ -7,7 +7,7 @@
     </div>
     <div class="side-menu__item-box">
       <router-link
-        v-for="(item, idx) in menu"
+        v-for="(item, idx) in menu.slice(0, menu.length - 1)"
         :key="idx"
         class="side-menu__item"
         :class="[idx === activeIdx ? 'side-menu__item--active' : '']"
@@ -17,6 +17,20 @@
         <img :src="item.icon" :alt="item.name" class="side-menu__item-icon" />
         <span>{{ item.name }}</span>
       </router-link>
+      <span
+        class="side-menu__item u-pointer"
+        :class="[
+          menu.length - 1 === activeIdx ? 'side-menu__item--active' : '',
+        ]"
+        @click="logout"
+      >
+        <img
+          :src="menu[menu.length - 1].icon"
+          :alt="menu[menu.length - 1].name"
+          class="side-menu__item-icon"
+        />
+        <span>{{ menu[menu.length - 1].name }}</span>
+      </span>
     </div>
   </div>
 </template>
@@ -51,6 +65,11 @@ export default {
       // console.log('this.routePath', this.routePath)
       // let path = this.routePath
       return this.menu.findIndex((item) => item.link === path)
+    },
+    logout() {
+      delete this.$axios.defaults.headers.common.authorization
+      this.$auth.logout()
+      this.$router.push('/signin')
     },
   },
 }

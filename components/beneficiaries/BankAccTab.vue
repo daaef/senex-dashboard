@@ -2,8 +2,17 @@
   <div class="txn-tab">
     <div class="txn-tab__header u-my-30">
       <div class="txn-tab__search-box">
-        <img src="img/search-grey.svg" alt="search" class="txn-tab__search-icon" />
-        <input v-model="search" type="text" class="txn-tab__search-input" placeholder="Search" />
+        <img
+          src="img/search-grey.svg"
+          alt="search"
+          class="txn-tab__search-icon"
+        />
+        <input
+          v-model="search"
+          type="text"
+          class="txn-tab__search-input"
+          placeholder="Search"
+        />
       </div>
       <div class="txn-tab__page-box">
         <button class="btn u-mr-20" @click="add">
@@ -46,8 +55,13 @@
     </div>
     <bank-account-table
       :bankAccounts="bankAccountsToShow()"
-      @editOrDelete="editOrDelete"
+      @editOrDelete="setModeAndId"
     ></bank-account-table>
+    <vue-final-modal v-model="secretKeyModal">
+      <div class="benef-overlay container">
+        <EnterSecret @action="secretAction" />
+      </div>
+    </vue-final-modal>
     <vue-final-modal v-model="showModal">
       <div class="benef-overlay container">
         <form class="form">
@@ -169,6 +183,7 @@ export default {
       processing: false,
       verifyingAccount: false,
       flagByCurrency: flagByCurrency,
+      secretKeyModal: false,
     }
   },
   watch: {
@@ -272,10 +287,15 @@ export default {
         label: 'Select your bank',
       }
     },
-    editOrDelete(mode, id) {
+    setModeAndId(mode, id) {
       this.mode = mode
       this.accountId = id
-      let selectedBank = this.getBankAccounts().find((bank) => bank.id === id)
+      this.secretKeyModal = true
+    },
+    secretAction() {
+      let selectedBank = this.getBankAccounts().find(
+        (bank) => bank.id === this.accountId
+      )
       this.currency = selectedBank.currency
       this.accountNumber = selectedBank.accountNumber
       this.accountName = selectedBank.accountName
@@ -283,11 +303,12 @@ export default {
         value: selectedBank.bank,
         label: selectedBank.bankName,
       }
-      if (mode == 'edit') {
+      if (this.mode == 'edit') {
         this.showModal = true
       } else {
         this.onSubmit()
       }
+      this.secretKeyModal = false
     },
     onSelectCurrency() {
       this.bank = {
@@ -320,8 +341,15 @@ export default {
       try {
         const { data } = await this.$api.updateProfile(payload)
         await this.$auth.fetchUser()
+        const displayText =
+          this.mode == 'add'
+            ? 'added'
+            : this.mode == 'edit'
+            ? 'edited'
+            : 'deleted'
         this.$notify({
-          text: 'Bank account added',
+          text: `Beneficiary ${displayText} successfully`,
+          type: 'success',
         })
         this.bank = {
           value: '',
