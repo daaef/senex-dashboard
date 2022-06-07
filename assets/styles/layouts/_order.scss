@@ -1,5 +1,5 @@
 .order {
-  // font-size: 1.6rem;
+  font-size: 16px;
   font-family: 'SFPro';
   font-weight: 400;
   color: $color-secondary;
@@ -13,7 +13,7 @@ p {
 
 .order-main {
   display: flex;
-  background-color:#F8F8FD;
+  background-color: #f8f8fd;
   min-height: calc(100vh - 50px);
   width: 100%;
   padding: 20px;
@@ -39,7 +39,6 @@ p {
     background-color: $color-white;
     margin-right: 20px;
     padding: 20px;
-    
 
     @media screen and (max-width: 900px) {
       flex: 0 0 100%;
@@ -70,8 +69,6 @@ p {
     max-width: 300px;
     margin: 0 auto;
   }
-
-
 }
 
 .loading-overlay {
@@ -113,10 +110,9 @@ p {
     border-radius: 50%;
     display: inline-block;
     position: absolute;
-    
 
     &--red {
-      background-color: #FD5B5B;
+      background-color: #fd5b5b;
       top: 20%;
       left: 20%;
       animation: dot-red 1s infinite;
@@ -129,7 +125,7 @@ p {
     }
 
     &--yellow {
-      background-color: #BFFD5B;
+      background-color: #bffd5b;
       top: 20%;
       right: 20%;
       animation: dot-yellow 1s infinite;
@@ -142,7 +138,7 @@ p {
     }
 
     &--purple {
-      background-color: #EA5BFD;
+      background-color: #ea5bfd;
       bottom: 20%;
       left: 20%;
       animation: dot-purple 1s infinite;
@@ -155,7 +151,7 @@ p {
     }
 
     &--blue {
-      background-color: #5BEAFD;
+      background-color: #5beafd;
       bottom: 20%;
       right: 20%;
       animation: dot-blue 1s infinite;
@@ -182,59 +178,57 @@ p {
     border-radius: 50%;
     display: inline-block;
     position: absolute;
-    
-  
+
     &--red {
-      background-color: #FD5B5B;
+      background-color: #fd5b5b;
       top: 20%;
       left: 20%;
       animation: dot-red 1s infinite;
-  
+
       @keyframes dot-red {
         100% {
           transform: translate(100%, 100%);
         }
       }
     }
-  
+
     &--yellow {
-      background-color: #BFFD5B;
+      background-color: #bffd5b;
       top: 20%;
       right: 20%;
       animation: dot-yellow 1s infinite;
-  
+
       @keyframes dot-yellow {
         100% {
           transform: translate(-100%, 100%);
         }
       }
     }
-  
+
     &--purple {
-      background-color: #EA5BFD;
+      background-color: #ea5bfd;
       bottom: 20%;
       left: 20%;
       animation: dot-purple 1s infinite;
-  
+
       @keyframes dot-purple {
         100% {
           transform: translate(100%, -100%);
         }
       }
     }
-  
+
     &--blue {
-      background-color: #5BEAFD;
+      background-color: #5beafd;
       bottom: 20%;
       right: 20%;
       animation: dot-blue 1s infinite;
-  
+
       @keyframes dot-blue {
         100% {
           transform: translate(-100%, -100%);
         }
       }
     }
-  }  
+  }
 }
-
