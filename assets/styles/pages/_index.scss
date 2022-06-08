@@ -324,3 +324,23 @@
     border-radius: 8px;
   }
 }
+
+.index-float-btn {
+  display: none;
+  position: fixed;
+  bottom: 3rem;
+  right: 20%;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: $color-primary;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  @include respond(tab-land-sm) {
+    display: flex;
+  }
+}

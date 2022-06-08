@@ -66,6 +66,7 @@
         </div>
       </div>
     </div>
+    <div class="index-float-btn"></div>
     <div class="index-txn-info">
       <transaction-card
         text="Total Transaction"
