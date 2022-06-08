@@ -53,7 +53,7 @@
           </p>
         </div>
         <div class="invoice__sell-instruct u-mb-20">
-          <p class="paragraph paragraph--sm paragraph--600">
+          <p class="paragraph paragraph--sm u-fw-600">
             Please do not refresh this page. We would automatically detect when
             you make your Crypto deposit.
           </p>

@@ -12,7 +12,7 @@
       class="invoice__qr-img u-mb-20"
       :alt="networkAddress"
     />
-    <span class="paragraph paragraph--sm paragraph--600 u-mb-20"
+    <span class="paragraph paragraph--sm u-fw-600 u-mb-20"
       >Scan with your Crypto Wallet app to pay</span
     >
     <div
@@ -27,7 +27,7 @@
       v-clipboard:success="toggleCopyText"
     >
       <img src="/img/copy-icon.svg" alt="copy" />
-      <span id="tp-1" class="paragraph paragraph--sm paragraph--600"
+      <span id="tp-1" class="paragraph paragraph--sm u-fw-600"
         >Copy wallet address</span
       >
     </div>

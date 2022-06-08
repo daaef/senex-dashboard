@@ -21,7 +21,7 @@
       </div>
     </div>
     <!-- <div class="invoice__sell-instruct u-mb-20">
-      <span class="paragraph paragraph--sm paragraph--600">Please do not refresh this page. We would automatically detect when you make your Crypto deposit.</span>
+      <span class="paragraph paragraph--sm u-fw-600">Please do not refresh this page. We would automatically detect when you make your Crypto deposit.</span>
     </div> -->
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     },
     activeNetwork: {
       type: String,
