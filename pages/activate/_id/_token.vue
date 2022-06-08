@@ -10,8 +10,7 @@
 <script>
 // import CardTitle from '@/components/Base/Card/CardTitle'
 export default {
-  components: {
-  },
+  components: {},
   layout: 'blank',
   head() {
     return {

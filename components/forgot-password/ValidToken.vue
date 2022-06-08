@@ -4,10 +4,10 @@
       <LogoImage />
       <div class="auth__form-box">
         <form class="auth__form">
-          <h3 class="paragraph u-fw--600 u-text-center u-mb-mini-medium">
+          <h3 class="paragraph u-fw--600 u-text-center u-mb-30">
             PASSWORD RESET
           </h3>
-          <div class="auth__label-input-box u-mb-mini-medium">
+          <div class="auth__label-input-box u-mb-30">
             <div class="auth__input-box">
               <input
                 v-model="password"
@@ -102,13 +102,13 @@
     <div v-else class="auth__form-logo-box">
       <LogoImage />
       <div class="auth__form-box">
-        <h3 class="paragraph u-fw-600 u-text-center u-mb-mini-medium">
+        <h3 class="paragraph u-fw-600 u-text-center u-mb-30">
           PASSWORD RESET SUCCESS
         </h3>
         <div class="auth__success-img-box u-mb-10">
           <img class="auth__success-img" src="/img/checkmark.svg" alt="email" />
         </div>
-        <p class="paragraph u-text-center u-mb-mini-medium">
+        <p class="paragraph u-text-center u-mb-30">
           You have successfully changed your password.
         </p>
         <ButtonSpinner
@@ -152,15 +152,6 @@ export default {
     password(value) {
       this.password = value
       this.validateFullPassword(value)
-    },
-  },
-  validations: {
-    password: {
-      required,
-      minLength: minLength(8),
-    },
-    rePassword: {
-      sameAsPassword: sameAs('password'),
     },
   },
   methods: {

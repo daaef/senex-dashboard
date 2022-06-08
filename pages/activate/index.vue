@@ -3,7 +3,7 @@
     <div class="auth__form-logo-box">
       <LogoImage />
       <div class="auth__form-box">
-        <h3 class="paragraph u-fw-600 u-text-center u-mb-mini-medium">
+        <h3 class="paragraph u-fw-600 u-text-center u-mb-30">
           EMAIL VERIFICATION
         </h3>
         <div class="auth__success-img-box u-mb-10">
@@ -16,7 +16,7 @@
         <p class="paragraph u-text-center">
           We just sent a verification email to {{ email }}
         </p>
-        <p class="paragraph u-fw-600 u-text-center u-mb-mini-medium">
+        <p class="paragraph u-fw-600 u-text-center u-mb-30">
           {{ email }}
         </p>
         <p class="paragraph u-text-center check-prom">

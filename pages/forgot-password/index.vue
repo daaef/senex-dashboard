@@ -4,10 +4,10 @@
       <LogoImage />
       <div class="auth__form-box">
         <form class="auth__form" @submit.prevent="onSubmit">
-          <h3 class="paragraph u-fw-600 u-text-center u-mb-mini-medium">
+          <h3 class="paragraph u-fw-600 u-text-center u-mb-30">
             REQUEST PASSWORD RESET
           </h3>
-          <div class="auth__input-box u-mb-mini-medium">
+          <div class="auth__input-box u-mb-30">
             <input
               id="pwd"
               v-model="email"
@@ -34,7 +34,7 @@
     <div v-else class="auth__form-logo-box">
       <LogoImage />
       <div class="auth__form-box">
-        <h3 class="paragraph u-fw-600 u-text-center u-mb-mini-medium">
+        <h3 class="paragraph u-fw-600 u-text-center u-mb-30">
           REQUEST PASSWORD RESET
         </h3>
         <div class="auth__success-img-box u-mb-10">
@@ -44,7 +44,7 @@
             alt="email"
           />
         </div>
-        <div class="paragraph u-text-center u-mb-mini-medium">
+        <div class="paragraph u-text-center u-mb-30">
           <p>We just sent an email to you.</p>
           <p>Follow the instructions to reset your password</p>
         </div>
@@ -95,12 +95,6 @@ export default {
     email(value) {
       this.email = value
       this.validateEmail(value)
-    },
-  },
-  validations: {
-    email: {
-      required,
-      email,
     },
   },
   methods: {
