@@ -7,7 +7,9 @@
     </div>
     <h1 class="topbar__page-title heading-primary">{{ getPath() }}</h1>
     <div class="topbar__actions">
-      <div class="topbar__theme-switch-box"></div>
+      <div class="u-mr-10">
+        <CurrencySwitch />
+      </div>
       <button class="topbar__btn" @click="$router.push('/order')">
         Buy/Sell
       </button>

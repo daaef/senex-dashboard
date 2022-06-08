@@ -70,18 +70,20 @@
     <div class="index-txn-info">
       <transaction-card
         text="Total Transaction"
-        :amount="buy[selectedCurrency] + sell[selectedCurrency]"
-        :currency="selectedCurrency"
+        :amount="
+          buy[selectedFiatCurrency.ticker] + sell[selectedFiatCurrency.ticker]
+        "
+        :currency="selectedFiatCurrency.ticker"
       ></transaction-card>
       <transaction-card
         text="Total Buy"
-        :amount="buy[selectedCurrency]"
-        :currency="selectedCurrency"
+        :amount="buy[selectedFiatCurrency.ticker]"
+        :currency="selectedFiatCurrency.ticker"
       ></transaction-card>
       <transaction-card
         text="Total Sell"
-        :amount="sell[selectedCurrency]"
-        :currency="selectedCurrency"
+        :amount="sell[selectedFiatCurrency.ticker]"
+        :currency="selectedFiatCurrency.ticker"
       ></transaction-card>
     </div>
     <div class="index-txn-earn-ex u-my-big">
@@ -280,6 +282,9 @@ export default {
   },
   computed: {
     ...mapState('auth', ['user']),
+    ...mapState({
+      selectedFiatCurrency: (state) => state.selectedFiatCurrency,
+    }),
   },
   methods: {
     formatDate(thisDate) {
