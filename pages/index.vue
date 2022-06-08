@@ -295,7 +295,7 @@ export default {
     },
     async getOrderAnalytics() {
       try {
-        const { data } = this.$api.getOrderAnalytics()
+        const { data } = await this.$api.getOrderAnalytics()
         this.buy = data.buy
         this.sell = data.sell
       } catch (error) {
