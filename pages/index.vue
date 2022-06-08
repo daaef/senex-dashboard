@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-    <div class="index-float-btn"></div>
+    <router-link to="/transactions" class="index-float-btn"></router-link>
     <div class="index-txn-info">
       <transaction-card
         text="Total Transaction"
