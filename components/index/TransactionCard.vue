@@ -1,20 +1,30 @@
 <template>
   <div class="index-card">
     <p class="index-card__text u-mb-sm">{{ text }}</p>
-    <h1 class="heading-primary u-text-left">{{ amount }}</h1>
+    <h1 class="heading-primary u-text-left">
+      {{ amount | formatMoney(currency) }}
+    </h1>
   </div>
 </template>
 
 <script>
+import formatMoney from '~/filters/format-money'
 export default {
+  filters: {
+    formatMoney,
+  },
   props: {
     text: {
       type: String,
       default: '',
     },
     amount: {
+      type: Number,
+      default: 0,
+    },
+    currency: {
       type: String,
-      default: '0.00',
+      default: 'NGN',
     },
     theme: {
       type: String,

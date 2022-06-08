@@ -31,7 +31,8 @@ const URLS = {
   withdrawReward: 'withdraw-reward/',
   providers: '/providers',
   metaData: '/meta-data/',
-  secretVerify:'/secret/verify'
+  secretVerify:'/secret/verify',
+  orderAnalytics: '/order/analytics'
 }
 
 // Access any enpoints by using this.$api.[endpoint name](data)
@@ -135,6 +136,8 @@ export default ({ $axios }, inject) => {
     getCurrencies: () => $axios.get(URLS.metaData, {params: {list: 'currencies'}}),
 
     getBanks: () => $axios.get(URLS.metaData, {params: {list: 'banks'}}),
+
+    getOrderAnalytics: () => $axios.get(URLS.orderAnalytics),
 
     // Fetch user trades
     fetchTrades: (page, status) =>

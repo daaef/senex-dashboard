@@ -69,15 +69,18 @@
     <div class="index-txn-info">
       <transaction-card
         text="Total Transaction"
-        :amount="`${selected} ${totalOrderValue}`"
+        :amount="buy[selectedCurrency] + sell[selectedCurrency]"
+        :currency="selectedCurrency"
       ></transaction-card>
       <transaction-card
         text="Total Buy"
-        :amount="`${selected} ${ngnBuy}`"
+        :amount="buy[selectedCurrency]"
+        :currency="selectedCurrency"
       ></transaction-card>
       <transaction-card
         text="Total Sell"
-        :amount="`${selected} ${ngnSell}`"
+        :amount="sell[selectedCurrency]"
+        :currency="selectedCurrency"
       ></transaction-card>
     </div>
     <div class="index-txn-earn-ex u-my-big">
@@ -238,10 +241,21 @@ export default {
     return {
       selected: '₦',
       totalOrderValue: 0,
-      ngnBuy: 0,
-      ngnSell: 0,
-      zarBuy: 0,
-      zarSell: 0,
+      buy: {
+        NGN: 0,
+        USD: 0,
+        ZAR: 0,
+        completed: 0,
+        expired: 0,
+      },
+      sell: {
+        NGN: 0,
+        USD: 0,
+        ZAR: 0,
+        completed: 0,
+        expired: 0,
+      },
+      selectedCurrency: 'NGN',
       options: [
         {
           text: 'NGN',
@@ -258,7 +272,8 @@ export default {
     }
   },
   beforeMount() {
-    this.getDashboard()
+    this.getOrderAnalytics()
+    // this.getDashboard()
     this.fetchOrders()
     this.getReferrals()
   },
@@ -268,6 +283,19 @@ export default {
   methods: {
     formatDate(thisDate) {
       return moment(new Date(thisDate)).format('lll')
+    },
+    async getOrderAnalytics() {
+      try {
+        const { data } = this.$api.getOrderAnalytics()
+        this.buy = data.buy
+        this.sell = data.sell
+      } catch (error) {
+        this.$notify({
+          title: 'Error',
+          text: 'An error occured fetching order summary.',
+          type: 'error',
+        })
+      }
     },
     async getDashboard() {
       try {
