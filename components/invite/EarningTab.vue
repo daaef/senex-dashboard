@@ -21,11 +21,11 @@
       </div>
       <div class="earning__list-item">
         <span>No. of sign ups</span
-        ><span class="u-link">{{ referralData.inviteeCount }}</span>
+        ><span class="u-link">{{ referralData.referralCount }}</span>
       </div>
       <div class="earning__list-item">
         <span>No. of active invited users</span
-        ><span class="u-link">{{ referralData.referralCount }}</span>
+        ><span class="u-link">{{ referralData.activeReferrals }}</span>
       </div>
       <div class="earning__list-item">
         <span>Next payout date</span><span>{{ getNextPayoutDate() }}</span>

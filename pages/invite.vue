@@ -31,6 +31,7 @@ export default {
       ],
       referralData: {
         inviteeCount: 0,
+        activeReferrals: 0,
         inviteeList: [],
         referralCount: 0,
         referred: [],
