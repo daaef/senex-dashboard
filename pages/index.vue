@@ -204,7 +204,7 @@
               setClass="index-ex__btn"
               :on-submit="
                 () => {
-                  $router.push('/transactions')
+                  $router.push('/order')
                 }
               "
             />
@@ -298,26 +298,6 @@ export default {
         const { data } = await this.$api.getOrderAnalytics()
         this.buy = data.buy
         this.sell = data.sell
-      } catch (error) {
-        this.$notify({
-          title: 'Error',
-          text: 'An error occured fetching order summary.',
-          type: 'error',
-        })
-      }
-    },
-    async getDashboard() {
-      try {
-        const { data } = await this.$api.getDashboard()
-        if (data.data) {
-          this.ngnBuy = data.data.ngnTotalBuy
-          this.ngnSell = data.data.ngnTotalSell
-          this.zarBuy = data.data.zarTotalBuy
-          this.zarSell = data.data.zarTotalSell
-          this.stats[1].total = data.data.totalCompleted
-          this.stats[2].total = data.data.totalExpired
-          this.totalOrderValue = this.ngnBuy + this.ngnSell
-        }
       } catch (error) {
         this.$notify({
           title: 'Error',
