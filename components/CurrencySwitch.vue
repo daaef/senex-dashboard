@@ -10,7 +10,7 @@
       >
       <span
         class="topbar-switch__glider"
-        :class="[`topbar-switch__glider--${currentIdx}`]"
+        :class="[`topbar-switch__glider--${getSelectedFiatIdx() + 1}`]"
       ></span>
     </div>
   </div>
@@ -20,19 +20,22 @@
 import { mapState } from 'vuex'
 export default {
   data() {
-    return {
-      currentIdx: 1,
-    }
+    return {}
   },
   computed: {
     ...mapState({
       fiatCurrencies: (state) => state.fiatCurrencies,
+      selectedFiatCurrency: (state) => state.selectedFiatCurrency,
     }),
   },
   methods: {
     handleClick(idx) {
-      this.currentIdx = idx + 1
       this.$store.commit('setSelectedFiatCurrency', this.fiatCurrencies[idx])
+    },
+    getSelectedFiatIdx() {
+      return this.fiatCurrencies.findIndex(
+        (item) => item.ticker === this.selectedFiatCurrency.ticker
+      )
     },
   },
 }

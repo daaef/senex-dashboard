@@ -66,7 +66,10 @@
         </div>
       </div>
     </div>
-    <router-link to="/transactions" class="index-float-btn"></router-link>
+    <router-link to="/order" class="index-float-btn"></router-link>
+    <div class="index-show-cur-switch u-mb-20">
+      <CurrencySwitch />
+    </div>
     <div class="index-txn-info">
       <transaction-card
         text="Total Transaction"

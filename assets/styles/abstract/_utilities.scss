@@ -149,6 +149,11 @@
   &--justify-center {
     justify-content: center;
   }
+
+  &--w-end,
+  &--justify-end {
+    justify-content: flex-end;
+  }
 }
 
 .u-flex-1 {

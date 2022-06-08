@@ -344,3 +344,11 @@
     display: flex;
   }
 }
+
+.index-show-cur-switch {
+  display: none;
+  @include respond(phone) {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
