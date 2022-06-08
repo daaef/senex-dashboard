@@ -19,6 +19,7 @@ export default {
           component: 'InviteFriendTab',
           properties: {
             referralData: this.referralData,
+            getReferrals: this.getReferrals,
           },
         },
         {
@@ -26,6 +27,7 @@ export default {
           component: 'EarningTab',
           properties: {
             referralData: this.referralData,
+            getReferrals: this.getReferrals,
           },
         },
       ],

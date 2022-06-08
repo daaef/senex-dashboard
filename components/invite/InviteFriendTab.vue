@@ -127,6 +127,10 @@ export default {
         inviteeList: [],
       }),
     },
+    getReferrals: {
+      type: Function,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -169,14 +173,16 @@ export default {
     },
     async inviteFriends() {
       this.processing = true
-      const { data } = this.$api.inviteFriends({
-        emailList: this.list.join(','),
-      })
       try {
+        const { data } = await this.$api.inviteFriends({
+          emailList: this.list.join(','),
+        })
+        console.log(data)
         this.$notify({
           type: 'success',
           text: data.message,
         })
+        await this.getReferrals()
       } catch (e) {
         console.log(e)
       } finally {
@@ -184,14 +190,15 @@ export default {
       }
     },
     async resendInvitation(email) {
-      const { data } = this.$api.inviteFriends({
-        emailList: email,
-      })
       try {
+        const { data } = await this.$api.inviteFriends({
+          emailList: email,
+        })
         this.$notify({
           type: 'success',
           text: data.message,
         })
+        await this.getReferrals()
       } catch (e) {
         console.log(e)
       }

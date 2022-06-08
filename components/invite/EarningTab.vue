@@ -43,6 +43,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    getReferrals: {
+      type: Function,
+      default: () => {},
+    },
   },
   data() {
     return {
