@@ -182,6 +182,7 @@ export default {
           type: 'success',
           text: data.message,
         })
+        this.list = []
         await this.getReferrals()
       } catch (e) {
         console.log(e)
