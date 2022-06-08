@@ -71,6 +71,11 @@
   justify-content: space-between;
   height: 45rem;
 
+  @include respond(tab-land) {
+    flex-direction: column;
+    height: auto;
+  }
+
   @include respond(phone-land) {
     flex-direction: column;
     height: auto;
@@ -85,8 +90,10 @@
   border-radius: 12px;
   margin-right: 3rem;
 
-  @include respond(tab-land-sm) {
-    flex: 1 0 48%;
+  @include respond(tab-land) {
+    flex: 1 0 100%;
+    margin-right: 0;
+    margin-bottom: 3rem;
   }
 
   @include respond(phone-land) {
@@ -144,11 +151,14 @@
   flex-direction: column;
   justify-content: space-between;
 
-  @include respond(tab-land-sm) {
-    flex: 1 0 48%;
+  @include respond(tab-land) {
+    flex-direction: row;
+    flex: 1 0 100%;
+    height: auto;
   }
 
   @include respond(phone-land) {
+    flex-direction: column;
     flex: 1 0 100%;
   }
 }
@@ -160,8 +170,14 @@
   border-radius: 12px;
   height: 48%;
 
+  @include respond(tab-land) {
+    width: 48%;
+    height: 220px;
+  }
+
   @include respond(phone-land) {
     flex: 1 0 100%;
+    width: 100%;
     height: auto;
   }
 }
