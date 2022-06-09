@@ -6,7 +6,7 @@ export default [
   },
   {
     name: 'Transactions',
-    icon: '/img/icons/transactions_icon.svg',
+    icon: '/img/icons/transaction_icon.svg',
     link: '/transactions',
   },
   {
@@ -37,7 +37,7 @@ export default [
   },
   {
     name: 'Logout',
-    icon: '/img/icons/help_icon.svg',
+    icon: '/img/icons/sign-out.svg',
     link: '/logout',
   }
 ]
