@@ -66,7 +66,9 @@
         </div>
       </div>
     </div>
-    <router-link to="/order" class="index-float-btn"></router-link>
+    <router-link to="/order" class="index-float-btn"
+      ><img src="/img/icons/transaction_icon_blue.svg" alt="order"
+    /></router-link>
     <div class="index-show-cur-switch u-mb-20">
       <CurrencySwitch />
     </div>
