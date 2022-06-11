@@ -100,10 +100,8 @@
   }
 }
 
-
 .tab-drop {
   position: relative;
-  padding: 10px;
   border-radius: 8px;
   color: $color-grey-c8c;
   display: none;
@@ -113,7 +111,7 @@
   }
 
   &--grey {
-    background-color: #F5F5F7;
+    background-color: #f5f5f7;
   }
 
   &--white {
@@ -123,6 +121,9 @@
   &__title-con {
     @include flexcon(center, left, row);
     cursor: pointer;
+    border: 1px solid $color-grey-404;
+    border-radius: 8px;
+    padding: 10px;
 
     .title {
       font-weight: bold;
@@ -134,7 +135,7 @@
       width: 15px;
       min-width: 15px;
       margin-left: auto;
-      transition: all .2s;
+      transition: all 0.2s;
 
       img {
         width: 100%;
@@ -149,20 +150,20 @@
   &__content {
     background-color: $color-primary-dark;
     border: 1px solid $color-grey-404;
-    padding: 10px;
     position: absolute;
     z-index: 3;
-    margin-top: 15px;
+    // margin-top: 15px;
     left: 0;
     width: 100%;
   }
 
   &__item {
-    padding: 10px 0;
+    padding: 10px;
     cursor: pointer;
+    // border: 1px solid $color-grey-404;
 
     &:not(:last-child) {
-      margin-bottom: 10px;
+      border-bottom: 1px solid $color-grey-404;
     }
   }
 }

@@ -18,7 +18,10 @@
     </div>
     <div class="tab-drop">
       <p class="tab-drop__title-con" @click="toggleOpen">
-        {{ currentTab.title }}
+        <span class="title">{{ currentTab.title }}</span>
+        <span class="arrow-con" :class="[dropOpen ? 'rotate-up' : '']"
+          ><img src="/img/awesome-arrow-down-white.svg" alt="down arrow"
+        /></span>
       </p>
       <div class="tab-drop__content" :class="[dropOpen ? '' : 'u-none']">
         <p
