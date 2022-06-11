@@ -277,6 +277,7 @@ export default {
       orders: [],
       totalEarned: 0,
       activeReferralUsers: 0,
+      windowWidth: 0,
     }
   },
   beforeMount() {
@@ -285,6 +286,15 @@ export default {
     this.fetchOrders()
     this.getReferrals()
   },
+  mounted() {
+    this.windowWidth = window.innerWidth
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize)
+    })
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize)
+  },
   computed: {
     ...mapState('auth', ['user']),
     ...mapState({
@@ -292,7 +302,13 @@ export default {
     }),
   },
   methods: {
+    onResize() {
+      this.windowWidth = window.innerWidth
+    },
     formatDate(thisDate) {
+      if (this.windowWidth <= 600) {
+        return moment(thisDate).format('MMM DD, YYYY')
+      }
       return moment(new Date(thisDate)).format('lll')
     },
     async getOrderAnalytics() {
