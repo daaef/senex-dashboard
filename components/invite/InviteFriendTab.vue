@@ -8,7 +8,7 @@
       </div>
       <p class="u-mb-20">
         Know someone curious about crypto? You’ll both receive NGN 4,158.16 in
-        Bitcoin when they buy or sell NGN 41,581.65 or more on Coinbase!
+        Bitcoin when they buy or sell NGN 41,581.65 or more on SenexPay!
         <router-link class="u-link" to="/">Learn more</router-link>.
       </p>
       <div class="invite__email-form">
