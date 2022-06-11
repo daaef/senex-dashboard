@@ -66,25 +66,25 @@
           <h3 class="heading-primary fw-400 u-mb-10">Share via social</h3>
           <div class="invite__social-img-box">
             <a
-              href="https://www.instagram.com/senexpay/"
+              :href="`https://www.instagram.com/sharer.php?u=${getReferralLink()}`"
               target="_blank"
               rel="noopener"
               ><img src="/img/white-instagram.svg" alt="instagram"
             /></a>
             <a
-              href="https://web.facebook.com/senexpay/"
+              :href="`https://www.facebook.com/sharer.php?u=${getReferralLink()}`"
               target="_blank"
               rel="noopener"
               ><img src="/img/white-facebook.svg" alt="facebook"
             /></a>
             <a
-              href="https://twitter.com/senexng/"
+              :href="`https://twitter.com/intent/tweet?url=${getReferralLink()}`"
               target="_blank"
               rel="noopener"
               ><img src="/img/white-twitter.svg" alt="twitter"
             /></a>
             <a
-              href="https://linkedin.com/company/senexpay/"
+              :href="`https://www.linkedin.com/shareArticle?mini=true&url=${getReferralLink()}`"
               target="_blank"
               rel="noopener"
               ><img src="/img/white-linkedin.svg" alt="linkedin"
