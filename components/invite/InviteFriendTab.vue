@@ -97,21 +97,31 @@
           Pending Invitations ({{ referralData.inviteeList.length }})
         </h3>
         <div
-          v-for="(item, idx) in referralData.inviteeList"
-          class="invite__pending__item"
-          :key="idx"
+          class="invite__pending__body"
+          :class="[isPendingOpen ? 'invite__pending__body--open' : '']"
         >
-          <span>{{ item }}</span>
-          <div class="invite__pending__action-box">
-            <span class="invite__pending__delete u-mr-10">Delete</span>
-            <span
-              class="invite__pending__resend"
-              @click="() => resendInvitation(item)"
-              >Resend</span
-            >
+          <div
+            v-for="(item, idx) in referralData.inviteeList"
+            class="invite__pending__item"
+            :key="idx"
+          >
+            <span>{{ item }}</span>
+            <div class="invite__pending__action-box">
+              <span class="invite__pending__delete u-mr-10">Delete</span>
+              <span
+                class="invite__pending__resend"
+                @click="() => resendInvitation(item)"
+                >Resend</span
+              >
+            </div>
           </div>
         </div>
-        <span class="invite__pending__arrow"></span>
+        <span
+          class="invite__pending__arrow"
+          :class="[isPendingOpen ? 'invite__pending__arrow--open' : '']"
+          @click="isPendingOpen = !isPendingOpen"
+          ><img src="/img/awesome-arrow-down-white.svg" alt="down arrow"
+        /></span>
       </div>
     </div>
   </div>
@@ -139,6 +149,7 @@ export default {
       processing: false,
       copyCode: 'Copy code',
       copyLink: 'Copy link',
+      isPendingOpen: false,
     }
   },
   mounted() {

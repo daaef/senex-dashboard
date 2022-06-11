@@ -170,6 +170,17 @@
     border-radius: 12px;
     list-style: none;
 
+    &__body {
+      max-height: 100px;
+      overflow-y: hidden;
+      transition: all 0.3s linear;
+
+      &--open {
+        max-height: 500px;
+        overflow-y: auto;
+      }
+    }
+
     &__item {
       display: flex;
       justify-content: space-between;
@@ -199,14 +210,23 @@
     }
 
     &__arrow {
-      background-color: $color-white;
-      width: 1rem;
-      height: 1rem;
+      // background-color: $color-white;
+      width: 3rem;
+      height: 3rem;
       display: block;
       border-radius: 50%;
       margin: 0 auto;
       cursor: pointer;
+      transition: all 0.3s linear;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      &--open {
+        transform: rotate(180deg);
+      }
     }
   }
 }
-
