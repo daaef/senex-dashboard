@@ -42,28 +42,28 @@
       <div class="u-mb-30">
         <p class="u-mb-5">Email address</p>
         <div
-          class="profile__input-box"
+          class="profile__input-box u-pr-50"
           :class="[lockEmail ? 'profile__input-box--disabled' : '']"
         >
           <input type="email" :value="user.email" :disabled="lockEmail" />
           <span
             class="profile__input-extra u-link"
             @click="lockEmail = !lockEmail"
-            >Change email</span
+            >Change</span
           >
         </div>
       </div>
       <div class="u-mb-30">
         <p class="u-mb-5">Phone number</p>
         <div
-          class="profile__input-box"
+          class="profile__input-box u-pr-50"
           :class="[lockPhone ? 'profile__input-box--disabled' : '']"
         >
           <input type="text" :value="user.mobile" :disabled="lockPhone" />
           <span
             class="profile__input-extra u-link"
             @click="lockPhone = !lockPhone"
-            >Change phone number</span
+            >Change</span
           >
         </div>
       </div>

@@ -122,6 +122,8 @@
       margin-right: 1.5rem;
 
       @include respond(phone) {
+        width: 30px;
+        height: 30px;
         margin-right: 1rem;
       }
     }
@@ -138,7 +140,7 @@
       font-size: 2rem;
 
       @include respond(phone) {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
       }
     }
   }
@@ -345,7 +347,7 @@
   display: none;
   position: fixed;
   bottom: 3rem;
-  right: 20%;
+  right: 3rem;
   z-index: 9999;
   align-items: center;
   justify-content: center;
