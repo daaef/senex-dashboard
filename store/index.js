@@ -5,12 +5,12 @@ export const state = () => ({
     {
       name: 'Naira',
       ticker: 'NGN',
-      flag: '',
+      flag: '/img/flag/ng.svg',
     },
     {
       name: 'Rand',
       ticker: 'ZAR',
-      flag: '',
+      flag: '/img/flag/za.svg',
     }
   ],
   cryptoCurrencies: [

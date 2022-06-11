@@ -6,7 +6,7 @@
         class="topbar-switch__item"
         :key="idx"
         @click="() => handleClick(idx)"
-        >{{ item.ticker }}</span
+        ><img :src="item.flag" alt="country" /> {{ item.ticker }}</span
       >
       <span
         class="topbar-switch__glider"
