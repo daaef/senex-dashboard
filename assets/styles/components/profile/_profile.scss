@@ -74,7 +74,7 @@
     background-color: transparent;
 
     &--disabled {
-      background-color: $color-grey-202
+      background-color: $color-grey-202;
     }
 
     input {
@@ -82,7 +82,7 @@
       background-color: transparent;
       border: none;
       outline: none;
-      padding: 0 1rem;
+      padding: 0 1.5rem;
     }
   }
 
