@@ -32,7 +32,8 @@ const URLS = {
   providers: '/providers',
   metaData: '/meta-data/',
   secretVerify:'/secret/verify',
-  orderAnalytics: '/order/analytics'
+  orderAnalytics: '/order/analytics',
+  deleteFriend: '/delete-friend/',
 }
 
 // Access any enpoints by using this.$api.[endpoint name](data)
@@ -138,6 +139,8 @@ export default ({ $axios }, inject) => {
     getBanks: () => $axios.get(URLS.metaData, {params: {list: 'banks'}}),
 
     getOrderAnalytics: () => $axios.get(URLS.orderAnalytics),
+
+    deleteFriend: (data) => $axios.delete(URLS.deleteFriend, {data: data}),
 
     // Fetch user trades
     fetchTrades: (page, status) =>

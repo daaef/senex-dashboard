@@ -39,7 +39,7 @@
         <div class="invite__link-box">
           <h3 class="heading-primary fw-400 u-mb-10">Your invite code</h3>
           <div class="invite__link-input-box">
-            <span>{{ user.referralId }}</span>
+            <span class="u-truncate">{{ user.referralId }}</span>
             <span
               class="extra"
               @click="toggleCopyCode"
@@ -53,7 +53,7 @@
         <div class="invite__link-box">
           <h3 class="heading-primary fw-400 u-mb-10">Your invite link</h3>
           <div class="invite__link-input-box">
-            <span>{{ getReferralLink() }}</span>
+            <span class="u-truncate">{{ getReferralLink() }}</span>
             <span
               class="extra"
               @click="toggleCopyLink"
@@ -107,7 +107,11 @@
           >
             <span>{{ item }}</span>
             <div class="invite__pending__action-box">
-              <span class="invite__pending__delete u-mr-10">Delete</span>
+              <span
+                class="invite__pending__delete u-mr-10"
+                @click="() => deleteInvite(item)"
+                >Delete</span
+              >
               <span
                 class="invite__pending__resend"
                 @click="() => resendInvitation(item)"
@@ -209,6 +213,20 @@ export default {
         this.$notify({
           type: 'success',
           text: data.message,
+        })
+        await this.getReferrals()
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async deleteInvite(email) {
+      try {
+        const { data } = await this.$api.deleteFriend({
+          emailList: email,
+        })
+        this.$notify({
+          type: 'success',
+          text: 'Invitee deleted',
         })
         await this.getReferrals()
       } catch (e) {

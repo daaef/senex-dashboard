@@ -111,6 +111,7 @@
     border: 1px solid $color-grey-c8c;
     border-radius: 8px;
     background-color: transparent;
+    padding-right: 100px;
 
     input {
       width: 100%;
@@ -126,9 +127,11 @@
       height: 100%;
       right: 0;
       top: 0;
-      padding: 1rem 2rem !important;
+      padding: 1rem !important;
       border-left: 1px solid $color-grey-707;
       cursor: pointer;
+      width: 100px;
+      text-align: center;
       // color: $color-grey-c8c;
     }
   }
