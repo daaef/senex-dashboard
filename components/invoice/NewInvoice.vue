@@ -193,16 +193,26 @@
                     >
                   </div>
                 </div>
+                <span v-if="!info.isOtc" class="invoice__waiting"
+                  >Please do not refresh this page. We would automatically
+                  detect when you make payment.</span
+                >
+                <!-- <span v-else class="invoice__waiting"
+                  >We are waiting for your payment. To get your wallet funded.
+                  Please kindly click the button below when you complete your
+                  payment</span
+                > -->
                 <div
+                  v-else
                   class="invoice__sell-instruct invoice__sell-instruct--full invoice__sell-instruct--red u-mb-20"
                 >
                   <span class="paragraph paragraph--sm"
-                    >Click the button below after making your USDT deposit and
-                    your bank account will be credited immediately deposit is
+                    >Click the button below after making your deposit and your
+                    bank account will be credited immediately deposit is
                     confirmed</span
                   >
                 </div>
-                <div>
+                <div v-if="info.isOtc">
                   <ButtonSpinner
                     :is-loading="processing"
                     :is-in-active="false"
