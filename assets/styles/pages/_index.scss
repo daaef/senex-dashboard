@@ -295,6 +295,8 @@
 .index-guide {
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
   // justify-content: space-between;
   padding: 3rem;
   border-radius: 12px;
@@ -307,9 +309,25 @@
     padding: 2rem;
   }
 
-  img {
-    width: 80px;
-    height: 80px;
+  &__tr-img {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+  }
+
+  &__tr-star {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+  }
+
+  &__advisor {
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 3rem;

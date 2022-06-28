@@ -185,7 +185,7 @@
               <div class="index-ex__rate-item">
                 <div class="coin">
                   <img src="img/crypto/usdt.svg" alt="coin" class="u-mr-5" />
-                  <span>Bitcoin</span>
+                  <span>USDT</span>
                 </div>
                 <div class="rate">
                   <span>23,079,836</span>
@@ -215,7 +215,21 @@
       </div>
     </div>
     <div class="index-guide u-mb-30">
-      <img src="img/icons/info_yellow_round_icon.svg" alt="lady" />
+      <img
+        src="img/icons/crypto-advisor.svg"
+        class="index-guide__advisor"
+        alt="lady"
+      />
+      <img
+        src="img/icons/footer-side-corner.svg"
+        class="index-guide__tr-img"
+        alt="ellipse"
+      />
+      <img
+        src="img/icons/footer-polygon.svg"
+        class="index-guide__tr-star"
+        alt="star"
+      />
       <div class="index-guide__content">
         <h3 class="heading-primary--md">
           <span class="u-block u-line-height-1">New to Crypto?</span>
