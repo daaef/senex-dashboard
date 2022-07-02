@@ -3,8 +3,7 @@
     <div class="invite__top-content u-mb-40">
       <div class="invite__header u-mb-20 u-white">
         <h3 class="heading-primary--big">
-          Invite a friend to SenexPay and let them earn 25 USD on signing up
-          today.
+          Invite a friend to SenexPay and let them earn $25 on signing up today.
         </h3>
       </div>
       <p class="u-mb-20">

@@ -130,9 +130,13 @@
       padding: 1rem !important;
       border-left: 1px solid $color-grey-707;
       cursor: pointer;
-      width: 100px;
+      width: 120px;
       text-align: center;
       // color: $color-grey-c8c;
+
+      @include respond(phone) {
+        width: 100px;
+      }
     }
   }
 
