@@ -143,8 +143,8 @@ export default ({ $axios }, inject) => {
     deleteFriend: (data) => $axios.delete(URLS.deleteFriend, {data: data}),
 
     // Fetch user trades
-    fetchTrades: (page, status) =>
-      $axios.get(`${URLS.tradeList}?page=${page}&status=${status}`),
+    fetchTrades: (page, status, fiat) =>
+      $axios.get(`${URLS.tradeList}?page=${page}&status=${status}&fiat=${fiat}`),
     // ?page=${page}&status=${status}
     /* ------------------------------ PROFILE/TRADES ------------------------------ */
 

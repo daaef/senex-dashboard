@@ -22,7 +22,9 @@
             <td class="">{{ row.id }}</td>
             <td class="">{{ row.type }}</td>
             <td class="">{{ row.cryptoAmount }} {{ row.cryptoCurrency }}</td>
-            <td class="">{{ row.fiatCurrency }} {{ row.fiatAmount }}</td>
+            <td class="">
+              {{ row.fiatAmount | formatMoney(row.fiatCurrency) }}
+            </td>
             <td
               class="status"
               :class="[
@@ -52,7 +54,7 @@
           <div class="txn-table-mobile__content">
             <p>{{ item.cryptoAmount }} {{ item.cryptoCurrency }}</p>
             <p class="small-text">
-              {{ item.fiatCurrency }} {{ item.fiatAmount }}
+              {{ item.fiatAmount | formatMoney(item.fiatCurrency) }}
             </p>
           </div>
           <div class="txn-table-mobile__content txn-table-mobile__content--sm">
@@ -78,6 +80,7 @@
 
 <script>
 import moment from 'moment'
+import formatMoney from '~/filters/format-money'
 export default {
   props: {
     showHeader: {
@@ -89,6 +92,7 @@ export default {
       default: () => [],
     },
   },
+  filters: { formatMoney },
   methods: {
     formatDate(thisDate) {
       return moment(new Date(thisDate)).format('MMM DD, YYYY')

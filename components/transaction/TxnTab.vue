@@ -57,12 +57,13 @@
     </div>
     <transaction-table
       :show-header="showHeader"
-      :orders="orders"
+      :orders="filteredOrders()"
     ></transaction-table>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   props: {
     showHeader: {
@@ -88,8 +89,18 @@ export default {
       search: '',
     }
   },
+  watch: {
+    selectedFiatCurrency(value) {
+      this.fetchOrders(this.currentPage, this.status, value)
+    },
+  },
   mounted() {
-    this.fetchOrders(this.currentPage, this.status)
+    this.fetchOrders(this.currentPage, this.status, this.selectedFiatCurrency)
+  },
+  computed: {
+    ...mapState({
+      selectedFiatCurrency: (state) => state.selectedFiatCurrency.ticker,
+    }),
   },
   methods: {
     changeCurrentPage(page) {
@@ -97,12 +108,16 @@ export default {
         return
       }
       this.currentPage = page
-      this.fetchOrders(this.currentPage, this.status)
+      this.fetchOrders(this.currentPage, this.status, this.selectedFiatCurrency)
     },
-    async fetchOrders(page, status) {
+    async fetchOrders(page, status, selectedFiatCurrency) {
       try {
         this.processing = true
-        const { data } = await this.$api.fetchTrades(page, status)
+        const { data } = await this.$api.fetchTrades(
+          page,
+          status,
+          selectedFiatCurrency
+        )
         // this.order =
         this.orders = data.results.sort(
           (a, b) => new Date(b.created) - new Date(a.created)
@@ -120,6 +135,15 @@ export default {
           type: 'error',
         })
       }
+    },
+    filteredOrders() {
+      if (!this.search) {
+        return this.orders
+      }
+      const search = this.search.toLowerCase()
+      return this.orders.filter((order) => {
+        return order.id.toLowerCase().includes(search)
+      })
     },
   },
 }
