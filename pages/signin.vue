@@ -147,6 +147,7 @@ export default {
         })
         await this.$auth.fetchUser()
         this.processing = false
+        this.$router.go()
         // this.$router.push('/dashboard')
         setTimeout(() => {
           // this.processing = false
