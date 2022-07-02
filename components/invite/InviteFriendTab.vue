@@ -3,13 +3,13 @@
     <div class="invite__top-content u-mb-40">
       <div class="invite__header u-mb-20 u-white">
         <h3 class="heading-primary--big">
-          Invite a friend to SenexPay and you’ll both get 10 USDT.
+          Invite a friend to SenexPay and let them earn 25 USD on signing up
+          today.
         </h3>
       </div>
       <p class="u-mb-20">
-        Know someone curious about crypto? You’ll both receive NGN 4,158.16 in
-        Bitcoin when they buy or sell NGN 41,581.65 or more on SenexPay!
-        <router-link class="u-link" to="/">Learn more</router-link>.
+        You will receive a percentage paid out in Bitcoin when they sell $100 or
+        more worth of crypto to SenexPay!
       </p>
       <div class="invite__email-form">
         <div class="invite__email-box">
