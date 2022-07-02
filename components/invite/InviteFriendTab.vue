@@ -8,8 +8,8 @@
         </h3>
       </div>
       <p class="u-mb-20">
-        You will receive a percentage paid out in Bitcoin when they sell $100 or
-        more worth of crypto to SenexPay!
+        Know someone curious about crypto? You will receive a percentage paid
+        out in Bitcoin when they sell $100 or more worth of crypto to SenexPay!
       </p>
       <div class="invite__email-form">
         <div class="invite__email-box">

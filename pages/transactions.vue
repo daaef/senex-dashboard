@@ -8,6 +8,18 @@
 export default {
   layout: 'dashboard',
   middleware: 'authenticated',
+  head() {
+    return {
+      title: 'Transactions | SenexPay ',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Start a transaction today'
+        }
+      ]
+    }
+  },
   data() {
     return {
       tabs: [

@@ -8,6 +8,18 @@
 export default {
   layout: 'dashboard',
   middleware: 'authenticated',
+  head() {
+    return {
+      title: 'Beneficiaries | SenexPay ',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'SenexPay beneficiaries',
+        },
+      ],
+    }
+  },
   data() {
     return {
       tabs: [

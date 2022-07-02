@@ -256,6 +256,18 @@ import moment from 'moment'
 export default {
   layout: 'dashboard',
   middleware: 'authenticated',
+  head() {
+    return {
+      title: 'Dashboard | SenexPay ',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'SenexPay Dashboard',
+        },
+      ],
+    }
+  },
   filters: {
     formatMoney,
   },

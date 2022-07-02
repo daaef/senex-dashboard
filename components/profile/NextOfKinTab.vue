@@ -1,13 +1,13 @@
 <template>
   <div class="profile">
     <EmptyState
-      v-if="nextOfKins().length == 0 && !showForm"
+      v-if="!hasNextOfKin && !showForm"
       heading="No Next Of Kin"
       content="Your Next Of Kin information will show up here when you add it."
       btnText="Add Next Of Kin"
       :btnFunction="
         () => {
-          this.showForm = true
+          showForm = true
         }
       "
       height="60vh"
@@ -26,19 +26,19 @@
         <div class="u-mb-30">
           <p class="u-mb-5">Full name</p>
           <div class="profile__input-box">
-            <input type="text" />
+            <input type="text" v-model="nextOfKin.fullName" />
           </div>
         </div>
         <div class="u-mb-30">
           <p class="u-mb-5">Email address</p>
           <div class="profile__input-box">
-            <input type="email" />
+            <input type="email" v-model="nextOfKin.email" />
           </div>
         </div>
         <div class="u-mb-30">
           <p class="u-mb-5">Phone number</p>
           <div class="profile__input-box">
-            <input type="text" />
+            <input type="text" v-model="nextOfKin.mobile" />
           </div>
         </div>
         <div class="u-mb-30">
@@ -49,17 +49,17 @@
         </div>
         <!-- <button class="btn">Edit Next Of Kin</button> -->
         <BtnSpinner
-          v-if="nextOfKins().length > 0 && !edit"
+          v-if="!hasNextOfKin && !edit"
           :is-in-active="false"
           :is-loading="false"
           value="Edit Next Of Kin"
           :on-submit="
             () => {
-              this.edit = true
+              edit = true
             }
           "
         />
-        <div v-else class="u-flex">
+        <div v-else-if="edit" class="u-flex">
           <BtnSpinner
             :is-in-active="false"
             :is-loading="false"
@@ -86,22 +86,31 @@ export default {
     return {
       showForm: false,
       edit: false,
+      nextOfKin: {
+        firstName: '',
+        email: '',
+        mobile: '',
+      },
+      hasNextOfKin: false,
+    }
+  },
+  mounted() {
+    if (
+      this.user &&
+      this.user.profile &&
+      this.user.profile.nextOfKin &&
+      this.user.profile.nextOfKin.data
+    ) {
+      this.nextOfKin = this.user.profile.nextOfKin.data
+      this.hasNextOfKin = true
+    } else {
+      this.hasNextOfKin = false
     }
   },
   computed: {
     ...mapState('auth', ['user']),
   },
   methods: {
-    nextOfKins() {
-      if (
-        this.user &&
-        this.user.profile &&
-        this.user.profile.emergencyContacts
-      ) {
-        return this.user.profile.emergencyContacts.data || []
-      }
-      return []
-    },
     handleCancel() {
       this.showForm = false
       this.edit = false

@@ -8,6 +8,18 @@
 export default {
   layout: 'dashboard',
   middleware: 'authenticated',
+  head() {
+    return {
+      title: 'Invite | SenexPay ',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'SenexPay Dashboard'
+        }
+      ]
+    }
+  },
   beforeMount() {
     this.getReferrals()
   },
