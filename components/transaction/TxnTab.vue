@@ -91,11 +91,18 @@ export default {
   },
   watch: {
     selectedFiatCurrency(value) {
-      this.fetchOrders(this.currentPage, this.status, value)
+      this.fetchOrders({
+        page: this.currentPage,
+        status: this.status,
+        fiat: value,
+      })
     },
   },
   mounted() {
-    this.fetchOrders(this.currentPage, this.status, this.selectedFiatCurrency)
+    this.fetchOrders({
+      page: this.currentPage,
+      fiat: this.selectedFiatCurrency,
+    })
   },
   computed: {
     ...mapState({
@@ -108,16 +115,17 @@ export default {
         return
       }
       this.currentPage = page
-      this.fetchOrders(this.currentPage, this.status, this.selectedFiatCurrency)
+      const params = {
+        page: this.currentPage,
+        status: this.status,
+        fiat: this.selectedFiatCurrency,
+      }
+      this.fetchOrders(params)
     },
-    async fetchOrders(page, status, selectedFiatCurrency) {
+    async fetchOrders(params) {
       try {
         this.processing = true
-        const { data } = await this.$api.fetchTrades(
-          page,
-          status,
-          selectedFiatCurrency
-        )
+        const { data } = await this.$api.fetchTrades(params)
         // this.order =
         this.orders = data.results.sort(
           (a, b) => new Date(b.created) - new Date(a.created)

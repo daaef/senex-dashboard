@@ -306,6 +306,11 @@ export default {
       windowWidth: 0,
     }
   },
+  watch: {
+    selectedFiatCurrency(val) {
+      this.fetchOrders()
+    },
+  },
   beforeMount() {
     this.getOrderAnalytics()
     // this.getDashboard()
@@ -353,7 +358,9 @@ export default {
     async fetchOrders() {
       try {
         this.processing = true
-        const { data } = await this.$api.fetchTrades(1, '', '')
+        const { data } = await this.$api.fetchTrades({
+          fiat: this.selectedFiatCurrency.ticker,
+        })
         this.orders = data.results
           .sort((a, b) => new Date(b.created) - new Date(a.created))
           .splice(0, 5)
