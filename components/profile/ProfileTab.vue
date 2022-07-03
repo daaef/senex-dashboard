@@ -52,7 +52,7 @@
             >Change</span
           >
         </div>
-        <div v-if="!lockEmail" class="u-flex u-mt-20">
+        <div v-if="!lockEmail" class="profile__twin-btn u-mt-20">
           <BtnSpinner
             :is-in-active="false"
             :is-loading="false"
@@ -63,7 +63,7 @@
                 editableEmail = user.email
               }
             "
-            setClass="profile__cancel-btn u-mr-20"
+            setClass="profile__cancel-btn"
           />
           <BtnSpinner
             :is-in-active="false"
@@ -90,7 +90,7 @@
             >Change</span
           >
         </div>
-        <div v-if="!lockPhone" class="u-flex u-mt-20">
+        <div v-if="!lockPhone" class="profile__twin-btn u-mt-20">
           <BtnSpinner
             :is-in-active="false"
             :is-loading="false"
@@ -101,7 +101,7 @@
                 editablePhone = user.mobile
               }
             "
-            setClass="profile__cancel-btn u-mr-20"
+            setClass="profile__cancel-btn"
           />
           <BtnSpinner
             :is-in-active="false"

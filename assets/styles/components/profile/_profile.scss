@@ -107,9 +107,23 @@
     }
   }
 
+  &__twin-btn {
+    display: flex;
+
+    @include respond(phone-400) {
+      flex-direction: column;
+    }
+  }
+
   &__cancel-btn {
     width: 120px;
     color: $color-primary !important;
     background-color: $color-blue-c8d !important;
+    margin-right: 20px;
+
+    @include respond(phone-400) {
+      margin-bottom: 20px !important;
+      margin-right: 0;
+    }
   }
 }
