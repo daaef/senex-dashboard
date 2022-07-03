@@ -85,7 +85,7 @@ export default {
       const payload = {
         code: this.code,
         pinId: localStorage.getItem('pinId'),
-        type: 'Normal',
+        type: 'On login',
       }
       this.processing = true
       try {
