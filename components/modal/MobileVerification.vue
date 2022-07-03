@@ -3,12 +3,12 @@
     <div class="modal-box__header">
       <span class="close" @click="$emit('closeModal')"></span>
       <h3 class="heading-primary u-text-center u-mx-auto">
-        Phone verification
+        Phone Number Verification
       </h3>
     </div>
     <div class="modal-box__body u-mb-40">
       <p class="u-text-center u-mb-40">
-        Please enter the 6-digit code sent to {{ mobile }}
+        Please enter the 6-digit code sent to {{ maskMobile() }}
       </p>
       <div class="input-box u-mb-20">
         <input v-model="code" type="text" placeholder="Enter code" />
@@ -21,15 +21,16 @@
       <BtnSpinner
         :is-in-active="false"
         :is-loading="processing"
-        value="Verify mobile"
+        value="Verify phone number"
         set-class="btn-full-width"
-        :on-submit="onSubmit"
+        :on-submit="verifyCode"
       />
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   props: {
     showModal: {
@@ -47,42 +48,71 @@ export default {
       processing: false,
     }
   },
+  mounted() {
+    this.resendCode()
+  },
+  computed: {
+    ...mapState('auth', ['user']),
+  },
   methods: {
-    async onSubmit() {
-      this.processing = true
-      const payload = {
-        email: this.email,
-        code: this.code,
-      }
-      try {
-        this.$emit('closeModal')
-      } catch (error) {
-        console.log(error)
-      } finally {
-        this.processing = false
-      }
+    maskMobile() {
+      const phone = this.mobile
+      return `${phone.substring(0, 4)}****${phone.substring(
+        phone.length - 1,
+        phone.length - 3
+      )}`
     },
     async resendCode() {
       const payload = {
-        email: this.email,
-        mobile: this.mobile,
+        type: 'Update',
+        currentMobile: this.user.mobile,
+        newMobile: this.mobile,
       }
-      this.$axios
-        .post('/verify/credentials', payload)
-        .then((res) => {
-          const pin = res.data.details.data.pinId
-          localStorage.setItem('pinId', pin)
+      try {
+        const { data } = await this.$api.sendOTP(payload)
+        localStorage.setItem('pinId', data.details.data.pinId)
+        this.$notify({
+          text: 'OTP sent',
         })
-        .catch((err) => {
-          const {
-            response: { data },
-          } = err
-          this.$notify({
-            type: 'error',
-            text: data.message, // error.response.data.message
-          })
-          return
+      } catch (error) {
+        this.$notify({
+          text: error.response.data.message,
+          type: 'error',
         })
+      }
+    },
+    async verifyCode() {
+      const payload = {
+        code: this.code,
+        pinId: localStorage.getItem('pinId'),
+        type: 'Normal',
+      }
+      this.processing = true
+      try {
+        await this.$api.verifyOTP(payload)
+        await this.$auth.fetchUser()
+        localStorage.removeItem('pinId')
+        // await this.$api.updateProfile({
+        //   photo: this.uploadUrl,
+        // })
+        this.processing = false
+        this.$notify({
+          text: 'Phone number updated',
+        })
+        this.$emit('action')
+        this.$emit('closeModal')
+      } catch (e) {
+        this.processing = false
+        const errors = e.response.data && e.response.data.details.errors
+        let error = ''
+        for (const i in errors) {
+          error += errors[i][0] + '. '
+        }
+        this.$notify({
+          text: error,
+          type: 'error',
+        })
+      }
     },
   },
 }

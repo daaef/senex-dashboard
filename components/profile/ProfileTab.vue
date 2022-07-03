@@ -106,7 +106,7 @@
           <BtnSpinner
             :is-in-active="false"
             :is-loading="false"
-            value="Verify mobile"
+            value="Verify phone number"
             :on-submit="
               () => {
                 phoneCodeModal = true
@@ -146,8 +146,13 @@
     <vue-final-modal v-model="phoneCodeModal">
       <div class="benef-overlay container">
         <MobileVerification
+          v-if="phoneCodeModal"
           :mobile="editablePhone"
-          @action="secretAction"
+          @action="
+            () => {
+              lockPhone = true
+            }
+          "
           @closeModal="phoneCodeModal = false"
         />
       </div>
