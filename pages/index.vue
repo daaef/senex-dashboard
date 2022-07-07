@@ -416,9 +416,7 @@ export default {
     async fetchOrders() {
       try {
         this.processing = true
-        const { data } = await this.$api.fetchTrades({
-          fiat: this.selectedFiatCurrency.ticker,
-        })
+        const { data } = await this.$api.fetchTrades({})
         this.orders = data.results
           .sort((a, b) => new Date(b.created) - new Date(a.created))
           .splice(0, 5)
