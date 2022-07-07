@@ -1,5 +1,5 @@
 <template>
-  <div class="empty-state" :style="{height: height}">
+  <div class="empty-state" :style="{ height: height }">
     <h3 class="heading-primary u-white u-mb-20">{{ heading }}</h3>
     <div class="empty-state__content">
       <p class="u-mb-20">{{ content }}</p>

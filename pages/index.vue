@@ -125,6 +125,7 @@
             heading="No Recent Transaction"
             content="When you make your first transaction, the details will show up here."
             btnText="Buy/Sell"
+            :btnFunction="() => $router.push('/order')"
           />
         </template>
       </div>
