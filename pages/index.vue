@@ -305,6 +305,43 @@ export default {
       totalEarned: 0,
       activeReferralUsers: 0,
       windowWidth: 0,
+      timerID: null,
+      prevRates: {
+        BTC_NGN: {
+          buy: 0,
+          sell: 0,
+          USD_NGN: {
+            buy: 0,
+            sell: 0,
+          },
+          minimumOrder: {
+            buy: 0,
+            sell: 0,
+          },
+          disable: {
+            buy: false,
+            sell: false,
+          },
+        },
+      },
+      rates: {
+        BTC_NGN: {
+          buy: 0,
+          sell: 0,
+          USD_NGN: {
+            buy: 0,
+            sell: 0,
+          },
+          minimumOrder: {
+            buy: 0,
+            sell: 0,
+          },
+          disable: {
+            buy: false,
+            sell: false,
+          },
+        },
+      },
     }
   },
   watch: {
@@ -313,6 +350,7 @@ export default {
     },
   },
   beforeMount() {
+    // this.getRates(true)
     this.getOrderAnalytics()
     // this.getDashboard()
     this.fetchOrders()
@@ -323,6 +361,9 @@ export default {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
     })
+    // this.timerID = setInterval(() => {
+    //   this.getRates(false)
+    // }, 1000)
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.onResize)
@@ -342,6 +383,22 @@ export default {
         return moment(thisDate).format('MMM DD, YYYY')
       }
       return moment(new Date(thisDate)).format('lll')
+    },
+    async getRates(initial) {
+      try {
+        const { data } = await this.$api.getRates()
+        if (initial) {
+          this.prevRates = data
+          this.rates = data
+        } else {
+          if (this.isRateChanged(data)) {
+            this.prevRates = this.rates
+          }
+          this.rates = data
+        }
+      } catch (err) {
+        // this.getRates()
+      }
     },
     async getOrderAnalytics() {
       try {
@@ -386,6 +443,49 @@ export default {
           type: 'error',
         })
       }
+    },
+    getCoinAmountAndRise(currency, type) {
+      console.log(this.rates)
+      // new rate
+      const fiatCurrency = this.selectedFiatCurrency.ticker
+      const newCryptoFiat = this.rates[`${currency}_${fiatCurrency}`][type]
+
+      // old rate
+      const prevCryptoFiat = this.prevRates[`${currency}_${fiatCurrency}`][type]
+
+      const riseOrFall =
+        ((newCryptoFiat - prevCryptoFiat) / prevCryptoFiat) * 100
+
+      console.log(riseOrFall, newCryptoFiat, prevCryptoFiat)
+      return {
+        riseOrFall: Number(riseOrFall.toFixed(2)),
+        amount: newCryptoFiat,
+      }
+    },
+    isRateChanged(newRate) {
+      let isChanged = false
+      for (const key in this.rates) {
+        if (
+          this.rates[key].buy != newRate[key].buy ||
+          this.rates[key].sell != newRate[key].sell
+        ) {
+          isChanged = true
+          break
+        }
+      }
+      return isChanged
+    },
+    getCryptoList() {
+      const list = Object.keys(this.rates)
+      const split = list.map((key) => {
+        return key.split('_')[0]
+      })
+      const set = new Set(split)
+      console.log(
+        'set',
+        Array.from(set).filter((item) => item !== 'config')
+      )
+      return Array.from(set).filter((item) => item !== 'config')
     },
   },
 }
