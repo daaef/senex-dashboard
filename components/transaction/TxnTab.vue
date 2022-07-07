@@ -99,10 +99,14 @@ export default {
     },
   },
   mounted() {
-    this.fetchOrders({
+    const payload = {
       page: this.currentPage,
       fiat: this.selectedFiatCurrency,
-    })
+    }
+    if (this.status) {
+      payload.status = this.status
+    }
+    this.fetchOrders(payload)
   },
   computed: {
     ...mapState({
