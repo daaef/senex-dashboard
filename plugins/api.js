@@ -8,7 +8,7 @@ const URLS = {
   resetPassword: '/auth/users/reset_password/',
   resetPasswordConfirm: '/auth/users/reset_password_confirm/',
   trade: '/trade',
-  tradeV2: '/trade_v2',
+  tradeV2: '/trade_v2/',
   profile: '/profile',
   mailing: '/mailing/list',
   analytics: '/analytics',
