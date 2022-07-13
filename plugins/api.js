@@ -112,7 +112,7 @@ export default ({ $axios }, inject) => {
 
     postTrade: (data) => $axios.post(`${URLS.trade}/`, data),
 
-    postTradeV2: (data) => $axios.post(`${URLS.tradeV2}/`, data),
+    postTradeV2: (data) => $axios.post(`${URLS.tradeV2}`, data),
     // Fetch dashboard information
     getDashboard: () => $axios.get(URLS.dashboard),
 
