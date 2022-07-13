@@ -29,7 +29,7 @@
         </svg>
       </div>
     </div>
-    <div class="index-marquee u-mb-20">
+    <div class="index-marquee u-mb-20" direction="left">
       <div class="index-rate-box">
         <div class="rate">
           <p class="u-mr-10">1 BTC = 23,079,836</p>
