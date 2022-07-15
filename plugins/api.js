@@ -130,7 +130,7 @@ export default ({ $axios }, inject) => {
 
     getCurrencyProviders: (currency) => $axios.get(`${URLS.providers}/${currency}/`),
 
-    getProvider: (payload) => $axios.get(`${URLS.providers}`, {params: payload}),
+    getProvider: (payload) => $axios.get(`${URLS.providers}/`, {params: payload}),
 
     markPaid: (data) => $axios.post(URLS.markPaid, data),
 
