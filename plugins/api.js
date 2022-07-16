@@ -112,7 +112,7 @@ export default ({ $axios }, inject) => {
 
     postTrade: (data) => $axios.post(`${URLS.trade}/`, data),
 
-    postTradeV2: (data) => $axios.post(`${URLS.tradeV2}/`, data),
+    postTradeV2: (data) => $axios.post(`${URLS.tradeV2}`, data),
     // Fetch dashboard information
     getDashboard: () => $axios.get(URLS.dashboard),
 
@@ -130,7 +130,7 @@ export default ({ $axios }, inject) => {
 
     getCurrencyProviders: (currency) => $axios.get(`${URLS.providers}/${currency}/`),
 
-    getProvider: (payload) => $axios.get(`${URLS.providers}`, {params: payload}),
+    getProvider: (payload) => $axios.get(`${URLS.providers}/`, {params: payload}),
 
     markPaid: (data) => $axios.post(URLS.markPaid, data),
 
