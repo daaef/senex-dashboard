@@ -63,7 +63,7 @@ export default {
   components: {
     ButtonSpinner,
   },
-  // layout: 'toast',
+  layout: 'toast',
   middleware: 'authenticated',
   data() {
     return {

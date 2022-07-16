@@ -484,7 +484,7 @@ export default {
 <style lang="scss">
 .sign-up {
   .vs--unsearchable .vs__dropdown-toggle {
-    width: 70px;
+    width: 75px;
     height: 100%;
     padding: 0;
     margin-right: 5px;
