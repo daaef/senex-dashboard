@@ -159,7 +159,7 @@ export default {
         // console.log(err)
         this.processing = false
         if (
-          error.response.detail.includes(
+          error.response.data.detail.includes(
             'This account has not been activated'
           )
         ) {
@@ -170,7 +170,7 @@ export default {
           type: 'error',
           title: 'Oops!🙄 ',
           text:
-            error.response.detail ||
+            error.response.data.detail ||
             'This is on us. Please try again later.', //'Incorrect email or password. Double-check and try again.'
         })
       }
