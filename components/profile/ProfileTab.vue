@@ -22,8 +22,8 @@
     <div class="profile__info u-my-20">
       <img src="img/icons/info_yellow_round_icon.svg" alt="info" />
       <p>
-        Your profile information is locked for security reason. Please contact
-        <span class="u-link">help</span> to make changes.
+        You are not allowed to modify senesitive profile information at the moment. Please contact
+        <a :href="url" target="_blank" rel="noopener noreferrer"><span class="u-link">help</span></a> to make any changes.
       </p>
     </div>
     <div class="profile__form">
@@ -172,6 +172,7 @@ export default {
       lockPhone: true,
       processing: false,
       photo: null,
+      url: '',
       uploadUrl: '',
       previewImage: '',
       secretKeyModal: false,
@@ -188,6 +189,7 @@ export default {
   mounted() {
     this.editableEmail = this.user.email
     this.editablePhone = this.user.mobile
+    this.url = process.env.SENEX_LANDING_SITE_URL
   },
   methods: {
     openSecretKeyModal(mode) {
