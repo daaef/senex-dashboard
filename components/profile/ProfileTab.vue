@@ -22,8 +22,8 @@
     <div class="profile__info u-my-20">
       <img src="img/icons/info_yellow_round_icon.svg" alt="info" />
       <p>
-        You are not allowed to modify senesitive profile information at the moment. Please contact
-        <a :href="url" target="_blank" rel="noopener noreferrer"><span class="u-link">help</span></a> to make any changes.
+        You are not allowed to modify sensitive profile information at the moment. Please contact
+        <a :href="`${url}/contact`" target="_blank" rel="noopener noreferrer"><span class="u-link">help</span></a> to make any changes.
       </p>
     </div>
     <div class="profile__form">
