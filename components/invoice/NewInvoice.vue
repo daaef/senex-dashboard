@@ -412,7 +412,7 @@ export default {
     },
     async getNetworksOrProviders() {
       if (this.info.type == 'sell') {
-        let resp = await this.$axios.get('/networks', {
+        let resp = await this.$axios.get('/networks/', {
           params: {
             crypto_currency: this.info.cryptoCurrency,
             fiat_currency: this.info.fiatCurrency,
