@@ -18,7 +18,7 @@ const URLS = {
   setSecret: '/profile/secret',
   dashboard: '/dashboard',
   tradeList: '/trade/',
-  rates: '/rates',
+  rates: '/rates/',
   ratesV2: '/rates/v2',
   paymentInfo: '/payment/info',
   invoice: '/invoice',
