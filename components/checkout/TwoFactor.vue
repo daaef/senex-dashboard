@@ -331,24 +331,6 @@ export default {
         await this.$api.getTwoFactor()
       } catch (error) {}
     },
-    async sendOTP() {
-      const payload = {
-        type: 'Generic',
-        newMobile: this.mobile,
-      }
-      // this.processing = true
-      try {
-        const { data } = await this.$axios.post('/otp/send', payload) //this.$api.sendOTP(payload)
-        localStorage.setItem('pinId', data.details.data.pinId)
-        // this.processing = false
-        // this.$emit('verify-otp')
-      } catch (error) {
-        this.$notify({
-          type: 'error',
-          text: error.response.data.message,
-        })
-      }
-    },
     async twoFactor() {
       this.processing = true
       this.phoneVerifyError = false

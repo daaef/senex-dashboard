@@ -30,11 +30,11 @@ export default [
     icon: '/img/icons/settings_icon.svg',
     link: '/settings',
   },
-  {
-    name: 'Chat',
-    icon: '/img/icons/help_icon.svg',
-    link: '/help',
-  },
+  // {
+  //   name: 'Chat',
+  //   icon: '/img/icons/help_icon.svg',
+  //   link: '/help',
+  // },
   {
     name: 'Logout',
     icon: '/img/icons/sign-out.svg',
