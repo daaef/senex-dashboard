@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="little-more-info">
     <div class="u-mb-30">
       <h3 class="heading-primary">Just a little more info</h3>
       <p class="paragraph">Keeping your transaction tight for you…</p>
@@ -19,7 +19,7 @@
       <div
         class="o-form__input-box o-form__input-box--flex o-form__input-box--overflow-v"
       >
-        <b-dropdown id="dropdown-menu" :text="countryCode">
+        <!-- <b-dropdown id="dropdown-menu" :text="countryCode">
           <b-dropdown-item
             v-for="country in countries"
             :key="country.value"
@@ -28,7 +28,20 @@
           >
             {{ country.text }}
           </b-dropdown-item>
-        </b-dropdown>
+        </b-dropdown> -->
+        <v-select
+          :options="countries"
+          :reduce="(country) => country.value"
+          v-model="countryCode"
+          :placeholder="countryCode"
+          label="value"
+          :clearable="false"
+          :searchable="false"
+        >
+          <template #option="{ text }">
+            <span>{{ text }}</span>
+          </template>
+        </v-select>
         <input
           :value="mobileSuffix"
           @input="$emit('update:mobileSuffix', $event.target.value)"
@@ -319,7 +332,25 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.little-more-info {
+  .vs--unsearchable .vs__dropdown-toggle {
+    width: 75px;
+    height: 100%;
+    padding: 0;
+    margin-right: 5px;
+    border: 1px solid #b2b2b2;
+
+    .vs__selected {
+      height: 100%;
+      margin: 0;
+    }
+
+    input {
+      display: none;
+    }
+  }
+}
 // /deep/ #dropdown-menu > button {
 //   width: 100%;
 //   height: 100%;

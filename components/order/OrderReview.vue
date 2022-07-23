@@ -67,7 +67,7 @@
             {{ beneficiary.walletLabel }}
           </p>
           <p class="paragraph u-mb-10 u-pointer">
-            <span class="address-bracket">( </span>
+            <span class="address-bracket">(</span>
             <span
               class="truncate-address"
               v-tooltip="{
@@ -77,7 +77,7 @@
               v-clipboard="beneficiary.walletAddress"
               >{{ beneficiary.walletAddress }}</span
             >
-            <span class="address-bracket"> )</span>
+            <span class="address-bracket">)</span>
           </p>
         </template>
         <template v-else>
@@ -231,7 +231,8 @@ export default {
 
 .truncate-address {
   display: inline-block;
-  max-width: 300px;
+  width: 300px;
+  max-width: 60vw;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
