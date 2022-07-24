@@ -65,7 +65,6 @@ export default {
     async resendCode() {
       const payload = {
         type: 'Update',
-        currentMobile: this.user.mobile,
         newMobile: this.mobile,
       }
       try {
