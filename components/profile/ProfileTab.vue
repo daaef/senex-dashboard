@@ -22,8 +22,12 @@
     <div class="profile__info u-my-20">
       <img src="img/icons/info_yellow_round_icon.svg" alt="info" />
       <p>
-        You are not allowed to modify sensitive profile information at the moment. Please contact
-        <a :href="`${url}/contact`" target="_blank" rel="noopener noreferrer"><span class="u-link">help</span></a> to make any changes.
+        You are not allowed to modify sensitive profile information at the
+        moment. Please contact
+        <a :href="`${url}/contact`" target="_blank" rel="noopener noreferrer"
+          ><span class="u-link">help</span></a
+        >
+        to make any changes.
       </p>
     </div>
     <div class="profile__form">
@@ -134,15 +138,6 @@
         />
       </div>
     </vue-final-modal>
-    <vue-final-modal v-model="emailCodeModal">
-      <div class="benef-overlay container">
-        <EmailVerification
-          :email="editableEmail"
-          @action="secretAction"
-          @closeModal="emailCodeModal = false"
-        />
-      </div>
-    </vue-final-modal>
     <vue-final-modal v-model="phoneCodeModal">
       <div class="benef-overlay container">
         <MobileVerification
@@ -157,6 +152,26 @@
         />
       </div>
     </vue-final-modal>
+    <vue-final-modal v-model="emailCodeModal">
+      <div class="benef-overlay container">
+        <EmailVerification
+          v-if="emailCodeModal"
+          :email="editableEmail"
+          @action="successEmailAction"
+          @closeModal="emailCodeModal = false"
+        />
+      </div>
+    </vue-final-modal>
+    <vue-final-modal v-model="passwordModal">
+      <div class="benef-overlay container">
+        <EnterPassword
+          v-if="passwordModal"
+          :processing="processing"
+          @action="changeEmail"
+          @closeModal="passwordModal = false"
+        />
+      </div>
+    </vue-final-modal>
   </div>
 </template>
 
@@ -166,6 +181,7 @@ import moment from 'moment'
 import EmailVerification from '../modal/EmailVerification.vue'
 import MobileVerification from '../modal/MobileVerification.vue'
 export default {
+  components: { EmailVerification, MobileVerification },
   data() {
     return {
       lockEmail: true,
@@ -181,6 +197,9 @@ export default {
       editablePhone: '',
       emailCodeModal: false,
       phoneCodeModal: false,
+      passwordModal: false,
+      newEmail: '',
+      secretKey: '',
     }
   },
   computed: {
@@ -196,13 +215,44 @@ export default {
       this.mode = mode
       this.secretKeyModal = true
     },
-    secretAction() {
+    secretAction(key) {
       if (this.mode == 'email') {
+        this.secretKey = key
         this.lockEmail = false
       } else {
         this.lockPhone = false
       }
       this.secretKeyModal = false
+    },
+    successEmailAction() {
+      this.passwordModal = true
+      this.emailCodeModal = false
+    },
+    async changeEmail(password, callback) {
+      const payload = {
+        newEmail: this.editableEmail,
+        secretKey: this.secretKey,
+        currentPassword: password,
+      }
+      this.processing = true
+      await this.$api.changeEmail(payload)
+      try {
+        await this.$auth.fetchUser()
+        this.$notify({
+          type: 'success',
+          text: 'Email changed successfully',
+        })
+      } catch (e) {
+        this.$notify({
+          type: 'error',
+          message: e.message || 'Something went wrong',
+        })
+      } finally {
+        callback()
+        this.processing = false
+        this.passwordModal = false
+        this.lockEmail = true
+      }
     },
     getUserInitials() {
       let initials = ''
@@ -279,7 +329,6 @@ export default {
       }
     },
   },
-  components: { EmailVerification, MobileVerification },
 }
 </script>
 

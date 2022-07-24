@@ -47,13 +47,15 @@ export default {
         const { data } = await this.$api.secretVerify({
           key: this.secret,
         })
-        await this.$emit('action')
+        const key = this.secret
+        this.$emit('action', key)
       } catch (error) {
         this.$notify({
           type: 'error',
           message: 'Invalid security key',
         })
       } finally {
+        this.secret = ''
         this.processing = false
       }
     },

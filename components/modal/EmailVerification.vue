@@ -47,15 +47,20 @@ export default {
       processing: false,
     }
   },
+  mounted() {
+    this.resendCode()
+  },
   methods: {
     async onSubmit() {
       this.processing = true
-      const payload = {
-        email: this.email,
+      const verifyPayload = {
         code: this.code,
+        pinId: localStorage.getItem('pinId'),
+        type: 'Normal',
       }
+      await this.$api.verifyOTP(verifyPayload)
       try {
-        this.$emit('closeModal')
+        this.$emit('action')
       } catch (error) {
         console.log(error)
       } finally {
@@ -65,24 +70,20 @@ export default {
     async resendCode() {
       const payload = {
         email: this.email,
-        mobile: this.mobile,
       }
-      this.$axios
-        .post('/verify/credentials', payload)
-        .then((res) => {
-          const pin = res.data.details.data.pinId
-          localStorage.setItem('pinId', pin)
+      try {
+        const { data } = await this.$api.sendEmailOTP(payload)
+        console.log('data', data)
+        localStorage.setItem('pinId', data.data.pinId)
+        this.$notify({
+          text: 'OTP sent',
         })
-        .catch((err) => {
-          const {
-            response: { data },
-          } = err
-          this.$notify({
-            type: 'error',
-            text: data.message, // error.response.data.message
-          })
-          return
+      } catch (error) {
+        this.$notify({
+          text: error.response.data.message,
+          type: 'error',
         })
+      }
     },
   },
 }

@@ -85,16 +85,14 @@ export default {
       const payload = {
         code: this.code,
         pinId: localStorage.getItem('pinId'),
-        type: 'On login',
+        type: 'UpdatePhone',
+        newMobile: this.mobile,
       }
       this.processing = true
       try {
         await this.$api.verifyOTP(payload)
         await this.$auth.fetchUser()
         localStorage.removeItem('pinId')
-        // await this.$api.updateProfile({
-        //   photo: this.uploadUrl,
-        // })
         this.processing = false
         this.$notify({
           text: 'Phone number updated',

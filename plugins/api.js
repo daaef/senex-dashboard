@@ -7,6 +7,7 @@ const URLS = {
   setPassword: '/auth/users/set_password/',
   resetPassword: '/auth/users/reset_password/',
   resetPasswordConfirm: '/auth/users/reset_password_confirm/',
+  changeEmail: '/auth/users/change_email/',
   trade: '/trade',
   tradeV2: '/trade_v2/',
   profile: '/profile',
@@ -59,6 +60,10 @@ export default ({ $axios }, inject) => {
     resetPassword: (data) => $axios.post(URLS.resetPassword, data),
 
     updateUser: (data) => $axios.patch(URLS.me, data),
+
+    sendEmailOTP: (data) => $axios.get(URLS.changeEmail, { params: data }),
+
+    changeEmail: (data) => $axios.post(URLS.changeEmail, data),
 
     // Reset password { uid, token, newPassword, reNewPassword }
     resetPasswordConfirm: (data) =>

@@ -1,6 +1,9 @@
 <template>
   <div class="">
-    <div class="index-complete-kyc u-mb-20">
+    <div
+      v-if="user.profile.status != 'Approved'"
+      class="index-complete-kyc u-mb-20"
+    >
       <div class="index-complete-kyc__info u-mr-10">
         <img
           src="img/icons/green_round_checkmark.svg"
@@ -350,6 +353,7 @@ export default {
     },
   },
   beforeMount() {
+    console.log('beforeMount', this.user)
     // this.getRates(true)
     this.getOrderAnalytics()
     // this.getDashboard()
