@@ -15,9 +15,9 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'Start a transaction today'
-        }
-      ]
+          content: 'Start a transaction today',
+        },
+      ],
     }
   },
   data() {
@@ -33,7 +33,7 @@ export default {
           },
         },
         {
-          title: 'Completed Transactions',
+          title: 'Completed',
           component: 'TxnTab',
           properties: {
             showHeader: false,
@@ -42,7 +42,7 @@ export default {
           },
         },
         {
-          title: 'Pending Transactions',
+          title: 'Pending',
           component: 'TxnTab',
           properties: {
             showHeader: false,
@@ -51,7 +51,16 @@ export default {
           },
         },
         {
-          title: 'Expired Transactions',
+          title: 'Paid',
+          component: 'TxnTab',
+          properties: {
+            showHeader: false,
+            tag: 'paid',
+            status: 'paid',
+          },
+        },
+        {
+          title: 'Expired',
           component: 'TxnTab',
           properties: {
             showHeader: false,

@@ -32,11 +32,12 @@
                   ? 'status--red'
                   : row.status === 'completed'
                   ? 'status--green'
+                  : row.status === 'paid'
+                  ? 'status--green'
                   : '',
               ]"
             >
-              <span class="status-dot"></span
-              >{{ row.status == 'paid' ? 'Pending' : row.status }}
+              <span class="status-dot"></span>{{ row.status }}
             </td>
           </tr>
         </tbody>
@@ -66,10 +67,12 @@
                   ? 'status--red'
                   : item.status === 'completed'
                   ? 'status--green'
+                  : item.status === 'paid'
+                  ? 'status--green'
                   : '',
               ]"
             >
-              {{ item.status == 'paid' ? 'Pending' : item.status }}
+              {{ item.status }}
             </p>
           </div>
         </div>
