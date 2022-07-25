@@ -3,39 +3,32 @@
     <div v-if="!requestSent" class="auth__form-logo-box">
       <LogoImage />
       <div class="auth__form-box">
-        <form class="auth__form" @submit.prevent="onSubmit">
-          <h3 class="paragraph u-fw-600 u-text-center u-mb-30">
-            REQUEST PASSWORD RESET
-          </h3>
-          <div class="auth__input-box u-mb-30">
-            <input
-              id="pwd"
-              v-model="email"
-              type="email"
-              placeholder="Enter your email address"
-              @keyup.enter="onSubmit"
-            />
-          </div>
-          <ButtonSpinner
-            :is-loading="processing"
-            :is-in-active="buttonDisabled"
-            value="Request reset"
-            :on-submit="onSubmit"
+        <h3 class="paragraph u-fw-600 u-text-center u-mb-30">
+          REQUEST EMAIL ACTIVATION
+        </h3>
+        <div class="auth__input-box u-mb-30">
+          <input
+            id="pwd"
+            v-model="email"
+            type="email"
+            class="input-element"
+            placeholder="Enter your email address"
+            @keyup.enter="onSubmit"
           />
-        </form>
-        <div class="auth__form-footer paragraph">
-          <span class="u-text-center"
-            >Remembered your password?
-            <router-link class="auth__link" to="/signin">Login</router-link>
-          </span>
         </div>
+        <ButtonSpinner
+          :is-loading="processing"
+          :is-in-active="buttonDisabled"
+          value="Request reset"
+          :on-submit="onSubmit"
+        />
       </div>
     </div>
     <div v-else class="auth__form-logo-box">
       <LogoImage />
       <div class="auth__form-box">
         <h3 class="paragraph u-fw-600 u-text-center u-mb-30">
-          REQUEST PASSWORD RESET
+          REQUEST EMAIL RESET
         </h3>
         <div class="auth__success-img-box u-mb-10">
           <img
@@ -46,7 +39,7 @@
         </div>
         <div class="paragraph u-text-center u-mb-30">
           <p>We just sent an email to you.</p>
-          <p>Follow the instructions to reset your password</p>
+          <p>Follow the instructions to activate your email.</p>
         </div>
         <p class="paragraph u-text-center u-color-grey707">
           Check in your promotions folder if you don’t see it in your inbox.
@@ -61,31 +54,25 @@ import { mapState } from 'vuex'
 
 export default {
   layout: 'blank',
-  middleware: 'authenticated',
-  data() {
-    return {
-      email: '',
-      processing: false,
-      resetEmailSent: false,
-      buttonDisabled: true,
-      validEmail: 0,
-      requestSent: false,
-    }
-  },
   head() {
     return {
-      title: 'Forgot Password | SenexPay',
+      title: 'Re-activation | SenexPay ',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content:
-            'If you have forgotten your SenexPay account password you can reset it at any time from here directly or you can click on the Forgot Password? link on the Sign in page',
+          content: 'Re-activate your SenexPay account',
         },
       ],
-      link: [
-        { rel: 'canonical', href: 'https://app.senexpay.com/forgot-password' },
-      ],
+    }
+  },
+  data() {
+    return {
+      email: '',
+      processing: false,
+      buttonDisabled: true,
+      validEmail: 0,
+      requestSent: false,
     }
   },
   computed: {
@@ -124,19 +111,16 @@ export default {
       }
       this.processing = true
       try {
-        await this.$api.resetPassword(payload)
+        await this.$api.reactivate(payload)
         await this.$auth.fetchUser()
         this.email = ''
         this.processing = false
-        this.resetEmailSent = true
         this.requestSent = true
       } catch (error) {
         this.processing = false
         this.$notify({
           type: 'error',
-          text:
-            error.response.data.message ||
-            'We encountered an issue making your request. Please try again.',
+          text: error.response.data.message,
         })
         // this.$toast.open({
         //   message: error.response.data[0],
@@ -149,11 +133,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.check-prom {
-  width: 100%;
-  max-width: 250px;
-  color: #707070;
-  margin: auto;
-}
-</style>
+<style scoped></style>
