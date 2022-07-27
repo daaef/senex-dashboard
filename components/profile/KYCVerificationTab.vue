@@ -80,14 +80,16 @@ export default {
       }
     },
     async startSession() {
-      const { data } = await this.getWebToken()
+      const {
+        data: { data },
+      } = await this.getWebToken()
 
       const {
         token,
         product,
-        callback_url,
+        callbackUrl,
         environment,
-        partner_id,
+        partnerId,
         signature,
         timestamp,
       } = data
@@ -96,10 +98,10 @@ export default {
         window.SmileIdentity({
           token,
           product,
-          callback_url,
+          callback_url: callbackUrl,
           environment,
           partner_details: {
-            partner_id,
+            partner_id: partnerId,
             signature,
             timestamp,
             name: 'SenexPay',
@@ -109,8 +111,8 @@ export default {
             theme_color: '#000',
           },
           id_selection: {
-            NG: ['NIN', 'NIN_SLIP', 'DRIVERS_LICENSE', 'VOTER_ID'],
-            ZA: ['NATIONAL_ID']
+            "NG": ['NIN', 'NIN_SLIP', 'DRIVERS_LICENSE', 'VOTER_ID'],
+            "ZA": ['NATIONAL_ID'],
           },
           onSuccess: () => {
             // button.textContent = 'Verify with Smile Identity'
@@ -120,6 +122,7 @@ export default {
           onClose: () => {
             // button.textContent = 'Verify with Smile Identity'
             // button.disabled = false
+            this.processing = false
           },
           onError: () => {
             // button.textContent = 'Verify with Smile Identity'
