@@ -66,14 +66,14 @@ export default {
     return {
       processing: false,
       showRegulation: false,
-      smile_id_products: ['enhanced_kyc', 'doc_verification'],
+      smile_id_products: ['enhanced_kyc', 'biometric_kyc', 'doc_verification'],
     }
   },
   methods: {
     async getWebToken() {
       this.processing = true
       try {
-        const data = await this.$api.getSmileToken({ product: 'enhanced_kyc' })
+        const data = await this.$api.getSmileToken({ product: 'biometric_kyc' })
         return data
       } catch (err) {
         this.processing = false
