@@ -18,6 +18,13 @@ export default {
           content: 'Profile',
         },
       ],
+      script: [
+        {
+          async: '',
+          src: 'https://cdn.smileidentity.com/inline/v1/js/script.min.js',
+          type: 'text/javascript',
+        },
+      ],
     }
   },
   data() {

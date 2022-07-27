@@ -48,9 +48,14 @@
     </div>
     <BtnSpinner
       :is-in-active="false"
-      :is-loading="false"
+      :is-loading="processing"
       value="Complete your KYC"
       setClass="u-mt-20"
+      :on-submit="
+        () => {
+          this.startSession()
+        }
+      "
     />
   </div>
 </template>
@@ -59,8 +64,70 @@
 export default {
   data() {
     return {
+      processing: false,
       showRegulation: false,
+      smile_id_products: ['enhanced_kyc', 'doc_verification'],
     }
+  },
+  methods: {
+    async getWebToken() {
+      this.processing = true
+      try {
+        const data = await this.$api.getSmileToken({ product: 'enhanced_kyc' })
+        return data
+      } catch (err) {
+        this.processing = false
+      }
+    },
+    async startSession() {
+      const { data } = await this.getWebToken()
+
+      const {
+        token,
+        product,
+        callback_url,
+        environment,
+        partner_id,
+        signature,
+        timestamp,
+      } = data
+
+      if (window.SmileIdentity) {
+        window.SmileIdentity({
+          token,
+          product,
+          callback_url,
+          environment,
+          partner_details: {
+            partner_id,
+            signature,
+            timestamp,
+            name: 'SenexPay',
+            logo_url:
+              'https://res.cloudinary.com/senexpay/image/upload/h_30/v1637597559/assets/m/senex-full-logo_ttfeay.png',
+            policy_url: 'https://www.senexpay.com/privacy-policy',
+            theme_color: '#000',
+          },
+          id_selection: {
+            NG: ['NIN', 'NIN_SLIP', 'DRIVERS_LICENSE', 'VOTER_ID'],
+            ZA: ['NATIONAL_ID']
+          },
+          onSuccess: () => {
+            // button.textContent = 'Verify with Smile Identity'
+            // button.disabled = false
+            // setActiveScreen(demoCompleteScreen)
+          },
+          onClose: () => {
+            // button.textContent = 'Verify with Smile Identity'
+            // button.disabled = false
+          },
+          onError: () => {
+            // button.textContent = 'Verify with Smile Identity'
+            // button.disabled = false
+          },
+        })
+      }
+    },
   },
 }
 </script>

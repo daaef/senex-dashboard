@@ -14,6 +14,7 @@ const URLS = {
   mailing: '/mailing/list',
   analytics: '/analytics',
   upload: '/upload',
+  smileToken: '/smile-identity/token',
   verify: '/identity/verify',
   otp: '/otp',
   setSecret: '/profile/secret',
@@ -166,13 +167,17 @@ export default ({ $axios }, inject) => {
 
     /* ------------------------------ IDENTITY ------------------------------ */
 
-    // Handle identify veification (return text to be written with ID)
+    // Get identify veification code (return text to be written with ID)
     // Response: { status, code, message }
     getProfileCode: () => $axios.get(URLS.verify),
 
-    // Handle identify verification { url, code }
+    // Submit identity documents { url, code }
     // Response: { status, message }
-    verifyIdentity: (data) => $axios.post(URLS.verify, data)
+    verifyIdentity: (data) => $axios.post(URLS.verify, data),
+
+    // Generate identify verification token { url, code }
+    // Response: { status, message }
+    getSmileToken: (data) => $axios.post(URLS.smileToken, data)
 
     /* ------------------------------ IDENTITY ------------------------------ */
   })
