@@ -4,6 +4,7 @@
     <h1 class="heading-primary u-text-left">
       {{ amount | formatMoney(currency) }}
     </h1>
+    <p class="u-mt-15">{{ count }} Orders</p>
   </div>
 </template>
 
@@ -19,6 +20,10 @@ export default {
       default: '',
     },
     amount: {
+      type: Number,
+      default: 0,
+    },
+    count: {
       type: Number,
       default: 0,
     },

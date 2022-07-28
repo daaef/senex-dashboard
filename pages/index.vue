@@ -81,16 +81,22 @@
         :amount="
           buy[selectedFiatCurrency.ticker] + sell[selectedFiatCurrency.ticker]
         "
+        :count="
+          buy[`${selectedFiatCurrency.ticker}_COUNT`] +
+          sell[`${selectedFiatCurrency.ticker}_COUNT`]
+        "
         :currency="selectedFiatCurrency.ticker"
       ></transaction-card>
       <transaction-card
         text="Total Buy"
         :amount="buy[selectedFiatCurrency.ticker]"
+        :count="buy[`${selectedFiatCurrency.ticker}_COUNT`]"
         :currency="selectedFiatCurrency.ticker"
       ></transaction-card>
       <transaction-card
         text="Total Sell"
         :amount="sell[selectedFiatCurrency.ticker]"
+        :count="sell[`${selectedFiatCurrency.ticker}_COUNT`]"
         :currency="selectedFiatCurrency.ticker"
       ></transaction-card>
     </div>
