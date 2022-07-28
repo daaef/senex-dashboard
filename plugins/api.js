@@ -175,6 +175,10 @@ export default ({ $axios }, inject) => {
     // Response: { status, message }
     verifyIdentity: (data) => $axios.post(URLS.verify, data),
 
+    // Notift submission of KYC { url, code }
+    // Response: { status, message }
+    notifySubmission: () => $axios.get(URLS.verify),
+
     // Generate identify verification token { url, code }
     // Response: { status, message }
     getSmileToken: (data) => $axios.post(URLS.smileToken, data)

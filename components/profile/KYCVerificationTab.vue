@@ -58,7 +58,7 @@
     </div>
     <BtnSpinner
       v-if="!isApproved"
-      :is-in-active="false"
+      :is-in-active="isUnderReview"
       :is-loading="processing"
       value="Complete your KYC"
       setClass="u-mt-20"
@@ -68,6 +68,9 @@
         }
       "
     />
+    <p v-if="isUnderReview" class="text-14" style="color: #FFCCCC; padding-top: 12px;">
+      <em> Your submission is being reviewed </em>
+    </p>
   </div>
 </template>
 
@@ -78,6 +81,7 @@ export default {
   data() {
     return {
       processing: false,
+      submitted: false,
       showRegulation: false,
       smile_id_products: ['enhanced_kyc', 'biometric_kyc', 'doc_verification'],
     }
@@ -86,6 +90,12 @@ export default {
     ...mapState('auth', ['user']),
     isApproved() {
       return this.user.profile.status == 'Approved'
+    },
+    isUnderReview() {
+      return (
+        ['Under review', 'Provisional'].includes(this.user.profile.status) ||
+        this.submitted
+      )
     },
   },
   methods: {
@@ -130,17 +140,15 @@ export default {
             theme_color: '#000',
           },
           id_selection: {
-            NG: ['NIN', 'NIN_SLIP', 'DRIVERS_LICENSE', 'VOTER_ID'],
-            ZA: ['NATIONAL_ID'],
+            'NG': ['NIN', 'NIN_SLIP', 'DRIVERS_LICENSE', 'VOTER_ID'],
+            'ZA': ['NATIONAL_ID'],
           },
           onSuccess: () => {
-            // button.textContent = 'Verify with Smile Identity'
-            // button.disabled = false
-            // setActiveScreen(demoCompleteScreen)
+            this.$api.notifySubmission()
+            this.processing = false
+            this.submitted = true
           },
           onClose: () => {
-            // button.textContent = 'Verify with Smile Identity'
-            // button.disabled = false
             this.processing = false
           },
           onError: () => {
