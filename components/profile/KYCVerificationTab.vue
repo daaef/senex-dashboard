@@ -85,7 +85,7 @@ export default {
   computed: {
     ...mapState('auth', ['user']),
     isApproved() {
-      return this.user.profile.status !== 'Approved'
+      return this.user.profile.status == 'Approved'
     },
   },
   methods: {
