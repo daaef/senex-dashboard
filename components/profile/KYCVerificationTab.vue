@@ -60,7 +60,7 @@
       v-if="!isApproved"
       :is-in-active="isUnderReview"
       :is-loading="processing"
-      value="Complete your KYC"
+      :value="isDeclined ? 'Re-submit KYC' : 'Complete your KYC'"
       setClass="u-mt-20"
       :on-submit="
         () => {
@@ -70,6 +70,9 @@
     />
     <p v-if="isUnderReview" class="text-14" style="color: #FFCCCC; padding-top: 12px;">
       <em> Your submission is being reviewed </em>
+    </p>
+    <p v-if="isDeclined" class="text-14" style="color: #FFCCCC; padding-top: 12px;">
+      <em> {{ user.profile.statusResultText }} </em>
     </p>
   </div>
 </template>
@@ -90,6 +93,9 @@ export default {
     ...mapState('auth', ['user']),
     isApproved() {
       return this.user.profile.status == 'Approved'
+    },
+    isDeclined() {
+      return this.user.profile.status == 'Declined'
     },
     isUnderReview() {
       return (
