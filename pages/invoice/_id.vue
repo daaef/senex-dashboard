@@ -357,7 +357,7 @@ export default {
             trade_id: this.orderID,
             code: this.selectedProvider.code,
           })
-          resp = data
+          resp = this.info.isOtc ? data.account : data
         } else {
           resp = await this.$axios.get('/get_address/', {
             params: { trade_id: this.orderID, network: this.activeNetwork },
