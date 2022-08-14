@@ -266,7 +266,7 @@ export default {
     },
     getDateOfBirth() {
       if (this.user.profile.dateOfBirth) {
-        return moment(new Date(this.user.dateOfBirth)).format('DD/MM/YYYY')
+        return moment(new Date(this.user.profile.dateOfBirth)).format('DD/MM/YYYY')
       }
       return ''
     },
