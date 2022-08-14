@@ -46,7 +46,11 @@
                 <span class="invoice__loader-dot invoice__loader-dot--3"></span>
               </span>
             </div>
-            <template v-if="providers && providers.length > 0 && !deposit">
+            <template
+              v-if="
+                providers && providers.length > 0 && !deposit && !info.isOtc
+              "
+            >
               <ProviderSwitch
                 :providers="providers"
                 @setSelectedProvider="setSelectedProvider"
@@ -231,7 +235,13 @@
               <div class="invoice__qr-code-box">
                 <template v-if="!processingPaymentDetails">
                   <vue-qrcode
-                    :value="networkAddress"
+                    :value="
+                      getQrCodeValue(
+                        info.cryptoCurrency,
+                        networkAddress,
+                        info.cryptoAmount
+                      )
+                    "
                     tag="img"
                     :options="{ width: 240 }"
                   />
@@ -480,6 +490,18 @@ export default {
       return this.coinsInfo.find(
         (coin) => coin.cur === this.info.cryptoCurrency
       ).flag
+    },
+    getQrCodeValue(coin, address, amount) {
+      if (coin === 'USDT') {
+        return address
+      }
+      let protocol = ''
+      if (coin === 'BTC') {
+        protocol = 'bitcoin:'
+      } else if (coin === 'ETH') {
+        protocol = 'ethereum:'
+      }
+      return `${protocol}${address}?amount=${amount}`
     },
   },
 }
