@@ -78,6 +78,11 @@ export default {
           'https://cdnjs.cloudflare.com/ajax/libs/ClientJS/0.1.11/client.min.js',
         type: 'text/javascript'
       },
+      {
+        async: '',
+        src: 'https://cdn.smileidentity.com/inline/v1/js/script.min.js',
+        type: 'text/javascript',
+      }
     ]
   },
 

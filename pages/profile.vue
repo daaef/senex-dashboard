@@ -18,6 +18,7 @@ export default {
           content: 'Profile',
         },
       ],
+      script: [],
     }
   },
   data() {
