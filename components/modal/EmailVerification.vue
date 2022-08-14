@@ -1,7 +1,13 @@
 <template>
   <div class="modal-box modal-box--border-grey">
     <div class="modal-box__header">
-      <span class="close" @click="$emit('closeModal')"></span>
+      <img
+        class="close"
+        src="/img/icons/close_round_modal_icon.svg"
+        alt="close"
+        @click="$emit('closeModal')"
+      />
+      <!-- <span class="close" @click="$emit('closeModal')"></span> -->
       <h3 class="heading-primary u-text-center u-mx-auto">
         Email Verification
       </h3>

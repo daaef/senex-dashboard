@@ -1,7 +1,13 @@
 <template>
   <div class="modal-box">
     <div class="modal-box__header">
-      <span class="close" @click="$emit('closeModal')"></span>
+      <img
+        class="close"
+        src="/img/icons/close_round_modal_icon.svg"
+        alt="close"
+        @click="$emit('closeModal')"
+      />
+      <!-- <span class="close" @click="$emit('closeModal')"></span> -->
       <h3 class="heading-primary u-text-center u-mx-auto">Extra Security</h3>
     </div>
     <div class="modal-box__body u-mb-40">

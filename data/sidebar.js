@@ -11,7 +11,7 @@ export default [
   },
   {
     name: 'Beneficiaries',
-    icon: '/img/icons/beneficiaries_icon.svg',
+    icon: '/img/icons/Icon-metro-users.svg',
     link: '/beneficiaries',
   },
   {
