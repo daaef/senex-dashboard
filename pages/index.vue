@@ -287,15 +287,21 @@ export default {
       totalOrderValue: 0,
       buy: {
         NGN: 0,
+        NGN_COUNT: 0,
         USD: 0,
+        USD_COUNT: 0,
         ZAR: 0,
+        ZAR_COUNT: 0,
         completed: 0,
         expired: 0,
       },
       sell: {
         NGN: 0,
+        NGN_COUNT: 0,
         USD: 0,
+        USD_COUNT: 0,
         ZAR: 0,
+        ZAR_COUNT: 0,
         completed: 0,
         expired: 0,
       },
@@ -411,10 +417,12 @@ export default {
       }
     },
     async getOrderAnalytics() {
+      const { data } = await this.$api.getOrderAnalytics()
       try {
-        const { data } = await this.$api.getOrderAnalytics()
-        this.buy = data.buy
-        this.sell = data.sell
+        if (data.buy || data.sell) {
+          this.buy = data.buy
+          this.sell = data.sell
+        }
       } catch (error) {
         this.$notify({
           title: 'Error',

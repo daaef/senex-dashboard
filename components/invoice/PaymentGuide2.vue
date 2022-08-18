@@ -101,6 +101,7 @@ export default {
   },
   methods: {
     onSubmit() {
+      console.log('payment guide', this.providers, this.networks)
       if (
         (this.orderType == 'sell' && this.networks.length > 0) ||
         (this.orderType == 'buy' && this.providers.length > 0)

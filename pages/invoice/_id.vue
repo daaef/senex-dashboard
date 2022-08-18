@@ -355,7 +355,7 @@ export default {
           // })
           const { data } = await this.$api.getProvider({
             trade_id: this.orderID,
-            code: this.selectedProvider.code,
+            code: this.selectedProvider.code || 'otc',
           })
           resp = data
         } else {

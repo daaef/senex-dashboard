@@ -421,6 +421,9 @@ export default {
       this.$store.commit('invoice/setInstructionChecked', true)
     },
     async getNetworksOrProviders() {
+      if (this.info.isOtc) {
+        return
+      }
       if (this.info.type == 'sell') {
         let resp = await this.$axios.get('/networks/', {
           params: {
