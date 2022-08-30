@@ -2,10 +2,18 @@
   <div class="u-d-flex u-d-flex--col u-flex-1">
     <label class="paragraph" for="accountNumber">New Beneficiary Details</label>
     <div class="o-form__input-box">
-      <input v-model="accountNumber" name="accountNumber" type="text" class="o-form__input" placeholder="Enter bank account number" />
+      <input
+        v-model="accountNumber"
+        name="accountNumber"
+        type="text"
+        class="o-form__input"
+        placeholder="Enter bank account number"
+      />
     </div>
     <div class="o-form__input-box u-pointer" @click="openPopUp()">
-      <span class="o-form__input u-dim">{{ selectedBank.label === '' ? 'Select your bank' : selectedBank.label }}</span>
+      <span class="o-form__input u-dim">{{
+        selectedBank.label === '' ? 'Select your bank' : selectedBank.label
+      }}</span>
       <img
         src="/img/grey-down-arrow.svg"
         alt="eye"
@@ -14,7 +22,9 @@
       />
     </div>
     <div class="o-form__input-box o-form__input-box--bg-dark">
-      <span class="o-form__input u-dim">{{ !accountName ? 'Beneficiary' : accountName }}</span>
+      <span class="o-form__input u-dim">{{
+        !accountName ? 'Beneficiary' : accountName
+      }}</span>
     </div>
     <CheckoutButtonSet :down="true" :left="backBtn()" :right="continueBtn()" />
   </div>
@@ -25,6 +35,7 @@ import { mapState } from 'vuex'
 
 import backBtn from '@/data/defaultBackButton.js'
 import continueBtn from '@/data/defaultContinueButton.js'
+import { COOKIE_SAVED_CHECKOUT, COOKIE_SAVED_ORDER, COOKIE_SAVED_ORDER_REVIEW_BENEF, COOKIE_SAVED_RATE_OBJECT } from '~/data/constants'
 
 export default {
   layout: 'order',
@@ -32,16 +43,16 @@ export default {
     return {
       accountNumber: '',
       accountName: '',
-      processing: false
+      processing: false,
     }
   },
   computed: {
     ...mapState({
-      order: state => state.order.orderDetail,
-      selectedBank: state => state.order.selectedBank,
-      beneficiaries: state => state.order.beneficiaries,
-      signedIn: state => state.order.signedIn
-    })
+      order: (state) => state.order.orderDetail,
+      selectedBank: (state) => state.order.selectedBank,
+      beneficiaries: (state) => state.order.beneficiaries,
+      signedIn: (state) => state.order.signedIn,
+    }),
   },
   watch: {
     accountNumber(val) {
@@ -57,7 +68,7 @@ export default {
       } else {
         this.accountName = ''
       }
-    }
+    },
   },
   methods: {
     continueBtn() {
@@ -65,46 +76,59 @@ export default {
         ...continueBtn,
         isInActive: !this.accountName,
         isLoading: this.processing,
-        onSubmit: () => { this.addRecipientAndPlaceOrder() }
+        onSubmit: () => {
+          this.addRecipientAndPlaceOrder()
+        },
       }
     },
     backBtn() {
       return {
         ...backBtn,
         isInActive: false,
-        onSubmit: this.cancelTransaction
+        onSubmit: this.cancelTransaction,
       }
     },
     openPopUp() {
       // this.$emit('control-pop-up', true)
-       this.$store.commit('order/setOpenList', true)
+      this.$store.commit('order/setOpenList', true)
     },
     async accountVerification() {
       // this.processing = true
-      this.$store.commit('order/changeLoading', {show: true, text: 'Fetching beneficiary name...'})
+      this.$store.commit('order/changeLoading', {
+        show: true,
+        text: 'Fetching beneficiary name...',
+      })
       try {
-        const { data: { data }} = await this.$axios.post('https://api.ravepay.co/flwv3-pug/getpaidx/api/resolve_account',
-        {
-          recipientaccount: this.accountNumber,
-          destbankcode: this.selectedBank.value,
-          PBFPubKey: 'FLWPUBK-0e398537e56c2d2e0ae05fceb68a9590-X'
-        })
+        const {
+          data: { data },
+        } = await this.$axios.post(
+          'https://api.ravepay.co/flwv3-pug/getpaidx/api/resolve_account',
+          {
+            recipientaccount: this.accountNumber,
+            destbankcode: this.selectedBank.value,
+            PBFPubKey: 'FLWPUBK-0e398537e56c2d2e0ae05fceb68a9590-X',
+          }
+        )
 
         this.accountName = data.data.accountname
-        if (data.data.accountname == null || data.data.accountname == '' || data.data.accountname == 'null') {
+        if (
+          data.data.accountname == null ||
+          data.data.accountname == '' ||
+          data.data.accountname == 'null'
+        ) {
           // this.$store.commit('order/changeLoading', {show: false})
           this.$notify({
             type: 'error',
-            text: 'Account number and bank mismatch.' // error.response.data.message
+            text: 'Account number and bank mismatch.', // error.response.data.message
           })
         }
-        this.$store.commit('order/changeLoading', {show: false, text: ''})
-      } catch(e) {
-          this.$store.commit('order/changeLoading', {show: false, text: ''})
-          this.$notify({
-            type: 'error',
-            text: 'Account number and bank mismatch.' // error.response.data.message
-          })
+        this.$store.commit('order/changeLoading', { show: false, text: '' })
+      } catch (e) {
+        this.$store.commit('order/changeLoading', { show: false, text: '' })
+        this.$notify({
+          type: 'error',
+          text: 'Account number and bank mismatch.', // error.response.data.message
+        })
       } finally {
         // console.log('accout name',this.accountName)
         // this.processing = false
@@ -119,48 +143,53 @@ export default {
         accountNumber: this.accountNumber,
         accountName: this.accountName,
         bank: this.selectedBank.value,
-        bankName: this.selectedBank.label
+        bankName: this.selectedBank.label,
       }
       // this.$store.commit('order/addBeneficiary', { ...payload, bankLabel: this.selectedBank.label })
-      this.$store.dispatch('order/addBeneficiary', { ...payload, bankLabel: this.selectedBank.label })
+      this.$store.dispatch('order/addBeneficiary', {
+        ...payload,
+        bankLabel: this.selectedBank.label,
+      })
 
       if (this.signedIn == 1) {
         this.getOrderData()
       } else if (this.signedIn == 2) {
-          try{
-            await this.$api.updateProfile({bankAccounts: {
-              data: this.beneficiaries
-            }})
-            this.getOrderData()
-            // console.log(data)
-          } catch (e) {
-            // console.log(e)
-            // this.fetchBeneficiaries()
-          } finally {
-            this.processing = false
-          }
+        try {
+          await this.$api.updateProfile({
+            bankAccounts: {
+              data: this.beneficiaries,
+            },
+          })
+          this.getOrderData()
+          // console.log(data)
+        } catch (e) {
+          // console.log(e)
+          // this.fetchBeneficiaries()
+        } finally {
+          this.processing = false
+        }
       }
-      
     },
     getOrderData() {
       const data = {
         accountNumber: this.accountNumber,
         accountName: this.accountName,
         bank: this.selectedBank.value,
-        bankLabel: this.selectedBank.label
+        bankLabel: this.selectedBank.label,
       }
       this.$emit('getOrderData', data)
     },
     terminateSession() {
-      this.$cookiz.remove('a2snXbe')
-      this.$cookiz.remove('eJ6Ydkmr035')
-      this.$cookiz.remove('ftyp5h2nl')
+      this.$cookiz.remove(COOKIE_SAVED_ORDER)
+      this.$cookiz.remove(COOKIE_SAVED_RATE_OBJECT)
+      this.$cookiz.remove(COOKIE_SAVED_CHECKOUT)
+      this.$cookiz.remove(COOKIE_SAVED_ORDER_REVIEW_BENEF)
     },
     cancelTransaction() {
       this.terminateSession()
       this.$router.push('/order/start')
-    }
-  }
+    },
+  },
 }
 </script>
 

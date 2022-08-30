@@ -110,6 +110,7 @@ import formatMoney from '~/filters/format-money'
 import backBtn from '@/data/defaultBackButton.js'
 import continueBtn from '@/data/defaultContinueButton.js'
 import banks from '@/data/allBanks.js'
+import { COOKIE_SAVED_ORDER_REVIEW_BENEF } from '~/data/constants'
 
 export default {
   props: {
@@ -121,6 +122,9 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  beforeMount() {
+    this.$cookiz.set(COOKIE_SAVED_ORDER_REVIEW_BENEF, this.beneficiary)
   },
   data() {
     return {
@@ -202,6 +206,7 @@ export default {
         isInActive: false,
         onSubmit: () => {
           this.$emit('controlShowReview', false)
+          this.$emit('controlModal', true)
         },
       }
     },

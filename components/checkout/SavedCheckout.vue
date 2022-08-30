@@ -18,6 +18,11 @@
 
 import backBtn from '@/data/defaultBackButton.js'
 import continueBtn from '@/data/defaultContinueButton.js'
+import {
+  COOKIE_SAVED_CHECKOUT,
+  COOKIE_SAVED_ORDER,
+  COOKIE_SAVED_ORDER_REVIEW_BENEF,
+} from '~/data/constants'
 export default {
   data() {
     return {
@@ -33,7 +38,7 @@ export default {
         ...continueBtn,
         isInActive: false,
         onSubmit: () => {
-          this.$cookiz.remove('ftyp5h2nl')
+          this.$cookiz.remove(COOKIE_SAVED_CHECKOUT)
           this.$emit('change-saved-to', false)
         },
       },
@@ -47,8 +52,9 @@ export default {
   methods: {
     backToCalculator() {
       // this.$emit('change-saved-to', false)
-      this.$cookiz.remove('ftyp5h2nl') //a2snXbe
-      this.$cookiz.remove('a2snXbe')
+      this.$cookiz.remove(COOKIE_SAVED_CHECKOUT)
+      this.$cookiz.remove(COOKIE_SAVED_ORDER)
+      this.$cookiz.remove(COOKIE_SAVED_ORDER_REVIEW_BENEF)
       // this.$store.commit('order/resetOrderDetail')
       this.$router.push('/order/start')
       // setTimeout(() => {

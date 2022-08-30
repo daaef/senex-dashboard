@@ -38,6 +38,12 @@ import { mapState } from 'vuex'
 
 import backBtn from '@/data/defaultBackButton.js'
 import continueBtn from '@/data/defaultContinueButton.js'
+import {
+  COOKIE_SAVED_CHECKOUT,
+  COOKIE_SAVED_ORDER,
+  COOKIE_SAVED_ORDER_REVIEW_BENEF,
+  COOKIE_SAVED_RATE_OBJECT,
+} from '~/data/constants'
 
 export default {
   data() {
@@ -111,9 +117,10 @@ export default {
       this.$emit('getOrderData', data)
     },
     terminateSession() {
-      this.$cookiz.remove('a2snXbe')
-      this.$cookiz.remove('eJ6Ydkmr035')
-      this.$cookiz.remove('ftyp5h2nl')
+      this.$cookiz.remove(COOKIE_SAVED_ORDER)
+      this.$cookiz.remove(COOKIE_SAVED_RATE_OBJECT)
+      this.$cookiz.remove(COOKIE_SAVED_CHECKOUT)
+      this.$cookiz.remove(COOKIE_SAVED_ORDER_REVIEW_BENEF)
     },
     cancelTransaction() {
       this.terminateSession()

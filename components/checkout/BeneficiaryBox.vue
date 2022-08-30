@@ -8,6 +8,7 @@
         :beneficiary="orderData"
         @controlShowReview="controlShowReview"
         @placeOrder="placeOrder"
+        @controlModal="controlModal"
         :processing="processing"
       />
     </template>
@@ -80,7 +81,7 @@
           <div class="benef-overlay container">
             <TwoFactor
               @controlModal="controlModal"
-              @controlShowReview="controlShowReview"
+              @setShowReviewIfSaved="setShowReviewIfSaved"
               @placeOrder="placeOrder"
               :mobile="user.profile.user.mobile"
               :email="user.profile.user.email"
@@ -98,6 +99,12 @@ import { mapState } from 'vuex'
 
 import banks from '@/data/allBanks.js'
 import getDeviceInfo from '@/data/getDeviceInfo.js'
+import {
+  COOKIE_SAVED_CHECKOUT,
+  COOKIE_SAVED_ORDER,
+  COOKIE_SAVED_ORDER_REVIEW_BENEF,
+  COOKIE_SAVED_RATE_OBJECT,
+} from '~/data/constants'
 
 export default {
   data() {
@@ -127,12 +134,8 @@ export default {
     this.$store.commit('order/setIsCheckoutCardOpen', false)
     this.checkOrderLimit()
   },
-  mounted() {
-    if (this.signedIn == 2) {
-      if (!this.isLimitExceeded) {
-        // this.openModal = true
-      }
-    } else {
+  async mounted() {
+    if (this.signedIn != 2) {
       this.savedTab = false
     }
     this.$store.commit('order/changeCurrentOrderStep', 3)
@@ -159,6 +162,18 @@ export default {
     },
     controlShowReview(val) {
       this.showReview = val
+    },
+    async setShowReviewIfSaved() {
+      const savedReviewBeneficiary = await this.$cookiz.get(
+        COOKIE_SAVED_ORDER_REVIEW_BENEF
+      )
+      if (
+        savedReviewBeneficiary &&
+        Object.keys(savedReviewBeneficiary).length > 0
+      ) {
+        this.orderData = savedReviewBeneficiary
+        this.showReview = true
+      }
     },
     getPopUpList() {
       if (!this.savedTab) {
@@ -247,9 +262,10 @@ export default {
       }
     },
     terminateSession() {
-      this.$cookiz.remove('a2snXbe')
-      this.$cookiz.remove('eJ6Ydkmr035')
-      this.$cookiz.remove('ftyp5h2nl')
+      this.$cookiz.remove(COOKIE_SAVED_ORDER)
+      this.$cookiz.remove(COOKIE_SAVED_RATE_OBJECT)
+      this.$cookiz.remove(COOKIE_SAVED_CHECKOUT)
+      this.$cookiz.remove(COOKIE_SAVED_ORDER_REVIEW_BENEF)
     },
     getOrderData(data) {
       this.orderData = data

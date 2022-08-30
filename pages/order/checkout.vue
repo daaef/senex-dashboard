@@ -59,6 +59,12 @@
 
 <script>
 import { mapState } from 'vuex'
+import {
+  COOKIE_SAVED_CHECKOUT,
+  COOKIE_SAVED_ORDER,
+  COOKIE_SAVED_ORDER_REVIEW_BENEF,
+  COOKIE_SAVED_RATE_OBJECT,
+} from '~/data/constants'
 
 export default {
   layout: 'order',
@@ -135,21 +141,22 @@ export default {
       this.$store.commit('order/setSignedIn', 2)
       // this.signedIn = true
     }
-    const crypto_fiat = this.$cookiz.get('eJ6Ydkmr035')
+    const crypto_fiat = this.$cookiz.get(COOKIE_SAVED_RATE_OBJECT)
     this.savedCryptoFiat = crypto_fiat
     // this.limits = this.$cookiz.get('limpsqer')
-    const order = this.$cookiz.get('a2snXbe')
+    const order = this.$cookiz.get(COOKIE_SAVED_ORDER)
     let timeNow = new Date()
     if (!order) {
       this.$router.push('/order/start')
     }
     if (order) {
       if (order.expires < timeNow.getTime()) {
-        this.$cookiz.remove('ftyp5h2nl')
-        this.$cookiz.remove('a2snXbe')
+        this.$cookiz.remove(COOKIE_SAVED_CHECKOUT)
+        this.$cookiz.remove(COOKIE_SAVED_ORDER)
+        this.$cookiz.remove(COOKIE_SAVED_ORDER_REVIEW_BENEF)
         this.$router.push('/order/start')
       }
-      const saved = this.$cookiz.get('ftyp5h2nl')
+      const saved = this.$cookiz.get(COOKIE_SAVED_CHECKOUT)
       if (saved) {
         this.hasSaved = true
       }

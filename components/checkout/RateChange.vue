@@ -103,6 +103,12 @@
 import { mapState } from 'vuex'
 import continueBtn from '@/data/defaultContinueButton.js'
 import formatMoney from '~/filters/format-money'
+import {
+  COOKIE_SAVED_CHECKOUT,
+  COOKIE_SAVED_ORDER,
+  COOKIE_SAVED_ORDER_REVIEW_BENEF,
+  COOKIE_SAVED_RATE_OBJECT,
+} from '~/data/constants'
 
 export default {
   props: {
@@ -304,7 +310,7 @@ export default {
 
         newOrder.type = newOrder.orderType
 
-        this.$cookiz.set('a2snXbe', newOrder)
+        this.$cookiz.set(COOKIE_SAVED_ORDER, newOrder)
 
         let timeNow = new Date()
 
@@ -330,9 +336,10 @@ export default {
       return true
     },
     terminateSession() {
-      this.$cookiz.remove('a2snXbe')
-      this.$cookiz.remove('eJ6Ydkmr035')
-      this.$cookiz.remove('ftyp5h2nl')
+      this.$cookiz.remove(COOKIE_SAVED_ORDER)
+      this.$cookiz.remove(COOKIE_SAVED_RATE_OBJECT)
+      this.$cookiz.remove(COOKIE_SAVED_CHECKOUT)
+      this.$cookiz.remove(COOKIE_SAVED_ORDER_REVIEW_BENEF)
     },
     cancelTransaction() {
       this.terminateSession()

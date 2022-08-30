@@ -1,16 +1,26 @@
 <template>
   <div class="checkout u-text-center">
-    <div class="u-flex-1 u-d-flex u-d-flex--col u-d-flex--align-center u-d-flex--justify-center u-p-20">
+    <div
+      class="u-flex-1 u-d-flex u-d-flex--col u-d-flex--align-center u-d-flex--justify-center u-p-20"
+    >
       <!-- <span class="heading-primary">👏</span> -->
       <template v-if="!checking">
-        <img src="/img/clapping-emoji.png" alt="clap" class="clap u-mb-sm">
+        <img src="/img/clapping-emoji.png" alt="clap" class="clap u-mb-sm" />
         <span class="heading-primary u-mb-sm">KYC LIMIT</span>
         <div class="kyc-1-content u-mb-sm">
           <p class="paragraph u-mb-5">Clap clap. You hit the big leagues!</p>
           <p class="paragraph">To trade above $40, please complete your KYC.</p>
         </div>
-        <a href="/profile" target="_blank" @click="checking = true" class="u-btn u-mb-sm">Complete KYC</a>
-        <span @click="terminateAndStartNew" class="u-color-primary u-pointer">I'll trade a lower amount instead.</span>
+        <a
+          href="/profile"
+          target="_blank"
+          @click="checking = true"
+          class="u-btn u-mb-sm"
+          >Complete KYC</a
+        >
+        <span @click="terminateAndStartNew" class="u-color-primary u-pointer"
+          >I'll trade a lower amount instead.</span
+        >
       </template>
       <template v-else>
         <div class="loading-circle u-mb-sm">
@@ -22,34 +32,46 @@
         <span class="heading-primary u-mb-sm">KYC VERIFICATION PENDING</span>
         <div class="kyc-1-content u-mb-sm">
           <p class="paragraph">
-            Please hold tight, we are waiting for your KYC verification before you can continue...
+            Please hold tight, we are waiting for your KYC verification before
+            you can continue...
           </p>
         </div>
-        <button @click="terminateAndStartNew" class="u-btn u-mb-sm">Create new trade</button>
-        <a href="/profile" target="_blank" class="u-color-primary u-pointer">Complete your KYC</a>
+        <button @click="terminateAndStartNew" class="u-btn u-mb-sm">
+          Create new trade
+        </button>
+        <a href="/profile" target="_blank" class="u-color-primary u-pointer"
+          >Complete your KYC</a
+        >
       </template>
     </div>
   </div>
 </template>
 
 <script>
+import {
+  COOKIE_SAVED_CHECKOUT,
+  COOKIE_SAVED_ORDER,
+  COOKIE_SAVED_ORDER_REVIEW_BENEF,
+  COOKIE_SAVED_RATE_OBJECT,
+} from '~/data/constants'
 export default {
   data() {
     return {
-      checking: false
+      checking: false,
     }
   },
   methods: {
     terminateSession() {
-      this.$cookiz.remove('a2snXbe')
-      this.$cookiz.remove('eJ6Ydkmr035')
-      this.$cookiz.remove('ftyp5h2nl')
+      this.$cookiz.remove(COOKIE_SAVED_ORDER)
+      this.$cookiz.remove(COOKIE_SAVED_RATE_OBJECT)
+      this.$cookiz.remove(COOKIE_SAVED_CHECKOUT)
+      this.$cookiz.remove(COOKIE_SAVED_ORDER_REVIEW_BENEF)
     },
     terminateAndStartNew() {
       this.terminateSession()
       this.$router.push('/order/start')
-    }
-  }
+    },
+  },
 }
 </script>
 

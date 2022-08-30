@@ -7,7 +7,11 @@
       <div class="order-main">
         <section class="order-main__left-container">
           <div class="order-main__left-content">
-            <TradeCalculator :queryCoin="queryCoin" :isQueryBuy="isQueryBuy" :queryCur="queryCur" />
+            <TradeCalculator
+              :queryCoin="queryCoin"
+              :isQueryBuy="isQueryBuy"
+              :queryCur="queryCur"
+            />
             <!-- <OrderLimitExceeded /> -->
           </div>
         </section>
@@ -23,12 +27,18 @@
 </template>
 
 <script>
+import {
+  COOKIE_SAVED_CHECKOUT,
+  COOKIE_SAVED_ORDER,
+  COOKIE_SAVED_ORDER_REVIEW_BENEF,
+} from '~/data/constants'
 export default {
   layout: 'order',
   async beforeMount() {
-    const savedOrder = await this.$cookiz.get('a2snXbe')
+    const savedOrder = await this.$cookiz.get(COOKIE_SAVED_ORDER)
     if (savedOrder) {
-      this.$cookiz.set('ftyp5h2nl', true)
+      this.$cookiz.set(COOKIE_SAVED_CHECKOUT, true)
+      this.$cookiz.remove(COOKIE_SAVED_ORDER_REVIEW_BENEF)
       this.$router.push('/order/checkout')
       // this.isLoading = false
     } else {
@@ -58,10 +68,13 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'Your hassle free checkout begins here at SenexPay. Buy & Sell Bitcoin and USDT in minutes from anywhere.'
-        }
+          content:
+            'Your hassle free checkout begins here at SenexPay. Buy & Sell Bitcoin and USDT in minutes from anywhere.',
+        },
       ],
-      link: [{ rel: 'canonical', href: 'https://app.senexpay.com/order/start' }]
+      link: [
+        { rel: 'canonical', href: 'https://app.senexpay.com/order/start' },
+      ],
     }
   },
   data() {
@@ -69,9 +82,9 @@ export default {
       isLoading: true,
       isQueryBuy: true,
       queryCoin: 'btc',
-      queryCur: 'ngn'
+      queryCur: 'ngn',
     }
-  }
+  },
 }
 </script>
 

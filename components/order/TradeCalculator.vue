@@ -177,6 +177,7 @@ import { Money } from 'v-money'
 import { flagByCurrency, flagByCountryCode } from '@/data/flags.js'
 import coins from '@/data/coins.js'
 import fiats from '@/data/fiats.js'
+import { COOKIE_SAVED_ORDER, COOKIE_SAVED_RATE_OBJECT } from '~/data/constants'
 export default {
   filters: {
     toCurrency(price) {
@@ -486,7 +487,7 @@ export default {
         const crypto_fiat = this.rates[`${thisCoin}_${this.currentFiat.cur}`]
         const type = this.buyTab ? 'buy' : 'sell'
         const usd_fiat = crypto_fiat[`USD_${this.currentFiat.cur}`]
-        const token = await this.$recaptcha.execute('a2snXbe')
+        const token = await this.$recaptcha.execute(COOKIE_SAVED_ORDER)
         const crypto_usd = crypto_fiat[type] / usd_fiat[type]
 
         const rateObj = crypto_fiat
@@ -507,11 +508,10 @@ export default {
           platformFeeCap: this.config.platformFeeCap,
         }
 
-        this.$cookiz.set('a2snXbe', order)
-        this.$cookiz.set('eJ6Ydkmr035', rateObj)
+        this.$cookiz.set(COOKIE_SAVED_ORDER, order)
+        this.$cookiz.set(COOKIE_SAVED_RATE_OBJECT, rateObj)
         this.$cookiz.set('limpsqer', this.limits)
-
-        // console.log(this.$cookiz.get('eJ6Ydkmr035'))
+        
         this.isLoading = false
         this.$ga.event({
           eventCategory: 'Calculator continue button',
