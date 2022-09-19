@@ -61,7 +61,7 @@
       :is-in-active="isUnderReview"
       :is-loading="processing"
       :value="isDeclined ? 'Re-submit KYC' : 'Complete your KYC'"
-      setClass="u-mt-20"
+      class="u-mt-20"
       :on-submit="
         () => {
           this.startSession()
@@ -74,6 +74,23 @@
     <p v-if="isDeclined" class="text-14" style="color: #FFCCCC; padding-top: 12px;">
       <em> {{ user.profile.statusResultText }} </em>
     </p>
+
+    <vue-final-modal v-model="showModal">
+      <div class="kyc--overlay" @click.self="showModal = false">
+        <div class="kyc--container flex u-d-flex--col">
+          <div class="img--container">
+            <img src="/img/success.png" alt="Success Image">
+          </div>
+          <div class="text--btn--content">
+            <h3>Smooth</h3>
+            <p>Your KYC verification was successful</p>
+            <button class="b-not-found__btn" @click="showModal = false">
+              Done
+            </button>
+          </div>
+        </div>
+      </div>
+    </vue-final-modal>
   </div>
 </template>
 
@@ -85,6 +102,7 @@ export default {
     return {
       processing: false,
       submitted: false,
+      showModal: false,
       showRegulation: false,
       smile_id_products: ['enhanced_kyc', 'biometric_kyc', 'doc_verification'],
     }
@@ -153,6 +171,7 @@ export default {
             this.$api.notifySubmission()
             this.processing = false
             this.submitted = true
+            this.showModal = true
           },
           onClose: () => {
             this.processing = false
@@ -168,4 +187,48 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+  .kyc--overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    .kyc--container {
+      padding: 50px;
+      border-radius: 30px;
+      background: #111219;
+      box-shadow: 0px 0px 6px #707070;
+      border: 1px solid #707070;
+      text-align: center;
+      max-width: 100%;
+      .img--container {
+        padding: 20px 20px 0;
+        max-width: 100%;
+        height: 250px;
+        img {
+          height: 100%;
+          max-width: 100%;
+        }
+      }
+      .text--btn--content {
+        margin-top: -50px;
+      }
+      h3 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        line-height: 1.2em;
+        margin-top: 20px;
+      }
+      p {
+        line-height: 1.2em;
+        margin: 35px 0;
+        font-size: 1.9rem;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  }
+</style>

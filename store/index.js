@@ -6,11 +6,13 @@ export const state = () => ({
       name: 'Naira',
       ticker: 'NGN',
       flag: '/img/flag/ng.svg',
+      locale: 'en-NG'
     },
     {
       name: 'Rand',
       ticker: 'ZAR',
       flag: '/img/flag/za.svg',
+      locale: 'en-ZA'
     }
   ],
   cryptoCurrencies: [
@@ -24,6 +26,7 @@ export const state = () => ({
     name: 'Naira',
     ticker: 'NGN',
     flag: '',
+    locale: 'en-NG'
   },
   selectedCryptoCurrency: {
     name: 'Bitcoin',

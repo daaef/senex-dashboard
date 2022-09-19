@@ -35,12 +35,50 @@
         <p class="u-mb-5">First name</p>
         <div class="profile__input-box profile__input-box--disabled">
           <input type="text" :value="user.firstName" disabled />
+          <div class="lock-icon" @mouseover="showTooltip(1)" @mouseout="hideTooltip(1)">
+            <div class="mr-2 cursor-pointer">
+              <i class='bx bxs-lock'></i>
+            </div>
+            <div id="tooltip1" role="tooltip" class="z-20 -mt-20 w-64 absolute transition duration-150 ease-in-out left-0 ml-8 shadow-lg bg-white p-4 rounded hidden">
+              <svg class="absolute left-0 -ml-2 bottom-0 top-0 h-full" width="9px" height="16px" viewBox="0 0 9 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="Tooltips-" transform="translate(-874.000000, -1029.000000)" fill="#FFFFFF">
+                    <g id="Group-3-Copy-16" transform="translate(850.000000, 975.000000)">
+                      <g id="Group-2" transform="translate(24.000000, 0.000000)">
+                        <polygon id="Triangle" transform="translate(4.500000, 62.000000) rotate(-90.000000) translate(-4.500000, -62.000000) " points="4.5 57.5 12.5 66.5 -3.5 66.5"></polygon>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+              <p>Your profile information is locked for security reasons. Please contact help to make changes.</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="u-mb-30">
         <p class="u-mb-5">Last name</p>
         <div class="profile__input-box profile__input-box--disabled">
           <input type="text" :value="user.lastName" disabled />
+          <div class="lock-icon" @mouseover="showTooltip(2)" @mouseout="hideTooltip(2)">
+            <div class="mr-2 cursor-pointer">
+              <i class='bx bxs-lock'></i>
+            </div>
+            <div id="tooltip2" role="tooltip" class="z-20 -mt-20 w-64 absolute transition duration-150 ease-in-out left-0 ml-8 shadow-lg bg-white p-4 rounded hidden">
+              <svg class="absolute left-0 -ml-2 bottom-0 top-0 h-full" width="9px" height="16px" viewBox="0 0 9 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="Tooltips-" transform="translate(-874.000000, -1029.000000)" fill="#FFFFFF">
+                    <g id="Group-3-Copy-16" transform="translate(850.000000, 975.000000)">
+                      <g id="Group-2" transform="translate(24.000000, 0.000000)">
+                        <polygon id="Triangle" transform="translate(4.500000, 62.000000) rotate(-90.000000) translate(-4.500000, -62.000000) " points="4.5 57.5 12.5 66.5 -3.5 66.5"></polygon>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+              <p>Your profile information is locked for security reasons. Please contact help to make changes.</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="u-mb-30">
@@ -123,10 +161,29 @@
         <p class="u-mb-5">Date of birth</p>
         <div class="profile__input-box">
           <input
-            type="text"
+            type="date"
             :value="getDateOfBirth()"
-            :disabled="isDateOfBirthSet()"
+            :disabled="!isDateOfBirthSet"
           />
+          <div class="lock-icon" @mouseover="showTooltip(3)" @mouseout="hideTooltip(3)">
+            <div class="mr-2 cursor-pointer">
+              <i class='bx bxs-lock'></i>
+            </div>
+            <div id="tooltip3" role="tooltip" class="z-20  w-64 absolute transition duration-150 ease-in-out left-0 ml-8 hidden">
+              <svg class="absolute left-0 -ml-2 bottom-0 top-0 h-full" width="9px" height="16px" viewBox="0 0 9 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="Tooltips-" transform="translate(-874.000000, -1029.000000)" fill="#FFFFFF">
+                    <g id="Group-3-Copy-16" transform="translate(850.000000, 975.000000)">
+                      <g id="Group-2" transform="translate(24.000000, 0.000000)">
+                        <polygon id="Triangle" transform="translate(4.500000, 62.000000) rotate(-90.000000) translate(-4.500000, -62.000000) " points="4.5 57.5 12.5 66.5 -3.5 66.5"></polygon>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+              <p>Your profile information is locked for security reasons. Please contact help to make changes.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -203,6 +260,12 @@ export default {
     }
   },
   computed: {
+    isDateOfBirthSet() {
+      if (this.user?.profile?.dateOfBirth) {
+        return true
+      }
+      return false
+    },
     ...mapState('auth', ['user']),
   },
   mounted() {
@@ -211,6 +274,32 @@ export default {
     this.url = process.env.SENEX_LANDING_SITE_URL
   },
   methods: {
+    showTooltip(flag) {
+      switch (flag) {
+        case 1:
+          document.getElementById("tooltip1").classList.remove("hidden");
+          break;
+        case 2:
+          document.getElementById("tooltip2").classList.remove("hidden");
+          break;
+        case 3:
+          document.getElementById("tooltip3").classList.remove("hidden");
+          break;
+      }
+    },
+    hideTooltip(flag) {
+      switch (flag) {
+        case 1:
+          document.getElementById("tooltip1").classList.add("hidden");
+          break;
+        case 2:
+          document.getElementById("tooltip2").classList.add("hidden");
+          break;
+        case 3:
+          document.getElementById("tooltip3").classList.add("hidden");
+          break;
+      }
+    },
     openSecretKeyModal(mode) {
       this.mode = mode
       this.secretKeyModal = true
@@ -270,12 +359,6 @@ export default {
       }
       return ''
     },
-    isDateOfBirthSet() {
-      if (this.user.profile.dateOfBirth) {
-        return true
-      }
-      return false
-    },
     computeSrc() {
       if (this.user && this.user.profile && this.user.profile.photo) {
         return this.user.profile.photo
@@ -332,4 +415,48 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+  .profile__input-box {
+    position: relative;
+    input {
+      &:disabled {
+        & ~ .lock-icon {
+          display: inline;
+        }
+      }
+      & ~ .lock-icon {
+        position: absolute;
+        right: 13px;
+        top: 0;
+        font-size: 20px;
+        transform: translateY(50%);
+        display: none;
+        .cursor-pointer {
+          line-height: 0;
+        }
+      }
+    }
+  }
+  #tooltip3 {
+    top: 0;
+    transform: translateY(-35%);
+  }
+  [role="tooltip"] {
+    background: #404043;
+    border-radius: 10px;
+    padding: 15px;
+    svg {
+      g {
+        g {
+          fill: #404043;
+        }
+      }
+    }
+    p {
+      color: #fafafa;
+      font-weight: 500;
+      line-height: 1.2em;
+      font-size: 1.5rem;
+    }
+  }
+</style>
