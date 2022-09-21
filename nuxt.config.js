@@ -188,6 +188,8 @@ export default {
   },
 
   i18n: {
+    strategy: 'no_prefix',
+    seo: true,
     locales: [{
       code: 'en',
       name: 'English',
