@@ -74,6 +74,10 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: '/css/uikit.min.css'
+      },
       { rel: 'stylesheet', href: 'https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' }
     ],
     script: [
@@ -86,6 +90,14 @@ export default {
         async: '',
         src: 'https://cdn.smileidentity.com/inline/v1/js/script.min.js',
         type: 'text/javascript'
+      },
+      {
+        src: '/js/uikit.min.js',
+        defer: true
+      },
+      {
+        src: '/js/uikit-icons.min.js',
+        defer: true
       }
     ]
   },
