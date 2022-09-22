@@ -82,7 +82,7 @@
           </div>
           <div class="text--btn--content">
             <h3>Smooth</h3>
-            <p>Your KYC verification was successful</p>
+            <p>Your KYC verification was submitted</p>
             <button class="b-not-found__btn" @click="showModal = false">
               Done
             </button>
