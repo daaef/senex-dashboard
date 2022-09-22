@@ -40,6 +40,10 @@
 @import 'pages/index';
 @import 'pages/order';
 
+a:link, a:hover, a:active, a:focus {
+  text-decoration: none;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
