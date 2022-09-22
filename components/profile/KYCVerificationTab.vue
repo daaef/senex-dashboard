@@ -227,12 +227,9 @@ export default {
           },
           onClose: () => {
             this.processing = false
-            this.showModal = false
-            this.showKYCACC = false
           },
           onError: () => {
-            this.showModal = false
-            this.showKYCACC = false
+            this.processing = false
             // button.textContent = 'Verify with Smile Identity'
             // button.disabled = false
           },
