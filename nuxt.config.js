@@ -1,3 +1,4 @@
+import i18n from './config/i18n'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -71,7 +72,14 @@ export default {
         content: '/img/senexpay-og-image-sq.png'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: '/css/uikit.min.css'
+      },
+      { rel: 'stylesheet', href: 'https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' }
+    ],
     script: [
       {
         src:
@@ -81,7 +89,15 @@ export default {
       {
         async: '',
         src: 'https://cdn.smileidentity.com/inline/v1/js/script.min.js',
-        type: 'text/javascript',
+        type: 'text/javascript'
+      },
+      {
+        src: '/js/uikit.min.js',
+        defer: true
+      },
+      {
+        src: '/js/uikit-icons.min.js',
+        defer: true
       }
     ]
   },
@@ -104,6 +120,7 @@ export default {
     { src: '~/plugins/axios', ssr: true },
     { src: '~/plugins/vue-notification', ssr: false },
     { src: '~/plugins/v-select', ssr: false },
+    { src: '~/plugins/numeral', ssr: false },
     { src: '~/plugins/vue-awesome-countdown', ssr: false}
   ],
 
@@ -124,6 +141,21 @@ export default {
     // '@nuxtjs/stylelint-module',
     '@nuxtjs/dotenv',
     '@nuxtjs/google-analytics',
+    [
+      'nuxt-i18n',
+      {
+        vueI18nLoader: true,
+        defaultLocale: 'en',
+        locales: [
+          {
+            code: 'en',
+            name: 'English'
+          }
+        ],
+        seo: true,
+        vueI18n: i18n
+      }
+    ]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -162,13 +194,27 @@ export default {
 
   axios: {
     baseURL: process.env.API_URL
-      // process.env.NODE_ENV === 'development'
-      //   ? process.env.API_URL_DEV
-      //   : process.env.API_URL_PROD
+      // process..env.NODE_ENV === 'development'
+      //   ? process..env.API_URL_DEV
+      //   : process..env.API_URL_PROD
   },
 
   i18n: {
-    locales: ['en'],
+    strategy: 'no_prefix',
+    seo: true,
+    locales: [{
+      code: 'en',
+      name: 'English',
+      iso: 'en-US'
+    },{
+      code: 'en',
+      name: 'English',
+      iso: 'en-NG'
+    },{
+      code: 'en',
+      name: 'English',
+      iso: 'en-ZA'
+    }],
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',

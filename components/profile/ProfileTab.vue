@@ -34,13 +34,23 @@
       <div class="u-mb-30">
         <p class="u-mb-5">First name</p>
         <div class="profile__input-box profile__input-box--disabled">
-          <input type="text" :value="user.firstName" disabled />
+          <input type="text" :value="user.firstName" disabled/>
+          <div class="lock-icon">
+            <div class="mr-2 cursor-pointer" data-uk-tooltip="title: Your profile information is locked for security reasons. Please contact help to make changes; pos: right">
+              <i class='bx bxs-lock'></i>
+            </div>
+          </div>
         </div>
       </div>
       <div class="u-mb-30">
         <p class="u-mb-5">Last name</p>
         <div class="profile__input-box profile__input-box--disabled">
           <input type="text" :value="user.lastName" disabled />
+          <div class="lock-icon">
+            <div class="mr-2 cursor-pointer" data-uk-tooltip="title: Your profile information is locked for security reasons. Please contact help to make changes; pos: right">
+              <i class='bx bxs-lock'></i>
+            </div>
+          </div>
         </div>
       </div>
       <div class="u-mb-30">
@@ -123,10 +133,15 @@
         <p class="u-mb-5">Date of birth</p>
         <div class="profile__input-box">
           <input
-            type="text"
+            type="date"
             :value="getDateOfBirth()"
-            :disabled="isDateOfBirthSet()"
+            :disabled="!isDateOfBirthSet"
           />
+          <div class="lock-icon">
+            <div class="mr-2 cursor-pointer" data-uk-tooltip="title: Your profile information is locked for security reasons. Please contact help to make changes; pos: right">
+              <i class='bx bxs-lock'></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -203,6 +218,12 @@ export default {
     }
   },
   computed: {
+    isDateOfBirthSet() {
+      if (this.user?.profile?.dateOfBirth) {
+        return true
+      }
+      return false
+    },
     ...mapState('auth', ['user']),
   },
   mounted() {
@@ -270,12 +291,6 @@ export default {
       }
       return ''
     },
-    isDateOfBirthSet() {
-      if (this.user.profile.dateOfBirth) {
-        return true
-      }
-      return false
-    },
     computeSrc() {
       if (this.user && this.user.profile && this.user.profile.photo) {
         return this.user.profile.photo
@@ -332,4 +347,48 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+  .profile__input-box {
+    position: relative;
+    input {
+      &:disabled {
+        & ~ .lock-icon {
+          display: inline;
+        }
+      }
+      & ~ .lock-icon {
+        position: absolute;
+        right: 13px;
+        top: 0;
+        font-size: 20px;
+        transform: translateY(50%);
+        display: none;
+        .cursor-pointer {
+          line-height: 0;
+        }
+      }
+    }
+  }
+  #tooltip3 {
+    top: 0;
+    transform: translateY(-35%);
+  }
+  [role="tooltip"] {
+    background: #404043;
+    border-radius: 10px;
+    padding: 15px;
+    svg {
+      g {
+        g {
+          fill: #404043;
+        }
+      }
+    }
+    p {
+      color: #fafafa;
+      font-weight: 500;
+      line-height: 1.2em;
+      font-size: 1.5rem;
+    }
+  }
+</style>

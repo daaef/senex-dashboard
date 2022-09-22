@@ -59,12 +59,11 @@
     <BtnSpinner
       v-if="!isApproved"
       :is-in-active="isUnderReview"
-      :is-loading="processing"
       :value="isDeclined ? 'Re-submit KYC' : 'Complete your KYC'"
-      setClass="u-mt-20"
+      class="u-mt-20"
       :on-submit="
         () => {
-          this.startSession()
+          this.showKYCACC = true
         }
       "
     />
@@ -74,6 +73,64 @@
     <p v-if="isDeclined" class="text-14" style="color: #FFCCCC; padding-top: 12px;">
       <em> {{ user.profile.statusResultText }} </em>
     </p>
+
+    <vue-final-modal v-model="showModal">
+      <div class="kyc--overlay" @click.self="showModal = false">
+        <div class="kyc--container flex u-d-flex--col">
+          <div class="img--container">
+            <img src="/img/success.png" alt="Success Image">
+          </div>
+          <div class="text--btn--content">
+            <h3>Smooth</h3>
+            <p>Your KYC verification was submitted</p>
+            <button class="b-not-found__btn" @click="showModal = false">
+              Done
+            </button>
+          </div>
+        </div>
+      </div>
+    </vue-final-modal>
+
+    <vue-final-modal v-model="showKYCACC">
+      <div class="kyc--overlay" @click.self="showKYCACC = false">
+        <div class="kyc--container flex u-d-flex--col">
+          <div class="flex kyc--header u-d-flex--justify-center">
+            <img
+              class="close"
+              src="/img/icons/close_round_modal_icon.svg"
+              alt="close"
+              @click="showKYCACC = false"
+            />
+            <h3 class="heading-primary u-text-center u-mx-auto">
+              Means of ID
+            </h3>
+          </div>
+          <form class="kyc-radios">
+            <div class="form-check">
+              <input v-model="smile_id_product" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="doc_verification">
+              <label class="form-check-label inline-block" for="flexRadioDefault1">
+                  International Passport
+              </label>
+            </div>
+            <div class="form-check">
+              <input v-model="smile_id_product" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="biometric_kyc">
+              <label class="form-check-label inline-block" for="flexRadioDefault2">
+                  Other means of ID
+              </label>
+            </div>
+            <BtnSpinner
+              :is-loading="processing"
+              value="Continue Verification"
+              :on-submit="
+              () => {
+                this.startSession()
+              }
+            "
+            />
+          </form>
+        </div>
+      </div>
+    </vue-final-modal>
   </div>
 </template>
 
@@ -85,7 +142,10 @@ export default {
     return {
       processing: false,
       submitted: false,
+      showModal: false,
+      showKYCACC: false,
       showRegulation: false,
+      smile_id_product: 'biometric_kyc',
       smile_id_products: ['enhanced_kyc', 'biometric_kyc', 'doc_verification'],
     }
   },
@@ -108,7 +168,7 @@ export default {
     async getWebToken() {
       this.processing = true
       try {
-        const data = await this.$api.getSmileToken({ product: 'biometric_kyc' })
+        const data = await this.$api.getSmileToken({ product: this.smile_id_product })
         return data
       } catch (err) {
         this.processing = false
@@ -153,6 +213,7 @@ export default {
             this.$api.notifySubmission()
             this.processing = false
             this.submitted = true
+            this.showModal = true
           },
           onClose: () => {
             this.processing = false
@@ -168,4 +229,102 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+  .kyc--overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    .kyc--container {
+      padding: 50px;
+      border-radius: 30px;
+      background: #111219;
+      box-shadow: 0px 0px 6px #707070;
+      border: 1px solid #707070;
+      text-align: center;
+      max-width: 100%;
+      .img--container {
+        padding: 20px 20px 0;
+        max-width: 100%;
+        height: 250px;
+        img {
+          height: 100%;
+          max-width: 100%;
+        }
+      }
+      .text--btn--content {
+        margin-top: -50px;
+      }
+      h3 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        line-height: 1.2em;
+        margin-top: 20px;
+      }
+      p {
+        line-height: 1.2em;
+        margin: 35px 0;
+        font-size: 1.9rem;
+      }
+      button {
+        width: 100%;
+      }
+      .kyc--header {
+        position: relative;
+        min-width: 350px;
+          .close {
+            position: absolute;
+            left: -30px;
+            top: 0;
+            height: 25px;
+            width: 25px;
+            transform: translateY(5px);
+          }
+        h3 {
+          margin-top: 0;
+        }
+      }
+      .kyc-radios {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 50px;
+        .form-check {
+          margin-bottom: 30px;
+          position: relative;
+        .form-check-label {
+          text-align: left;
+          color: #fafafa;
+          display: flex;
+          align-items: center;
+          border-radius: 15px;
+          padding: 15px 15px 15px 50px;
+          transition: .3s ease-in-out;
+        }
+
+        .form-check-input {
+          position: absolute;
+          appearance: none;
+          background: transparent;
+          width: 25px;
+          height: 25px;
+          left: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+          border-radius: 50%;
+          border: 3px solid #3382FA;
+          transition: .3s ease-in-out;
+          &:checked {
+            border: 7px solid #3382FA;
+            & ~ label {
+              background: #181D2C;
+            }
+          }
+        }
+      }
+      }
+    }
+  }
+</style>
