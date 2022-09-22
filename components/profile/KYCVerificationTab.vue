@@ -146,6 +146,16 @@ export default {
       showKYCACC: false,
       showRegulation: false,
       smile_id_product: 'biometric_kyc',
+      smile_id_options: {
+        biometric_kyc: {
+            'NG': ['NIN', 'NIN_SLIP', 'DRIVERS_LICENSE', 'VOTER_ID'],
+            'ZA': ['NATIONAL_ID'],
+          },
+        doc_verification: {
+          'NG': ['PASSPORT'],
+          'ZA': ['PASSPORT'],
+        }
+      },
       smile_id_products: ['enhanced_kyc', 'biometric_kyc', 'doc_verification'],
     }
   },
@@ -153,6 +163,9 @@ export default {
     ...mapState('auth', ['user']),
     isApproved() {
       return this.user.profile.status == 'Approved'
+    },
+    idOptions(){
+      return this.smile_id_options[this.smile_id_product]
     },
     isDeclined() {
       return this.user.profile.status == 'Declined'
@@ -205,10 +218,7 @@ export default {
             policy_url: 'https://www.senexpay.com/privacy-policy',
             theme_color: '#000',
           },
-          id_selection: {
-            'NG': ['NIN', 'NIN_SLIP', 'DRIVERS_LICENSE', 'VOTER_ID'],
-            'ZA': ['NATIONAL_ID'],
-          },
+          id_selection: this.idOptions,
           onSuccess: () => {
             this.$api.notifySubmission()
             this.processing = false
@@ -219,6 +229,7 @@ export default {
             this.processing = false
           },
           onError: () => {
+            this.processing = false
             // button.textContent = 'Verify with Smile Identity'
             // button.disabled = false
           },
