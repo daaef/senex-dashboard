@@ -28,7 +28,7 @@
                 class="u-pointer"
                 @click="$emit('editOrDelete', 'delete', wallet.id)"
                 ><img
-                  src="img/icons/delete_icon.svg"
+                  src="/img/icons/delete_icon.svg"
                   alt="delete"
                 />Delete</span
               >

@@ -3,7 +3,7 @@
     <div class="txn-tab__header u-my-30">
       <div class="txn-tab__search-box">
         <img
-          src="img/search-grey.svg"
+          src="/img/search-grey.svg"
           alt="search"
           class="txn-tab__search-icon"
         />
