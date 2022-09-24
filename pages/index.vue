@@ -6,7 +6,7 @@
     >
       <div class="index-complete-kyc__info u-mr-10">
         <img
-          src="img/icons/green_round_checkmark.svg"
+          src="/img/icons/green_round_checkmark.svg"
           alt="checkmark"
           class="u-mr-10"
         />
@@ -142,7 +142,7 @@
         <div class="index-earn">
           <div class="index-earn__top">
             <div class="index-earn__content">
-              <img src="img/icons/icon_metro_trophy.svg" alt="cup" />
+              <img src="/img/icons/icon_metro_trophy.svg" alt="cup" />
               <span class="small-text">Comrade</span>
             </div>
             <div class="index-earn__content index-earn__content--1">
@@ -153,7 +153,7 @@
             </div>
             <div class="index-earn__content">
               <img
-                src="img/icons/icon_awesome_users.svg"
+                src="/img/icons/icon_awesome_users.svg"
                 class="users"
                 alt="cup"
               />
@@ -178,7 +178,7 @@
             <div class="index-ex__rate-box">
               <div class="index-ex__rate-item">
                 <div class="coin">
-                  <img src="img/crypto/btc.svg" alt="coin" class="u-mr-5" />
+                  <img src="/img/crypto/btc.svg" alt="coin" class="u-mr-5" />
                   <span>Bitcoin</span>
                 </div>
                 <div class="rate">
@@ -191,7 +191,7 @@
               </div>
               <div class="index-ex__rate-item">
                 <div class="coin">
-                  <img src="img/crypto/usdt.svg" alt="coin" class="u-mr-5" />
+                  <img src="/img/crypto/usdt.svg" alt="coin" class="u-mr-5" />
                   <span>USDT</span>
                 </div>
                 <div class="rate">
@@ -220,17 +220,17 @@
     </div>
     <div class="index-guide u-mb-30">
       <img
-        src="img/icons/crypto-advisor.svg"
+        src="/img/icons/crypto-advisor.svg"
         class="index-guide__advisor"
         alt="lady"
       />
       <img
-        src="img/icons/footer-side-corner.svg"
+        src="/img/icons/footer-side-corner.svg"
         class="index-guide__tr-img"
         alt="ellipse"
       />
       <img
-        src="img/icons/footer-polygon.svg"
+        src="/img/icons/footer-polygon.svg"
         class="index-guide__tr-star"
         alt="star"
       />

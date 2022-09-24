@@ -25,7 +25,7 @@
         You are not allowed to modify sensitive profile information at the
         moment. Please contact
         <a :href="`${url}/contact`" target="_blank" rel="noopener noreferrer"
-          ><span class="u-link">help</span></a
+        ><span class="u-link">help</span></a
         >
         to make any changes.
       </p>
@@ -63,7 +63,7 @@
           <span
             class="profile__input-extra u-link"
             @click="() => openSecretKeyModal('email')"
-            >Change</span
+          >Change</span
           >
         </div>
         <div v-if="!lockEmail" class="profile__twin-btn u-mt-20">
@@ -101,7 +101,7 @@
           <span
             class="profile__input-extra u-link"
             @click="() => openSecretKeyModal('phone')"
-            >Change</span
+          >Change</span
           >
         </div>
         <div v-if="!lockPhone" class="profile__twin-btn u-mt-20">
@@ -169,7 +169,7 @@
     </vue-final-modal>
     <vue-final-modal v-model="emailCodeModal">
       <div class="benef-overlay container">
-        <EmailVerification
+        <ModalEmailVerification
           v-if="emailCodeModal"
           :email="editableEmail"
           @action="successEmailAction"
@@ -179,7 +179,7 @@
     </vue-final-modal>
     <vue-final-modal v-model="passwordModal">
       <div class="benef-overlay container">
-        <EnterPassword
+        <ModalEnterPassword
           v-if="passwordModal"
           :processing="processing"
           @action="changeEmail"
@@ -193,10 +193,10 @@
 <script>
 import { mapState } from 'vuex'
 import moment from 'moment'
-import EmailVerification from '../modal/EmailVerification.vue'
-import MobileVerification from '../modal/MobileVerification.vue'
+/*import EmailVerification from '@/modal/EmailVerification.vue'
+import MobileVerification from '@/modal/MobileVerification.vue'*/
 export default {
-  components: { EmailVerification, MobileVerification },
+  // components: { EmailVerification, MobileVerification },
   data() {
     return {
       lockEmail: true,
@@ -348,47 +348,47 @@ export default {
 </script>
 
 <style lang="scss">
-  .profile__input-box {
-    position: relative;
-    input {
-      &:disabled {
-        & ~ .lock-icon {
-          display: inline;
-        }
-      }
+.profile__input-box {
+  position: relative;
+  input {
+    &:disabled {
       & ~ .lock-icon {
-        position: absolute;
-        right: 13px;
-        top: 0;
-        font-size: 20px;
-        transform: translateY(50%);
-        display: none;
-        .cursor-pointer {
-          line-height: 0;
-        }
+        display: inline;
+      }
+    }
+    & ~ .lock-icon {
+      position: absolute;
+      right: 13px;
+      top: 0;
+      font-size: 20px;
+      transform: translateY(50%);
+      display: none;
+      .cursor-pointer {
+        line-height: 0;
       }
     }
   }
-  #tooltip3 {
-    top: 0;
-    transform: translateY(-35%);
-  }
-  [role="tooltip"] {
-    background: #404043;
-    border-radius: 10px;
-    padding: 15px;
-    svg {
+}
+#tooltip3 {
+  top: 0;
+  transform: translateY(-35%);
+}
+[role="tooltip"] {
+  background: #404043;
+  border-radius: 10px;
+  padding: 15px;
+  svg {
+    g {
       g {
-        g {
-          fill: #404043;
-        }
+        fill: #404043;
       }
     }
-    p {
-      color: #fafafa;
-      font-weight: 500;
-      line-height: 1.2em;
-      font-size: 1.5rem;
-    }
   }
+  p {
+    color: #fafafa;
+    font-weight: 500;
+    line-height: 1.2em;
+    font-size: 1.5rem;
+  }
+}
 </style>

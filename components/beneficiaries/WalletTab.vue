@@ -3,7 +3,7 @@
     <div class="txn-tab__header u-my-30">
       <div class="txn-tab__search-box">
         <img
-          src="img/search-grey.svg"
+          src="/img/search-grey.svg"
           alt="search"
           class="txn-tab__search-icon"
         />
@@ -113,7 +113,7 @@
                   placement: 'right',
                 }"
               >
-                <img src="img/icons/info_white_round_icon.svg" alt="info" />
+                <img src="/img/icons/info_white_round_icon.svg" alt="info" />
               </span>
             </div>
             <div class="form__input-box u-mb-20">

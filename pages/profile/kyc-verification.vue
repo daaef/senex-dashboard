@@ -36,7 +36,7 @@
       </div>
       <div class="u-flex">
         <img
-          :src="isApproved ? 'img/checkmark.svg' : 'img/checkmark-grey.svg'"
+          :src="isApproved ? '/img/checkmark.svg' : '/img/checkmark-grey.svg'"
           alt=""
           class="profile__checkmark u-mr-10"
         />
