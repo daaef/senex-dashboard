@@ -7,7 +7,7 @@
 <script>
 export default {
   layout: 'dashboard',
-  middleware: 'authenticated',
+  // middleware: 'authenticated',
   head() {
     return {
       title: 'Invite | SenexPay ',
@@ -29,6 +29,7 @@ export default {
         {
           title: 'Invite A Friend',
           component: 'InviteFriendTab',
+          url: '/',
           properties: {
             referralData: this.referralData,
             getReferrals: this.getReferrals,
@@ -37,6 +38,7 @@ export default {
         {
           title: 'Earnings',
           component: 'EarningTab',
+          url: '/earnings',
           properties: {
             referralData: this.referralData,
             getReferrals: this.getReferrals,
@@ -54,9 +56,35 @@ export default {
         totalEarned: 12,
         payoutDay: 28,
       },
+      dropOpen: false,
+    }
+  },
+  computed: {
+    currentTab(){
+      return this?.tabs?.find(tab => {
+          return `/invite${tab.url}` === this?.$route.path
+        }) ||
+      {
+        title: 'Invite A Friend',
+        component: 'InviteFriendTab',
+        properties: {
+          referralData: this.referralData,
+          getReferrals: this.getReferrals,
+        },
+      }
+    },
+    currentTabIndex(){
+      return this?.tabs?.indexOf(this?.currentTab)
     }
   },
   methods: {
+    toggleOpen() {
+      this.dropOpen = !this.dropOpen
+    },
+    onSelect(tab, index) {
+      // const isSameTabName = this.currentTab.component === tab.component
+      this.$router.push(`/invite${tab.url}`)
+    },
     async getReferrals() {
       const { data } = await this.$api.getReferrals()
       try {

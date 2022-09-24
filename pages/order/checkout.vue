@@ -68,6 +68,7 @@ import {
 
 export default {
   layout: 'order',
+  auth: 'guest',
   head() {
     return {
       title: 'Checkout | SenexPay',

@@ -104,7 +104,7 @@ export default {
 
 
   router: {
-    middleware: ['query', 'sidemenu']
+    middleware: ['sidemenu', 'auth', 'auth-guard', 'query']
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -144,6 +144,7 @@ export default {
     [
       'nuxt-i18n',
       {
+        strategy: 'no_prefix',
         vueI18nLoader: true,
         defaultLocale: 'en',
         locales: [
@@ -152,7 +153,7 @@ export default {
             name: 'English'
           }
         ],
-        seo: true,
+        // seo: true,
         vueI18n: i18n
       }
     ]
@@ -236,12 +237,13 @@ export default {
 
   auth: {
     redirect: {
-      login: '/signin/',
+      login: false,
       logout: '/signin',
-      callback: '/signin/',
+      callback: '/signin',
       home: false
+
     },
-    watchLoggedIn: false,
+    watchLoggedIn: true,
     fullPathRedirect: true,
     strategies: {
       local: {

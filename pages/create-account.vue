@@ -15,7 +15,7 @@ export default {
     // vSelect
   },
   layout: 'blank',
-  middleware: 'authenticated',
+  // middleware: 'authenticated',
   data() {
     return {
       email: '',

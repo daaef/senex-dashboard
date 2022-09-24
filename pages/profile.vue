@@ -50,7 +50,7 @@ import {mapState} from "vuex";
 
 export default {
   layout: 'dashboard',
-  middleware: 'authenticated',
+  // middleware: 'authenticated',
   head() {
     return {
       title: 'Profile | SenexPay ',
@@ -98,6 +98,9 @@ export default {
       dropOpen: false,
     }
   },
+  mounted() {
+    this.$router.replace({query: {}})
+  },
   computed: {
     currentTab(){
       return this?.tabs?.find(tab => {
@@ -120,8 +123,6 @@ export default {
   methods: {
     onSelect(tab, index) {
       // const isSameTabName = this.currentTab.component === tab.component
-      this.currentTab = tab
-      this.currentTabIndex = index
       this.$router.push(`/profile${tab.url}`)
     },
     currentTabIdx() {

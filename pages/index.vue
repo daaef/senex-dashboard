@@ -260,7 +260,7 @@ import formatMoney from '~/filters/format-money'
 import moment from 'moment'
 export default {
   layout: 'dashboard',
-  middleware: 'authenticated',
+  // middleware: 'authenticated',
   head() {
     return {
       title: 'Dashboard | SenexPay ',

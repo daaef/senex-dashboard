@@ -14,7 +14,8 @@ export default {
     // CardTitle
   },
   layout: 'toast',
-  middleware: 'authenticated',
+  auth: 'guest',
+  // middleware: 'authenticated',
   head() {
     return {
       title: 'Verify | SenexPay ',

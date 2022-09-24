@@ -64,7 +64,8 @@ export default {
     ButtonSpinner,
   },
   layout: 'toast',
-  middleware: 'authenticated',
+  auth: 'guest',
+  // middleware: 'authenticated',
   data() {
     return {
       email: '',
@@ -147,14 +148,17 @@ export default {
         })
         await this.$auth.fetchUser()
         this.processing = false
-        this.$router.replace({ query: null })
-        this.$router.go()
+        /*this.$router.replace({ query: null })
+        this.$router.go()*/
         // this.$router.push('/dashboard')
         setTimeout(() => {
+          let redirect_url = this.$route.query.redirect || '/'
           // this.processing = false
           // this.email = ''
           // this.password = ''
-          this.$router.push('/')
+          this.$router.push(`${redirect_url}`).then(failure => {
+            this.$router.replace({ query: null })
+          })
         }, 100)
       } catch (error) {
         // console.log(err)

@@ -7,7 +7,7 @@
 <script>
 export default {
   layout: 'dashboard',
-  middleware: 'authenticated',
+  // middleware: 'authenticated',
   head() {
     return {
       title: 'Profile | SenexPay ',
