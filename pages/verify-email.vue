@@ -41,6 +41,7 @@ export default {
   components: {
     // CardTitle
   },
+  auth: 'guest',
   layout: 'toast',
   // middleware: 'authenticated',
   head() {

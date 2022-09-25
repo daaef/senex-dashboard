@@ -115,6 +115,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  // middleware: 'authenticated',
   data() {
     return {
       processing: false,

@@ -3,10 +3,6 @@ export default ({ app, store, route, redirect }) => {
   const guestRoute = ['/signin', '/forgot-password', '/create-account', '/order', '/order/start']
   // run only on server
   if (process.server) {
-    if (!store.state.auth.loggedIn && !guestRoute.includes(route.path)) {
-      redirect('/signin')
-    }
-
     // redirect to dashboard if user is already logged in
     if (store.state.auth.loggedIn && guestRoute.includes(route.path)) {
       return redirect('/')
@@ -29,6 +25,7 @@ export default ({ app, store, route, redirect }) => {
   }
   // run only on browser
   if (!process.server) {
+    console.log('client route is', route.path)
     if (guestRoute.includes(route.path)) {
       if (store.state.auth.loggedIn) {
         return redirect('/')

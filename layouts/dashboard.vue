@@ -39,7 +39,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  head() {
+    return {
+      meta: [{ name: 'theme-color', content: '041d45' }]
+    }
+  },
+}
 </script>
 
 <style lang="scss">

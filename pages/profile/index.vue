@@ -196,6 +196,7 @@ import moment from 'moment'
 /*import EmailVerification from '@/modal/EmailVerification.vue'
 import MobileVerification from '@/modal/MobileVerification.vue'*/
 export default {
+  // middleware: 'authenticated',
   // components: { EmailVerification, MobileVerification },
   data() {
     return {
