@@ -1,5 +1,6 @@
 export default function({ $auth, store, route, redirect, app }) {
   const guestRoute = ['/signin', '/forgot-password', '/create-account', '/order', '/order/start']
+  const guestRoute2 = ['/signin', '/forgot-password', '/create-account']
   // console.log('includes guest routes', guestRoute.includes(route.path))
   // console.log('route is',route)
   if (!store.state.auth.loggedIn && !guestRoute.includes(route.path)) {
@@ -8,7 +9,8 @@ export default function({ $auth, store, route, redirect, app }) {
       redirect(REDIRECT_URL)
     }
   }
-  if ($auth.loggedIn && guestRoute.includes(route.path)){
+
+  if ($auth.loggedIn && guestRoute2.includes(route.path) && route.path.indexOf('invoice') !== '-1'){
     redirect('/')
   }
 

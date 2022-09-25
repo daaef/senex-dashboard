@@ -61,6 +61,7 @@ import { mapState } from 'vuex'
 
 export default {
   layout: 'blank',
+  auth: 'guest',
   // middleware: 'authenticated',
   data() {
     return {
