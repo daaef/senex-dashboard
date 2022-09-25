@@ -34,7 +34,7 @@ import {
 } from '~/data/constants'
 export default {
   layout: 'order',
-  auth: 'guest',
+  auth: 'false',
   async beforeMount() {
     const savedOrder = await this.$cookiz.get(COOKIE_SAVED_ORDER)
     if (savedOrder) {

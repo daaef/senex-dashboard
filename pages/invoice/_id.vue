@@ -106,6 +106,7 @@ import {
 
 export default {
   layout: 'order',
+  auth: 'false',
   async asyncData({ $axios, params, store, error }) {
     try {
       const { data } = await $axios.get(`/invoice/${params.id}`)
