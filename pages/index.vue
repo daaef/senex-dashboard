@@ -35,37 +35,25 @@
     <div class="index-marquee u-mb-20" direction="left">
       <div class="index-rate-box">
         <div class="rate">
-          <p class="u-mr-10">1 BTC = 23,079,836</p>
-          <img
-            :src="`img/icons/${
-              true ? 'green_triangle_up' : 'red_triangle_down'
-            }.svg`"
-            alt="arrow"
-            class="u-mr-10"
-          />
-          <p>-2.08%</p>
+          <span class="uk-margin-right u-block">1 USDT = {{ $n((USDT ? usdt_conv : '' ), 'currency', 'en-US') }}</span>
+          <span v-if="styledUS">
+                    <span :class="USDT.style === 'loss' ? 'loss' : 'gain'">{{ USDT ? USDT.arrow : '' }}</span>
+                    {{ USDT.percent }}%
+          </span>
         </div>
         <div class="rate">
-          <p class="u-mr-10">1 BTC = 23,079,836</p>
-          <img
-            :src="`img/icons/${
-              false ? 'green_triangle_up' : 'red_triangle_down'
-            }.svg`"
-            alt="arrow"
-            class="u-mr-10"
-          />
-          <p>-2.08%</p>
+          <span class="uk-margin-right u-block">1 BTC = {{ $n((btcUSDT ? btc_conv : '' ), 'currency', 'en-US') }}</span>
+          <span v-if="styledUp">
+                    <span :class="btcUSDT.style === 'loss' ? 'loss' : 'gain'">{{ btcUSDT ? btcUSDT.arrow : '' }}</span>
+                    {{ btcUSDT.percent }}%
+          </span>
         </div>
         <div class="rate">
-          <p class="u-mr-10">1 BTC = 23,079,836</p>
-          <img
-            :src="`img/icons/${
-              true ? 'green_triangle_up' : 'red_triangle_down'
-            }.svg`"
-            alt="arrow"
-            class="u-mr-10"
-          />
-          <p>-2.08%</p>
+          <span class="uk-margin-right u-block">1 ETH = {{ $n((ETH ? eth_conv : '' ), 'currency', 'en-US') }}</span>
+          <span v-if="styledUS">
+                    <span :class="ETH.style === 'loss' ? 'loss' : 'gain'">{{ ETH ? ETH.arrow : '' }}</span>
+                    {{ ETH.percent }}%
+          </span>
         </div>
       </div>
     </div>
@@ -182,7 +170,7 @@
                   <span>Bitcoin</span>
                 </div>
                 <div class="rate">
-                  <span>{{ $n((btcUSDT ? btc_conv : '' ), 'currency', this.selectedFiatCurrency.locale) }}</span>
+                  <span>{{ $n((btcUSDT ? btc_conv : '' ), 'currency', 'en-US') }}</span>
                   <span v-if="styledUp">
                     <span :class="btcUSDT.style === 'loss' ? 'loss' : 'gain'">{{ btcUSDT ? btcUSDT.arrow : '' }}</span>
                     {{ btcUSDT ? btcUSDT.percent : '' }}%
@@ -195,7 +183,7 @@
                   <span>USDT</span>
                 </div>
                 <div class="rate">
-                  <span>{{ $n((USDT ? usdt_conv : '' ), 'currency', this.selectedFiatCurrency.locale) }}</span>
+                  <span>{{ $n((USDT ? usdt_conv : '' ), 'currency', 'en-US') }}</span>
                   <span v-if="styledUS">
                     <span :class="USDT.style === 'loss' ? 'loss' : 'gain'">{{ USDT ? USDT.arrow : '' }}</span>
                     {{ USDT.percent }}%
@@ -410,14 +398,22 @@ export default {
       return this.USDT?.style !== undefined
     },
     btc_conv(){
-      return this.btcUSDT.close * (this.selectedFiatCurrency.ticker === "NGN" ? this.ngn_price : this.rand_price)
+      return this.btcUSDT.close
+    },
+    eth_conv(){
+      return this.ETH.close
     },
     usdt_conv(){
-      return this.USDT.close * (this.selectedFiatCurrency.ticker === "NGN" ? this.ngn_price : this.rand_price)
+      return this.USDT.close
     },
     btcUSDT(){
       return this.coins.find((coin) => {
         return coin.pair === 'BTC/USDT'
+      })
+    },
+    ETH(){
+      return this.coins.find((coin) => {
+        return coin.pair === 'ETH/USDT'
       })
     },
     USDT(){
