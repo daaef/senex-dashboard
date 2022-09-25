@@ -13,12 +13,12 @@
         >
       </div>
       <div class="input-sub-holder">
-        <!-- <ButtonSpinner
+         <ButtonSpinner
           :is-loading="processing"
           :is-in-active="buttonDisabled"
           value="Let’s take you back home"
           :on-submit="toDashboard"
-        /> -->
+        />
       </div>
     </div>
   </div>
