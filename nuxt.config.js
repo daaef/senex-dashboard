@@ -22,7 +22,7 @@ export default {
         content:
           'bitcoin, exchange, trade, btc, sell, buy, nigeria, sell bitcoin, buy bitcoin, otc, buy bitcoins in nigeria, sell bitcoins in nigeria, fast, secure, reliable, senex, senexpay, senex payment services, money, credit card, debit card, payment, buy bitcoin with card, blockchain, network, block, hash, confirmations, KYC, 24/7 exchange, currency exchange, crypto exchange, senex services payment'
       },
-      { name: 'theme-color', content: '#053888' },
+      { name: 'theme-color', content: '#041d45' },
       {
         hid: 'og:title',
         property: 'og:title',
@@ -104,7 +104,7 @@ export default {
 
 
   router: {
-    middleware: ['sidemenu', 'auth', 'auth-guard', 'query']
+    middleware: ['sidemenu', 'auth-guard', 'auth']
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -241,8 +241,8 @@ export default {
       logout: '/signin',
       callback: '/signin',
       home: false
-
     },
+    rewriteRedirects: true,
     watchLoggedIn: true,
     fullPathRedirect: true,
     strategies: {

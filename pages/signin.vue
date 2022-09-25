@@ -156,9 +156,7 @@ export default {
           // this.processing = false
           // this.email = ''
           // this.password = ''
-          this.$router.push(`${redirect_url}`).then(failure => {
-            this.$router.replace({ query: null })
-          })
+          this.$router.replace({path: `${redirect_url}`, query: null})
         }, 100)
       } catch (error) {
         // console.log(err)

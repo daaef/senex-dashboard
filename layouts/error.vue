@@ -29,6 +29,19 @@
 export default {
   // components: { ButtonSpinner },
   layout: 'error',
+  head() {
+    return {
+      title: 'Nothing Found | SenexPay ',
+      meta: [
+        { name: 'theme-color', content: 'ffffff' },
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'You must be lost Friend',
+        },
+      ],
+    }
+  },
   props: {
     error: {
       type: Object,

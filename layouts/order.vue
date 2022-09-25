@@ -33,6 +33,11 @@
 <script>
 import OrderNavBar from '~/components/order/OrderNavBar.vue'
 export default {
+  head() {
+    return {
+      meta: [{ name: 'theme-color', content: 'ffffff' }]
+    }
+  },
   components: {
     OrderNavBar,
   },
