@@ -96,7 +96,7 @@
         <div class="kyc--container flex u-d-flex--col">
           <div class="flex kyc--header u-d-flex--justify-center">
             <img
-              class="close"
+              class="close cursor-pointer"
               src="/img/icons/close_round_modal_icon.svg"
               alt="close"
               @click="showKYCACC = false"
@@ -306,15 +306,21 @@ export default {
         .form-check {
           margin-bottom: 30px;
           position: relative;
-        .form-check-label {
-          text-align: left;
-          color: #fafafa;
-          display: flex;
-          align-items: center;
-          border-radius: 15px;
-          padding: 15px 15px 15px 50px;
-          transition: .3s ease-in-out;
-        }
+          .form-check-label {
+            cursor: pointer;
+            text-align: left;
+            color: #fafafa;
+            display: flex;
+            align-items: center;
+            border-radius: 15px;
+            padding: 15px 15px 15px 50px;
+            transition: .3s ease-in-out;
+          }
+          &:hover {
+            .form-check-label {
+              background: #181D2C;
+            }
+          }
 
         .form-check-input {
           position: absolute;
