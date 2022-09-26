@@ -15,6 +15,7 @@ export default {
     // vSelect
   },
   layout: 'blank',
+  auth: 'guest',
   // middleware: 'authenticated',
   data() {
     return {

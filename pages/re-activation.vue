@@ -54,6 +54,7 @@ import { mapState } from 'vuex'
 
 export default {
   layout: 'blank',
+  auth: 'guest',
   head() {
     return {
       title: 'Re-activation | SenexPay ',
