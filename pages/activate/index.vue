@@ -30,6 +30,7 @@
 // import CardTitle from '@/components/Base/Card/CardTitle'
 
 export default {
+  auth: 'guest',
   components: {
     // CardTitle
   },

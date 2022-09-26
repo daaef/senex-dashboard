@@ -1,6 +1,6 @@
 export default function({ $auth, store, route, redirect, app }) {
-  const guestRoute = ['/signin', '/forgot-password', '/create-account', '/order', '/order/start']
-  const guestRoute2 = ['/signin', '/forgot-password', '/create-account']
+  // const guestRoute = ['/signin', '/forgot-password', '/create-account', '/order', '/order/start']
+  const guestRoute = ['/signin', '/forgot-password', '/create-account']
   // console.log('includes guest routes', guestRoute.includes(route.path))
   // console.log('route is',route)
   if (!store.state.auth.loggedIn && !guestRoute.includes(route.path)) {
@@ -10,7 +10,7 @@ export default function({ $auth, store, route, redirect, app }) {
     }
   }
 
-  if ($auth.loggedIn && guestRoute2.includes(route.path) && route.path.indexOf('invoice') !== '-1'){
+  if ($auth.loggedIn && guestRoute.includes(route.path) && route.path.indexOf('invoice') !== '-1'){
     redirect('/')
   }
 
@@ -20,6 +20,7 @@ export default function({ $auth, store, route, redirect, app }) {
   ) {
     return redirect('/verify')
   }
+
   if (
     $auth.loggedIn &&
     !$auth.user.profile.securityKeyChanged

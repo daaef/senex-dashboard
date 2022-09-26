@@ -12,6 +12,7 @@
 export default {
   components: {},
   layout: 'blank',
+  auth: 'guest',
   head() {
     return {
       title: 'Activation | SenexPay',
