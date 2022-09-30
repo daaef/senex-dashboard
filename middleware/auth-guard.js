@@ -4,11 +4,11 @@ export default function({ $auth, store, route, redirect, app }) {
   // console.log('includes guest routes', guestRoute.includes(route.path))
   // console.log('route is',route)
   if (!store.state.auth.loggedIn 
-    && !guestRoute.includes(route.path) 
-    && route.fullPath.indexOf('forgot-password') == '-1' 
-    && route.fullPath.indexOf('invoice') == '-1' 
-    && route.fullPath.indexOf('activate') == '-1' 
-    && route.fullPath.indexOf('order') == '-1') {
+    && !guestRoute.includes(route.path)  
+    && route.fullPath.indexOf('order') == '-1'
+    && route.fullPath.indexOf('invoice') == '-1'
+    && route.fullPath.indexOf('activate') == '-1'
+    && route.fullPath.indexOf('forgot-password') == '-1') {
     const REDIRECT_URL = '/signin?redirect=' + route.path
     if (!$auth.loggedIn) {
       redirect(REDIRECT_URL)
@@ -16,8 +16,8 @@ export default function({ $auth, store, route, redirect, app }) {
   }
 
   if ($auth.loggedIn && guestRoute.includes(route.path) 
-  && route.fullPath.indexOf('forgot-password') !== '-1'
-  && route.fullPath.indexOf('activate') !== '-1'){
+  && route.fullPath.indexOf('activate') !== '-1'
+  && route.fullPath.indexOf('forgot-password') !== '-1'){
     redirect('/')
   }
 
