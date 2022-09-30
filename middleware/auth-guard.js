@@ -7,14 +7,16 @@ export default function({ $auth, store, route, redirect, app }) {
     && !guestRoute.includes(route.path) 
     && route.fullPath.indexOf('forgot-password') == '-1' 
     && route.fullPath.indexOf('invoice') == '-1' 
-    && route.fullPath.indexOf('activate') == '-1') {
+    && route.fullPath.indexOf('activate') == '-1' 
+    && route.fullPath.indexOf('order') == '-1') {
     const REDIRECT_URL = '/signin?redirect=' + route.path
     if (!$auth.loggedIn) {
       redirect(REDIRECT_URL)
     }
   }
 
-  if ($auth.loggedIn && guestRoute.includes(route.path) && route.path.indexOf('invoice') !== '-1' && route.fullPath.indexOf('forgot-password') !== '-1'){
+  if ($auth.loggedIn && guestRoute.includes(route.path) 
+  && route.fullPath.indexOf('forgot-password') !== '-1'){
     redirect('/')
   }
 
