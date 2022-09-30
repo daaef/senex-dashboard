@@ -16,7 +16,8 @@ export default function({ $auth, store, route, redirect, app }) {
   }
 
   if ($auth.loggedIn && guestRoute.includes(route.path) 
-  && route.fullPath.indexOf('forgot-password') !== '-1'){
+  && route.fullPath.indexOf('forgot-password') !== '-1'
+  && route.fullPath.indexOf('activate') !== '-1'){
     redirect('/')
   }
 
