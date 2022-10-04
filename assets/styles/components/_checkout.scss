@@ -48,9 +48,9 @@
   }
 
   &__btn-box {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
 
     @include respond(md-small-phone) {
       flex-direction: column-reverse;
@@ -70,7 +70,7 @@
 
   &__btn {
     flex: 0 0 160px;
-    
+
     @include respond(phone) {
       flex: 0 0 140px;
     }
@@ -83,8 +83,6 @@
     // padding-right: 10px;
 
     &:not(:last-child) {
-      margin-right: 20px;
-
       @include respond(phone) {
         margin-right: 0;
       }
