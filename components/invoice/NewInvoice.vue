@@ -93,17 +93,20 @@
                 }}</span>
               </div>
             </template>
-
             <span v-if="!info.isOtc" class="invoice__waiting"
               >Please do not refresh this page. We would automatically detect
-              when you make payment.</span
-            >
+              when you make payment.</span>
             <span v-else class="invoice__waiting"
               >We are waiting for your payment. To get your wallet funded.
               Please kindly click the button below when you complete your
               payment</span
             >
-
+            <div v-if="markedAsPaid">
+              <a href="https://wa.me/message/YWEXC2GRC6UUI1" target="_blank" class="whatsapp--btn">
+                <img src="/whatsapp_grey.png" alt="Dark Whatsapp button">
+                Send Proof of Payment
+              </a>
+            </div>
             <div v-if="info.isOtc">
               <ButtonSpinner
                 :is-loading="processing"
@@ -370,6 +373,7 @@ export default {
       showUSDTBarCode: false,
       networks: [],
       providers: [],
+      markedAsPaid: false
     }
   },
   computed: {
@@ -394,6 +398,7 @@ export default {
     markOrderAsPaid() {
       // setProcessing(false)
       this.processing = true
+      this.markedAsPaid = true
       this.$emit('emitMarkOrderPaid', () => this.setProcessing(false))
       // this.processing = false
     },
@@ -511,6 +516,29 @@ export default {
 </script>
 
 <style lang="scss">
+.whatsapp--btn {
+  padding: 15px 30px;
+  border: 0;
+  background: #262626;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  color: #a7a7a7 !important;
+  transition: .3s ease-in-out;
+  transform: scale(1);
+  margin-bottom: 10px;
+  img {
+    height: 30px;
+    margin-right: 10px;
+  }
+  &:hover {
+    transform: scale(.98);
+  }
+  &:active, &:focus {
+    transform: scale(.95);
+  }
+}
 .change-network {
   display: inline-block;
   color: #3382fa;

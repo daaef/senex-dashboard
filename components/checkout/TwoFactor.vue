@@ -100,7 +100,7 @@
             ></span
           >
         </div>
-        <div class="checkout__btn-box wallet-btn-box u-mb-30">
+        <div class="checkout__btn-box wallet-btn-box">
           <div class="checkout__btn checkout__btn--sm">
             <ButtonSpinner
               value="Cancel"
