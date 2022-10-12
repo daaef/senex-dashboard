@@ -101,14 +101,17 @@
               Please kindly click the button below when you complete your
               payment</span
             >
-            <div v-if="markedAsPaid">
-              <a href="https://wa.me/message/YWEXC2GRC6UUI1" target="_blank" class="whatsapp--btn">
-                <img src="/whatsapp_grey.png" alt="Dark Whatsapp button">
-                Send Proof of Payment
-              </a>
-            </div>
+            <a :href="`https://wa.me/+2349162598206?text=orderID:%20${orderID}`" target="_blank" class="whatsapp--btn">
+              <img src="/whatsapp_black.png" alt="Dark Whatsapp button">
+              Send payment proof
+            </a>
             <div v-if="info.isOtc">
+              <a v-if="paid" :href="`https://wa.me/+2349162598206?text=orderID:%20${orderID}`" target="_blank" class="whatsapp--btn">
+                <img src="/whatsapp_black.png" alt="Dark Whatsapp button">
+                Send payment proof
+              </a>
               <ButtonSpinner
+                v-else
                 :is-loading="processing"
                 :is-in-active="false"
                 value="I have made payment"
@@ -220,7 +223,12 @@
                   >
                 </div>
                 <div v-if="info.isOtc">
+                  <a v-if="paid" :href="`https://wa.me/+2349162598206?text=orderID:%20${orderID}`" target="_blank" class="whatsapp--btn">
+                    <img src="/whatsapp_black.png" alt="Dark Whatsapp button">
+                    Send payment proof
+                  </a>
                   <ButtonSpinner
+                    v-else
                     :is-loading="processing"
                     :is-in-active="false"
                     value="I have deposited USDT"
@@ -271,7 +279,12 @@
                 </div>
               </div>
               <div v-if="info.isOtc">
+                <a v-if="paid" :href="`https://wa.me/+2349162598206?text=orderID:%20${orderID}`" target="_blank" class="whatsapp--btn">
+                  <img src="/whatsapp_black.png" alt="Dark Whatsapp button">
+                  Send payment proof
+                </a>
                 <ButtonSpinner
+                  v-else
                   :is-loading="processing"
                   :is-in-active="false"
                   value="I have made payment"
@@ -373,7 +386,6 @@ export default {
       showUSDTBarCode: false,
       networks: [],
       providers: [],
-      markedAsPaid: false
     }
   },
   computed: {
@@ -398,7 +410,6 @@ export default {
     markOrderAsPaid() {
       // setProcessing(false)
       this.processing = true
-      this.markedAsPaid = true
       this.$emit('emitMarkOrderPaid', () => this.setProcessing(false))
       // this.processing = false
     },
@@ -519,12 +530,13 @@ export default {
 .whatsapp--btn {
   padding: 15px 30px;
   border: 0;
-  background: #262626;
+  background: #cecece;
   display: flex;
+  font-size: 1.7rem;
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  color: #a7a7a7 !important;
+  color: #0a0a0a !important;
   transition: .3s ease-in-out;
   transform: scale(1);
   margin-bottom: 10px;
@@ -533,6 +545,7 @@ export default {
     margin-right: 10px;
   }
   &:hover {
+    background: #a9a9a9;
     transform: scale(.98);
   }
   &:active, &:focus {
