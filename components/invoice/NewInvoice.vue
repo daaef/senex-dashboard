@@ -101,10 +101,6 @@
               Please kindly click the button below when you complete your
               payment</span
             >
-            <a :href="`https://wa.me/+2349162598206?text=orderID:%20${orderID}`" target="_blank" class="whatsapp--btn">
-              <img src="/whatsapp_black.png" alt="Dark Whatsapp button">
-              Send payment proof
-            </a>
             <div v-if="info.isOtc">
               <a v-if="paid" :href="`https://wa.me/+2349162598206?text=orderID:%20${orderID}`" target="_blank" class="whatsapp--btn">
                 <img src="/whatsapp_black.png" alt="Dark Whatsapp button">
