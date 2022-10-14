@@ -41,7 +41,11 @@
               {{ info.cryptoAmount }} {{ info.cryptoCurrency }}
             </h3>
           </div>
-          <a v-if="paid && info.isOtc" :href="`https://wa.me/+2349162598206?text=Hey,%20please%20attend%20to%20my%20premium%20order%20with%20ID%20-%20${orderID}.%20Attached%20below%20is%20my%20payment%20proof.`" target="_blank" class="whatsapp--btn blue">
+          <a
+            v-if="paid && info.isOtc"
+            :href="`https://wa.me/+2349162598206?text=Hey,%20please%20attend%20to%20my%20premium%20order%20with%20ID%20-%20${orderID}.%20Attached%20below%20is%20my%20payment%20proof.`"
+            target="_blank" 
+            class="whatsapp--btn blue">
             <i class='bx bxl-whatsapp text-white mr-2'></i>
             Send payment reciept
           </a>
