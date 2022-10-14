@@ -1,3 +1,36 @@
 // .section {
 
 // }
+
+.whatsapp--btn {
+  padding: 15px;
+  border: 0;
+  background: #cecece;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  color: #0a0a0a !important;
+  transition: .3s ease-in-out;
+  transform: scale(1);
+  margin-bottom: 10px;
+  max-height: 50px;
+  .bxl-whatsapp {
+    font-size: 2.4rem;
+  }
+  &:hover {
+    background: #a9a9a9;
+    transform: scale(.98);
+    img {
+      transform: scale(.98);
+    }
+  }
+  &:active, &:focus {
+    transform: scale(.95);
+  }
+  &.blue {
+    background: rgb(5, 56, 136);
+    color: #fafafa !important;
+  }
+}

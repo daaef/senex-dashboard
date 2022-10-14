@@ -93,17 +93,14 @@
                 }}</span>
               </div>
             </template>
-
             <span v-if="!info.isOtc" class="invoice__waiting"
               >Please do not refresh this page. We would automatically detect
-              when you make payment.</span
-            >
+              when you make payment.</span>
             <span v-else class="invoice__waiting"
               >We are waiting for your payment. To get your wallet funded.
               Please kindly click the button below when you complete your
               payment</span
             >
-
             <div v-if="info.isOtc">
               <ButtonSpinner
                 :is-loading="processing"

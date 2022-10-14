@@ -41,16 +41,24 @@
               {{ info.cryptoAmount }} {{ info.cryptoCurrency }}
             </h3>
           </div>
-
-          <ButtonSpinner
-            :is-loading="false"
-            :is-in-active="false"
-            value="Return to Home"
-            background="#053888"
-            :on-submit="() => this.$router.push('/')"
-          />
+          <a
+            v-if="paid && info.isOtc"
+            :href="`https://wa.me/+2349162598206?text=Hey,%20please%20attend%20to%20my%20premium%20order%20with%20ID%20-%20${orderID}.%20Attached%20below%20is%20my%20payment%20proof.`"
+            target="_blank" 
+            class="whatsapp--btn blue">
+            <i class='bx bxl-whatsapp text-white mr-2'></i>
+            Send payment reciept
+          </a>
+          <nuxt-link to="/" class="whatsapp--btn">
+            Return to Home
+          </nuxt-link>
         </div>
       </div>
+    </div>
+    <div class="mt-5 text-center">
+      <nuxt-link class="cursor-pointer flex items-center justify-center text-2xl" to="/order/start">
+        <i class='bx bx-link mr-1 text-3xl' ></i> <span class="underline">Start a new order</span>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -80,5 +88,3 @@ export default {
   },
 }
 </script>
-
-<style></style>

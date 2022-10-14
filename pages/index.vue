@@ -342,6 +342,8 @@ export default {
         },
       },
       endpoint : 'wss://stream.binance.com:9443/ws/!ticker@arr',
+      endpoint2 : 'wss://ticker.senex.xyz/ws/mirror-rates',
+      endpoint3 : 'wss://ticker.senex.xyz/ws/rates',
       iconbase : 'https://raw.githubusercontent.com/rainner/binance-watch/master/public/images/icons/',
       cache    : {},             // coins data cache
       coins    : [],             // live coin list from api
@@ -418,7 +420,7 @@ export default {
     },
     USDT(){
       return this.coins.find((coin) => {
-        return coin.name === "USDCBUSD"
+        return coin.pair === "BUSD/USDT"
       })
     },
     // process coins list
@@ -518,6 +520,7 @@ export default {
       let list = Array.from(oList)
       list.forEach((item)=> {
         let c = this.getCoinData(item);
+        console.log('data is', c)
         // keep to up 100 previous close prices in hostiry for each coin
         c.history = this.cache.hasOwnProperty(c.symbol) ? this.cache[c.symbol].history : this.fakeHistory(c.close);
         if (c.history.length > 100) c.history = c.history.slice(c.history.length - 100);
@@ -571,7 +574,7 @@ export default {
 
     // finalize data for each coin from socket
     getCoinData( item ) {
-      let reg         = /^([A-Z]+)(BTC|USDT|USDC)$/;
+      let reg         = /^([A-Z]+)(BTC|USDT|USDC|ETH)$/;
       let symbol      = String( item.s ).replace( /[^\w\-]+/g, '' ).toUpperCase();
       let token       = symbol.replace( reg, '$1' );
       let asset       = symbol.replace( reg, '$2' );
