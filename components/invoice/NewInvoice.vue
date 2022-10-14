@@ -102,12 +102,7 @@
               payment</span
             >
             <div v-if="info.isOtc">
-              <a v-if="paid" :href="`https://wa.me/+2349162598206?text=orderID:%20${orderID}`" target="_blank" class="whatsapp--btn">
-                <img src="/whatsapp_black.png" alt="Dark Whatsapp button">
-                Send payment proof
-              </a>
               <ButtonSpinner
-                v-else
                 :is-loading="processing"
                 :is-in-active="false"
                 value="I have made payment"
@@ -219,12 +214,7 @@
                   >
                 </div>
                 <div v-if="info.isOtc">
-                  <a v-if="paid" :href="`https://wa.me/+2349162598206?text=orderID:%20${orderID}`" target="_blank" class="whatsapp--btn">
-                    <img src="/whatsapp_black.png" alt="Dark Whatsapp button">
-                    Send payment proof
-                  </a>
                   <ButtonSpinner
-                    v-else
                     :is-loading="processing"
                     :is-in-active="false"
                     value="I have deposited USDT"
@@ -275,12 +265,7 @@
                 </div>
               </div>
               <div v-if="info.isOtc">
-                <a v-if="paid" :href="`https://wa.me/+2349162598206?text=orderID:%20${orderID}`" target="_blank" class="whatsapp--btn">
-                  <img src="/whatsapp_black.png" alt="Dark Whatsapp button">
-                  Send payment proof
-                </a>
                 <ButtonSpinner
-                  v-else
                   :is-loading="processing"
                   :is-in-active="false"
                   value="I have made payment"
@@ -523,31 +508,6 @@ export default {
 </script>
 
 <style lang="scss">
-.whatsapp--btn {
-  padding: 15px 30px;
-  border: 0;
-  background: #cecece;
-  display: flex;
-  font-size: 1.7rem;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  color: #0a0a0a !important;
-  transition: .3s ease-in-out;
-  transform: scale(1);
-  margin-bottom: 10px;
-  img {
-    height: 30px;
-    margin-right: 10px;
-  }
-  &:hover {
-    background: #a9a9a9;
-    transform: scale(.98);
-  }
-  &:active, &:focus {
-    transform: scale(.95);
-  }
-}
 .change-network {
   display: inline-block;
   color: #3382fa;

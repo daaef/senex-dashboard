@@ -1,3 +1,28 @@
 // .section {
 
 // }
+.whatsapp--btn {
+  padding: 15px 30px;
+  border: 0;
+  background: #cecece;
+  display: flex;
+  font-size: 1.7rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  color: #0a0a0a !important;
+  transition: .3s ease-in-out;
+  transform: scale(1);
+  margin-bottom: 10px;
+  img {
+    height: 30px;
+    margin-right: 10px;
+  }
+  &:hover {
+    background: #a9a9a9;
+    transform: scale(.98);
+  }
+  &:active, &:focus {
+    transform: scale(.95);
+  }
+}
