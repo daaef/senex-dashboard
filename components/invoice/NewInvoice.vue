@@ -502,7 +502,7 @@ export default {
       } else if (coin === 'ETH') {
         protocol = 'ethereum:'
       }
-      return `${protocol}${address}?amount=${this.addPlatformFeeToSell()}`
+      return `${protocol}${address}?amount=${amount+fee}`
     },
   },
 }
