@@ -236,7 +236,8 @@
                       getQrCodeValue(
                         info.cryptoCurrency,
                         networkAddress,
-                        info.cryptoAmount
+                        info.cryptoAmount,
+                        info.platformFee
                       )
                     "
                     tag="img"
@@ -491,7 +492,7 @@ export default {
         (coin) => coin.cur === this.info.cryptoCurrency
       ).flag
     },
-    getQrCodeValue(coin, address, amount) {
+    getQrCodeValue(coin, address, amount, fee) {
       if (coin === 'USDT') {
         return address
       }
@@ -501,7 +502,7 @@ export default {
       } else if (coin === 'ETH') {
         protocol = 'ethereum:'
       }
-      return `${protocol}${address}?amount=${amount}`
+      return `${protocol}${address}?amount=${amount+fee}`
     },
   },
 }
