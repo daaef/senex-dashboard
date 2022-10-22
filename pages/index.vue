@@ -1,37 +1,47 @@
 <template>
   <div class="">
-    <div
-      v-if="user.profile.status != 'Approved'"
-      class="index-complete-kyc u-mb-20"
-    >
-      <div class="index-complete-kyc__info u-mr-10">
-        <img
-          src="/img/icons/green_round_checkmark.svg"
-          alt="checkmark"
-          class="u-mr-10"
-        />
-        <p>Complete your KYC to enjoy more features on SenexPay</p>
-      </div>
       <div
-        class="index-complete-kyc__link-box u-pointer"
-        @click="$router.push('/profile')"
+        v-if="user.profile.status != 'Approved'"
+        class="index-complete-kyc flex-wrap u-mb-20"
       >
-        <p class="u-link u-mr-10">Complete your KYC</p>
-        <svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 11.115 18"
-        >
-          <path
-            id="Icon_material-navigate-next"
-            data-name="Icon material-navigate-next"
-            d="M15,9l-2.115,2.115L19.755,18l-6.87,6.885L15,27l9-9Z"
-            transform="translate(-12.885 -9)"
-            fill="#ffffff"
+        <div class="index-complete-kyc__info u-mr-10">
+          <img
+            src="/img/icons/green_round_checkmark.svg"
+            alt="checkmark"
+            class="u-mr-10"
           />
-        </svg>
+          <p>Add Next of Kin details <span class="ml-2 u-link">1 of 4</span></p>
+        </div>
+        <div
+          class="index-complete-kyc__link-box u-pointer"
+          @click="$router.push('/profile')"
+        >
+          <p class="u-link u-mr-10">Complete your KYC</p>
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 11.115 18"
+          >
+            <path
+              id="Icon_material-navigate-next"
+              data-name="Icon material-navigate-next"
+              d="M15,9l-2.115,2.115L19.755,18l-6.87,6.885L15,27l9-9Z"
+              transform="translate(-12.885 -9)"
+              fill="#ffffff"
+            />
+          </svg>
+        </div>
+        <div class="w-full flex justify-between items-center">
+          <div class="progress-bar">
+            <div class="bar--content">
+              <div :class="{'active--progress': (user.profile.nextOfKin.data !== null)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
+              <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
+              <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
+              <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
     <div class="index-marquee u-mb-20" direction="left">
       <div class="index-rate-box">
         <div class="rate">
@@ -391,8 +401,12 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.onResize)
+    this.sock.close()
   },
   computed: {
+    completedOrders(){
+      return this.orders.filter(order => order.status === "complete")
+    },
     styledUp(){
       return this.btcUSDT?.style
     },
@@ -520,7 +534,6 @@ export default {
       let list = Array.from(oList)
       list.forEach((item)=> {
         let c = this.getCoinData(item);
-        console.log('data is', c)
         // keep to up 100 previous close prices in hostiry for each coin
         c.history = this.cache.hasOwnProperty(c.symbol) ? this.cache[c.symbol].history : this.fakeHistory(c.close);
         if (c.history.length > 100) c.history = c.history.slice(c.history.length - 100);
@@ -693,7 +706,6 @@ export default {
       }
     },
     getCoinAmountAndRise(currency, type) {
-      console.log(this.rates)
       // new rate
       const fiatCurrency = this.selectedFiatCurrency.ticker
       const newCryptoFiat = this.rates[`${currency}_${fiatCurrency}`][type]
@@ -738,7 +750,29 @@ export default {
   },
 }
 </script>
-<style>
+<style lang="scss">
+.progress-bar {
+  width: 100%;
+  margin-top: 12px;
+  .bar--content {
+    background: transparent;
+    border-radius: 25px;
+    width: 100%;
+    height: .24rem;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+    .progress--line {
+      height: .24rem;
+      border-radius: 25px;
+      width: 100%;
+      background: #e8e8e8;
+      &.active--progress {
+        background: rgba(37, 99, 235, 1);
+      }
+    }
+  }
+}
   .gain {
     color: #04953b;
   }

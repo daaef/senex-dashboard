@@ -24,7 +24,7 @@
           alt=""
           class="profile__checkmark u-mr-10"
         />
-        <p class="text-13">Account Created</p>
+        <p class="text-13">Provide your next of kin information</p>
       </div>
       <div class="u-flex u-mb-40">
         <img
