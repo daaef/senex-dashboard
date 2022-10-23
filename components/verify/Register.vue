@@ -31,7 +31,7 @@
               ></label
             >
             <div class="select-input">
-              <v-select
+<!--              <v-select
                 :options="countries"
                 :reduce="(country) => country.value"
                 v-model="countryCode"
@@ -43,7 +43,15 @@
                 <template #option="{ text }">
                   <span>{{ text }}</span>
                 </template>
-              </v-select>
+              </v-select>-->
+              <vue-country-code
+                class="mr-2"
+                @onSelect="onSelectCountry"
+                :enableSearchField="true"
+                :enabledCountryCode="true"
+                :enabledFlags="false"
+                :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca', 'ae', 'tr']"
+              />
               <!-- <b-dropdown id="dropdown-menu" :text="countryCode">
                 <b-dropdown-item
                   v-for="country in countries"
@@ -281,6 +289,10 @@ export default {
     this.url = process.env.SENEX_LANDING_SITE_URL
   },
   methods: {
+    onSelectCountry({name, iso2, dialCode}){
+      this.countryCode = `+${dialCode}`
+      this.mobileSuffix = ''
+    },
     togglePassword() {
       this.passwordLocked =
         this.passwordLocked === 'password' ? 'text' : 'password'
@@ -312,6 +324,9 @@ export default {
         this.validMobile = 2
       } else if (this.countryCode === '+27' && value.length === 9) {
         this.mobile = '+27' + value
+        this.validMobile = 2
+      } else if (value.length <= 10) {
+        this.mobile = this.countryCode + value
         this.validMobile = 2
       } else {
         this.validMobile = 1

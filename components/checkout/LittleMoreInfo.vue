@@ -29,7 +29,7 @@
             {{ country.text }}
           </b-dropdown-item>
         </b-dropdown> -->
-        <v-select
+<!--        <v-select
           :options="countries"
           :reduce="(country) => country.value"
           v-model="countryCode"
@@ -41,7 +41,15 @@
           <template #option="{ text }">
             <span>{{ text }}</span>
           </template>
-        </v-select>
+        </v-select>-->
+        <vue-country-code
+          class="mr-2"
+          @onSelect="onSelectCountry"
+          :enableSearchField="true"
+          :enabledCountryCode="true"
+          :enabledFlags="false"
+          :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca', 'ae', 'tr']"
+        />
         <input
           :value="mobileSuffix"
           @input="$emit('update:mobileSuffix', $event.target.value)"
@@ -141,6 +149,10 @@ export default {
     },
   },
   methods: {
+    onSelectCountry({name, iso2, dialCode}){
+      this.countryCode = `+${dialCode}`
+      this.mobileSuffix = ''
+    },
     continueBtn() {
       return {
         ...continueBtn,
