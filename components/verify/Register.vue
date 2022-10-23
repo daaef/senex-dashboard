@@ -605,4 +605,10 @@ export default {
   //   margin-top: 5px;
   // }
 }
+
+.vue-country-select .country-code {
+  font-family: 'SFPro', sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
 </style>
