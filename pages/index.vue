@@ -1,16 +1,32 @@
 <template>
   <div class="">
       <div
-        v-if="user.profile.status != 'Approved'"
+        v-if="user.profile.status !== 'Approved'"
         class="index-complete-kyc flex-wrap u-mb-20"
       >
-        <div class="index-complete-kyc__info u-mr-10">
-          <img
-            src="/img/icons/green_round_checkmark.svg"
-            alt="checkmark"
-            class="u-mr-10"
-          />
-          <p>Add Next of Kin details <span class="ml-2 u-link">1 of 4</span></p>
+        <div class="flex items-center">
+          <i class='bx bx-target-lock'></i>
+        </div>
+        <div>
+          <div class="w-full flex justify-between max-w-lg items-center">
+            <div class="progress-bar">
+              <div class="bar--content">
+                <div :class="{'active--progress': (user.profile.nextOfKin.data !== null)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
+                <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
+                <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
+                <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
+              </div>
+            </div>
+            <span class="ml-6 u-link">Step 1 of 4</span>
+          </div>
+          <div class="index-complete-kyc__info u-mr-10">
+            <img
+              src="/img/icons/green_round_checkmark.svg"
+              alt="checkmark"
+              class="u-mr-10"
+            />
+            <p>Add Next of Kin details </p>
+          </div>
         </div>
         <div
           class="index-complete-kyc__link-box u-pointer"
@@ -30,16 +46,6 @@
               fill="#ffffff"
             />
           </svg>
-        </div>
-        <div class="w-full flex justify-between items-center">
-          <div class="progress-bar">
-            <div class="bar--content">
-              <div :class="{'active--progress': (user.profile.nextOfKin.data !== null)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
-              <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
-              <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
-              <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
-            </div>
-          </div>
         </div>
       </div>
     <div class="index-marquee u-mb-20" direction="left">
@@ -753,7 +759,9 @@ export default {
 <style lang="scss">
 .progress-bar {
   width: 100%;
-  margin-top: 12px;
+  & ~ .u-link {
+    white-space: nowrap;
+  }
   .bar--content {
     background: transparent;
     border-radius: 25px;
@@ -778,5 +786,9 @@ export default {
   }
   .loss {
     color: #950404;
+  }
+  .prog--details {
+    display: grid;
+    grid-template-columns: auto auto auto;
   }
 </style>

@@ -42,9 +42,7 @@
     "vue-select": "^3.18.3",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
-    "webpack": "^4.46.0"
-  },
-  "devDependencies": {
+    "webpack": "^4.46.0",
     "@chenfengyuan/vue-qrcode": "^1.0.2",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/google-analytics": "^2.4.0",
@@ -56,5 +54,7 @@
     "prettier": "^2.5.1",
     "sass": "^1.49.9",
     "sass-loader": "10"
+  },
+  "devDependencies": {
   }
 }
