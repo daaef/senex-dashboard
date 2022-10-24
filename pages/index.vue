@@ -28,13 +28,12 @@
             <p>Add Next of Kin details </p>
           </div>
         </div>
-        <div
+        <nuxt-link to="/profile"
           class="index-complete-kyc__link-box u-pointer"
-          @click="$router.push('/profile')"
         >
-          <p class="u-link u-mr-10">Complete your KYC</p>
+          <p class="u-link u-mr-10">Complete</p>
           <svg
-            class="icon"
+            class="icon u-link"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 11.115 18"
           >
@@ -46,7 +45,7 @@
               fill="#ffffff"
             />
           </svg>
-        </div>
+        </nuxt-link>
       </div>
     <div class="index-marquee u-mb-20" direction="left">
       <div class="index-rate-box">
@@ -149,12 +148,13 @@
               <img src="/img/icons/icon_metro_trophy.svg" alt="cup" />
               <span class="small-text">Comrade</span>
             </div>
-            <div class="index-earn__content index-earn__content--1">
+            <nuxt-link to="/invite/earnings" class="index-earn__content index-earn__content--1">
               <span class="small-text">You have earned</span>
               <h3 class="heading-primary">
                 {{ totalEarned | formatMoney('USD') }}
+                <i class='bx bx-link-external'></i>
               </h3>
-            </div>
+            </nuxt-link>
             <div class="index-earn__content">
               <img
                 src="/img/icons/icon_awesome_users.svg"

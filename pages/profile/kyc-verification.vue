@@ -32,7 +32,15 @@
           alt=""
           class="profile__checkmark u-mr-10"
         />
-        <p class="text-13">Account Verified</p>
+        <p class="text-13">Complete a Transaction</p>
+      </div>
+      <div class="u-flex u-mb-40">
+        <img
+          src="/img/checkmark.svg"
+          alt=""
+          class="profile__checkmark u-mr-10"
+        />
+        <p class="text-13">Invite a friend</p>
       </div>
       <div class="u-flex">
         <img
@@ -40,7 +48,7 @@
           alt=""
           class="profile__checkmark u-mr-10"
         />
-        <p class="u-fw-600 text-13">KYC Verification</p>
+        <p class="u-fw-600 text-13">Complete your KYC Verification</p>
       </div>
     </div>
     <span
