@@ -7,7 +7,7 @@
         <div class="flex items-center">
           <i class='bx bx-target-lock'></i>
         </div>
-        <div>
+        <div class="progress--bar-holder">
           <div class="w-full flex justify-between max-w-lg items-center">
             <div class="progress-bar">
               <div class="bar--content">
@@ -152,7 +152,9 @@
               <span class="small-text">You have earned</span>
               <h3 class="heading-primary">
                 {{ totalEarned | formatMoney('USD') }}
-                <i class='bx bx-link-external'></i>
+                <span class="link-ext items-center">
+                  <i class='bx bx-link-external'></i>
+                </span>
               </h3>
             </nuxt-link>
             <div class="index-earn__content">
@@ -791,4 +793,18 @@ export default {
     display: grid;
     grid-template-columns: auto auto auto;
   }
+  .link-ext {
+    display: flex;
+    margin-left: 5px;
+    height: 100%;
+    align-items: center;
+    i {
+      font-size: 1rem;
+    }
+  }
+a.index-earn__content.index-earn__content--1 {
+  h3 {
+    display: flex;
+  }
+}
 </style>

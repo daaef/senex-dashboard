@@ -15,9 +15,33 @@
     font-size: 3.3rem;
   }
   @media (max-width: 768px) {
-    justify-content: flex-end;
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    & > * {
+      &:first-child {
+        order: 1;
+      }
+      &:last-child {
+        order: 2;
+      }
+    }
+    .progress--bar-holder {
+      order: 0;
+      width: 100%;
+      margin-bottom: 10px;
+      & > div{
+        &:first-child {
+          flex-direction: column-reverse;
+          max-width: 100%;
+          .progress-bar {
+            margin: 10px 0;
+          }
+        }
+      }
+    }
+    .index-complete-kyc__info {
+      justify-content: center;
+    }
     .index-complete-kyc__link-box {
       align-self: flex-end;
     }
