@@ -31,19 +31,19 @@
               ></label
             >
             <div class="select-input">
-<!--              <v-select
-                :options="countries"
-                :reduce="(country) => country.value"
-                v-model="countryCode"
-                :placeholder="countryCode"
-                label="value"
-                :clearable="false"
-                :searchable="false"
-              >
-                <template #option="{ text }">
-                  <span>{{ text }}</span>
-                </template>
-              </v-select>-->
+            <!--              <v-select
+                            :options="countries"
+                            :reduce="(country) => country.value"
+                            v-model="countryCode"
+                            :placeholder="countryCode"
+                            label="value"
+                            :clearable="false"
+                            :searchable="false"
+                          >
+                            <template #option="{ text }">
+                              <span>{{ text }}</span>
+                            </template>
+                          </v-select>-->
               <vue-country-code
                 class="mr-2"
                 @onSelect="onSelectCountry"
@@ -403,9 +403,13 @@ export default {
       }
     },
     isNumber(evt) {
-      if (this.countryCode === '+234' && this.mobileSuffix.length === 10) {
+      if ((this.countryCode === '+234' || this.countryCode === '+233' || this.countryCode === '+254' || this.countryCode === '+1' || this.countryCode === '+44') && this.mobileSuffix.length === 10) {
         evt.preventDefault()
       } else if (this.countryCode === '+27' && this.mobileSuffix.length === 9) {
+        evt.preventDefault()
+      } else if (this.countryCode === '+90' && this.mobileSuffix.length === 11) {
+        evt.preventDefault()
+      } else if (this.countryCode === '+971' && this.mobileSuffix.length === 7) {
         evt.preventDefault()
       }
       const charCode = evt.which ? evt.which : evt.keyCode
@@ -558,7 +562,6 @@ export default {
     margin-right: 2px;
     border: 1px solid #707070;
     position: relative;
-    border-radius: 50%;
     font-size: 6px;
   }
 
