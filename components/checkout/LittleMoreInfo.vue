@@ -326,9 +326,13 @@ export default {
       // this.isAllValid()
     },
     isNumber(evt) {
-      if (this.countryCode === '+234' && this.mobileSuffix.length === 10) {
+      if ((this.countryCode === '+234' || this.countryCode === '+233' || this.countryCode === '+254' || this.countryCode === '+1' || this.countryCode === '+44') && this.mobileSuffix.length === 10) {
         evt.preventDefault()
       } else if (this.countryCode === '+27' && this.mobileSuffix.length === 9) {
+        evt.preventDefault()
+      } else if (this.countryCode === '+90' && this.mobileSuffix.length === 11) {
+        evt.preventDefault()
+      } else if (this.countryCode === '+971' && this.mobileSuffix.length === 7) {
         evt.preventDefault()
       }
       const charCode = evt.which ? evt.which : evt.keyCode
