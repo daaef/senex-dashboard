@@ -50,7 +50,7 @@
                 :enableSearchField="true"
                 :enabledCountryCode="true"
                 :enabledFlags="false"
-                :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca', 'ae', 'tr']"
+                :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca']"
               />
               <!-- <b-dropdown id="dropdown-menu" :text="countryCode">
                 <b-dropdown-item

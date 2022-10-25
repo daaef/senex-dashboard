@@ -48,7 +48,7 @@
           :enableSearchField="true"
           :enabledCountryCode="true"
           :enabledFlags="false"
-          :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca', 'ae', 'tr']"
+          :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca']"
         />
         <input
           :value="mobileSuffix"
