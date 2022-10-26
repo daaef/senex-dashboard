@@ -9581,6 +9581,11 @@ vue-client-only@^2.0.0:
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.1.0.tgz#1a67a47b8ecacfa86d75830173fffee3bf8a4ee3"
   integrity sha512-vKl1skEKn8EK9f8P2ZzhRnuaRHLHrlt1sbRmazlvsx6EiC3A8oWF8YCBrMJzoN+W3OnElwIGbVjsx6/xelY1AA==
 
+vue-country-code-select@^1.6.7:
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/vue-country-code-select/-/vue-country-code-select-1.6.7.tgz#c9ebd37ad385b2575a0b5cae01ed137493858c98"
+  integrity sha512-90GQek/OYAHhwEAtiCklalDZZlfMQyuxro//c03TX2n0JLIOZDWV31qgWjQns9BMtWQ2f4g9gW66ycFkXm0ZYg==
+
 vue-final-modal@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/vue-final-modal/-/vue-final-modal-2.4.1.tgz#7c3776295fecbd456e4f83de921379f1d980590a"

@@ -58,7 +58,7 @@
       </div>
     </div>
     <router-link to="/order" class="index-float-btn"
-      ><img src="/img/icons/transaction_icon_blue.svg" alt="order"
+    ><img src="/img/icons/transaction_icon_blue.svg" alt="order"
     /></router-link>
     <div class="index-show-cur-switch u-mb-20">
       <CurrencySwitch />
@@ -236,7 +236,7 @@
         href="https://www.eventbrite.co.uk/e/talk-to-a-crypto-advisor-tickets-319295329927"
         target="_blank"
         class="index-guide__btn"
-        >Book a session</a
+      >Book a session</a
       >
     </div>
   </div>
@@ -528,9 +528,9 @@ export default {
         // add coin data to cache
         this.cache[c.symbol] = c;
       })
-        // convert cache object to final prices list for each symbol
-        this.coins = Object.keys(this.cache).map(s => this.cache[s]);
-        this.status = 2; // active
+      // convert cache object to final prices list for each symbol
+      this.coins = Object.keys(this.cache).map(s => this.cache[s]);
+      this.status = 2; // active
     },
 
     // start socket connection
@@ -739,10 +739,10 @@ export default {
 }
 </script>
 <style>
-  .gain {
-    color: #04953b;
-  }
-  .loss {
-    color: #950404;
-  }
+.gain {
+  color: #04953b;
+}
+.loss {
+  color: #950404;
+}
 </style>

@@ -29,7 +29,7 @@
             {{ country.text }}
           </b-dropdown-item>
         </b-dropdown> -->
-        <v-select
+<!--        <v-select
           :options="countries"
           :reduce="(country) => country.value"
           v-model="countryCode"
@@ -41,7 +41,15 @@
           <template #option="{ text }">
             <span>{{ text }}</span>
           </template>
-        </v-select>
+        </v-select>-->
+        <vue-country-code
+          class="mr-2"
+          @onSelect="onSelectCountry"
+          :enableSearchField="true"
+          :enabledCountryCode="true"
+          :enabledFlags="false"
+          :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca']"
+        />
         <input
           :value="mobileSuffix"
           @input="$emit('update:mobileSuffix', $event.target.value)"
@@ -141,6 +149,10 @@ export default {
     },
   },
   methods: {
+    onSelectCountry({name, iso2, dialCode}){
+      this.countryCode = `+${dialCode}`
+      this.mobileSuffix = ''
+    },
     continueBtn() {
       return {
         ...continueBtn,
@@ -314,9 +326,13 @@ export default {
       // this.isAllValid()
     },
     isNumber(evt) {
-      if (this.countryCode === '+234' && this.mobileSuffix.length === 10) {
+      if ((this.countryCode === '+234' || this.countryCode === '+233' || this.countryCode === '+254' || this.countryCode === '+1' || this.countryCode === '+44') && this.mobileSuffix.length === 10) {
         evt.preventDefault()
       } else if (this.countryCode === '+27' && this.mobileSuffix.length === 9) {
+        evt.preventDefault()
+      } else if (this.countryCode === '+90' && this.mobileSuffix.length === 11) {
+        evt.preventDefault()
+      } else if (this.countryCode === '+971' && this.mobileSuffix.length === 7) {
         evt.preventDefault()
       }
       const charCode = evt.which ? evt.which : evt.keyCode

@@ -303,7 +303,7 @@
   border-radius: 12px;
   color: $color-white;
   background: transparent linear-gradient(100deg, #af29eb 0%, #124ee5 100%) 0%
-    0% no-repeat padding-box;
+  0% no-repeat padding-box;
 
   @include respond(phone) {
     flex-direction: column;
@@ -393,5 +393,11 @@
   @include respond(phone) {
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+.vue-country-select {
+  .iti-flag, .country-code {
+    margin-right: 4px;
   }
 }

@@ -31,19 +31,27 @@
               ></label
             >
             <div class="select-input">
-              <v-select
-                :options="countries"
-                :reduce="(country) => country.value"
-                v-model="countryCode"
-                :placeholder="countryCode"
-                label="value"
-                :clearable="false"
-                :searchable="false"
-              >
-                <template #option="{ text }">
-                  <span>{{ text }}</span>
-                </template>
-              </v-select>
+            <!--              <v-select
+                            :options="countries"
+                            :reduce="(country) => country.value"
+                            v-model="countryCode"
+                            :placeholder="countryCode"
+                            label="value"
+                            :clearable="false"
+                            :searchable="false"
+                          >
+                            <template #option="{ text }">
+                              <span>{{ text }}</span>
+                            </template>
+                          </v-select>-->
+              <vue-country-code
+                class="mr-2"
+                @onSelect="onSelectCountry"
+                :enableSearchField="true"
+                :enabledCountryCode="true"
+                :enabledFlags="true"
+                :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca']"
+              />
               <!-- <b-dropdown id="dropdown-menu" :text="countryCode">
                 <b-dropdown-item
                   v-for="country in countries"
@@ -281,6 +289,10 @@ export default {
     this.url = process.env.SENEX_LANDING_SITE_URL
   },
   methods: {
+    onSelectCountry({name, iso2, dialCode}){
+      this.countryCode = `+${dialCode}`
+      this.mobileSuffix = ''
+    },
     togglePassword() {
       this.passwordLocked =
         this.passwordLocked === 'password' ? 'text' : 'password'
@@ -312,6 +324,9 @@ export default {
         this.validMobile = 2
       } else if (this.countryCode === '+27' && value.length === 9) {
         this.mobile = '+27' + value
+        this.validMobile = 2
+      } else if (value.length <= 10) {
+        this.mobile = this.countryCode + value
         this.validMobile = 2
       } else {
         this.validMobile = 1
@@ -388,9 +403,13 @@ export default {
       }
     },
     isNumber(evt) {
-      if (this.countryCode === '+234' && this.mobileSuffix.length === 10) {
+      if ((this.countryCode === '+234' || this.countryCode === '+233' || this.countryCode === '+254' || this.countryCode === '+1' || this.countryCode === '+44') && this.mobileSuffix.length === 10) {
         evt.preventDefault()
       } else if (this.countryCode === '+27' && this.mobileSuffix.length === 9) {
+        evt.preventDefault()
+      } else if (this.countryCode === '+90' && this.mobileSuffix.length === 11) {
+        evt.preventDefault()
+      } else if (this.countryCode === '+971' && this.mobileSuffix.length === 7) {
         evt.preventDefault()
       }
       const charCode = evt.which ? evt.which : evt.keyCode
@@ -543,7 +562,6 @@ export default {
     margin-right: 2px;
     border: 1px solid #707070;
     position: relative;
-    border-radius: 50%;
     font-size: 6px;
   }
 
@@ -589,5 +607,11 @@ export default {
   //   border: 1px solid #707070;
   //   margin-top: 5px;
   // }
+}
+
+.vue-country-select .country-code {
+  font-family: 'SFPro', sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
 }
 </style>
