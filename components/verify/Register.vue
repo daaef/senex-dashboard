@@ -49,7 +49,7 @@
                 @onSelect="onSelectCountry"
                 :enableSearchField="true"
                 :enabledCountryCode="true"
-                :enabledFlags="false"
+                :enabledFlags="true"
                 :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca']"
               />
               <!-- <b-dropdown id="dropdown-menu" :text="countryCode">
