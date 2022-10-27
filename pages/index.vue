@@ -8,24 +8,28 @@
           <i class='bx bx-target-lock'></i>
         </div>
         <div class="progress--bar-holder">
-          <div class="w-full flex justify-between max-w-lg items-center">
-            <div class="progress-bar">
-              <div class="bar--content">
-                <div :class="{'active--progress': (user.profile.nextOfKin.data !== null)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
-                <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
-                <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
-                <div :class="{'active--progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress--line h-2.5 rounded-full"></div>
-              </div>
-            </div>
-            <span class="ml-6 u-link">Step 1 of 4</span>
-          </div>
+          <div class="message text-3xl font-bold">Finish setting up your profile</div>
           <div class="index-complete-kyc__info u-mr-10">
-            <img
+<!--            <img
               src="/img/icons/green_round_checkmark.svg"
               alt="checkmark"
               class="u-mr-10"
-            />
-            <p>Add Next of Kin details </p>
+            />-->
+            <p class="text-md">Provide 'Next of Kin' details </p>
+          </div>
+          <div class="w-full flex justify-between max-w-lg items-center">
+            <div class="progress-bar">
+              <div class="w-full bg-gray-700 rounded-full h-2.5 dark:bg-gray-700">
+                <div class="bg-gradient-to-br from-blue-500 to-purple-600 h-2.5 rounded-full" style="width: 60%"></div>
+              </div>
+<!--              <div class="bar&#45;&#45;content">
+                <div :class="{'active&#45;&#45;progress': (user.profile.nextOfKin.data !== null)}" class="bg-blue-600 progress&#45;&#45;line h-2.5 rounded-full"></div>
+                <div :class="{'active&#45;&#45;progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress&#45;&#45;line h-2.5 rounded-full"></div>
+                <div :class="{'active&#45;&#45;progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress&#45;&#45;line h-2.5 rounded-full"></div>
+                <div :class="{'active&#45;&#45;progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress&#45;&#45;line h-2.5 rounded-full"></div>
+              </div>-->
+            </div>
+            <span class="ml-6 u-link">60%</span>
           </div>
         </div>
         <nuxt-link to="/profile"
@@ -415,6 +419,9 @@ export default {
     completedOrders(){
       return this.orders.filter(order => order.status === "complete")
     },
+    completedSetupCount(){
+      return Number(!!this.activeReferralUsers) + Number(!!(this.user?.profile?.nextOfKin.dateOfBirth))
+    },
     styledUp(){
       return this.btcUSDT?.style
     },
@@ -799,7 +806,7 @@ export default {
     height: 100%;
     align-items: center;
     i {
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
   }
 a.index-earn__content.index-earn__content--1 {

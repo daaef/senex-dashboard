@@ -245,7 +245,7 @@
   &__content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     height: 100%;
 
@@ -430,4 +430,12 @@
     display: flex;
     justify-content: flex-end;
   }
+}
+
+a:hover {
+  color: unset;
+}
+
+[type="date"] {
+  color-scheme: dark
 }

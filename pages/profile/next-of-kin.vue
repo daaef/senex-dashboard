@@ -77,7 +77,7 @@
               hasNextOfKin && !edit ? 'profile__input-box--disabled' : '',
             ]"
           >
-            <input type="text" :disabled="hasNextOfKin && !edit" />
+            <input type="date" v-model="nextOfKin.dateOfBirth" :disabled="hasNextOfKin && !edit" lang="en-UK" />
           </div>
         </div>
         <!-- <button class="btn">Edit Next Of Kin</button> -->
@@ -125,6 +125,7 @@ export default {
         name: '',
         email: '',
         mobile: '',
+        dateOfBirth: new Date()
       },
       hasNextOfKin: false,
       url: '',
