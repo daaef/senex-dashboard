@@ -36,6 +36,7 @@
     "v-tooltip": "^2.1.3",
     "vue": "^2.6.14",
     "vue-awesome-countdown": "^1.1.4",
+    "vue-country-code-select": "^1.6.7",
     "vue-final-modal": "^2.4.1",
     "vue-notification": "^1.3.20",
     "vue-numeral-filter": "^2.2.0",

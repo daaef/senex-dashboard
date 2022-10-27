@@ -46,7 +46,7 @@
     <span
       class="u-link u-mb-20 text-14"
       @click="showRegulation = !showRegulation"
-      >Why is this important?</span
+    >Why is this important?</span
     >
     <div v-if="showRegulation" class="profile__info u-mt-20">
       <p>
@@ -109,13 +109,13 @@
             <div class="form-check">
               <input v-model="smile_id_product" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="doc_verification">
               <label class="form-check-label inline-block" for="flexRadioDefault1">
-                  International Passport
+                International Passport
               </label>
             </div>
             <div class="form-check">
               <input v-model="smile_id_product" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="biometric_kyc">
               <label class="form-check-label inline-block" for="flexRadioDefault2">
-                  Other means of ID
+                Other means of ID
               </label>
             </div>
             <BtnSpinner
@@ -149,9 +149,9 @@ export default {
       smile_id_product: 'biometric_kyc',
       smile_id_options: {
         biometric_kyc: {
-            'NG': ['NIN', 'NIN_SLIP', 'DRIVERS_LICENSE', 'VOTER_ID'],
-            'ZA': ['NATIONAL_ID'],
-          },
+          'NG': ['NIN', 'NIN_SLIP', 'DRIVERS_LICENSE', 'VOTER_ID'],
+          'ZA': ['NATIONAL_ID'],
+        },
         doc_verification: {
           'NG': ['PASSPORT'],
           'ZA': ['PASSPORT'],
@@ -242,85 +242,85 @@ export default {
 </script>
 
 <style lang="scss">
-  .kyc--overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100%;
+.kyc--overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  .kyc--container {
+    padding: 50px;
+    border-radius: 30px;
+    background: #111219;
+    box-shadow: 0px 0px 6px #707070;
+    border: 1px solid #707070;
+    text-align: center;
     max-width: 100%;
-    .kyc--container {
-      padding: 50px;
-      border-radius: 30px;
-      background: #111219;
-      box-shadow: 0px 0px 6px #707070;
-      border: 1px solid #707070;
-      text-align: center;
+    .img--container {
+      padding: 20px 20px 0;
       max-width: 100%;
-      .img--container {
-        padding: 20px 20px 0;
+      height: 250px;
+      img {
+        height: 100%;
         max-width: 100%;
-        height: 250px;
-        img {
-          height: 100%;
-          max-width: 100%;
-        }
       }
-      .text--btn--content {
-        margin-top: -50px;
+    }
+    .text--btn--content {
+      margin-top: -50px;
+    }
+    h3 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      line-height: 1.2em;
+      margin-top: 20px;
+    }
+    p {
+      line-height: 1.2em;
+      margin: 35px 0;
+      font-size: 1.9rem;
+    }
+    button {
+      width: 100%;
+    }
+    .kyc--header {
+      position: relative;
+      min-width: 350px;
+      .close {
+        position: absolute;
+        left: -30px;
+        top: 0;
+        height: 25px;
+        width: 25px;
+        transform: translateY(5px);
       }
       h3 {
-        font-weight: 700;
-        font-size: 2.5rem;
-        line-height: 1.2em;
-        margin-top: 20px;
+        margin-top: 0;
       }
-      p {
-        line-height: 1.2em;
-        margin: 35px 0;
-        font-size: 1.9rem;
-      }
-      button {
-        width: 100%;
-      }
-      .kyc--header {
+    }
+    .kyc-radios {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 50px;
+      .form-check {
+        margin-bottom: 30px;
         position: relative;
-        min-width: 350px;
-          .close {
-            position: absolute;
-            left: -30px;
-            top: 0;
-            height: 25px;
-            width: 25px;
-            transform: translateY(5px);
-          }
-        h3 {
-          margin-top: 0;
+        .form-check-label {
+          cursor: pointer;
+          text-align: left;
+          color: #fafafa;
+          display: flex;
+          align-items: center;
+          border-radius: 15px;
+          padding: 15px 15px 15px 50px;
+          transition: .3s ease-in-out;
         }
-      }
-      .kyc-radios {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 50px;
-        .form-check {
-          margin-bottom: 30px;
-          position: relative;
+        &:hover {
           .form-check-label {
-            cursor: pointer;
-            text-align: left;
-            color: #fafafa;
-            display: flex;
-            align-items: center;
-            border-radius: 15px;
-            padding: 15px 15px 15px 50px;
-            transition: .3s ease-in-out;
+            background: #181D2C;
           }
-          &:hover {
-            .form-check-label {
-              background: #181D2C;
-            }
-          }
+        }
 
         .form-check-input {
           position: absolute;
@@ -342,7 +342,7 @@ export default {
           }
         }
       }
-      }
     }
   }
+}
 </style>
