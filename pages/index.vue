@@ -15,12 +15,15 @@
               alt="checkmark"
               class="u-mr-10"
             />-->
-            <p class="text-md">Provide 'Next of Kin' details </p>
+            <p v-if="!countNextOfKin" class="text-md">Provide 'Next of Kin' details</p>
+            <p v-else-if="!completedOrders" class="text-md">Complete a transaction </p>
+            <p v-else-if="!activeReferralUsers" class="text-md">Invite a friend </p>
+            <p v-else class="text-md">Complete your KYC Verification </p>
           </div>
           <div class="w-full flex justify-between max-w-lg items-center">
             <div class="progress-bar">
               <div class="w-full bg-gray-700 rounded-full h-2.5 dark:bg-gray-700">
-                <div class="bg-gradient-to-br from-blue-500 to-purple-600 h-2.5 rounded-full" style="width: 60%"></div>
+                <div class="bg-gradient-to-br from-blue-500 to-purple-600 h-2.5 rounded-full" :style="`width: ${60 + (10 * completedSetupCount)}%`"></div>
               </div>
 <!--              <div class="bar&#45;&#45;content">
                 <div :class="{'active&#45;&#45;progress': (user.profile.nextOfKin.data !== null)}" class="bg-blue-600 progress&#45;&#45;line h-2.5 rounded-full"></div>
@@ -29,7 +32,7 @@
                 <div :class="{'active&#45;&#45;progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress&#45;&#45;line h-2.5 rounded-full"></div>
               </div>-->
             </div>
-            <span class="ml-6 u-link">60%</span>
+            <span class="ml-6 u-link">{{ `${60 + (10 * completedSetupCount)}%` }}</span>
           </div>
         </div>
         <nuxt-link to="/profile"
@@ -416,11 +419,23 @@ export default {
     this.sock.close()
   },
   computed: {
+    isApproved() {
+      return this.user?.profile?.status === 'Approved'
+    },
     completedOrders(){
-      return this.orders.filter(order => order.status === "complete")
+      return this.orders.filter(order => order.status === "complete").length
+    },
+    countNextOfKin(){
+      return !!this.user?.profile?.nextOfKin?.dateOfBirth &&
+        !!this.user?.profile?.nextOfKin?.email &&
+        !!this.user?.profile?.nextOfKin?.mobile &&
+        !this.user?.profile?.nextOfKin?.name
     },
     completedSetupCount(){
-      return Number(!!this.activeReferralUsers) + Number(!!(this.user?.profile?.nextOfKin.dateOfBirth))
+      return Number(!!this.activeReferralUsers) +
+        Number(this.countNextOfKin) +
+        Number(!!this.completedOrders) +
+        Number(this.isApproved)
     },
     styledUp(){
       return this.btcUSDT?.style
