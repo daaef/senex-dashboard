@@ -1,59 +1,6 @@
 <template>
   <div class="">
-      <div
-        v-if="user.profile.status !== 'Approved'"
-        class="index-complete-kyc flex-wrap u-mb-20"
-      >
-        <div class="flex items-center">
-          <i class='bx bx-target-lock'></i>
-        </div>
-        <div class="progress--bar-holder">
-          <div class="message text-3xl font-bold">Finish setting up your profile</div>
-          <div class="index-complete-kyc__info u-mr-10">
-<!--            <img
-              src="/img/icons/green_round_checkmark.svg"
-              alt="checkmark"
-              class="u-mr-10"
-            />-->
-            <p v-if="!countNextOfKin" class="text-md">Provide 'Next of Kin' details</p>
-            <p v-else-if="!completedOrders" class="text-md">Complete a transaction </p>
-            <p v-else-if="!activeReferralUsers" class="text-md">Invite a friend </p>
-            <p v-else class="text-md">Complete your KYC Verification </p>
-          </div>
-          <div class="w-full flex justify-between max-w-lg items-center">
-            <div class="progress-bar">
-              <div class="w-full bg-gray-700 rounded-full h-2.5 dark:bg-gray-700">
-                <div class="bg-gradient-to-br from-blue-500 to-purple-600 h-2.5 rounded-full" :style="`width: ${60 + (10 * completedSetupCount)}%`"></div>
-              </div>
-<!--              <div class="bar&#45;&#45;content">
-                <div :class="{'active&#45;&#45;progress': (user.profile.nextOfKin.data !== null)}" class="bg-blue-600 progress&#45;&#45;line h-2.5 rounded-full"></div>
-                <div :class="{'active&#45;&#45;progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress&#45;&#45;line h-2.5 rounded-full"></div>
-                <div :class="{'active&#45;&#45;progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress&#45;&#45;line h-2.5 rounded-full"></div>
-                <div :class="{'active&#45;&#45;progress': (completedOrders.length !== 0)}" class="bg-blue-600 progress&#45;&#45;line h-2.5 rounded-full"></div>
-              </div>-->
-            </div>
-            <span class="ml-6 u-link">{{ `${60 + (10 * completedSetupCount)}%` }}</span>
-          </div>
-        </div>
-        <nuxt-link to="/profile"
-          class="index-complete-kyc__link-box u-pointer"
-        >
-          <p class="u-link u-mr-10">Complete</p>
-          <svg
-            class="icon u-link"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 11.115 18"
-          >
-            <path
-              id="Icon_material-navigate-next"
-              data-name="Icon material-navigate-next"
-              d="M15,9l-2.115,2.115L19.755,18l-6.87,6.885L15,27l9-9Z"
-              transform="translate(-12.885 -9)"
-              fill="#ffffff"
-            />
-          </svg>
-        </nuxt-link>
-      </div>
+    <SmartProgressBar :user="user" :referrals="activeReferralUsers" :orders="orders" />
     <div class="index-marquee u-mb-20" direction="left">
       <div class="index-rate-box">
         <div class="rate">

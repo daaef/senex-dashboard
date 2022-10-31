@@ -6,6 +6,7 @@
 
 .index-complete-kyc {
   display: grid;
+  grid-gap: 10px;
   grid-template-columns: 50px 1fr auto;
   justify-content: space-between;
   padding: 1.5rem;
@@ -17,9 +18,13 @@
   @media (max-width: 768px) {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     & > * {
       &:first-child {
         order: 1;
+        img {
+          height: 35px;
+        }
       }
       &:last-child {
         order: 2;
@@ -40,7 +45,7 @@
       }
     }
     .index-complete-kyc__info {
-      justify-content: center;
+      justify-content: flex-start;
     }
     .index-complete-kyc__link-box {
       align-self: flex-end;
