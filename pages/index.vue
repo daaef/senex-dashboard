@@ -429,7 +429,7 @@ export default {
       return !!this.user?.profile?.nextOfKin?.dateOfBirth &&
         !!this.user?.profile?.nextOfKin?.email &&
         !!this.user?.profile?.nextOfKin?.mobile &&
-        !this.user?.profile?.nextOfKin?.name
+        !!this.user?.profile?.nextOfKin?.name
     },
     completedSetupCount(){
       return Number(!!this.activeReferralUsers) +
