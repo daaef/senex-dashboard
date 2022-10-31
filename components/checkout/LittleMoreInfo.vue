@@ -45,16 +45,16 @@
         <vue-country-code
           class="mr-2"
           @onSelect="onSelectCountry"
-          :enableSearchField="true"
+          :enableSearchField="false"
           :enabledCountryCode="true"
-          :enabledFlags="false"
+          :enabledFlags="true"
           :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca']"
         />
         <input
           :value="mobileSuffix"
           @input="$emit('update:mobileSuffix', $event.target.value)"
           name="phoneNumber"
-          type="text"
+          type="tel"
           class="o-form__input"
           @keypress="isNumber"
           autocomplete="off"
@@ -350,6 +350,9 @@ export default {
 
 <style lang="scss">
 .little-more-info {
+  .o-form {
+    overflow-y: auto;
+  }
   .vs--unsearchable .vs__dropdown-toggle {
     width: 75px;
     height: 100%;

@@ -27,7 +27,7 @@
             <label class=""
               >Phone number
               <span class="use-active"
-                >(Please use an active phone number)</span
+                ><br>(Please use an active phone number)</span
               ></label
             >
             <div class="select-input">
@@ -47,7 +47,7 @@
               <vue-country-code
                 class="mr-2"
                 @onSelect="onSelectCountry"
-                :enableSearchField="true"
+                :enableSearchField="false"
                 :enabledCountryCode="true"
                 :enabledFlags="true"
                 :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca']"
@@ -66,7 +66,7 @@
                 <input
                   v-model="mobileSuffix"
                   autocomplete="off"
-                  type="text"
+                  type="tel"
                   @keypress="isNumber"
                 />
               </div>

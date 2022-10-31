@@ -400,4 +400,12 @@
   .iti-flag, .country-code {
     margin-right: 4px;
   }
+  .dropdown-list {
+    @media (max-width: 390px) {
+      max-width: 300px;
+    }
+    @media (max-width: 350px) {
+      left: -25px !important;
+    }
+  }
 }
