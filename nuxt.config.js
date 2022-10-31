@@ -4,7 +4,7 @@ export default {
   head: {
     htmlAttrs: {
       lang: 'en',
-      'data-n-head': 'lang'
+      'data-n-head': 'lang',
     },
     title: 'Dashboard',
     meta: [
@@ -15,96 +15,97 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: `SenexPay is the easiest and most reliable platform to exchange cryptocurrency. We are building Africa's biggest cross-border payments infrastructure.`
+        content: `SenexPay is the easiest and most reliable platform to exchange cryptocurrency. We are building Africa's biggest cross-border payments infrastructure.`,
       },
       {
         name: 'keywords',
         content:
-          'bitcoin, exchange, trade, btc, sell, buy, nigeria, sell bitcoin, buy bitcoin, otc, buy bitcoins in nigeria, sell bitcoins in nigeria, fast, secure, reliable, senex, senexpay, senex payment services, money, credit card, debit card, payment, buy bitcoin with card, blockchain, network, block, hash, confirmations, KYC, 24/7 exchange, currency exchange, crypto exchange, senex services payment'
+          'bitcoin, exchange, trade, btc, sell, buy, nigeria, sell bitcoin, buy bitcoin, otc, buy bitcoins in nigeria, sell bitcoins in nigeria, fast, secure, reliable, senex, senexpay, senex payment services, money, credit card, debit card, payment, buy bitcoin with card, blockchain, network, block, hash, confirmations, KYC, 24/7 exchange, currency exchange, crypto exchange, senex services payment',
       },
       { name: 'theme-color', content: '#041d45' },
       {
         hid: 'og:title',
         property: 'og:title',
-        content: 'SenexPay | Buy & Sell Bitcoin and USDT securely.'
+        content: 'SenexPay | Buy & Sell Bitcoin and USDT securely.',
       },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: '/img/senexpay-og-image.png'
+        content: '/img/senexpay-og-image.png',
       },
       {
         property: 'og:image:width',
-        content: '740'
+        content: '740',
       },
       {
         property: 'og:image:height',
-        content: '300'
+        content: '300',
       },
       {
         hid: 'og:description',
         property: 'og:description',
-        content: `SenexPay is the easiest and most reliable platform to exchange cryptocurrency. We are building Africa's biggest cross-border payments infrastructure.`
+        content: `SenexPay is the easiest and most reliable platform to exchange cryptocurrency. We are building Africa's biggest cross-border payments infrastructure.`,
       },
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: 'SenexPay Dashboard'
+        content: 'SenexPay Dashboard',
       },
       {
         hid: 'twitter:card',
         property: 'twitter:card',
-        content: 'SenexPay | Buy & Sell Bitcoin and USDT securely.'
+        content: 'SenexPay | Buy & Sell Bitcoin and USDT securely.',
       },
       {
         hid: 'twitter:description',
         name: 'twitter:description',
-        content: `SenexPay is the easiest and most reliable platform to exchange cryptocurrency. We are building Africa's biggest cross-border payments infrastructure.`
+        content: `SenexPay is the easiest and most reliable platform to exchange cryptocurrency. We are building Africa's biggest cross-border payments infrastructure.`,
       },
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content: '/img/senexpay-og-image-sq.png'
+        content: '/img/senexpay-og-image-sq.png',
       },
       {
         hid: 'twitter:image:src',
         property: 'twitter:image:src',
-        content: '/img/senexpay-og-image-sq.png'
-      }
+        content: '/img/senexpay-og-image-sq.png',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: '/css/uikit.min.css'
+        href: '/css/uikit.min.css',
       },
-      { rel: 'stylesheet', href: 'https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' }
+      {
+        rel: 'stylesheet',
+        href: 'https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css',
+      },
     ],
     script: [
       {
-        src:
-          'https://cdnjs.cloudflare.com/ajax/libs/ClientJS/0.1.11/client.min.js',
-        type: 'text/javascript'
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/ClientJS/0.1.11/client.min.js',
+        type: 'text/javascript',
       },
       {
         async: '',
         src: 'https://cdn.smileidentity.com/inline/v1/js/script.min.js',
-        type: 'text/javascript'
+        type: 'text/javascript',
       },
       {
         src: '/js/uikit.min.js',
-        defer: true
+        defer: true,
       },
       {
         src: '/js/uikit-icons.min.js',
-        defer: true
-      }
-    ]
+        defer: true,
+      },
+    ],
   },
 
-
   router: {
-    middleware: ['sidemenu', 'auth-guard', 'auth']
+    middleware: ['sidemenu', 'auth-guard', 'auth'],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -121,7 +122,7 @@ export default {
     { src: '~/plugins/vue-notification', ssr: false },
     { src: '~/plugins/v-select', ssr: false },
     { src: '~/plugins/numeral', ssr: false },
-    { src: '~/plugins/vue-awesome-countdown', ssr: false}
+    { src: '~/plugins/vue-awesome-countdown', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -131,8 +132,6 @@ export default {
       pathPrefix: false,
     },
   ],
-
-  target: 'static',
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -152,13 +151,13 @@ export default {
         locales: [
           {
             code: 'en',
-            name: 'English'
-          }
+            name: 'English',
+          },
         ],
         // seo: true,
-        vueI18n: i18n
-      }
-    ]
+        vueI18n: i18n,
+      },
+    ],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -175,18 +174,18 @@ export default {
       {
         hideBadge: true,
         siteKey: process.env.RECAPTCHA_SITE_KEY,
-        version: 3
-      }
+        version: 3,
+      },
     ],
     [
       'cookie-universal-nuxt',
       {
-        alias: 'cookiz'
-      }
+        alias: 'cookiz',
+      },
     ],
     '@nuxtjs/i18n',
     '@nuxtjs/sitemap',
-    '@nuxtjs/onesignal'
+    '@nuxtjs/onesignal',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -196,37 +195,41 @@ export default {
   // },
 
   axios: {
-    baseURL: process.env.API_URL
-      // process..env.NODE_ENV === 'development'
-      //   ? process..env.API_URL_DEV
-      //   : process..env.API_URL_PROD
+    baseURL: process.env.API_URL,
+    // process..env.NODE_ENV === 'development'
+    //   ? process..env.API_URL_DEV
+    //   : process..env.API_URL_PROD
   },
 
   i18n: {
     strategy: 'no_prefix',
     seo: true,
-    locales: [{
-      code: 'en',
-      name: 'English',
-      iso: 'en-US'
-    },{
-      code: 'en',
-      name: 'English',
-      iso: 'en-NG'
-    },{
-      code: 'en',
-      name: 'English',
-      iso: 'en-ZA'
-    }],
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+        iso: 'en-US',
+      },
+      {
+        code: 'en',
+        name: 'English',
+        iso: 'en-NG',
+      },
+      {
+        code: 'en',
+        name: 'English',
+        iso: 'en-ZA',
+      },
+    ],
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
       messages: {
         en: {
-          welcome: 'Welcome'
-        }
-      }
-    }
+          welcome: 'Welcome',
+        },
+      },
+    },
   },
 
   facebook: {
@@ -234,7 +237,7 @@ export default {
     track: 'PageView',
     pixelId: process.env.FACEBOOK_PIXEL_ID,
     autoPageView: true,
-    disabled: false
+    disabled: false,
   },
 
   auth: {
@@ -242,7 +245,7 @@ export default {
       login: false,
       logout: '/signin',
       callback: '/signin',
-      home: false
+      home: false,
     },
     rewriteRedirects: true,
     watchLoggedIn: true,
@@ -251,23 +254,23 @@ export default {
       local: {
         token: {
           property: 'access',
-          type: 'JWT'
+          type: 'JWT',
         },
         user: {
           property: false,
-          autoFetch: false
+          autoFetch: false,
         },
         endpoints: {
           login: { url: '/auth/login/', method: 'post' },
           logout: false,
-          user: { url: '/auth/users/me/', method: 'get' }
-        }
-      }
-    }
+          user: { url: '/auth/users/me/', method: 'get' },
+        },
+      },
+    },
   },
 
   googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS_ID
+    id: process.env.GOOGLE_ANALYTICS_ID,
   },
 
   oneSignal: {
@@ -275,11 +278,11 @@ export default {
       appId: process.env.ONE_SIGNAL_APP_ID,
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
-        disable: true
-      }
+        disable: true,
+      },
     },
     cdn: true,
-    OneSignalSDK: 'https://cdn.onesignal.com/sdks/OneSignalSDK.js'
+    OneSignalSDK: 'https://cdn.onesignal.com/sdks/OneSignalSDK.js',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -288,7 +291,7 @@ export default {
       name: 'SenexPAY',
       lang: 'en',
       author: 'Rikozone Technology',
-      categories: ['finance', 'money', 'exchange']
+      categories: ['finance', 'money', 'exchange'],
     },
     workbox: {
       // options
@@ -296,28 +299,43 @@ export default {
       offlineAnalytics: true,
       config: {
         // debug: true
-      }
-    }
+      },
+    },
   },
 
   sentry: {
     dsn: process.env.SENTRY_DSN || '',
     disabled: process.env.NODE_ENV === 'development',
-    config: {}
+    config: {},
   },
 
   sitemap: {
     hostname: 'https://app.senexpay.com',
     defaults: {
       priority: 1,
-      lastmod: new Date()
+      lastmod: new Date(),
     },
     // routes: [],
-    exclude: ['/invoice', '/activate', '/beneficiaries', '/dashboard', '/history', '/orders', '/order', '/order/checkout', '/profile', '/re-activation', '/secret', '/settings', '/verify', '/not-found']
+    exclude: [
+      '/invoice',
+      '/activate',
+      '/beneficiaries',
+      '/dashboard',
+      '/history',
+      '/orders',
+      '/order',
+      '/order/checkout',
+      '/profile',
+      '/re-activation',
+      '/secret',
+      '/settings',
+      '/verify',
+      '/not-found',
+    ],
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ['vue-final-modal']
-  }
+    transpile: ['vue-final-modal'],
+  },
 }
