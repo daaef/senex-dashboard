@@ -5,11 +5,52 @@
 }
 
 .index-complete-kyc {
-  display: flex;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 50px 1fr auto;
   justify-content: space-between;
   padding: 1.5rem;
   border: 1px solid $color-grey-404;
   border-radius: 8px;
+  i.bx {
+    font-size: 3.3rem;
+  }
+  @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    & > * {
+      &:first-child {
+        order: 1;
+        img {
+          height: 35px;
+        }
+      }
+      &:last-child {
+        order: 2;
+      }
+    }
+    .progress--bar-holder {
+      order: 0;
+      width: 100%;
+      margin-bottom: 10px;
+      & > div{
+        &:first-child {
+          flex-direction: column-reverse;
+          max-width: 100%;
+          .progress-bar {
+            margin: 10px 0;
+          }
+        }
+      }
+    }
+    .index-complete-kyc__info {
+      justify-content: flex-start;
+    }
+    .index-complete-kyc__link-box {
+      align-self: flex-end;
+    }
+  }
 
   &__info {
     display: flex;
@@ -209,7 +250,7 @@
   &__content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     height: 100%;
 
@@ -396,6 +437,13 @@
   }
 }
 
+a:hover {
+  color: unset;
+}
+
+[type="date"] {
+  color-scheme: dark
+}
 .vue-country-select {
   .iti-flag, .country-code {
     margin-right: 4px;

@@ -132,6 +132,8 @@ export default {
     },
   ],
 
+  target: 'static',
+
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
@@ -317,5 +319,5 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ['vue-final-modal']
-  },
+  }
 }

@@ -1,37 +1,6 @@
 <template>
   <div class="">
-    <div
-      v-if="user.profile.status != 'Approved'"
-      class="index-complete-kyc u-mb-20"
-    >
-      <div class="index-complete-kyc__info u-mr-10">
-        <img
-          src="/img/icons/green_round_checkmark.svg"
-          alt="checkmark"
-          class="u-mr-10"
-        />
-        <p>Complete your KYC to enjoy more features on SenexPay</p>
-      </div>
-      <div
-        class="index-complete-kyc__link-box u-pointer"
-        @click="$router.push('/profile')"
-      >
-        <p class="u-link u-mr-10">Complete your KYC</p>
-        <svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 11.115 18"
-        >
-          <path
-            id="Icon_material-navigate-next"
-            data-name="Icon material-navigate-next"
-            d="M15,9l-2.115,2.115L19.755,18l-6.87,6.885L15,27l9-9Z"
-            transform="translate(-12.885 -9)"
-            fill="#ffffff"
-          />
-        </svg>
-      </div>
-    </div>
+    <SmartProgressBar :user="user" :referrals="activeReferralUsers" :orders="orders" />
     <div class="index-marquee u-mb-20" direction="left">
       <div class="index-rate-box">
         <div class="rate">
@@ -133,12 +102,15 @@
               <img src="/img/icons/icon_metro_trophy.svg" alt="cup" />
               <span class="small-text">Comrade</span>
             </div>
-            <div class="index-earn__content index-earn__content--1">
+            <nuxt-link to="/invite/earnings" class="index-earn__content index-earn__content--1">
               <span class="small-text">You have earned</span>
               <h3 class="heading-primary">
                 {{ totalEarned | formatMoney('USD') }}
+                <span class="link-ext items-center">
+                  <i class='bx bx-link-external'></i>
+                </span>
               </h3>
-            </div>
+            </nuxt-link>
             <div class="index-earn__content">
               <img
                 src="/img/icons/icon_awesome_users.svg"
@@ -391,6 +363,7 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.onResize)
+    this.sock.close()
   },
   computed: {
     styledUp(){
@@ -520,7 +493,6 @@ export default {
       let list = Array.from(oList)
       list.forEach((item)=> {
         let c = this.getCoinData(item);
-        console.log('data is', c)
         // keep to up 100 previous close prices in hostiry for each coin
         c.history = this.cache.hasOwnProperty(c.symbol) ? this.cache[c.symbol].history : this.fakeHistory(c.close);
         if (c.history.length > 100) c.history = c.history.slice(c.history.length - 100);
@@ -693,7 +665,6 @@ export default {
       }
     },
     getCoinAmountAndRise(currency, type) {
-      console.log(this.rates)
       // new rate
       const fiatCurrency = this.selectedFiatCurrency.ticker
       const newCryptoFiat = this.rates[`${currency}_${fiatCurrency}`][type]
@@ -738,11 +709,54 @@ export default {
   },
 }
 </script>
-<style>
-.gain {
-  color: #04953b;
+
+<style lang="scss">
+.progress-bar {
+  width: 100%;
+  & ~ .u-link {
+    white-space: nowrap;
+  }
+  .bar--content {
+    background: transparent;
+    border-radius: 25px;
+    width: 100%;
+    height: .24rem;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+    .progress--line {
+      height: .24rem;
+      border-radius: 25px;
+      width: 100%;
+      background: #e8e8e8;
+      &.active--progress {
+        background: rgba(37, 99, 235, 1);
+      }
+    }
+  }
 }
-.loss {
-  color: #950404;
+  .gain {
+    color: #04953b;
+  }
+  .loss {
+    color: #950404;
+  }
+  .prog--details {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+  .link-ext {
+    display: flex;
+    margin-left: 5px;
+    height: 100%;
+    align-items: center;
+    i {
+      font-size: 1.5rem;
+    }
+  }
+a.index-earn__content.index-earn__content--1 {
+  h3 {
+    display: flex;
+  }
 }
 </style>
