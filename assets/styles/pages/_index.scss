@@ -403,7 +403,9 @@
   .dropdown-list {
     @media (max-width: 390px) {
       max-width: 300px;
-      left: -40px !important;
+    }
+    @media (max-width: 350px) {
+      left: -25px !important;
     }
   }
 }

@@ -27,7 +27,7 @@
             <label class=""
               >Phone number
               <span class="use-active"
-                >(Please use an active phone number)</span
+                ><br>(Please use an active phone number)</span
               ></label
             >
             <div class="select-input">
@@ -66,7 +66,7 @@
                 <input
                   v-model="mobileSuffix"
                   autocomplete="off"
-                  type="text"
+                  type="tel"
                   @keypress="isNumber"
                 />
               </div>
