@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <SmartProgressBar :user="user" :referrals="activeReferralUsers" :orders="orders" />
+    <SmartProgressBar :user="user" :referrals="activeReferralUsers" />
     <div class="index-marquee u-mb-20" direction="left">
       <div class="index-rate-box">
         <div class="rate">

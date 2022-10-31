@@ -18,7 +18,7 @@
                       class="u-mr-10"
                     />-->
         <p v-if="!countNextOfKin" class="text-md">Provide 'Next of Kin' details</p>
-        <p v-else-if="!completedOrders" class="text-md">Perform your first transaction </p>
+        <p v-else-if="!completedOrders.length" class="text-md">Complete your first transaction </p>
         <p v-else-if="!referrals" class="text-md">Invite a friend to signup and complete a transaction </p>
         <p v-else-if="!isApproved" class="text-md">Complete your KYC Verification </p>
         <p v-else class="text-md">Earn more rewards by inviting more friends</p>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <nuxt-link :to="`${!countNextOfKin ?
-          '/profile/next-of-kin' : !completedOrders ?
+          '/profile/next-of-kin' : !completedOrders.length ?
           '/order/start' : !referrals ?
           '/invite' : !isApproved ? 'kyc-verification' : '/invite' }`"
                class="index-complete-kyc__link-box u-pointer"
@@ -60,10 +60,6 @@
 export default {
   name: "SmartProgressBar",
   props:{
-    orders: {
-      type: Array,
-      default: () => [],
-    },
     user: {
       type: Object,
       default: () => {},
@@ -73,12 +69,14 @@ export default {
       default: () => 0,
     }
   },
+  data() {
+    return {
+      completedOrders: []
+    }
+  },
   computed: {
     isApproved() {
       return this.user?.profile?.status === 'Approved'
-    },
-    completedOrders() {
-      return this.orders.filter(order => order.status === "complete").length
     },
     countNextOfKin() {
       return !!this.user?.profile?.nextOfKin?.dateOfBirth &&
@@ -89,9 +87,13 @@ export default {
     completedSetupCount() {
       return Number(!!this.referrals) +
         Number(this.countNextOfKin) +
-        Number(!!this.completedOrders) +
+        Number(!!this.completedOrders.length) +
         Number(this.isApproved)
     },
+  },
+  async beforeMount() {
+    const { data } = await this.$api.fetchTrades({ status: "completed" })
+    this.completedOrders = data.results
   }
 };
 </script>
