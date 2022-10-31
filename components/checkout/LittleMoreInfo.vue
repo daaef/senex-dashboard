@@ -45,7 +45,7 @@
         <vue-country-code
           class="mr-2"
           @onSelect="onSelectCountry"
-          :enableSearchField="true"
+          :enableSearchField="false"
           :enabledCountryCode="true"
           :enabledFlags="false"
           :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca']"
