@@ -366,24 +366,6 @@ export default {
     this.sock.close()
   },
   computed: {
-    isApproved() {
-      return this.user?.profile?.status === 'Approved'
-    },
-    completedOrders(){
-      return this.orders.filter(order => order.status === "complete").length
-    },
-    countNextOfKin(){
-      return !!this.user?.profile?.nextOfKin?.dateOfBirth &&
-        !!this.user?.profile?.nextOfKin?.email &&
-        !!this.user?.profile?.nextOfKin?.mobile &&
-        !!this.user?.profile?.nextOfKin?.name
-    },
-    completedSetupCount(){
-      return Number(!!this.activeReferralUsers) +
-        Number(this.countNextOfKin) +
-        Number(!!this.completedOrders) +
-        Number(this.isApproved)
-    },
     styledUp(){
       return this.btcUSDT?.style
     },
