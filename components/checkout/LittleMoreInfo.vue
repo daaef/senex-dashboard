@@ -50,7 +50,6 @@
           :enabledFlags="true"
           :disabledFetchingCountry="true"
           :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca']"
-          :preferredCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca']"
         />
         <input
           :value="mobileSuffix"
