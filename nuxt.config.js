@@ -202,7 +202,6 @@ export default {
 
   i18n: {
     strategy: 'no_prefix',
-    seo: true,
     locales: [
       {
         code: 'en',
@@ -221,14 +220,6 @@ export default {
       },
     ],
     defaultLocale: 'en',
-    vueI18n: {
-      fallbackLocale: 'en',
-      messages: {
-        en: {
-          welcome: 'Welcome',
-        },
-      },
-    },
   },
 
   facebook: {
