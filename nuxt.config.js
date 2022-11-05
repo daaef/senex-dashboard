@@ -141,22 +141,6 @@ export default {
     // '@nuxtjs/stylelint-module',
     '@nuxtjs/dotenv',
     '@nuxtjs/google-analytics',
-    [
-      'nuxt-i18n',
-      {
-        strategy: 'no_prefix',
-        vueI18nLoader: true,
-        defaultLocale: 'en',
-        locales: [
-          {
-            code: 'en',
-            name: 'English',
-          },
-        ],
-        // seo: true,
-        vueI18n: i18n,
-      },
-    ],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -202,6 +186,7 @@ export default {
 
   i18n: {
     strategy: 'no_prefix',
+    seo: true,
     locales: [
       {
         code: 'en',
@@ -220,6 +205,7 @@ export default {
       },
     ],
     defaultLocale: 'en',
+    vueI18n: i18n,
   },
 
   facebook: {
