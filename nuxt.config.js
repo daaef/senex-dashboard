@@ -1,4 +1,3 @@
-import i18n from './config/i18n'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -141,22 +140,6 @@ export default {
     // '@nuxtjs/stylelint-module',
     '@nuxtjs/dotenv',
     '@nuxtjs/google-analytics',
-    [
-      'nuxt-i18n',
-      {
-        strategy: 'no_prefix',
-        vueI18nLoader: true,
-        defaultLocale: 'en',
-        locales: [
-          {
-            code: 'en',
-            name: 'English',
-          },
-        ],
-        // seo: true,
-        vueI18n: i18n,
-      },
-    ],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -222,10 +205,26 @@ export default {
     ],
     defaultLocale: 'en',
     vueI18n: {
+      defaultLocale: 'en',
       fallbackLocale: 'en',
-      messages: {
+      numberFormats: {
         en: {
-          welcome: 'Welcome',
+          currency: {
+            style: 'currency',
+            currency: 'USD',
+          },
+        },
+        'en-NG': {
+          currency: {
+            style: 'currency',
+            currency: 'NGN',
+          },
+        },
+        'en-ZA': {
+          currency: {
+            style: 'currency',
+            currency: 'ZAR',
+          },
         },
       },
     },
