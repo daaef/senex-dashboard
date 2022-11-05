@@ -51,6 +51,7 @@
                 :enabledCountryCode="true"
                 :enabledFlags="true"
                 :disabledFetchingCountry="true"
+                defaultCountry="ng"
                 :onlyCountries="['ng', 'za', 'gh', 'ke', 'gb', 'us', 'ca']"
               />
               <!-- <b-dropdown id="dropdown-menu" :text="countryCode">
