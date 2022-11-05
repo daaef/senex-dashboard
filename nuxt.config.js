@@ -1,4 +1,3 @@
-import i18n from './config/i18n'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -205,7 +204,30 @@ export default {
       },
     ],
     defaultLocale: 'en',
-    vueI18n: i18n,
+    vueI18n: {
+      defaultLocale: 'en',
+      fallbackLocale: 'en',
+      numberFormats: {
+        en: {
+          currency: {
+            style: 'currency',
+            currency: 'USD',
+          },
+        },
+        'en-NG': {
+          currency: {
+            style: 'currency',
+            currency: 'NGN',
+          },
+        },
+        'en-ZA': {
+          currency: {
+            style: 'currency',
+            currency: 'ZAR',
+          },
+        },
+      },
+    },
   },
 
   facebook: {
